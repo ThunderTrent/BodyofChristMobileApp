@@ -91,7 +91,7 @@ function loadSermonsInsert(url, target, insert, name) {
 
         //check to see if file exists in cache to save it to
         //console.log('test');
-        if (url.split(':')[0] == "http"){
+        if (url.split(':')[0] == "https"){
 downloadFile(name,url);
 }
 else{

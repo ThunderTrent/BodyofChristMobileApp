@@ -61,7 +61,7 @@ function loadVBVInsert(url, target, name) {
     }).done(function(vbvData, textStatus, jqXHR) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.vbvData = vbvData;
-        if (url.split(':')[0] == "http") {
+        if (url.split(':')[0] == "https") {
             downloadFile(name, url);
         } else {
 

@@ -19,18 +19,18 @@ function loadChurches(search, communityID, userID, insert) {
     if (localStorage.getItem("view") == "Global") {
         if (isOffline === false) { 
             url = 'https://www.thebodyofchrist.us/rest/churches/?limit=1000&ordering=-churchNumberofTeachings';
-            name = "churchGlobal";
+
         } else {
-            url = 'cdvfile://localhost/library-nosync/globalEvents.json';
+            url = 'cdvfile://localhost/library-nosync/churchGlobal.json';
         }
+        name = "churchGlobal";
         target = '#contentHolder';
-        console.log('global');
         loadChurchInsert(url, target, insert, name);
     } else if (localStorage.getItem("view") == "Community") {
         if (isOffline === false) {
             url = 'https://www.thebodyofchrist.us/rest/churches/?limit=1000&ordering=-churchNumberofTeachings&communityid=' + localStorage.getItem("communityID");
         } else {
-            url = 'cdvfile://localhost/library-nosync/globalEvents.json';
+            url = 'cdvfile://localhost/library-nosync/churchCommunity.json';
         }
         name = 'churchCommunity';
         console.log(url);
@@ -46,7 +46,7 @@ function loadChurches(search, communityID, userID, insert) {
             if (isOffline === false) {
                 url = 'https://www.thebodyofchrist.us/rest/churches/?limit=1000&ordering=-churchNumberofTeachings&churchid=' + followArray;
             } else {
-                url = 'cdvfile://localhost/library-nosync/globalEvents.json';
+                url = 'cdvfile://localhost/library-nosync/churchFollower.json';
             }
             name = 'churchFollower';
             target = '#contentHolder';
@@ -66,7 +66,7 @@ function loadChurchInsert(url, target, insert, name) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.churchData = churchData;
 
-        if (url.split(':')[0] == "http") {
+        if (url.split(':')[0] == "https") {
             downloadFile(name, url);
         } else {
 

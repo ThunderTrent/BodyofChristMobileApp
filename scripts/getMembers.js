@@ -1,6 +1,7 @@
 function downloadFile(name, dataUrl) {
     var fileTransfer = new FileTransfer();
     store = cordova.file.dataDirectory;
+    console.log(name);
     fileName = name + ".json";
     fileTransfer.download(dataUrl, store + fileName,
         function(entry) {
@@ -42,24 +43,24 @@ function loadMembers(search, communityID, insert) {
         $.each(followData.results, function(index, value) {
             if (followData.results[index].followtype == "User") {
                 followArray.push(followData.results[index].followeeUser);
-            } else {
+            } else {   }
 
-            }
-            if (isOffline === false) {
+        });
+
+         if (isOffline === false) {
                 url = 'https://www.thebodyofchrist.us/rest/members/?limit=1000&id=' + followArray;
-            } else {
+            }
+            else {
                 url = 'cdvfile://localhost/library-nosync/followMembers.json';
             }
 
             name = 'followMembers';
             target = '#contentHolder';
             loadMembersInsert(url, target, "True", name);
-
-
-        });
-
-    } else {}
 }
+ else {}
+}
+
 
 function loadMembersInsert(url, target, insert, name) {
 
@@ -70,7 +71,7 @@ function loadMembersInsert(url, target, insert, name) {
     }).done(function(memberData, textStatus, jqXHR) {
         window.memberData = memberData;
 
-        if (url.split(':')[0] == "http") {
+        if (url.split(':')[0] == "https") {
             downloadFile(name, url);
         } else {
 
@@ -125,14 +126,23 @@ function loadMembersInsert(url, target, insert, name) {
                     '<ul class="mdl-list">' +
                     '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +
                     '<span class="mdl-list__item-primary-content" style="margin-top:-15px;width:100%;">' +
-                    '<div style="background-size:cover;margin-top:-15px;border-radius:20px;width:80px;height:80px;float:left;margin-right:20px;background-image:url(\'' + userImage + '\');"></div>' +
-                    '<span onclick="loadProfilePage(' + memberData.results[index].id + ');">' + memberData.results[index].first_name + ' ' + memberData.results[index].last_name + '</span>' +
-                    '<span class="mdl-list__item-sub-title">Church: ' + churchName + '</span>' +
-                    '<span class="mdl-list__item-sub-title">Community:' + memberData.results[index].communityid + '</span>' +
+                   // '<div style="background-size:cover;margin-top:-15px;border-radius:20px;width:80px;height:80px;float:left;margin-right:20px;background-image:url(\'' + userImage + '\');"></div>' +
+                    '<img style="border-radius:20px;margin-top:-15px;width:80px;height:80px;position:absolute;" id="member_IMG_' + memberData.results[index].id + '" src="' + userImage + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +
+
+                    '<span style="margin-left:100px;" onclick="loadProfilePage(' + memberData.results[index].id + ');">' + memberData.results[index].first_name + ' ' + memberData.results[index].last_name + '</span>' +
+                    '<span class="mdl-list__item-sub-title" style="margin-left:100px;">Church: ' + churchName + '</span>' +
+                    '<span class="mdl-list__item-sub-title" style="margin-left:100px;">Community:' + memberData.results[index].communityid + '</span>' +
                     '</span>' +
                     '</li>' +
                     '</ul>' +
                     '</div>');
+                 var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+                 if (app) {
+                var imageCacheTarget = $('#member_IMG_' + memberData.results[index].id);
+                cacheImageCheck(imageCacheTarget);
+            } else {
+
+            }
             });
         }
 
@@ -272,3 +282,21 @@ function setUserDataLocalStorage() {
     localStorage.setItem("churchID", '1');
 }
 setUserDataLocalStorage();
+
+function cacheImageCheck(imageCacheTarget) {
+
+
+    ImgCache.isCached(imageCacheTarget.attr('src'), function(path, success) {
+        if (success) {
+            //already cached
+            ImgCache.useCachedFile(imageCacheTarget);
+        } else {
+            //   not there, need to cache the image
+            ImgCache.cacheFile(imageCacheTarget.attr('src'), function() {
+                ImgCache.useCachedFile(imageCacheTarget);
+            });
+        }
+    });
+
+
+}

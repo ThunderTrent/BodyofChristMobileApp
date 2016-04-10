@@ -308,15 +308,7 @@
         ImgCache.options.chromeQuota = 50 * 1024 * 1024;
 
         function imageCache() {
-            ImgCache.init(function() {
-                alert('ImgCache init: success!');
 
-                // from within this function you're now able to call other ImgCache methods
-                // or you can wait for the ImgCacheReady event
-
-            }, function() {
-                alert('ImgCache init: error! Check the log for errors');
-            });
         }
 
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -324,9 +316,13 @@
         function onDeviceReady() {
             console.log(FileTransfer);
             console.log(Media);
-            imageCache();
+            ImgCache.init(function() {
             setViewGlobal();
             loadEvents(localStorage.getItem('view'), communityID);
+            }, function() {
+                alert('ImgCache init: error! Check the log for errors');
+            });
+
         }
     </script>
     <script src="scripts/getSpeakers.js"></script>

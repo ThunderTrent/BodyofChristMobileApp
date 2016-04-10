@@ -67,7 +67,7 @@ function loadEventsInsert(url, target, name) {
     }).done(function(eventData, textStatus, jqXHR) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.eventData = eventData;
-        if (url.split(':')[0] == "http") {
+        if (url.split(':')[0] == "https") {
             downloadFile(name, url);
         } else {
 
