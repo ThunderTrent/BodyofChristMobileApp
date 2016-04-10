@@ -26,6 +26,7 @@ var isOffline = 'onLine' in navigator && !navigator.onLine;
     if (search == "Global") {
        //check online status
       if (isOffline ===false){
+
            url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=' + title;
           name = "globalTeachings";
         }
@@ -89,9 +90,14 @@ function loadSermonsInsert(url, target, insert, name) {
         window.teachingData = teachingData;
 
         //check to see if file exists in cache to save it to
-        console.log('test');
-        downloadFile(name,url);
-        console.log('test');
+        //console.log('test');
+        if (url.split(':')[0] == "http"){
+downloadFile(name,url);
+}
+else{
+
+}
+        //console.log('test');
 
 
 
