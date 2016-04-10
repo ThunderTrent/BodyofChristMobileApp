@@ -1,0 +1,218 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Speakers</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <style>
+      .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after{
+      background: white !important;
+      }
+    </style>
+    <!--<link rel="stylesheet" href="fonts/roboto.css">-->
+    <link rel="stylesheet" href="fonts/material-icons.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-blue.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+      .demo-list-two{
+      width:390px !important;
+      }
+
+    </style>
+  </head>
+  <body onload="">
+  <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100"></div>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Dashboard</span>
+          <div class="mdl-layout-spacer"></div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+
+
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+          </ul>
+        </div>
+          <div id="bars" style="max-height:146px;overflow-x:hidden;">
+   <div id="primaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="background-color:#f39c12;height:48px;">
+      <a href="#global" onclick="setView('Global');" class="mdl-layout__tab is-active">Global</a>
+      <a href="#global" onclick="setView('Community');" class="mdl-layout__tab">Your Community</a>
+      <a href="#global" onclick="setView('Following');" class="mdl-layout__tab">Following</a>
+    </div>
+  <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: #0073b7;">
+      <a id="activity" href="#" onclick="activityLoad();" class="mdl-layout__tab is-active">Activity</a>
+      <a id="teachings" href="#" onclick="teachingsLoad();" class="mdl-layout__tab"> Teachings</a>
+      <a id="needs" href="#" onclick="needsLoad();" class="mdl-layout__tab">Needs</a>
+      <a id="churches" href="#" onclick="churchesLoad();" class="mdl-layout__tab">Churches</a>
+      <a id="members" href="#" onclick="membersLoad();" class="mdl-layout__tab">Members</a>
+  </div>
+ <div id="teachingBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: #dd4b39;display:none;">
+      <a id="sermonsButton" href="#" onclick="sermonsLoad();" class="mdl-layout__tab">Sermons</a>
+      <a id="verseByVerseButton" href="#" onclick="verseByVerseLoad();" class="mdl-layout__tab">Verse By Verse</a>
+      <a id="bibleButton" href="#" onclick="bibleLoad();" class="mdl-layout__tab">Bible</a>
+  </div>
+  <div id="needsBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: #dd4b39;display:none;">
+      <a id="unmetNeeds" href="#" onclick="" class="mdl-layout__tab">Unmet Needs</a>
+      <a id="metNeeds" href="#" onclick="" class="mdl-layout__tab">Met Needs</a>
+  </div>
+   <div id="individualSermonBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: #F39C12;display:none;">
+      <a id="viewSermonTab" href="#" onclick="" class="mdl-layout__tab">View Sermon</a>
+      <!--<a id="speakerSermonTab" href="#" onclick="" class="mdl-layout__tab">View Speaker</a>-->
+      <!--<a id="commentsSermon" href="#" onclick="" class="mdl-layout__tab">Comments</a>-->
+      <!--<a id="downloadSermon" href="#" onclick="" class="mdl-layout__tab">Download</a>-->
+  </div>
+    </div>
+
+
+
+
+
+
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+
+        <header class="demo-drawer-header">
+          <img src="https://www.thebodyofchrist.us/media/2addedf1-2e2c-4078-86fa-1a268c356110.jpg.300x300_q85_detail_upscale.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>Trent Brown</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+            </ul>
+          </div>
+
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a href="index.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
+          <a href="bible.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>Bible</a>
+          <a href="teachings.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Teachings</a>
+          <a href="speakers.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">inbox</i>Speakers/Teachers</a>
+          <a href="needs.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">delete</i>Needs</a>
+          <a href="churches.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">report</i>Churches</a>
+          <a href="mychurch.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">forum</i>My Church</a>
+          <a href="myprofile.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>My Profile</a>
+
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+      </div>
+<style>
+.demo-list-two {
+  width: 300px;
+}
+</style>
+<main class="mdl-layout__content mdl-color--grey-100" style="height:100%;">
+
+
+<section class="mdl-layout__tab-panel is-active" id="global" style="height:100%;">
+<script>
+
+document.addEventListener("deviceready", onDeviceReady, false);
+alert('test');
+function onDeviceReady() {
+    console.log("window.open works well");
+    cordova.InAppBrowser.open('//apache.org', '_blank', 'location=yes');
+}
+
+
+</script>
+
+
+
+
+</section>
+
+</main>
+    </div>
+
+
+
+
+
+    <script src="scripts/database.js"></script>
+    <script src="scripts/jquery.js"></script>
+    <script> window.userID = 1;window.communityID = 1;</script>
+    <script src="scripts/getMembers.js"></script>
+
+  <script>
+
+</script>
+
+    <script src="scripts/jquery.cookie.js"></script>
+    <script src="scripts/material.js"></script>
+
+  <script>
+
+  </script>
+  </body>
+</html>

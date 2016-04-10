@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Profile</title>
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="fonts/material-icons.css">
+    <link rel="stylesheet" href="styles/blue_material.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    </style>
+  </head>
+  <body onload="">
+  <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">Your Profile</span>
+          <div class="mdl-layout-spacer"></div>
+
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i class="material-icons">search</i>
+            </label>
+            <div class="mdl-textfield__expandable-holder">
+              <input class="mdl-textfield__input" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+            </div>
+          </div>
+
+
+          <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+            <li class="mdl-menu__item">About</li>
+            <li class="mdl-menu__item">Contact</li>
+            <li class="mdl-menu__item">Legal information</li>
+          </ul>
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+      <a href="#userProfile" id="profileButton" onclick="" class="mdl-layout__tab is-active">Profile</a>
+      <a href="#userSettings" id="editInformationButton" onclick="loadEditProfilePage();" class="mdl-layout__tab">Edit Your Information</a>
+      <a href="#userSermonHistory" onclick="" class="mdl-layout__tab">Your History</a>
+      <a href="#userWatchLater" onclick="" class="mdl-layout__tab">Watch Later / Recommended Sermons</a>
+    </div>
+      </header>
+      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+
+        <header class="demo-drawer-header">
+          <img src="https://www.thebodyofchrist.us/media/2addedf1-2e2c-4078-86fa-1a268c356110.jpg.300x300_q85_detail_upscale.jpg" class="demo-avatar">
+          <div class="demo-avatar-dropdown">
+            <span>Trent Brown</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
+              <li class="mdl-menu__item">hello@example.com</li>
+              <li class="mdl-menu__item">info@example.com</li>
+              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
+            </ul>
+          </div>
+
+        </header>
+        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
+          <a href="app.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
+         <a href="myprofile.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>My Profile</a>
+
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+        </nav>
+      </div>
+
+      <main class="mdl-layout__content mdl-color--grey-100">
+          <style>
+.demo-list-two {
+  width: 300px;
+}
+</style>
+
+    <section class="mdl-layout__tab-panel is-active" id="userProfile">
+<div class="page-content">
+  <div id="globalHolder" class="mdl-grid demo-content" style="padding:0;">
+      <div id="userImage" width="100%" style="height:300px;width:100%;background-size:cover;"/>
+      <div style="padding:20px; float:right;">
+          <button onclick="editButton();" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+ <i class="material-icons">mode_edit</i>
+</button>
+
+      </div>
+
+      <div style="background-color:rgba(0, 115, 183, 0.45);width:100%;"><center><h2 style="position:relative;margin-top:200px;color:white;font-weight:500;"><span id="first_name"></span> <span id="last_name"></span></h2></center></div>
+     </div>
+
+    <!-- Three Line List with secondary info and action -->
+<style>
+.demo-list-three {
+  width: 650px;
+}
+</style>
+
+<ul class="demo-list-three mdl-list">
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">home</i>
+      <span style="margin-right:20px;">Home Church:</span><button id="church" class="mdl-button mdl-js-button mdl-button--accent"></button>
+
+    </span>
+
+  </li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">public</i>
+      <span>Community:</span><span id="comunity"></span>
+      <span class="mdl-list__item-text-body">
+        Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+
+      </span>
+    </span>
+
+  </li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person_add</i>
+      <span>Follow Colton:</span><span id="follow" style="margin-right:20px;"></span><button id="followButton" class="mdl-button mdl-js-button mdl-button--accent">Follow Colton</button>
+    </span>
+
+  </li>
+</ul>
+
+  </div>
+</div>
+    </section>
+<section class="mdl-layout__tab-panel is-active" id="userSettings">
+<div class="page-content">
+    <!-- List with avatar and controls -->
+<style>
+.demo-list-control {
+  width: 80%;
+}
+
+.demo-list-radio {
+  display: inline;
+}
+</style>
+ <center>
+<ul class="demo-list-control mdl-list">
+
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" id="usernameIcon" style="font-size:40px;margin-right:20px;color:#424141;">account_box</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="usernameLabel">
+    <input class="mdl-textfield__input" type="text" id="usernameForm">
+    <label class="mdl-textfield__label" for="sample1">Username...</label>
+  </div>
+      <div class="mdl-tooltip" for="usernameForm">Username</div>
+      <div class="mdl-tooltip" for="usernameIcon">Username</div>
+  </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" id="firstNameIcon" style="font-size:40px;margin-right:20px;color:#424141;">perm_identity</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="firstNameLabel">
+    <input class="mdl-textfield__input" type="text" id="firstNameForm">
+    <label class="mdl-textfield__label" for="sample1">First Name...</label>
+  </div>
+        <div class="mdl-tooltip" for="firstNameForm">First Name</div>
+      <div class="mdl-tooltip" for="firstNameIcon">First Name</div>
+  </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" id="lastNameIcon" style="font-size:40px;margin-right:20px;color:#424141;">perm_identity</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="lastNameLabel">
+    <input class="mdl-textfield__input" type="text" id="lastNameForm">
+    <label class="mdl-textfield__label" for="sample1">Last Name...</label>
+  </div>
+        <div class="mdl-tooltip" for="lastNameForm">Last Name</div>
+      <div class="mdl-tooltip" for="lastNameIcon">Last Name</div>
+  </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" id="emailIcon" style="font-size:40px;margin-right:20px;color:#424141;">mail</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="emailLabel">
+    <input class="mdl-textfield__input" type="text" id="emailForm">
+    <label class="mdl-textfield__label" for="sample1">Email Address...</label>
+  </div>
+        <div class="mdl-tooltip" for="emailForm">Email Address</div>
+      <div class="mdl-tooltip" for="emailIcon">Email Address</div>
+  </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" id="photoIcon" style="font-size:40px;margin-right:20px;color:#424141;">add_a_photo</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="photoLabel">
+    <input class="mdl-textfield__input" type="text" id="photoForm">
+    <label class="mdl-textfield__label" for="sample1">Photo...</label>
+  </div>
+        <div class="mdl-tooltip" for="photoForm">Add Profile Image</div>
+      <div class="mdl-tooltip" for="photoIcon">Add Profile Image</div>
+    </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" style="font-size:40px;margin-right:20px;color:#424141;">public</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="communityLabel">
+    <input class="mdl-textfield__input" type="text" id="communityForm">
+    <label class="mdl-textfield__label" for="sample1">Your Community...</label>
+  </div>
+    </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" style="font-size:40px;margin-right:20px;color:#424141;">home</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="churchLabel">
+    <input class="mdl-textfield__input" type="text" id="churchForm">
+    <label class="mdl-textfield__label" for="sample1">Your Church...</label>
+  </div>
+    </li>
+    <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+     <i class="material-icons" style="font-size:40px;margin-right:20px;color:#424141;">face</i>
+    </span>
+  <div class="mdl-textfield mdl-js-textfield" id="aboutLabel">
+    <input class="mdl-textfield__input" type="text" id="sample1">
+    <label class="mdl-textfield__label" for="sample1">About...</label>
+  </div>
+    </li>
+</ul>
+     <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Save Profile Information
+</button>
+     </center>
+</div>
+    </section>
+<section class="mdl-layout__tab-panel is-active" id="userSermonHistory">
+<div class="page-content">
+  <div id="followingHolder" class="mdl-grid demo-content">
+    <button onclick="updateTest();"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  Update Test
+</button>
+  </div>
+</div>
+    </section>
+<section class="mdl-layout__tab-panel is-active" id="userWatchLater">
+<div class="page-content">
+  <div id="recommendedHolder" class="mdl-grid demo-content">
+  </div>
+</div>
+    </section>
+      </main>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="scripts/jquery.cookie.js"></script>
+    <script src="scripts/material.js"></script>
+    <script src="scripts/getChurches.js"></script>
+    <!--<script src="scripts/getCommunities.js"></script>-->
+    <script src="scripts/getMembers.js"></script>
+    <script src="scripts/getSpeakers.js"></script>
+  <script>
+
+      loadMembers('Global');
+
+
+      function loadEditProfilePage(){
+
+      function arrayLookup(array, prop, val) {
+                        for (var i = 0, len = array.length; i < len; i++) {
+                            if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
+                                return array[i];
+                            }
+                        }
+                        return null;
+                    }
+
+
+        userID = parseInt(localStorage.getItem('userID'));
+
+
+
+       try {
+       firstName = arrayLookup(memberData.results, 'id', userID).first_name;
+       document.getElementById('firstNameForm').value = firstName;
+       $('#firstNameLabel').addClass('is-dirty');
+       //console.log(firstName);
+       } catch (err) {
+       console.log(err);
+       }
+        try {
+       lastName = arrayLookup(memberData.results, 'id', userID).last_name;
+       document.getElementById('lastNameForm').value = lastName;
+       $('#lastNameLabel').addClass('is-dirty');
+      // console.log(lastName);
+       } catch (err) {
+       console.log(err);
+       }
+        try {
+       username = arrayLookup(memberData.results, 'id', userID).username;
+       document.getElementById('usernameForm').value = username;
+       $('#usernameLabel').addClass('is-dirty');
+       //console.log(username);
+       } catch (err) {
+       console.log(err);
+       }
+        try {
+       firstName = arrayLookup(memberData.results, 'id', userID).first_name;
+       document.getElementById('firstNameForm').value = firstName;
+       $('#firstNameLabel').addClass('is-dirty');
+       console.log(firstName);
+       } catch (err) {
+       console.log(err);
+       }
+         try {
+       emailAddress = arrayLookup(memberData.results, 'id', userID).email;
+       document.getElementById('emailForm').value = emailAddress;
+       $('#emailLabel').addClass('is-dirty');
+       //console.log(emailAddress);
+       } catch (err) {
+       console.log(err);
+       }
+
+      }
+
+       function editButton(){
+       loadEditProfilePage();
+       $('#userProfile').removeClass('is-active');
+       $('#profileButton').removeClass('is-active');
+       $('#editInformationButton').addClass('is-active');
+       $('#userSettings').addClass('is-active');
+
+       }
+
+       function updateTest(){
+       jQuery.ajax({
+url: 'https://www.thebodyofchrist.us/service/setHomeChurch/?churchID=1',
+type: "GET",
+}).done(function(memberData, textStatus, jqXHR) {
+alert(memberData);
+alert(textStatus);
+});
+       }
+  </script>
+  </body>
+</html>

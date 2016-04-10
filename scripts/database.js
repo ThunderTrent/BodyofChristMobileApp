@@ -1,0 +1,1 @@
+var db = window.openDatabase("BoCData", "1.0", "BodyofChrist DB", 1000000);
