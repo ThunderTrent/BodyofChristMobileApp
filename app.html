@@ -35,6 +35,18 @@
             display: block;
         }
 
+         @-webkit-keyframes crossChange {
+    0%{    -webkit-filter: drop-shadow(0 1px 10px rgba(255,255,255,0.9));}
+    50%{   -webkit-filter: drop-shadow(0 1px 50px rgba(255,255,255,0.9));}
+    100%{  -webkit-filter: drop-shadow(0 1px 10px rgba(255,255,255,0.9));}
+    }
+.br-theme-fontawesome-stars .br-widget a.br-selected:after{
+color:#4A3B2E !important;
+}
+.br-theme-fontawesome-stars .br-widget{
+margin-top:0px !important;
+}
+
         #view-source {
             position: fixed;
             display: block;
@@ -65,12 +77,6 @@
         .demo-list-two {
             width: auto !Important;
         }
-
-        .mdl-list__item-avatar,
-        .mdl-list__item-avatar.material-icons {
-            background-color: transparent !important;
-            color: #652D10 !important;
-        }
     </style>
 </head>
 
@@ -91,7 +97,7 @@
           </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                     <li class="mdl-menu__item">About</li>
-                    <li class="mdl-menu__item">Contact</li>
+                    <li onclick="clearCache();" class="mdl-menu__item">Clear Cache</li>
                     <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
                 </ul>
             </div>
@@ -155,8 +161,8 @@
 
             </header>
             <nav class="demo-navigation mdl-navigation">
-                <a href="app.html" class="mdl-navigation__link" style="color:white !important;" href=""><i style="color:white;" class="material-icons" role="presentation">home</i>Dashboard</a>
-                <a href="myprofile.html" class="mdl-navigation__link" style="color:white !important;" href=""><i style="color:white;" class="material-icons" role="presentation">flag</i>My Profile</a>
+                <a onclick="window.location ='app.html'; " href="app.html" class="mdl-navigation__link" style="color:white !important;" href=""><i style="color:white;" class="material-icons" role="presentation">home</i>Dashboard</a>
+                <a href="myprofile.html" onclick="window.location ='myprofile.html'; " class="mdl-navigation__link" style="color:white !important;" href=""><i style="color:white;" class="material-icons" role="presentation">flag</i>My Profile</a>
                 <div class="mdl-layout-spacer"></div>
                 <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
             </nav>
@@ -300,6 +306,13 @@
 
 
     <script src="scripts/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+    <script>
+    $.mobile.loading().hide();
+    $( document ).on( "mobileinit", function() {
+    $.mobile.loader.prototype.options.disabled = true;
+});
+    </script>
     <script src="scripts/getSpeakers.js"></script>
     <script src="js/imgcache.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
@@ -307,9 +320,7 @@
         ImgCache.options.debug = true;
         ImgCache.options.chromeQuota = 50 * 1024 * 1024;
 
-        function imageCache() {
 
-        }
 
         document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -327,8 +338,6 @@
         }
     </script>
     <script src="scripts/getSpeakers.js"></script>
-    <!-- <script src="/js/pace.js"></script>
-    <link href="/css/loadingBar.css" rel="stylesheet" /> -->
     <script src='scripts/nprogress.js'></script>
     <link rel='stylesheet' href='css/nprogress.css' />
     <script src="scripts/database.js"></script>
@@ -572,7 +581,7 @@
     <script>
         function logout() {
             window.location = 'index.html';
-
+            //localStorage.clear();
         }
     </script>
     <script>
@@ -624,6 +633,14 @@
 
         }
 
+        function clearCache(){
+        ImgCache.clearCache(function () {
+          // continue cleanup...
+        }, function () {
+          // something went wrong
+        });
+        }
+
 
     </script>
 
@@ -638,8 +655,6 @@
         }
     </script>
 
-    <script>
-    </script>
 
     <script src="js/jquery.barrating.js"></script>
 

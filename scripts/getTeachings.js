@@ -284,13 +284,13 @@ if (window.audioSource){
                     '<div style="width:32%;text-align:center;"><i id="fastforwardButton" class="material-icons" style="text-align:center;font-size:30px;">fast_forward</i></div></div>';
 }
 else{   
-  window.audioCode = '<audio style="margin-top:20px;width:100%;" id="teachingAudio" controls>' +
+  window.audioCode = '<audio style="margin-top:50px;width:100%;" id="teachingAudio" controls>' +
                           '<source src="' + 'https://storage.googleapis.com/boc-audio/sermonsMP3/'+ sermonID + '.mp3' + '" type="audio/mp3">' +
                           '</audio>';
 
 }
 }catch(err){
-    window.audioCode = '<audio style="margin-top:20px;width:100%;" id="teachingAudio" controls>' +
+    window.audioCode = '<audio style="margin-top:50px;width:100%;" id="teachingAudio" controls>' +
                           '<source src="' + 'https://storage.googleapis.com/boc-audio/sermonsMP3/'+ sermonID + '.mp3' + '" type="audio/mp3">' +
                           '</audio>';
 }
@@ -298,27 +298,21 @@ else{   
 
             audioStatus = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).audioStatus;
            
-                $('#sermonContent').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;background-image:url(\'images/audioBG.png\');max-height:454px;background-position:center;background-size:cover;border-radius:40px;">' +
-                    '<div style="height:190px;"></div>'+
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';"> Title:' + cleanTitle + '</span>' +
+                $('#sermonContent').append('<div style="  display:none;  position: absolute; border-radius:40px;    width: calc(100% - 16px); margin:8px;   width: 100%;    height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);'+
+                  '"></div>'+
+  '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;background-image:url(\'img/Wood-Medium.png\');    background-size: 100% 100%;background-position:center;border-radius:40px;">' +
+
+                    '<center><img src="img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>'+
+                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +
                     // '<div><img src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=5439" style="height:100px;width:100px;border-radius:20px;" /></div>'+
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Speaker: ' + speakerName + '</span>' +
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Church: '+ churchName + '</span>' +
+                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
+                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Church: '+ churchName + '</span>' +
                    // '<canvas id="teachingCanvas" style="width:100%;height:100%;"></canvas>'+
                   
-//Check to see if the audio is local
-
-
-
-                  window.audioCode +
-
-                 
-
-
-'<center>'+
+                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Public Rating: ' +
                     '<div class="stars">'+
 '<form action="">'+
-'<select id="rating1">'+
+'<select id="publicRating">'+
   '<option value="1">1</option>'+
   '<option value="2">2</option>'+
   '<option value="3">3</option>'+
@@ -326,47 +320,64 @@ else{   
   '<option value="5">5</option>'+
 '</select>'+
 '</form>'+
-'</center>'+
+
 '</div>' +
+ '</span>' +
+  '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Your Rating: ' +
+                    '<div class="stars">'+
+'<form action="">'+
+'<select id="yourRating">'+
+  '<option value="1">1</option>'+
+  '<option value="2">2</option>'+
+  '<option value="3">3</option>'+
+  '<option value="4">4</option>'+
+  '<option value="5">5</option>'+
+'</select>'+
+'</form>'+
+
+'</div>' +
+ '</span>' +
+window.audioCode +
                     ''+
                     ''+
 '<div style="margin-top:20px;width:90%;" class="demo-list-action mdl-list">'+
   '<div class="mdl-list__item">'+
     '<span style="width:100%;" class="mdl-list__item-primary-content">'+
-      '<i class="material-icons mdl-list__item-avatar">cloud_download</i>'+
-      '<span style="width:100%;"><button style="width:100%;" onClick="downloadMP3(' + sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download to Device</button></span>'+
+      '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">cloud_download</i>'+
+      '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onClick="downloadMP3(' + sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download to Device</button></span>'+
     '</span>'+
  '</div>'+
 '<div class="mdl-list__item">'+
  '<span style="width:100%;" class="mdl-list__item-primary-content">'+
- '<i class="material-icons mdl-list__item-avatar">headset</i>'+
- '<span style="width:100%;"><button style="width:100%;" onclick="markAsListened(' +  sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mark as Listened</button></span>'+
+ '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">headset</i>'+
+ '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white; onclick="markAsListened(' +  sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mark as Listened</button></span>'+
     '</span>'+
  '</div>'+
   '<div class="mdl-list__item">'+
     '<span style="width:100%;" class="mdl-list__item-primary-content">'+
-      '<i class="material-icons mdl-list__item-avatar">person</i>'+
-      '<span style="width:100%;"><button style="width:100%;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Recommend Teaching</button></span>'+
+      '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">person</i>'+
+      '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Recommend Teaching</button></span>'+
     '</span>'+
     '<span class="mdl-list__item-secondary-content">'+
   '</span>'+
   '</div>'+
     '<div class="mdl-list__item">'+
     '<span style="width:100%;" class="mdl-list__item-primary-content">'+
-      '<i class="material-icons mdl-list__item-avatar">cast</i>'+
-      '<span style="width:100%;"><button style="width:100%;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cast to Device</button></span>'+
+      '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">cast</i>'+
+      '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cast to Device</button></span>'+
     '</span>'+
     '<span class="mdl-list__item-secondary-content">'+
   '</span>'+
   '</div>'+
     '<div class="mdl-list__item">'+
     '<span style="width:100%;" class="mdl-list__item-primary-content">'+
-      '<i class="material-icons mdl-list__item-avatar">airplay</i>'+
-      '<span style="width:100%;"><button style="width:100%;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Airplay to Apple TV</button></span>'+
+      '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">airplay</i>'+
+      '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Airplay to Apple TV</button></span>'+
     '</span>'+
     '<span class="mdl-list__item-secondary-content">'+
   '</span>'+
   '</div>'+
+'</div>'+
 '</div>'+
                     '</div>');
                   url = 'https://storage.googleapis.com/boc-audio/sermons_mp3/' + sermonID + '.mp3';
@@ -380,10 +391,24 @@ window.sermonInfo.push({
         "rating": rating
     });
 
+if (rating == null){
+rating = 0;
+}
+else{}
+
    $(function() {
-      $('#rating1').barrating({
+      $('#yourRating').barrating({
         theme: 'fontawesome-stars',
-        initialRating: 5,
+        initialRating: rating,
+        showSelectedRating: true,
+      });
+   });
+
+    $(function() {
+      $('#publicRating').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: rating,
+        readonly:true,
       });
    });
 
