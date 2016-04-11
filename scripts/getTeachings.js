@@ -249,15 +249,12 @@ function loadIndividualSermon(sermonID) {
               cleanTitle = title;
             }
 
-            try{
 downloadedContent = window.localStorage.getArray("downloadedContent");
- }
- catch(err){
-  console.log('No content array made yet.');
-  downloadedContent = [];
- }
 
-//set audioSource to null
+if (downloadedContent == null){
+    console.log('No content array made yet.');
+  downloadedContent = [];
+}else{
 window.audioSource = '';
 window.audioSource = null;
 var i=0;
@@ -275,6 +272,8 @@ else{
 }
   i++;
 }
+}
+
 
 try{
 if (window.audioSource){

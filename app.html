@@ -316,6 +316,7 @@
         function onDeviceReady() {
             console.log(FileTransfer);
             console.log(Media);
+            getLocalFilesPushToLocalStorage();
             ImgCache.init(function() {
             setViewGlobal();
             loadEvents(localStorage.getItem('view'), communityID);
@@ -571,7 +572,7 @@
     <script>
         function logout() {
             window.location = 'index.html';
-            localStorage.clear();
+
         }
     </script>
     <script>
@@ -623,7 +624,7 @@
 
         }
 
-        getLocalFilesPushToLocalStorage();
+
     </script>
 
 
