@@ -298,9 +298,9 @@ else{   
 
             audioStatus = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).audioStatus;
            
-                $('#sermonContent').append('<div style="  display:none;  position: absolute; border-radius:40px;    width: calc(100% - 16px); margin:8px;   width: 100%;    height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);'+
+                $('#sermonContent').append('<div id="gradientSermonContent" style="   position: absolute; border-radius:40px;    width: calc(100% - 32px); margin:8px;  height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);'+
                   '"></div>'+
-  '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;background-image:url(\'img/Wood-Medium.png\');    background-size: 100% 100%;background-position:center;border-radius:40px;">' +
+  '<div id="sermonContent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">' +
 
                     '<center><img src="img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>'+
                     '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +
@@ -309,7 +309,7 @@ else{   
                     '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Church: '+ churchName + '</span>' +
                    // '<canvas id="teachingCanvas" style="width:100%;height:100%;"></canvas>'+
                   
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Public Rating: ' +
+                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Public Rating: ' +
                     '<div class="stars">'+
 '<form action="">'+
 '<select id="publicRating">'+
@@ -380,6 +380,13 @@ window.audioCode +
 '</div>'+
 '</div>'+
                     '</div>');
+setTimeout(function(){
+sermonContentHeight = $('#sermonContent').height();
+            $('#gradientSermonContent').height(sermonContentHeight + 'px');
+},100);
+
+
+
                   url = 'https://storage.googleapis.com/boc-audio/sermons_mp3/' + sermonID + '.mp3';
 
 window.sermonInfo = [];

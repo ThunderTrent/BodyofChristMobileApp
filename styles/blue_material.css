@@ -8,8 +8,11 @@
 
 @charset "UTF-8";
 html {
-    color: rgba(0, 0, 0, .87)
+    color: rgba(0, 0, 0, .87);
 }
+
+
+
 
 ::-moz-selection {
     background: #b3d4fc;
@@ -169,7 +172,7 @@ a {
 body,
 html {
     width: 100%;
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px
@@ -210,7 +213,7 @@ h3 small,
 h4 small,
 h5 small,
 h6 small {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     letter-spacing: -.02em;
     line-height: 1.35
 }
@@ -238,7 +241,7 @@ h1 {
 
 h2,
 h3 {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     margin: 24px 0
 }
 
@@ -259,7 +262,7 @@ h3 {
 
 h4,
 h5 {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+    font-family:  'Open Sans', sans-serif;
 }
 
 h4 {
@@ -284,7 +287,7 @@ h5 {
 
 blockquote,
 h6 {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+    font-family:  'Open Sans', sans-serif;
 }
 
 h6,
@@ -355,7 +358,7 @@ ul {
 
 .mdl-typography--display-4,
 .mdl-typography--display-4-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 112px;
     font-weight: 300;
     line-height: 1;
@@ -368,7 +371,7 @@ ul {
 
 .mdl-typography--display-3,
 .mdl-typography--display-3-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 56px;
     font-weight: 400;
     line-height: 1.35;
@@ -381,7 +384,7 @@ ul {
 
 .mdl-typography--display-2,
 .mdl-typography--display-2-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 45px;
     font-weight: 400;
     line-height: 48px
@@ -393,7 +396,7 @@ ul {
 
 .mdl-typography--display-1,
 .mdl-typography--display-1-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 34px;
     font-weight: 400;
     line-height: 40px
@@ -405,7 +408,7 @@ ul {
 
 .mdl-typography--headline,
 .mdl-typography--headline-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
@@ -418,7 +421,7 @@ ul {
 
 .mdl-typography--title,
 .mdl-typography--title-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
     line-height: 1;
@@ -431,7 +434,7 @@ ul {
 
 .mdl-typography--subhead,
 .mdl-typography--subhead-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -468,7 +471,7 @@ ul {
 
 .mdl-typography--body-2-force-preferred-font,
 .mdl-typography--body-2-force-preferred-font-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;
@@ -481,7 +484,7 @@ ul {
 
 .mdl-typography--body-1-force-preferred-font,
 .mdl-typography--body-1-force-preferred-font-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -501,7 +504,7 @@ ul {
 }
 
 .mdl-typography--caption-force-preferred-font {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+    font-family:  'Open Sans', sans-serif;
 }
 
 .mdl-typography--caption-color-contrast,
@@ -514,14 +517,14 @@ ul {
 }
 
 .mdl-typography--caption-force-preferred-font-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif
+    font-family:  'Open Sans', sans-serif;
 }
 
 .mdl-typography--button,
 .mdl-typography--button-color-contrast,
 .mdl-typography--menu,
 .mdl-typography--menu-color-contrast {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     line-height: 1;
@@ -2642,7 +2645,7 @@ ul {
 }
 
 .mdl-color--grey-100 {
-    background-color: #f5f5f5 !important
+    background-color: transparent;
 }
 
 .mdl-color-text--grey-200 {
@@ -2806,7 +2809,7 @@ ul {
 }
 
 .mdl-color--white {
-    background-color: #fff !important
+    background-color: rgba(255, 255, 255, 0.9) !important;
 }
 
 .mdl-color-text--white {
@@ -2923,7 +2926,7 @@ ul {
     position: absolute;
     top: -11px;
     right: -24px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 12px;
     width: 22px;
@@ -2963,7 +2966,7 @@ ul {
     min-width: 64px;
     padding: 0 16px;
     display: inline-block;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
@@ -4108,7 +4111,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
 }
 
 .mdl-list__item {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: .04em;
@@ -4635,7 +4638,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
 .mdl-layout__title {
     display: block;
     position: relative;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 20px;
     line-height: 1;
     letter-spacing: .02em;
@@ -4828,7 +4831,7 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
     min-height: 64px;
     max-height: 1000px;
     z-index: 3;
-    background-color: rgb(0, 115, 183);
+    background-color: transparent;
     color: rgb(255, 255, 255);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
     transition-duration: .2s;
@@ -4950,7 +4953,8 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple {
     align-items: center;
     height: 64px;
     margin: 0;
-    padding: 0 40px 0 80px
+    padding: 0 40px 0 80px;
+    background-color:rgba(255, 255, 255, 0.87);
 }
 
 .mdl-layout--no-drawer-button .mdl-layout__header-row {
@@ -5750,7 +5754,7 @@ _:-ms-input-placeholder {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     will-change: transform;
     -webkit-transform: translate(0, 80px);
     transform: translate(0, 80px);
@@ -5795,7 +5799,7 @@ _:-ms-input-placeholder {
     border: none;
     color: rgb(68, 138, 255);
     padding: 14px 24px;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family:  'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
     text-transform: uppercase;
