@@ -67,32 +67,30 @@
       <a href="#userWatchLater" onclick="" class="mdl-layout__tab">Watch Later / Recommended Sermons</a>
     </div>
       </header>
-      <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
+      <div class="demo-drawer mdl-layout__drawer mdl-color-text--blue-grey-50" style="background-color: rgba(34, 45, 50, 0.81);">
 
-        <header class="demo-drawer-header">
-          <img src="https://www.thebodyofchrist.us/media/2addedf1-2e2c-4078-86fa-1a268c356110.jpg.300x300_q85_detail_upscale.jpg" class="demo-avatar">
-          <div class="demo-avatar-dropdown">
-            <span>Trent Brown</span>
-            <div class="mdl-layout-spacer"></div>
-            <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-              <i class="material-icons" role="presentation">arrow_drop_down</i>
-              <span class="visuallyhidden">Accounts</span>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="accbtn">
-              <li class="mdl-menu__item">hello@example.com</li>
-              <li class="mdl-menu__item">info@example.com</li>
-              <li class="mdl-menu__item"><i class="material-icons">add</i>Add another account...</li>
-            </ul>
-          </div>
+            <header class="demo-drawer-header" style="padding:0px;margin:0px;height:300px;opacity:.9;">
 
-        </header>
-        <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
-          <a href="app.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Dashboard</a>
-         <a href="myprofile.html" class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">flag</i>My Profile</a>
+                <div style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;background-size:cover;border-radius:30px;background:url('https://www.thebodyofchrist.us/media/2addedf1-2e2c-4078-86fa-1a268c356110.jpg.300x300_q85_detail_upscale.jpg');"></div>
 
-          <div class="mdl-layout-spacer"></div>
-          <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
-        </nav>
+                <div class="demo-avatar-dropdown">
+
+
+
+            </header>
+            <nav class="demo-navigation mdl-navigation">
+            <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
+            <span onclick="window.location = ('app.html');" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
+            <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
+            <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
+            <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
+             <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
+              <span style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
+               <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
+                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
+                <span onclick="window.location=('myprofile.html');" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
+            </nav>
+
       </div>
 
       <main class="mdl-layout__content mdl-color--grey-100">
@@ -278,12 +276,37 @@
     </div>
 
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <script src="js/imgcache.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="scripts/getMembers.js"></script>
+       <script type="text/javascript">
+        ImgCache.options.debug = true;
+        ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+
+
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        function onDeviceReady() {
+            console.log(FileTransfer);
+            console.log(Media);
+
+            ImgCache.init(function() {
+            //setViewGlobal();
+            //loadEvents(localStorage.getItem('view'), communityID);
+            }, function() {
+                alert('ImgCache init: error! Check the log for errors');
+            });
+
+        }
+    </script>
     <script src="scripts/jquery.cookie.js"></script>
     <script src="scripts/material.js"></script>
     <script src="scripts/getChurches.js"></script>
     <!--<script src="scripts/getCommunities.js"></script>-->
-    <script src="scripts/getMembers.js"></script>
+
     <script src="scripts/getSpeakers.js"></script>
   <script>
 

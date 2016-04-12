@@ -50,10 +50,13 @@ margin-top:0px !important;
 
 body{
 
-      background: url('img/wood.png') no-repeat center center fixed;
+
           background-size: 100% 100%;
 }
 
+span{
+ cursor: pointer;
+  }
         #view-source {
             position: fixed;
             display: block;
@@ -103,7 +106,7 @@ body{
             <i class="material-icons">more_vert</i>
           </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li class="mdl-menu__item">About</li>
+                    <li onclick="cordova.InAppBrowser.open('https://www.thebodyofchrist.us/about/');"class="mdl-menu__item">About</li>
                     <li onclick="clearCache();" class="mdl-menu__item">Clear Cache</li>
                     <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
                 </ul>
@@ -113,7 +116,7 @@ body{
                     <a href="#" onclick="setView('Global');" class="mdl-layout__tab is-active">Global</a>
 
                 </div>
-                <div id="primaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
+                <div id="primaryBar" class="mdl-layout__tab-bar" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
                     <a href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active">Global</a>
                     <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab">Your Community</a>
                     <a href="#" id="followButton" onclick="setViewFollow();" class="mdl-layout__tab">Following</a>
@@ -167,7 +170,7 @@ body{
               <span style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
                <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
                 <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
-                <span onclick="window.location = 'profile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
+                <span onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
             </nav>
         </div>
         <style>
@@ -320,7 +323,7 @@ body{
     <script src="js/imgcache.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
-        ImgCache.options.debug = true;
+        //ImgCache.options.debug = true;
         ImgCache.options.chromeQuota = 50 * 1024 * 1024;
 
 
@@ -337,6 +340,15 @@ body{
             }, function() {
                 alert('ImgCache init: error! Check the log for errors');
             });
+            //var fbLoginSuccess = function (userData) {
+           // console.log("UserInfo: ", userData);
+          // }
+
+          // facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+          //   function loginError (error) {
+          //     console.error(error)
+          //   }
+          // );
 
         }
     </script>
@@ -346,8 +358,8 @@ body{
     <script src="scripts/database.js"></script>
 
     <script>
-        window.userID = 1;
-        window.communityID = 1;
+        window.userID = localStorage.getItem('userID');
+        window.communityID = localStorage.getItem('userCommunityID');
     </script>
     <script src="scripts/getMembers.js"></script>
     <script src="scripts/getChurches.js"></script>
@@ -659,7 +671,26 @@ body{
     </script>
 
 
+<script>
+
+window.backgroundImage = localStorage.getItem('backgroundImage');
+
+if (window.backgroundImage == null){
+window.backgroundImage = 'img/wood.png';
+$('body').css('background-image', 'url(' + window.backgroundImage + ')');
+}
+else{
+  $('body').css('background-image', 'url(' +  window.backgroundImage + ')');
+}
+
+
+
+//$('body').css('background-image', 'url(' + 'img/' + local + ')');
+</script>
+
     <script src="js/jquery.barrating.js"></script>
+
+
 
 
 </body>

@@ -102,23 +102,23 @@ width:100%;
 <script type="text/javascript" src="cordova.js"></script>
 <script>
 function facebookLogin(){
-    var win = window.open( "https://www.thebodyofchrist.us/login/facebook/", "_blank",
+    window.win = window.open( "https://www.thebodyofchrist.us/login/facebook/", "_blank",
   "EnableViewPortScale=yes" );
 
 // Once the InAppBrowser finishes loading
-win.addEventListener( "loadstop", function() {
+window.win.addEventListener( "loadstop", function() {
 
     // Clear out the name in localStorage for subsequent opens.
-    win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
+    //win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
 
     // Start an interval
     var loop = setInterval(function() {
 
         // Execute JavaScript to check for the existence of a name in the
         // child browser's localStorage.
-        win.executeScript(
+        window.win.executeScript(
             {
-                code: "localStorage.getItem( 'userID' )"
+                code: "userID"
             },
             function( values ) {
                 var userID = values[ 0 ];
@@ -126,9 +126,9 @@ win.addEventListener( "loadstop", function() {
                 // If a name was set, clear the interval and close the InAppBrowser.
                 if ( userID ) {
                     clearInterval( loop );
-                    win.close();
+                    window.win.close();
                     localStorage.setItem( "userID", userID );
-                    alert('Welcome!');
+                    //alert(userID);
                     window.location = "app.html";
                 }
             }
@@ -138,23 +138,23 @@ win.addEventListener( "loadstop", function() {
 }
 
 function googleLogin(){
-    var win = window.open( "https://www.thebodyofchrist.us/login/google-oauth2/", "_blank",
+    window.win = window.open( "https://www.thebodyofchrist.us/login/google-oauth2/", "_blank",
   "EnableViewPortScale=yes" );
 
 // Once the InAppBrowser finishes loading
-win.addEventListener( "loadstop", function() {
+window.win.addEventListener( "loadstop", function() {
 
     // Clear out the name in localStorage for subsequent opens.
-    win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
+    window.win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
 
     // Start an interval
     var loop = setInterval(function() {
 
         // Execute JavaScript to check for the existence of a name in the
         // child browser's localStorage.
-        win.executeScript(
+        window.win.executeScript(
             {
-                code: "localStorage.getItem( 'userID' )"
+                code: "userID"
             },
             function( values ) {
                 var userID = values[ 0 ];
@@ -162,9 +162,9 @@ win.addEventListener( "loadstop", function() {
                 // If a name was set, clear the interval and close the InAppBrowser.
                 if ( userID ) {
                     clearInterval( loop );
-                    win.close();
+                    window.win.close();
                     localStorage.setItem( "userID", userID );
-                    alert('Welcome!');
+                    //alert('Welcome!');
                     window.location = "app.html";
                 }
             }
@@ -172,7 +172,7 @@ win.addEventListener( "loadstop", function() {
     });
 });
 }
-window.location = "app.html";
+
 
 </script>
 

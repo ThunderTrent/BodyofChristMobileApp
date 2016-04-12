@@ -168,11 +168,11 @@ function arrayLookup(array, prop, val) {
 
 function loadPersonalProfile() {
     userID = parseInt(localStorage.getItem('userID'));
-    console.log(memberData);
+
 
     //APPEND FIRST NAME
     try {
-        firstName = arrayLookup(memberData.results, 'id', userID).first_name;
+        firstName = arrayLookup(window.memberData.results, 'id', userID).first_name;
         $('#first_name').append(firstName);
     } catch (err) {
         console.log(err);
@@ -182,7 +182,7 @@ function loadPersonalProfile() {
 
     //APPEND LAST NAME
     try {
-        lastName = arrayLookup(memberData.results, 'id', userID).last_name;
+        lastName = arrayLookup(window.memberData.results, 'id', userID).last_name;
         $('#last_name').append(lastName);
     } catch (err) {
         console.log(err);
@@ -191,7 +191,7 @@ function loadPersonalProfile() {
 
     //APPEND IMAGE
     try {
-        userImage = arrayLookup(memberData.results, 'id', userID).userImage;
+        userImage = arrayLookup(window.memberData.results, 'id', userID).userImage;
         console.log(userImage);
         $('#userImage').css({
             'background-image': 'url(' + userImage + ')'
@@ -205,7 +205,7 @@ function loadPersonalProfile() {
     }
 
     try {
-        churchid = arrayLookup(memberData.results, 'id', userID).churchid;
+        churchid = arrayLookup(window.memberData.results, 'id', userID).churchid;
         churchName = arrayLookup(churchData.results, 'churchid', churchid).churchname;
 
         $('#churh').append(churchName);
@@ -224,7 +224,7 @@ function loadProfile() {
 
     //APPEND FIRST NAME
     try {
-        firstName = arrayLookup(memberData.results, 'id', userID).first_name;
+        firstName = arrayLookup(window.memberData.results, 'id', userID).first_name;
         $('#first_name').append(firstName);
         $('#titleFirstName').append(firstName + "'s");
         $('#firstName').append(firstName);
@@ -236,7 +236,7 @@ function loadProfile() {
 
     //APPEND LAST NAME
     try {
-        lastName = arrayLookup(memberData.results, 'id', userID).last_name;
+        lastName = arrayLookup(window.memberData.results, 'id', userID).last_name;
         $('#last_name').append(lastName);
     } catch (err) {
         console.log(err);
@@ -245,7 +245,7 @@ function loadProfile() {
 
     //APPEND IMAGE
     try {
-        userImage = arrayLookup(memberData.results, 'id', userID).userImage;
+        userImage = arrayLookup(window.memberData.results, 'id', userID).userImage;
         console.log(userImage);
         $('#userImage').css({
             'background-image': 'url(' + userImage + ')'
@@ -259,7 +259,7 @@ function loadProfile() {
     }
 
     try {
-        churchid = arrayLookup(memberData.results, 'id', userID).churchid;
+        churchid = arrayLookup(window.memberData.results, 'id', userID).churchid;
         churchName = arrayLookup(churchData.results, 'churchid', churchid).churchname;
 
         $('#churh').append(churchName);
@@ -300,3 +300,5 @@ function cacheImageCheck(imageCacheTarget) {
 
 
 }
+
+

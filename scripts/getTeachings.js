@@ -383,7 +383,7 @@ window.audioCode +
 setTimeout(function(){
 sermonContentHeight = $('#sermonContent').height();
             $('#gradientSermonContent').height(sermonContentHeight + 'px');
-},100);
+},400);
 
 
 
