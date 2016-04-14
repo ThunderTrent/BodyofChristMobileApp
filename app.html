@@ -57,6 +57,11 @@ body{
 span{
  cursor: pointer;
   }
+
+.beta{
+    display:none:
+};
+
         #view-source {
             position: fixed;
             display: block;
@@ -72,7 +77,7 @@ span{
         }
 
         .mdl-textfield__label:after {
-            background-color: rgb(221, 75, 57);
+            background-color: white;
         }
 
         .mdl-list__item {
@@ -87,10 +92,160 @@ span{
         .demo-list-two {
             width: auto !Important;
         }
+
+        .hue {
+  -webkit-animation: hue 10s infinite;
+}
+
+@-webkit-keyframes hue {
+  0%, 100%  { -webkit-filter: hue-rotate(0deg); }
+  50% { -webkit-filter: hue-rotate(180deg); }
+}
+
+#bocText{
+        font-family: 'Open Sans';
+    position: absolute;
+    font-weight: 300;
+    top: 38%;
+    font-size: 32px;
+    color: #616161;
+    white-space: nowrap;
+    left:50%;
+    margin-left:-122.5px;
+
+}
+.textIntro{
+    padding:20px;
+    max-height:300px;
+    margin-top:-20px;
+    overflow:scroll;
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+
+.textIntro{
+max-height:243px !important;
+}
+#enterButton{
+margin-top:-14px !important;
+}
+#sermonContentInside{
+    width:290px !important;
+}
+.mdl-list__item{
+font-size:17px !important;
+}
+.br-theme-fontawesome-stars .br-widget a{
+    font-size:23px !important;
+}
+.br-theme-fontawesome-stars .br-widget{
+    margin-top:9px !important;
+}
+}
+
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : portrait) {
+    .textIntro{
+    max-height:286px !important;
+}
+#sermonContentInside{
+    width:345px !important;
+}
+
+.sermonText{
+font-size:21px !important;
+}
+.br-theme-fontawesome-stars .br-widget a{
+    font-size:30px !important;
+}
+.br-theme-fontawesome-stars .br-widget{
+    margin-top:9px !important;
+}
+
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation : portrait) {
+    //iPhone 6+ Portrait
+    .textIntro{
+    max-height:286px !important;
+}
+#sermonContentInside{
+    width:382px !important;
+}
+
+.sermonText{
+font-size:21px !important;
+}
+.br-theme-fontawesome-stars .br-widget a{
+    font-size:34px !important;
+}
+.br-theme-fontawesome-stars .br-widget{
+    margin-top:2px !important;
+}
+
+
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+#bocText{
+    font-size:60px !important;
+    top:50% !important;
+    margin-left:-229.5px !important;
+}
+#textHolderLaunch{
+    top:56% !important;
+}
+#sermonContentInside{
+    width:735px !important;
+}
+
+.sermonText{
+font-size:26px !important;
+}
+.br-theme-fontawesome-stars .br-widget a{
+    font-size:43px !important;
+}
+.br-theme-fontawesome-stars .br-widget{
+    margin-top:-16px !important;
+}
+
+
+    }
+
     </style>
+
 </head>
 
-<body onload="">
+<bodyonload="">
+<launch id="launch" class="" style="width: calc(100% + 10px);left:0px;height:100%;background-color:white;position:fixed;z-index:100;">
+<object class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml">
+  <img src="yourfallback.jpg" />
+</object>
+
+<span id="bocText">BODY OF CHRIST</span>
+
+<div id="textHolderLaunch" style="top:45%;position:absolute;">
+<p class="textIntro">
+<b>Welcome! </b> Struggling with Sin? You are only as strong on this earth as the amount of time you spend seeking God through his word. Attempting to equip the believer with tools that will help them in their walk, I created this app with three different core goals:<br>
+<span style="color:#;">1.) Enabling People to Find Community Groups</span><br>
+<span style="color:#;">2.) Enabling People to Find Local Needs in their Community</span><br>
+<span style="color:#;">3.) Enabling Local Christian Churches Globally to Index Teachings and share the Word of God throughout their community & the world.</span><br>
+<b>May Grace and Peace be multiplied unto you!</b><br></p>
+<center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+  I'm Ready.. Enter.
+</button></center>
+
+</div>
+</launch>
+
+
 
     <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;"></div>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -108,6 +263,7 @@ span{
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
                     <li onclick="cordova.InAppBrowser.open('https://www.thebodyofchrist.us/about/');"class="mdl-menu__item">About</li>
                     <li onclick="clearCache();" class="mdl-menu__item">Clear Cache</li>
+                    <li onclick="toggleBeta();" class="mdl-menu__item">Toggle Beta</li>
                     <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
                 </ul>
             </div>
@@ -122,7 +278,7 @@ span{
                     <a href="#" id="followButton" onclick="setViewFollow();" class="mdl-layout__tab">Following</a>
                 </div>
                 <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(0, 115, 183, 0.91);">
-                    <a id="activity" href="#" onclick="activityLoad();" class="mdl-layout__tab is-active">Activity</a>
+                    <a id="activity" href="#" onclick="activityLoad();" class="mdl-layout__tab is-active">News Feed</a>
                     <a id="teachings" href="#" onclick="teachingsLoad();" class="mdl-layout__tab"> Teachings</a>
                     <a id="needs" href="#" onclick="needsLoad();" class="mdl-layout__tab">Needs</a>
                     <a id="churches" href="#" onclick="churchesLoad();" class="mdl-layout__tab">Churches</a>
@@ -162,15 +318,15 @@ span{
             </header>
             <nav class="demo-navigation mdl-navigation">
             <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
-            <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
-            <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
-            <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
+            <span onclick="window.reload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
+            <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
+            <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
             <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
-             <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
-              <span style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
-               <span style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
-                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
-                <span onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
+             <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
+              <span class="beta" style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
+               <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
+                <span class="beta" onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
             </nav>
         </div>
         <style>
@@ -199,10 +355,10 @@ span{
 
                 <div class="page-content" style="">
 
-                    <div id="filters" style="display:none;">
+                    <div id="filtersSermons" style="display:none;">
 
 
-                        <div id="background-filters" style="background-color: #323B3F;max-width:100%;;width: auto;">
+                        <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
 
                             <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
                                 <span class="mdl-list__item-primary-content">
@@ -291,10 +447,41 @@ span{
 
 
                             <span style="margin-top:20;"><center>
-     <button id="searchButton" style="width:100%;background-color:rgb(38, 44, 47);height:48px;" onClick="showSearchFilter();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  Search Filters
-</button></center>
+
+
+  <form action="#">
+  <div id="searchIcon"class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+      <i style="color:white;"class="material-icons">search</i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+      <input id="searchTitleBox" style="color:white;font-family:'Open Sans';"class="mdl-textfield__input" type="text" id="sample6">
+      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+    </div>
+  </div>
+</form>
+</center>
+
       </span>
+                        </div>
+                    </div>
+
+
+                     <div id="filtersVBV" style="display:none;">
+<div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+<center>
+  <form action="#">
+  <div id="searchIconVBV"class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
+    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+      <i style="color:white;"class="material-icons">search</i>
+    </label>
+    <div class="mdl-textfield__expandable-holder">
+      <input id="searchTitleBoxVBV" style="color:white;font-family:'Open Sans';"class="mdl-textfield__input" type="text" id="sample6">
+      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+    </div>
+  </div>
+</form>
+</center>
                         </div>
                     </div>
 
@@ -313,26 +500,41 @@ span{
 
     <script src="scripts/jquery.js"></script>
     <script src="js/jquery.mobile-1.4.5.js"></script>
+
     <script>
     $.mobile.loading().hide();
     $( document ).on( "mobileinit", function() {
     $.mobile.loader.prototype.options.disabled = true;
 });
+
     </script>
     <script src="scripts/getSpeakers.js"></script>
     <script src="js/imgcache.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
+    <script src="scripts/firstLoad.js"></script>
     <script type="text/javascript">
         //ImgCache.options.debug = true;
+
         ImgCache.options.chromeQuota = 50 * 1024 * 1024;
-
-
-
         document.addEventListener("deviceready", onDeviceReady, false);
-
         function onDeviceReady() {
-            console.log(FileTransfer);
-            console.log(Media);
+            //console.log(FileTransfer);
+          //  console.log(Media);
+          if (localStorage.getItem('intialPullLoaded') == null){
+        initialLoad();
+        }
+        else{
+              jQuery.ajax({
+
+        url: 'cdvfile://localhost/library-nosync/teachingPreloadData.json',
+        type: "GET",
+    }).done(function(sermonDataCACHE, textStatus, jqXHR) {
+        console.log("HTTP Request Succeeded: " + jqXHR.status);
+        window.sermonDataCACHE = (sermonDataCACHE);
+        console.log('Pulled From Local File');
+});
+}
+
             getLocalFilesPushToLocalStorage();
             ImgCache.init(function() {
             setViewGlobal();
@@ -340,22 +542,56 @@ span{
             }, function() {
                 alert('ImgCache init: error! Check the log for errors');
             });
-            //var fbLoginSuccess = function (userData) {
-           // console.log("UserInfo: ", userData);
-          // }
 
-          // facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
-          //   function loginError (error) {
-          //     console.error(error)
-          //   }
-          // );
+            $('.beta').hide();
+            if (localStorage.getItem('betaEnabled') === 'True'){
+                $('.beta').show();
+            }
+
 
         }
+
+        function startApp(){
+            $('#launch').hide();
+        }
+
+            //initial run
+             if (localStorage.getItem('betaEnabled') == null){
+
+            localStorage.setItem('betaEnabled', 'False');
+            $('.beta').hide();
+
+             }
+             else{
+
+             }
+
+
+
+           function toggleBeta(){
+            if (localStorage.getItem('betaEnabled') == null){
+            localStorage.setItem('betaEnabled', 'True');
+            alert('Beta Features Enabled - Expect buttons to explode.');
+            }
+        else if (localStorage.getItem('betaEnabled') == 'True'){
+            localStorage.setItem('betaEnabled', 'False');
+            alert('Disabled Beta Features.');
+             $('.beta').hide();
+        }
+        else{
+             localStorage.setItem('betaEnabled', 'True');
+             alert('Beta Features Enabled - Expect buttons to explode.');
+             $('.beta').show();
+            }
+        }
+
+
     </script>
     <script src="scripts/getSpeakers.js"></script>
+
+    <script src="js/filterJSON.plugin.js"></script>
     <script src='scripts/nprogress.js'></script>
     <link rel='stylesheet' href='css/nprogress.css' />
-    <script src="scripts/database.js"></script>
 
     <script>
         window.userID = localStorage.getItem('userID');
@@ -365,6 +601,7 @@ span{
     <script src="scripts/getChurches.js"></script>
     <script src="scripts/getFollowed.js"></script>
     <script src="scripts/getEvents.js"></script>
+    <script src="scripts/checkIfListened.js"></script>
     <script src="scripts/getTeachings.js"></script>
     <script src="scripts/getVBV.js"></script>
 
@@ -385,14 +622,39 @@ span{
             $('#members').removeClass('is-active');
             $('#churches').removeClass('is-active');
             $('#speakers').removeClass('is-active');
+            $('#filtersVBV').hide();
             sermonsLoad();
-            $('#filters').show();
+            $('#filtersVBV').hide();
+            $('#filtersSermons').show();
+            $('#searchIcon').addClass('is-focused')
+            $('#searchIconVBV').addClass('is-focused')
+            //Search Bar Change
+             $('#searchTitleBox').on('input',function(e){
+                 textValue = document.getElementById('searchTitleBox').value;
+              console.log(textValue);
+              if (textValue.length > 2){
+              loadTeachingDataCache(textValue);
+          }
+      });
+          $('#searchTitleBoxVBV').on('input',function(e){
+            textValue = document.getElementById('searchTitleBoxVBV').value;
+              //console.log(textValue);
+              if (textValue.length > 2){
+              loadTeachingDataCacheVBV(textValue);
+                }
+                });
         }
 
         function sermonsLoad() {
             $('#loading').show();
             $('#contentHolder').empty();
+            $('#filtersVBV').hide();
+            $('#filtersSermons').show();
+            $('#searchIcon').addClass('is-focused')
+            $('#searchIconVBV').addClass('is-focused')
+
             $("#bars").animate({
+
                 scrollTop: 0
             }, 250, function() {
                 $('#individualSermonBar').hide();
@@ -413,17 +675,20 @@ span{
         function verseByVerseLoad() {
             $('#loading').show();
             $('#contentHolder').empty();
+
             $("#bars").animate({
                 scrollTop: 0
             }, 250, function() {
                 $('#individualSermonBar').hide();
-                $('#filters').show();
+                $('#filtersSermons').hide();
+                $('#filtersVBV').show();
             });
 
             $('#sermonsButton').removeClass('is-active');
             $('#verseByVerseButton').addClass('is-active');
             $('#speakers').removeClass('is-active');
-
+            $('#searchIcon').addClass('is-focused')
+            $('#searchIconVBV').addClass('is-focused')
             $('#bibleButton').removeClass('is-active');
 
             loadVBV(localStorage.getItem('view'), communityID, '');
@@ -435,6 +700,8 @@ span{
         function bibleLoad() {
             $('#loading').show();
             $('#contentHolder').empty();
+            $('filtersSermons').hide();
+            $('filtersVBV').hide();
             $("#bars").animate({
                 scrollTop: 0
             }, 250, function() {
@@ -458,9 +725,11 @@ span{
             $('#members').removeClass('is-active');
             $('#teachingBar').hide();
             $('#needsBar').hide();
-            $('#filters').hide();
+            $('#filtersSermons').hide();
+            $('#filtersVBV').hide();
             loadChurches('Global', '', '', 'True');
-            $('#filters').hide();
+            $('#filtersVBV').hide();
+            $('#filtersSermons').hide();
             closeSermon();
         }
 
@@ -476,7 +745,8 @@ span{
             $('#teachingBar').hide();
             $('#needsBar').hide();
             loadMembers(localStorage.getItem('view'), communityID, 'True');
-            $('#filters').hide();
+            $('filtersSermons').hide();
+            $('filtersVBV').hide();
             closeSermon();
         }
 
@@ -496,7 +766,8 @@ span{
             $('#needsBar').hide();
             loadEvents(view, '');
             closeSermon();
-            $('#filters').hide();
+            $('filtersSermons').hide();
+            $('filtersVBV').hide();
         }
 
 
@@ -511,14 +782,14 @@ span{
             $('#members').removeClass('is-active');
             $('#teachingBar').hide();
             $('#needsBar').hide();
-            $('#filtersSpeakers').show();
             loadSpeakers(localStorage.getItem('view'), communityID, 'True');
             closeSermon();
-            $('#filters').hide();
+            $('filtersSermons').hide();
+            $('filtersVBV').hide();
         }
 
         function needsLoad() {
-            $('#loading').show();
+
             $('#contentHolder').empty();
             $('#teachingBar').hide();
             $('#teachingBar').hide();
@@ -530,7 +801,8 @@ span{
             $('#churches').removeClass('is-active');
             $('#speakers').removeClass('is-active');
             closeSermon();
-            $('#filters').hide();
+            $('filtersSermons').hide();
+            $('filtersVBV').hide();
         }
 
         function setViewGlobal() {
@@ -573,6 +845,7 @@ span{
         loadSpeakers('Global', '', 'False');
     </script>
     <script src="scripts/jquery.cookie.js"></script>
+
     <script src="scripts/material.js"></script>
 
 
@@ -682,15 +955,11 @@ $('body').css('background-image', 'url(' + window.backgroundImage + ')');
 else{
   $('body').css('background-image', 'url(' +  window.backgroundImage + ')');
 }
-
-
-
-//$('body').css('background-image', 'url(' + 'img/' + local + ')');
 </script>
 
     <script src="js/jquery.barrating.js"></script>
 
-
+<script src="scripts/search.js"></script>
 
 
 </body>

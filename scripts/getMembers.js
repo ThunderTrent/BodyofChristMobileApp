@@ -1,17 +1,17 @@
-function downloadFile(name, dataUrl) {
-    var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    console.log(name);
-    fileName = name + ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!" + name);
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-        });
-}
+// function downloadFile(name, dataUrl) {
+//     var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     console.log(name);
+//     fileName = name + ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!" + name);
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log("Error");
+//         });
+// }
 
 function loadMembers(search, communityID, insert) {
     var isOffline = 'onLine' in navigator && !navigator.onLine;
@@ -72,9 +72,9 @@ function loadMembersInsert(url, target, insert, name) {
         window.memberData = memberData;
 
         if (url.split(':')[0] == "https") {
-            downloadFile(name, url);
-        } else {
 
+        } else {
+ downloadFile(name, url);
         }
 
 
@@ -129,7 +129,7 @@ function loadMembersInsert(url, target, insert, name) {
                    // '<div style="background-size:cover;margin-top:-15px;border-radius:20px;width:80px;height:80px;float:left;margin-right:20px;background-image:url(\'' + userImage + '\');"></div>' +
                     '<img style="border-radius:20px;margin-top:-15px;width:80px;height:80px;position:absolute;" id="member_IMG_' + memberData.results[index].id + '" src="' + userImage + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +
 
-                    '<span style="margin-left:100px;" onclick="loadProfilePage(' + memberData.results[index].id + ');">' + memberData.results[index].first_name + ' ' + memberData.results[index].last_name + '</span>' +
+                    '<span style="margin-left:100px;" onclick="(' + memberData.results[index].id + ');">' + memberData.results[index].first_name + ' ' + memberData.results[index].last_name + '</span>' +
                     '<span class="mdl-list__item-sub-title" style="margin-left:100px;">Church: ' + churchName + '</span>' +
                     '<span class="mdl-list__item-sub-title" style="margin-left:100px;">Community:' + memberData.results[index].communityid + '</span>' +
                     '</span>' +

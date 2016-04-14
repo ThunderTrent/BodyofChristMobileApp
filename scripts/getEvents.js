@@ -1,16 +1,16 @@
-function downloadFile(name, dataUrl) {
-    var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = name + ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!" + name);
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-        });
-}
+// function downloadFile(name, dataUrl) {
+//     var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     fileName = name + ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!" + name);
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log("Error");
+//         });
+// }
 
 
 
@@ -68,8 +68,9 @@ function loadEventsInsert(url, target, name) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.eventData = eventData;
         if (url.split(':')[0] == "https") {
-            downloadFile(name, url);
+
         } else {
+            downloadFile(name, url);
 
         }
         $.each(eventData.results, function(index, value) {
@@ -85,6 +86,7 @@ function loadEventsInsert(url, target, name) {
                 }
                 return null;
             }
+
             try {
                 if (eventData.results[index].type == "Speaker") {
                     fullName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;

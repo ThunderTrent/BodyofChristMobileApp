@@ -1,16 +1,16 @@
-function downloadFile(name, dataUrl) {
-    var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = name + ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!" + name);
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-        });
-}
+// function downloadFile(name, dataUrl) {
+//     var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     fileName = name + ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!" + name);
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log(err);
+//         });
+// }
 
 function loadVBV(search, communityID, userID) {
 
@@ -62,9 +62,9 @@ function loadVBVInsert(url, target, name) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.vbvData = vbvData;
         if (url.split(':')[0] == "https") {
-            downloadFile(name, url);
-        } else {
 
+        } else {
+            downloadFile(name, url);
         }
         $.each(vbvData.results, function(index, value) {
 

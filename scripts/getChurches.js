@@ -1,16 +1,16 @@
-function downloadFile(name, dataUrl) {
-    var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = name + ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!" + name);
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-        });
-}
+// function downloadFile(name, dataUrl) {
+//     var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     fileName = name + ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!" + name);
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log("Error");
+//         });
+// }
 
 function loadChurches(search, communityID, userID, insert) {
 
@@ -67,8 +67,9 @@ function loadChurchInsert(url, target, insert, name) {
         window.churchData = churchData;
 
         if (url.split(':')[0] == "https") {
-            downloadFile(name, url);
+
         } else {
+             downloadFile(name, url);
 
         }
 

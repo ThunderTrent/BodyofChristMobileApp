@@ -1,16 +1,16 @@
-function downloadFile(name, dataUrl) {
-    var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = name + ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!" + name);
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-        });
-}
+// function downloadFile(name, dataUrl) {
+//     var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     fileName = name + ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!" + name);
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log("Error");
+//         });
+// }
 
 function loadSpeakers(search, communityID, insert) {
 
@@ -59,9 +59,9 @@ function loadSpeakers(search, communityID, insert) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.speakerData = speakerData;
         if (url.split(':')[0] == "https") {
-            downloadFile(name, url);
-        } else {
 
+        } else {
+        downloadFile(name, url);
         }
         $.each(speakerData.results, function(index, value) {
 

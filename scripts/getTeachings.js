@@ -1,18 +1,18 @@
-function downloadFile(name,dataUrl) {
-  var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = name +  ".json";
-    fileTransfer.download(dataUrl, store + fileName,
-        function(entry) {
-            console.log("DownloadedJSON!");
-            //alert('Downloaded');
-        },
-        function(err) {
-            console.log("Error");
-           });
+// function downloadFile(name,dataUrl) {
+//   var fileTransfer = new FileTransfer();
+//     store = cordova.file.dataDirectory;
+//     fileName = name +  ".json";
+//     fileTransfer.download(dataUrl, store + fileName,
+//         function(entry) {
+//             console.log("DownloadedJSON!");
+//             //alert('Downloaded');
+//         },
+//         function(err) {
+//             console.log("Error");
+//            });
 
 
-}
+// }
 
 
 
@@ -92,9 +92,10 @@ function loadSermonsInsert(url, target, insert, name) {
         //check to see if file exists in cache to save it to
         //console.log('test');
         if (url.split(':')[0] == "https"){
-downloadFile(name,url);
+
 }
 else{
+   downloadFile(name, url);
 
 }
         //console.log('test');
@@ -300,20 +301,20 @@ else{   
            
                 $('#sermonContent').append('<div id="gradientSermonContent" style="   position: absolute; border-radius:40px;    width: calc(100% - 32px); margin:8px;  height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);'+
                   '"></div>'+
-  '<div id="sermonContent" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">' +
+  '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">' +
 
                     '<center><img src="img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>'+
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +
+                    '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +
                     // '<div><img src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=5439" style="height:100px;width:100px;border-radius:20px;" /></div>'+
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';font-size:23px;">Church: '+ churchName + '</span>' +
+                    '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
+                    '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Church: '+ churchName + '</span>' +
                    // '<canvas id="teachingCanvas" style="width:100%;height:100%;"></canvas>'+
                   
-                    '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Public Rating: ' +
+                    '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';">Public Rating: ' +
                     '<div class="stars">'+
 '<form action="">'+
 '<select id="publicRating">'+
-  '<option value="1">1</option>'+
+  '<option id="publicRating1" value="1">1</option>'+
   '<option value="2">2</option>'+
   '<option value="3">3</option>'+
   '<option value="4">4</option>'+
@@ -323,11 +324,11 @@ else{   
 
 '</div>' +
  '</span>' +
-  '<span class="mdl-list__item" style="font-family:\'Ubuntu\';">Your Rating: ' +
+  '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';">Your Rating: ' +
                     '<div class="stars">'+
 '<form action="">'+
 '<select id="yourRating">'+
-  '<option value="1">1</option>'+
+  '<option id="yourRating1" value="1">1</option>'+
   '<option value="2">2</option>'+
   '<option value="3">3</option>'+
   '<option value="4">4</option>'+
@@ -347,10 +348,10 @@ window.audioCode +
       '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onClick="downloadMP3(' + sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Download to Device</button></span>'+
     '</span>'+
  '</div>'+
-'<div class="mdl-list__item">'+
+'<div  id="markAsListenedButton" class="mdl-list__item">'+
  '<span style="width:100%;" class="mdl-list__item-primary-content">'+
  '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">headset</i>'+
- '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white; onclick="markAsListened(' +  sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mark as Listened</button></span>'+
+ '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;"" onclick="markaslistened(' +  sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mark as Listened</button></span>'+
     '</span>'+
  '</div>'+
   '<div class="mdl-list__item">'+
@@ -380,9 +381,15 @@ window.audioCode +
 '</div>'+
 '</div>'+
                     '</div>');
+
 setTimeout(function(){
-sermonContentHeight = $('#sermonContent').height();
-            $('#gradientSermonContent').height(sermonContentHeight + 'px');
+sermonContentHeight = $('#sermonContentInside').height();
+$('#gradientSermonContent').height(sermonContentHeight + 'px');
+  checkIfListened();
+  $('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
+  $('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
+
+
 },400);
 
 
@@ -407,7 +414,6 @@ else{}
       $('#yourRating').barrating({
         theme: 'fontawesome-stars',
         initialRating: rating,
-        showSelectedRating: true,
       });
    });
 
@@ -563,10 +569,10 @@ function closeSermon() {
 }
 
 
-function markAsListened(){
+function markaslistened(sermonid){
 
     jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/sermonhistory/add/?sermonid=' + window.sermonInfo[0].SermonID,
+        url: 'https://www.thebodyofchrist.us/service/sermonhistory/add/?sermonid=' + sermonid,
         type: "GET",
     }).done(function(results, textStatus, jqXHR) {
 alert(results);
