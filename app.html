@@ -138,12 +138,15 @@ margin-top:-14px !important;
 font-size:17px !important;
 }
 .br-theme-fontawesome-stars .br-widget a{
-    font-size:23px !important;
+    font-size:15px !important;
 }
 .br-theme-fontawesome-stars .br-widget{
     margin-top:9px !important;
 }
 }
+
+
+
 
 @media only screen
 and (min-device-width : 375px)
@@ -155,12 +158,15 @@ and (orientation : portrait) {
 #sermonContentInside{
     width:345px !important;
 }
+div.br-widget.br-readonly{
+    margin-left:-12px !important;
+}
 
 .sermonText{
 font-size:21px !important;
 }
 .br-theme-fontawesome-stars .br-widget a{
-    font-size:30px !important;
+    font-size:20px !important;
 }
 .br-theme-fontawesome-stars .br-widget{
     margin-top:9px !important;
@@ -181,7 +187,7 @@ font-size:21px !important;
 font-size:21px !important;
 }
 .br-theme-fontawesome-stars .br-widget a{
-    font-size:34px !important;
+    font-size:28px !important;
 }
 .br-theme-fontawesome-stars .br-widget{
     margin-top:2px !important;
@@ -520,20 +526,30 @@ font-size:26px !important;
         function onDeviceReady() {
             //console.log(FileTransfer);
           //  console.log(Media);
-          if (localStorage.getItem('intialPullLoaded') == null){
+          // if (localStorage.getItem('intialPullLoaded') == null){
         initialLoad();
-        }
-        else{
-              jQuery.ajax({
+//         }
+//         else{
+//               jQuery.ajax({
 
-        url: 'cdvfile://localhost/library-nosync/teachingPreloadData.json',
-        type: "GET",
-    }).done(function(sermonDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonDataCACHE = (sermonDataCACHE);
-        console.log('Pulled From Local File');
-});
-}
+//         url: 'cdvfile://localhost/library-nosync/teachingPreloadData.json',
+//         type: "GET",
+//     }).done(function(sermonDataCACHE, textStatus, jqXHR) {
+//         console.log("HTTP Request Succeeded: " + jqXHR.status);
+//         window.sermonDataCACHE = (sermonDataCACHE);
+//         console.log('Pulled From Local File');
+// });
+
+//           jQuery.ajax({
+
+//         url: 'cdvfile://localhost/library-nosync/VBVPreloadData.json',
+//         type: "GET",
+//     }).done(function(VBVDataCACHE, textStatus, jqXHR) {
+//         console.log("HTTP Request Succeeded: " + jqXHR.status);
+//         window.VBVDataCACHE = (VBVDataCACHE);
+//         console.log('Pulled From Local File');
+// });
+// }
 
             getLocalFilesPushToLocalStorage();
             ImgCache.init(function() {

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 612 792" style="enable-background:new 0 0 612 792;" xml:space="preserve">
+<style type="text/css">
+	.RED_st0{
+	fill:url(#RED_SVGID_1_);
+	-webkit-animation: redOpacity 10s infinite;
+	}
+	.RED_st1{
+	fill:url(#RED_SVGID_2_);
+	-webkit-animation: redOpacity 10s infinite;
+	}
+
+	.YELLOW_st0{
+	fill:url(#YELLOW_SVGID_1_);
+	-webkit-animation: yellowOpacity 10s infinite;
+	}
+	.YELLOW_st1{
+	fill:url(#YELLOW_SVGID_2_);
+	-webkit-animation: yellowOpacity 10s infinite;
+	}
+
+	.BLUE_st0{
+	fill:url(#BLUE_SVGID_1_);
+	-webkit-animation: blueOpacity 10s infinite;
+	}
+	.BLUE_st1{
+	fill:url(#BLUE_SVGID_2_);
+	-webkit-animation: blueOpacity 10s infinite;
+	}
+
+
+
+
+@-webkit-keyframes redOpacity {
+  0% { opacity:1; }
+  33%  { opacity:0; }
+   66%  { opacity:0; }
+   100%, { opacity:1; }
+
+}
+@-webkit-keyframes blueOpacity {
+  0%  { opacity:0; }
+  33%  { opacity:1; }
+   66%  { opacity:0; }
+   100%  { opacity:0; }
+
+}
+@-webkit-keyframes yellowOpacity {
+  0%  { opacity:0; }
+  33%  { opacity:0; }
+   66%  { opacity:1; }
+   100%  { opacity:0; }
+
+}
+</style>
+<g>
+	<radialGradient id="RED_SVGID_1_" cx="323.8803" cy="-112.5497" r="660.7864" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#c74433"/>
+		<stop  offset="0.6364" style="stop-color:#c74433"/>
+		<stop  offset="1" style="stop-color:#c74433"/>
+	</radialGradient>
+	<polygon class="RED_st0" points="233,663.1 316,752.3 399,663.1 316,607.9 	"/>
+	<radialGradient id="RED_SVGID_2_" cx="323.8807" cy="-112.544" r="660.7858" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#c74433"/>
+		<stop  offset="0.6364" style="stop-color:#d04d3a"/>
+		<stop  offset="1" style="stop-color:#cd6355"/>
+	</radialGradient>
+
+
+	<radialGradient id="BLUE_SVGID_1_" cx="323.8803" cy="-112.5497" r="660.7864" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#0068a5"/>
+		<stop  offset="0.6364" style="stop-color:#0068a5"/>
+		<stop  offset="1" style="stop-color:#0068a5"/>
+	</radialGradient>
+	<polygon class="BLUE_st0" points="233,663.1 316,752.3 399,663.1 316,607.9 	"/>
+	<radialGradient id="BLUE_SVGID_2_" cx="323.8807" cy="-112.544" r="660.7858" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#0068a5"/>
+		<stop  offset="0.6364" style="stop-color:#3682af"/>
+		<stop  offset="1" style="stop-color:#0073b7"/>
+	</radialGradient>
+
+
+
+	<radialGradient id="YELLOW_SVGID_1_" cx="323.8803" cy="-112.5497" r="660.7864" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#db8d10"/>
+		<stop  offset="0.6364" style="stop-color:#db8d10"/>
+		<stop  offset="1" style="stop-color:#db8d10"/>
+	</radialGradient>
+	<polygon class="YELLOW_st0" points="233,663.1 316,752.3 399,663.1 316,607.9 	"/>
+	<radialGradient id="YELLOW_SVGID_2_" cx="323.8807" cy="-112.544" r="660.7858" gradientUnits="userSpaceOnUse">
+		<stop  offset="0" style="stop-color:#db8d10"/>
+		<stop  offset="0.6364" style="stop-color:#ec9e25"/>
+		<stop  offset="1" style="stop-color:#f4af42"/>
+	</radialGradient>
+
+
+	<path  class="RED_st1" d="M316,39.7C316,39.7,316,39.7,316,39.7L316,39.7C159.5,40.1,32.7,167.2,32.7,323.8
+		c0,83.5,34.5,156.4,93.4,224.2l77.7,83.5l91.1-60.6V346.4H181.5v-42.5h113.2V195.7h42.5v108.1h113.2v42.5H337.3V571l91,60.6
+		L506,548c61.8-79.2,93.4-140.7,93.4-224.2C599.4,167.2,472.6,40.1,316,39.7z M363.2,526.9v-27.7c77.1-21.2,133.7-91.8,133.7-175.6
+		c0-100.6-81.5-182.1-182.1-182.1c-100.6,0-182.1,81.5-182.1,182.1c0,84.7,57.9,155.9,136.3,176.3v27.5
+		c-93.3-20.9-163-104.2-163-203.8c0-115.4,93.5-208.9,208.9-208.9c115.4,0,208.9,93.5,208.9,208.9
+		C523.6,422.4,455.2,505.1,363.2,526.9z"/>
+</g>
+<g>
+
+	<path  class="BLUE_st1" d="M316,39.7C316,39.7,316,39.7,316,39.7L316,39.7C159.5,40.1,32.7,167.2,32.7,323.8
+		c0,83.5,34.5,156.4,93.4,224.2l77.7,83.5l91.1-60.6V346.4H181.5v-42.5h113.2V195.7h42.5v108.1h113.2v42.5H337.3V571l91,60.6
+		L506,548c61.8-79.2,93.4-140.7,93.4-224.2C599.4,167.2,472.6,40.1,316,39.7z M363.2,526.9v-27.7c77.1-21.2,133.7-91.8,133.7-175.6
+		c0-100.6-81.5-182.1-182.1-182.1c-100.6,0-182.1,81.5-182.1,182.1c0,84.7,57.9,155.9,136.3,176.3v27.5
+		c-93.3-20.9-163-104.2-163-203.8c0-115.4,93.5-208.9,208.9-208.9c115.4,0,208.9,93.5,208.9,208.9
+		C523.6,422.4,455.2,505.1,363.2,526.9z"/>
+</g>
+<g>
+
+	<path  class="YELLOW_st1" d="M316,39.7C316,39.7,316,39.7,316,39.7L316,39.7C159.5,40.1,32.7,167.2,32.7,323.8
+		c0,83.5,34.5,156.4,93.4,224.2l77.7,83.5l91.1-60.6V346.4H181.5v-42.5h113.2V195.7h42.5v108.1h113.2v42.5H337.3V571l91,60.6
+		L506,548c61.8-79.2,93.4-140.7,93.4-224.2C599.4,167.2,472.6,40.1,316,39.7z M363.2,526.9v-27.7c77.1-21.2,133.7-91.8,133.7-175.6
+		c0-100.6-81.5-182.1-182.1-182.1c-100.6,0-182.1,81.5-182.1,182.1c0,84.7,57.9,155.9,136.3,176.3v27.5
+		c-93.3-20.9-163-104.2-163-203.8c0-115.4,93.5-208.9,208.9-208.9c115.4,0,208.9,93.5,208.9,208.9
+		C523.6,422.4,455.2,505.1,363.2,526.9z"/>
+</g>
+</svg>
