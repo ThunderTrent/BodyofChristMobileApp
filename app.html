@@ -8,248 +8,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BoC</title>
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
-
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300,300italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <meta name="msapplication-TileColor" content="#3372DF">
     <link rel="shortcut icon" href="images/favicon.png">
-    <style>
-        .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
-            background: white !important;
-        }
-    </style>
     <link rel="stylesheet" href="fonts/material-icons.css">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="styles/blue_material.css" />
     <link rel="stylesheet" href="styles/datepicker.css">
     <link rel="stylesheet" href="font-awesome-css.css">
-    <style>
-        .boxToEdit {
-            display: block;
-        }
-
-         @-webkit-keyframes crossChange {
-    0%{    -webkit-filter: drop-shadow(0 1px 10px rgba(255,255,255,0.9));}
-    50%{   -webkit-filter: drop-shadow(0 1px 50px rgba(255,255,255,0.9));}
-    100%{  -webkit-filter: drop-shadow(0 1px 10px rgba(255,255,255,0.9));}
-    }
-.br-theme-fontawesome-stars .br-widget a.br-selected:after{
-color:#4A3B2E !important;
-}
-.br-theme-fontawesome-stars .br-widget{
-margin-top:0px !important;
-}
-
-body{
-
-
-          background-size: 100% 100%;
-}
-
-span{
- cursor: pointer;
-  }
-
-.beta{
-    display:none:
-};
-
-        #view-source {
-            position: fixed;
-            display: block;
-            right: 0;
-            bottom: 0;
-            margin-right: 40px;
-            margin-bottom: 40px;
-            z-index: 900;
-        }
-
-        .demo-list-two {
-            width: calc(100% - 16px);
-        }
-
-        .mdl-textfield__label:after {
-            background-color: white;
-        }
-
-        .mdl-list__item {
-            padding: 0px;
-            margin-left: 20px;
-        }
-
-        .mdl-list__item--two-line .mdl-list__item-primary-content {
-            line-height: 20px;
-        }
-
-        .demo-list-two {
-            width: auto !Important;
-        }
-
-        .hue {
-  -webkit-animation: hue 10s infinite;
-}
-
-@-webkit-keyframes hue {
-  0%, 100%  { -webkit-filter: hue-rotate(0deg); }
-  50% { -webkit-filter: hue-rotate(180deg); }
-}
-
-#bocText{
-        font-family: 'Open Sans';
-    position: absolute;
-    font-weight: 300;
-    top: 38%;
-    font-size: 32px;
-    color: #616161;
-    white-space: nowrap;
-    left:50%;
-    margin-left:-122.5px;
-
-}
-.textIntro{
-    padding:20px;
-    max-height:300px;
-    margin-top:-20px;
-    overflow:scroll;
-}
-
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px) {
-
-.textIntro{
-max-height:243px !important;
-}
-#enterButton{
-margin-top:-14px !important;
-}
-#sermonContentInside{
-    width:290px !important;
-}
-.mdl-list__item{
-font-size:17px !important;
-}
-.br-theme-fontawesome-stars .br-widget a{
-    font-size:15px !important;
-}
-.br-theme-fontawesome-stars .br-widget{
-    margin-top:9px !important;
-}
-}
-
-
-
-
-@media only screen
-and (min-device-width : 375px)
-and (max-device-width : 667px)
-and (orientation : portrait) {
-    .textIntro{
-    max-height:286px !important;
-}
-#sermonContentInside{
-    width:345px !important;
-}
-div.br-widget.br-readonly{
-    margin-left:-12px !important;
-}
-
-.sermonText{
-font-size:21px !important;
-}
-.br-theme-fontawesome-stars .br-widget a{
-    font-size:20px !important;
-}
-.br-theme-fontawesome-stars .br-widget{
-    margin-top:9px !important;
-}
-
-}
-
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation : portrait) {
-    //iPhone 6+ Portrait
-    .textIntro{
-    max-height:286px !important;
-}
-#sermonContentInside{
-    width:382px !important;
-}
-
-.sermonText{
-font-size:21px !important;
-}
-.br-theme-fontawesome-stars .br-widget a{
-    font-size:28px !important;
-}
-.br-theme-fontawesome-stars .br-widget{
-    margin-top:2px !important;
-}
-
-
-}
-
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-#bocText{
-    font-size:60px !important;
-    top:50% !important;
-    margin-left:-229.5px !important;
-}
-#textHolderLaunch{
-    top:56% !important;
-}
-#sermonContentInside{
-    width:735px !important;
-}
-
-.sermonText{
-font-size:26px !important;
-}
-.br-theme-fontawesome-stars .br-widget a{
-    font-size:43px !important;
-}
-.br-theme-fontawesome-stars .br-widget{
-    margin-top:-16px !important;
-}
-
-
-    }
-
-    </style>
-
 </head>
-
-<bodyonload="">
-<launch id="launch" class="" style="width: calc(100% + 10px);left:0px;height:100%;background-color:white;position:fixed;z-index:100;">
-<object class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml">
-  <img src="yourfallback.jpg" />
+<body>
+    <launch id="launch" class="" style="width: calc(100% + 10px);left:0px;height:100%;background-color:white;position:fixed;z-index:100;">
+        <object class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml">
 </object>
 
-<span id="bocText">BODY OF CHRIST</span>
+        <span id="bocText">BODY OF CHRIST</span>
 
-<div id="textHolderLaunch" style="top:45%;position:absolute;">
-<p class="textIntro">
-<b>Welcome! </b> Struggling with Sin? You are only as strong on this earth as the amount of time you spend seeking God through his word. Attempting to equip the believer with tools that will help them in their walk, I created this app with three different core goals:<br>
-<span style="color:#;">1.) Enabling People to Find Community Groups</span><br>
-<span style="color:#;">2.) Enabling People to Find Local Needs in their Community</span><br>
-<span style="color:#;">3.) Enabling Local Christian Churches Globally to Index Teachings and share the Word of God throughout their community & the world.</span><br>
-<b>May Grace and Peace be multiplied unto you!</b><br></p>
-<center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;"class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <div id="textHolderLaunch" style="top:45%;position:absolute;">
+            <p class="textIntro">
+                <b>Welcome! </b> Struggling with Sin? You are only as strong on this earth as the amount of time you spend seeking God through his word. Attempting to equip the believer with tools that will help them in their walk, I created this app
+                with three different core goals:<br>
+                <span style="color:#;">1.) Enabling People to Find Community Groups</span><br>
+                <span style="color:#;">2.) Enabling People to Find Local Needs in their Community</span><br>
+                <span style="color:#;">3.) Enabling Local Christian Churches Globally to Index Teachings and share the Word of God throughout their community & the world.</span><br>
+                <b>May Grace and Peace be multiplied unto you!</b><br></p>
+            <center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
   I'm Ready.. Enter.
 </button></center>
 
-</div>
-</launch>
+        </div>
+    </launch>
 
 
 
@@ -267,7 +62,7 @@ font-size:26px !important;
             <i class="material-icons">more_vert</i>
           </button>
                 <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li onclick="cordova.InAppBrowser.open('https://www.thebodyofchrist.us/about/');"class="mdl-menu__item">About</li>
+                    <li onclick="cordova.InAppBrowser.open('https://www.thebodyofchrist.us/about/');" class="mdl-menu__item">About</li>
                     <li onclick="clearCache();" class="mdl-menu__item">Clear Cache</li>
                     <li onclick="toggleBeta();" class="mdl-menu__item">Toggle Beta</li>
                     <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
@@ -323,137 +118,137 @@ font-size:26px !important;
 
             </header>
             <nav class="demo-navigation mdl-navigation">
-            <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
-            <span onclick="window.reload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
-            <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
-            <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
-            <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
-             <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
-              <span class="beta" style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
-               <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
+                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
+                <span onclick="window.reload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
+                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
                 <span class="beta" style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
                 <span class="beta" onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
             </nav>
-        </div>
-        <style>
-            .demo-list-two {
-                width: calc(100% - 16px);
-            }
-
-            input {
-                text-align: center;
-            }
-
-            .material-icons.md-48 {
-                font-size: 30px;
-            }
-
-            .mdl-list__item .mdl-list__item-primary-content {
-                flex-grow: 0;
-                -webkit-flex-grow: 0;
-                text-align: left;
-            }
-        </style>
-        <main class="mdl-layout__content mdl-color--grey-100">
-
-
-            <section class="mdl-layout__tab-panel is-active" id="global">
-
-                <div class="page-content" style="">
-
-                    <div id="filtersSermons" style="display:none;">
+            </div>
+            <style>
+                .demo-list-two {
+                    width: calc(100% - 16px);
+                }
+                
+                input {
+                    text-align: center;
+                }
+                
+                .material-icons.md-48 {
+                    font-size: 30px;
+                }
+                
+                .mdl-list__item .mdl-list__item-primary-content {
+                    flex-grow: 0;
+                    -webkit-flex-grow: 0;
+                    text-align: left;
+                }
+            </style>
+            <main class="mdl-layout__content mdl-color--grey-100">
 
 
-                        <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+                <section class="mdl-layout__tab-panel is-active" id="global">
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                    <div class="page-content" style="">
+
+                        <div id="filtersSermons" style="display:none;">
+
+
+                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
      <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">date_range</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="firstDateLabel">
-                                    <input class="mdl-textfield__input" type="text" id="firstDate" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (Start Date)</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="firstDateLabel">
+                                        <input class="mdl-textfield__input" type="text" id="firstDate" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (Start Date)</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="firstDate">Search From this Date Preached</div>
+                                <div class="mdl-tooltip" for="firstDate">Search From this Date Preached</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
      <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">date_range</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="secondDateLabel">
-                                    <input class="mdl-textfield__input" type="text" id="secondDate" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (End Date)</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="secondDateLabel">
+                                        <input class="mdl-textfield__input" type="text" id="secondDate" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (End Date)</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="secondDate">Search To this Date Preached</div>
+                                <div class="mdl-tooltip" for="secondDate">Search To this Date Preached</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
      <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="searchLabel">
-                                    <input class="mdl-textfield__input" type="text" id="search" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Teaching Title</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="searchLabel">
+                                        <input class="mdl-textfield__input" type="text" id="search" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Teaching Title</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="search">Enter Title to Search</div>
+                                <div class="mdl-tooltip" for="search">Enter Title to Search</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">face</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                    <input class="mdl-textfield__input" type="text" id="speakerName" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Speaker Name</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
+                                        <input class="mdl-textfield__input" type="text" id="speakerName" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Speaker Name</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="speakerName">Enter Speaker's Name</div>
+                                <div class="mdl-tooltip" for="speakerName">Enter Speaker's Name</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">book</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                    <input class="mdl-textfield__input" type="text" id="nameOfBook" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Book</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
+                                        <input class="mdl-textfield__input" type="text" id="nameOfBook" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Book</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="nameOfBook">Name of Book</div>
+                                <div class="mdl-tooltip" for="nameOfBook">Name of Book</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">home</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                    <input class="mdl-textfield__input" type="text" id="nameOfChurch" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Church</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
+                                        <input class="mdl-textfield__input" type="text" id="nameOfChurch" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Church</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="nameOfChurch">Name of Church</div>
+                                <div class="mdl-tooltip" for="nameOfChurch">Name of Church</div>
 
-                            <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                <span class="mdl-list__item-primary-content">
+                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
+                                    <span class="mdl-list__item-primary-content">
     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">star</i>
     </span>
-                                <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                    <input class="mdl-textfield__input" type="text" id="rating" style="color:white;">
-                                    <label class="mdl-textfield__label" for="sample1" style="color:white;">Rating</label>
-                                </div>
-                            </li>
+                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
+                                        <input class="mdl-textfield__input" type="text" id="rating" style="color:white;">
+                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Rating</label>
+                                    </div>
+                                </li>
 
-                            <div class="mdl-tooltip" for="rating">Rating</div>
+                                <div class="mdl-tooltip" for="rating">Rating</div>
 
 
 
-                            <span style="margin-top:20;"><center>
-
+                                <span style="margin-top:20;">
+                                    <center>
 
   <form action="#">
   <div id="searchIcon"class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
@@ -469,515 +264,251 @@ font-size:26px !important;
 </center>
 
       </span>
+                            </div>
+                        </div>
+                        <div id="filtersVBV" style="display:none;">
+                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+                                <center>
+                                    <form action="#">
+                                        <div id="searchIconVBV" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
+                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                                                <i style="color:white;"class="material-icons">search</i>
+                                             </label>
+                                            <div class="mdl-textfield__expandable-holder">
+                                                <input id="searchTitleBoxVBV" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
+                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </center>
+                            </div>
+                        </div>
+                        <div id="filtersChurches" style="display:none;">
+                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+                                <center>
+                                    <form action="#">
+                                        <div id="searchIconChurches" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
+                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                                                <i style="color:white;"class="material-icons">search</i>
+                                             </label>
+                                            <div class="mdl-textfield__expandable-holder">
+                                                <input id="searchTitleBoxChurches" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
+                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </center>
+                            </div>
+                        </div>
+                        <div id="filtersSpeakers" style="display:none;">
+                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
+                                <center>
+                                    <form action="#">
+                                        <div id="searchIconSpeakers" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
+                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                                                <i style="color:white;"class="material-icons">search</i>
+                                             </label>
+                                            <div class="mdl-textfield__expandable-holder">
+                                                <input id="searchTitleBoxSpeakers" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
+                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </center>
+                            </div>
+                        </div>
+
+                        <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
+                        </div>
+                        <div id="sermonContent" class="mdl-grid demo-content">
                         </div>
                     </div>
+                </section>
 
+            </main>
+        </div>
+        <script src="scripts/jquery.js"></script>
+        <script src="js/jquery.mobile-1.4.5.js"></script>
 
-                     <div id="filtersVBV" style="display:none;">
-<div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
-<center>
-  <form action="#">
-  <div id="searchIconVBV"class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
-    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-      <i style="color:white;"class="material-icons">search</i>
-    </label>
-    <div class="mdl-textfield__expandable-holder">
-      <input id="searchTitleBoxVBV" style="color:white;font-family:'Open Sans';"class="mdl-textfield__input" type="text" id="sample6">
-      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-    </div>
-  </div>
-</form>
-</center>
-                        </div>
-                    </div>
-
-                    <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
-                    </div>
-                    <div id="sermonContent" class="mdl-grid demo-content">
-                    </div>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-
-
-
-    <script src="scripts/jquery.js"></script>
-    <script src="js/jquery.mobile-1.4.5.js"></script>
-
-    <script>
-    $.mobile.loading().hide();
-    $( document ).on( "mobileinit", function() {
-    $.mobile.loader.prototype.options.disabled = true;
-});
-
-    </script>
-    <script src="scripts/getSpeakers.js"></script>
-    <script src="js/imgcache.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script src="scripts/firstLoad.js"></script>
-    <script type="text/javascript">
-        //ImgCache.options.debug = true;
-
-        ImgCache.options.chromeQuota = 50 * 1024 * 1024;
-        document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-            //console.log(FileTransfer);
-          //  console.log(Media);
-          // if (localStorage.getItem('intialPullLoaded') == null){
-        initialLoad();
-//         }
-//         else{
-//               jQuery.ajax({
-
-//         url: 'cdvfile://localhost/library-nosync/teachingPreloadData.json',
-//         type: "GET",
-//     }).done(function(sermonDataCACHE, textStatus, jqXHR) {
-//         console.log("HTTP Request Succeeded: " + jqXHR.status);
-//         window.sermonDataCACHE = (sermonDataCACHE);
-//         console.log('Pulled From Local File');
-// });
-
-//           jQuery.ajax({
-
-//         url: 'cdvfile://localhost/library-nosync/VBVPreloadData.json',
-//         type: "GET",
-//     }).done(function(VBVDataCACHE, textStatus, jqXHR) {
-//         console.log("HTTP Request Succeeded: " + jqXHR.status);
-//         window.VBVDataCACHE = (VBVDataCACHE);
-//         console.log('Pulled From Local File');
-// });
-// }
-
-            getLocalFilesPushToLocalStorage();
-            ImgCache.init(function() {
-            setViewGlobal();
-            loadEvents(localStorage.getItem('view'), communityID);
-            }, function() {
-                alert('ImgCache init: error! Check the log for errors');
+        <script>
+            $.mobile.loading().hide();
+            $(document).on("mobileinit", function() {
+                $.mobile.loader.prototype.options.disabled = true;
             });
-
-            $('.beta').hide();
-            if (localStorage.getItem('betaEnabled') === 'True'){
-                $('.beta').show();
+        </script>
+        <script src="scripts/dashboard.js"></script>
+        <script src="scripts/getSpeakers.js"></script>
+        <script src="js/imgcache.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script src="scripts/firstLoad.js"></script>
+        <script type="text/javascript">
+            //ImgCache.options.debug = true;
+            ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+            document.addEventListener("deviceready", onDeviceReady, false);
+            function onDeviceReady() {
+                getLocalFilesPushToLocalStorage();
+                ImgCache.init(function() {
+                    setViewGlobal();
+                    loadEvents(localStorage.getItem('view'), communityID);
+                }, function() {
+                    alert('ImgCache init: error! Check the log for errors');
+                });
+                $('.beta').hide();
+                if (localStorage.getItem('betaEnabled') === 'True') {
+                    $('.beta').show();
+                }
             }
-
-
-        }
-
-        function startApp(){
-            $('#launch').hide();
-        }
-
+            function startApp() {
+                $('#launch').hide();
+            }
             //initial run
-             if (localStorage.getItem('betaEnabled') == null){
+            if (localStorage.getItem('betaEnabled') == null) {
+                localStorage.setItem('betaEnabled', 'False');
+                $('.beta').hide();
 
-            localStorage.setItem('betaEnabled', 'False');
-            $('.beta').hide();
-
-             }
-             else{
-
-             }
-
-
-
-           function toggleBeta(){
-            if (localStorage.getItem('betaEnabled') == null){
-            localStorage.setItem('betaEnabled', 'True');
-            alert('Beta Features Enabled - Expect buttons to explode.');
+            } else {
             }
-        else if (localStorage.getItem('betaEnabled') == 'True'){
-            localStorage.setItem('betaEnabled', 'False');
-            alert('Disabled Beta Features.');
-             $('.beta').hide();
-        }
-        else{
-             localStorage.setItem('betaEnabled', 'True');
-             alert('Beta Features Enabled - Expect buttons to explode.');
-             $('.beta').show();
-            }
-        }
-
-
-    </script>
-    <script src="scripts/getSpeakers.js"></script>
-
-    <script src="js/filterJSON.plugin.js"></script>
-    <script src='scripts/nprogress.js'></script>
-    <link rel='stylesheet' href='css/nprogress.css' />
-
-    <script>
-        window.userID = localStorage.getItem('userID');
-        window.communityID = localStorage.getItem('userCommunityID');
-    </script>
-    <script src="scripts/getMembers.js"></script>
-    <script src="scripts/getChurches.js"></script>
-    <script src="scripts/getFollowed.js"></script>
-    <script src="scripts/getEvents.js"></script>
-    <script src="scripts/checkIfListened.js"></script>
-    <script src="scripts/getTeachings.js"></script>
-    <script src="scripts/getVBV.js"></script>
-
-    <script>
-        window.view = "Global";
-
-        function teachingsLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#activity').removeClass('is-active');
-            $('#teachings').addClass('is-active');
-            $('#teachingBar').show();
-            $('#needsBar').hide();
-            $('#sermonsButton').addClass('is-active');
-            $('#verseByVerseButton').removeClass('is-active');
-            $('#bibleButton').removeClass('is-active');
-            $('#needs').removeClass('is-active');
-            $('#members').removeClass('is-active');
-            $('#churches').removeClass('is-active');
-            $('#speakers').removeClass('is-active');
-            $('#filtersVBV').hide();
-            sermonsLoad();
-            $('#filtersVBV').hide();
-            $('#filtersSermons').show();
-            $('#searchIcon').addClass('is-focused')
-            $('#searchIconVBV').addClass('is-focused')
-            //Search Bar Change
-             $('#searchTitleBox').on('input',function(e){
-                 textValue = document.getElementById('searchTitleBox').value;
-              console.log(textValue);
-              if (textValue.length > 2){
-              loadTeachingDataCache(textValue);
-          }
-      });
-          $('#searchTitleBoxVBV').on('input',function(e){
-            textValue = document.getElementById('searchTitleBoxVBV').value;
-              //console.log(textValue);
-              if (textValue.length > 2){
-              loadTeachingDataCacheVBV(textValue);
-                }
-                });
-        }
-
-        function sermonsLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#filtersVBV').hide();
-            $('#filtersSermons').show();
-            $('#searchIcon').addClass('is-focused')
-            $('#searchIconVBV').addClass('is-focused')
-
-            $("#bars").animate({
-
-                scrollTop: 0
-            }, 250, function() {
-                $('#individualSermonBar').hide();
-                closeSermon();
-            });
-            $('#speakers').removeClass('is-active');
-
-
-            $('#sermonsButton').addClass('is-active');
-            $('#teachingsButton').removeClass('is-active');
-            $('#verseByVerseButton').removeClass('is-active');
-            $('#bibleButton').removeClass('is-active');
-
-            loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
-
-        }
-
-        function verseByVerseLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-
-            $("#bars").animate({
-                scrollTop: 0
-            }, 250, function() {
-                $('#individualSermonBar').hide();
-                $('#filtersSermons').hide();
-                $('#filtersVBV').show();
-            });
-
-            $('#sermonsButton').removeClass('is-active');
-            $('#verseByVerseButton').addClass('is-active');
-            $('#speakers').removeClass('is-active');
-            $('#searchIcon').addClass('is-focused')
-            $('#searchIconVBV').addClass('is-focused')
-            $('#bibleButton').removeClass('is-active');
-
-            loadVBV(localStorage.getItem('view'), communityID, '');
-            console.log('Loaded Verse By Verse');
-            closeSermon();
-
-        }
-
-        function bibleLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('filtersSermons').hide();
-            $('filtersVBV').hide();
-            $("#bars").animate({
-                scrollTop: 0
-            }, 250, function() {
-                $('#individualSermonBar').hide();
-            });
-            loadDownloadedContent('True');
-            $('#sermonsButton').removeClass('is-active');
-            $('#teachingsButton').removeClass('is-active');
-            $('#bibleButton').addClass('is-active');
-            $('#verseByVerseButton').removeClass('is-active');
-        }
-
-        function churchesLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#speakers').removeClass('is-active');
-            $('#activity').removeClass('is-active');
-            $('#teachings').removeClass('is-active');
-            $('#needs').removeClass('is-active');
-            $('#churches').addClass('is-active');
-            $('#members').removeClass('is-active');
-            $('#teachingBar').hide();
-            $('#needsBar').hide();
-            $('#filtersSermons').hide();
-            $('#filtersVBV').hide();
-            loadChurches('Global', '', '', 'True');
-            $('#filtersVBV').hide();
-            $('#filtersSermons').hide();
-            closeSermon();
-        }
-
-        function membersLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#speakers').removeClass('is-active');
-            $('#activity').removeClass('is-active');
-            $('#teachings').removeClass('is-active');
-            $('#churches').removeClass('is-active');
-            $('#needs').removeClass('is-active');
-            $('#members').addClass('is-active');
-            $('#teachingBar').hide();
-            $('#needsBar').hide();
-            loadMembers(localStorage.getItem('view'), communityID, 'True');
-            $('filtersSermons').hide();
-            $('filtersVBV').hide();
-            closeSermon();
-        }
-
-
-
-
-        function activityLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#activity').addClass('is-active');
-            $('#teachings').removeClass('is-active');
-            $('#needs').removeClass('is-active');
-            $('#churches').removeClass('is-active');
-            $('#members').removeClass('is-active');
-            $('#teachingBar').hide();
-            $('#speakers').removeClass('is-active');
-            $('#needsBar').hide();
-            loadEvents(view, '');
-            closeSermon();
-            $('filtersSermons').hide();
-            $('filtersVBV').hide();
-        }
-
-
-        function speakersLoad() {
-            $('#loading').show();
-            $('#contentHolder').empty();
-            $('#activity').removeClass('is-active');
-            $('#teachings').removeClass('is-active');
-            $('#speakers').addClass('is-active');
-            $('#needs').removeClass('is-active');
-            $('#churches').removeClass('is-active');
-            $('#members').removeClass('is-active');
-            $('#teachingBar').hide();
-            $('#needsBar').hide();
-            loadSpeakers(localStorage.getItem('view'), communityID, 'True');
-            closeSermon();
-            $('filtersSermons').hide();
-            $('filtersVBV').hide();
-        }
-
-        function needsLoad() {
-
-            $('#contentHolder').empty();
-            $('#teachingBar').hide();
-            $('#teachingBar').hide();
-            $('#needsBar').show();
-            $('#activity').removeClass('is-active');
-            $('#teachings').removeClass('is-active');
-            $('#needs').addClass('is-active');
-            $('#members').removeClass('is-active');
-            $('#churches').removeClass('is-active');
-            $('#speakers').removeClass('is-active');
-            closeSermon();
-            $('filtersSermons').hide();
-            $('filtersVBV').hide();
-        }
-
-        function setViewGlobal() {
-            localStorage.setItem("view", 'Global');
-            $('#globalButton').addClass('is-active');
-            $('#communityButton').removeClass('is-active');
-            $('#followButton').removeClass('is-active');
-            $('#contentHolder').empty();
-        }
-
-
-        function setViewCommunity() {
-            localStorage.setItem("view", 'Community');
-            $('#globalButton').removeClass('is-active');
-            $('#communityButton').addClass('is-active');
-            $('#followButton').removeClass('is-active');
-            $('#contentHolder').empty();
-
-        }
-
-        function setViewFollow() {
-            localStorage.setItem("view", 'Follow');
-            $('#globalButton').removeClass('is-active');
-            $('#communityButton').removeClass('is-active');
-            $('#followButton').addClass('is-active');
-            $('#contentHolder').empty();
-        }
-
-        function search() {
-            $('#contentHolder').empty();
-            title = document.getElementById('search').value;
-            loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', title, '', '');
-
-
-        }
-
-
-        loadMembers('Global', '');
-        loadChurches('Global', '', '', 'False');
-        loadSpeakers('Global', '', 'False');
-    </script>
-    <script src="scripts/jquery.cookie.js"></script>
-
-    <script src="scripts/material.js"></script>
-
-
-    <script src="scripts/moment.js"></script>
-    <script src="scripts/bootstrapMaterialCalendar.js"></script>
-    <script src="scripts/downloadedContent.js"></script>
-    <script>
-        $('#firstDate').bootstrapMaterialDatePicker({
-            weekStart: 0,
-            time: false
-        }).on('change', function(e, date) {
-            $('#firstDateLabel').addClass('is-dirty');
-        });
-        $('#secondDate').bootstrapMaterialDatePicker({
-            weekStart: 0,
-            time: false
-        }).on('change', function(e, date) {
-            $('#secondDateLabel').addClass('is-dirty');
-        });
-    </script>
-    <script>
-        function logout() {
-            window.location = 'index.html';
-            //localStorage.clear();
-        }
-    </script>
-    <script>
-        function arrayLookup(array, prop, val) {
-            for (var i = 0, len = array.length; i < len; i++) {
-                if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
-                    return array[i];
+            function toggleBeta() {
+                if (localStorage.getItem('betaEnabled') == null) {
+                    localStorage.setItem('betaEnabled', 'True');
+                    alert('Beta Features Enabled - Expect buttons to explode.');
+                } else if (localStorage.getItem('betaEnabled') == 'True') {
+                    localStorage.setItem('betaEnabled', 'False');
+                    alert('Disabled Beta Features.');
+                    $('.beta').hide();
+                } else {
+                    localStorage.setItem('betaEnabled', 'True');
+                    alert('Beta Features Enabled - Expect buttons to explode.');
+                    $('.beta').show();
                 }
             }
-            return null;
-        }
+        </script>
+        <script src="scripts/getSpeakers.js"></script>
+        <script src="js/filterJSON.plugin.js"></script>
+        <script src='scripts/nprogress.js'></script>
+        <link rel='stylesheet' href='css/nprogress.css' />
+        <script>
+            window.userID = localStorage.getItem('userID');
+            window.communityID = localStorage.getItem('userCommunityID');
+        </script>
+        <script src="scripts/getMembers.js"></script>
+        <script src="scripts/getChurches.js"></script>
+        <script src="scripts/getFollowed.js"></script>
+        <script src="scripts/getEvents.js"></script>
+        <script src="scripts/checkIfListened.js"></script>
+        <script src="scripts/getTeachings.js"></script>
+        <script src="scripts/getVBV.js"></script>
 
-        Storage.prototype.setArray = function(key, obj) {
-            return this.setItem(key, JSON.stringify(obj))
-        }
-        Storage.prototype.getArray = function(key) {
-            return JSON.parse(this.getItem(key))
-        }
+        <script>
+            loadMembers('Global', '');
+            loadChurches('Global', '', '', 'False');
+            loadSpeakers('Global', '', 'False');
+        </script>
+        <script src="scripts/jquery.cookie.js"></script>
+        <script src="scripts/material.js"></script>
+        <script src="scripts/moment.js"></script>
+        <script src="scripts/bootstrapMaterialCalendar.js"></script>
+        <script src="scripts/downloadedContent.js"></script>
+        <script>
+            
+            $('#firstDate').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                time: false
+            }).on('change', function(e, date) {
+                $('#firstDateLabel').addClass('is-dirty');
+            });
+            $('#secondDate').bootstrapMaterialDatePicker({
+                weekStart: 0,
+                time: false
+            }).on('change', function(e, date) {
+                $('#secondDateLabel').addClass('is-dirty');
+            });
+            
+            function arrayLookup(array, prop, val) {
+                for (var i = 0, len = array.length; i < len; i++) {
+                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
+                        return array[i];
+                    }
+                }
+                return null;
+            }
 
-        function getLocalFilesPushToLocalStorage() {
+            Storage.prototype.setArray = function(key, obj) {
+                return this.setItem(key, JSON.stringify(obj))
+            }
+            Storage.prototype.getArray = function(key) {
+                return JSON.parse(this.getItem(key))
+            }
 
-            function listDirectory() {
+            function getLocalFilesPushToLocalStorage() {
 
-                window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dirEntry) {
-                    var directoryReader = dirEntry.createReader();
-                    directoryReader.readEntries(dirSuccess, dirFail);
+                function listDirectory() {
+
+                    window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dirEntry) {
+                        var directoryReader = dirEntry.createReader();
+                        directoryReader.readEntries(dirSuccess, dirFail);
+                    });
+                }
+
+                window.filesArray = []
+
+                function dirSuccess(entries) {
+                    console.log("INFO: Listing entries");
+                    var i;
+                    for (i = 0; i < entries.length; i++) {
+                        console.log(entries[i].name);
+                        window.filesArray.push(entries[i].name);
+
+                    }
+                }
+
+                function dirFail(error) {
+                    console.log("Failed to list directory contents: " + error.code);
+                }
+
+                listDirectory();
+
+
+
+            }
+
+            function clearCache() {
+                ImgCache.clearCache(function() {
+                    // continue cleanup...
+                }, function() {
+                    // something went wrong
                 });
             }
+        </script>
 
-            window.filesArray = []
 
-            function dirSuccess(entries) {
-                console.log("INFO: Listing entries");
-                var i;
-                for (i = 0; i < entries.length; i++) {
-                    console.log(entries[i].name);
-                    window.filesArray.push(entries[i].name);
-
+        <script>
+            function showSearchFilter() {
+                document.getElementById('searchButton').innerText = 'Search';
+                $('searchButton').prepend('<i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>');
+                $('.mdl-list__item').show();
+                search();
+            }
+        </script>
+        <script>
+            function setBackground() {
+                window.backgroundImage = localStorage.getItem('backgroundImage');
+                if (window.backgroundImage == null) {
+                    window.backgroundImage = 'img/wood.png';
+                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
+                } else {
+                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
                 }
             }
 
-            function dirFail(error) {
-                console.log("Failed to list directory contents: " + error.code);
+            function logout() {
+                window.location = 'index.html';
+                //localStorage.clear();
             }
-
-            listDirectory();
-
-
-
-        }
-
-        function clearCache(){
-        ImgCache.clearCache(function () {
-          // continue cleanup...
-        }, function () {
-          // something went wrong
-        });
-        }
-
-
-    </script>
-
-
-    <script>
-        function showSearchFilter() {
-
-            document.getElementById('searchButton').innerText = 'Search';
-            $('searchButton').prepend('<i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>');
-            $('.mdl-list__item').show();
-            search();
-        }
-    </script>
-
-
-<script>
-
-window.backgroundImage = localStorage.getItem('backgroundImage');
-
-if (window.backgroundImage == null){
-window.backgroundImage = 'img/wood.png';
-$('body').css('background-image', 'url(' + window.backgroundImage + ')');
-}
-else{
-  $('body').css('background-image', 'url(' +  window.backgroundImage + ')');
-}
-</script>
-
-    <script src="js/jquery.barrating.js"></script>
-
-<script src="scripts/search.js"></script>
-
-
-</body>
+        </script>
+        <script src="js/jquery.barrating.js"></script>
+        <script src="scripts/search.js"></script>
+       
+        </body>
 
 </html>

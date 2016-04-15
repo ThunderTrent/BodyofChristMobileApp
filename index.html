@@ -1,65 +1,71 @@
-
-
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Body of Christ, Login</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="styles/bootstrap.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="https://www.thebodyofchrist.us/static/css/AdminLTE.min.css">
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Body of Christ, Login</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://www.thebodyofchrist.us/static/css/AdminLTE.min.css">
 
 </head>
-<body class="hold-transition login-page" style="background-color:transparent;"><style>
-    html{
-        background-image: url('images/wood.jpg');
-    background-size: cover;
-}
 
-@keyframes animateOpacity {
-  0% {
-    opacity:1;
-  }
-  50% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-    @keyframes animateOpacity2 {
-  0% {
-    opacity:0;
-  }
-  50% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-#Gradient1 {
-   animation: animateOpacity 10s infinite;
-}
-
-#Blue {
-   animation: animateOpacity2 10s infinite;
-}
-.login-box{
-
-        position: absolute;
-    left: 50%;
-    margin-left: -180px;
-
-    }
-
-</style>
-<div id="Gradient1" class="animateOpacity" style="
+<body class="hold-transition login-page" style="background-color:transparent;">
+    <style>
+        html {
+            background-image: url('img/BG.png');
+            background-size: cover;
+        }
+        
+        @keyframes animateOpacity {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes animateOpacity2 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        
+        #Gradient1 {
+            animation: animateOpacity 10s infinite;
+        }
+        
+        #Blue {
+            animation: animateOpacity2 10s infinite;
+        }
+        
+        .login-box {
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
+            border-radius: 20px;
+        }
+        
+        .login-box-body {
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+    <div id="Gradient1" class="animateOpacity" style="
 position:absolute;
 top:0;
 background:linear-gradient(to right, rgba(243, 156, 18, .35) 0%,rgba(0, 115, 183, .3) 50%,rgba(221, 75, 57, .3) 100%);
@@ -67,7 +73,7 @@ height:100%;
 
 width:100%;
 "></div>
-<div id="Blue" class="animateOpactiy" style="
+    <div id="Blue" class="animateOpactiy" style="
 position:absolute;
 top:0;
 opacity:0;
@@ -76,109 +82,111 @@ height:100%;
 width:100%;
 
 "></div>
-<div class="login-box">
-  <div class="login-logo">
-    <img width="350px" src="https://www.thebodyofchrist.us/static/images/BodyOfChrist.svg">
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <div class="login-box">
+        <div class="login-logo">
+            <img width="350px" src="https://www.thebodyofchrist.us/static/images/BodyOfChrist.svg">
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            <div class="social-auth-links text-center" style="margin-top:-10px;">
+                <span style="font-family:'Open Sans';white-space:nowrap;font-size:;">Indexing Sermons|Fulfilling Needs|Discipleship</span>
+                <input type="text" style="width:100%;margin-top:10px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Username:">
+                </input>
+                <input type="password" style="width:100%;margin-top:00px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Super Secret Password:">
+                </input>
+                <button onclick="login();" style="width:100%;margin-bottom:10px;border:solid #767772 1px;background-color:rgba(255, 255, 255, 0.91);">Sign In</button>
 
-
-
-    <div class="social-auth-links text-center">
-
-      <a href="#" onclick="facebookLogin();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                <a href="#" onclick="facebookLogin();" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
-        <!--<center>We don't automatically publish on your profile.</center>-->
-      <a href="#" onclick="googleLogin();" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                <!--<center>We don't automatically publish on your profile.</center>-->
+                <a href="#" onclick="googleLogin();" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
+            </div>
+
+
+        </div>
+        <!-- /.login-box-body -->
     </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script>
+        function login(){
+        alert('Not Yet Implemented. Try Clicking Facebook or Google Button. Will try to make a register button soon. =)');    
+            
+        }
+        function facebookLogin() {
+            window.win = window.open("https://www.thebodyofchrist.us/login/facebook/", "_blank",
+                "EnableViewPortScale=yes");
 
+            // Once the InAppBrowser finishes loading
+            window.win.addEventListener("loadstop", function() {
 
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<script type="text/javascript" src="cordova.js"></script>
-<script>
-function facebookLogin(){
-    window.win = window.open( "https://www.thebodyofchrist.us/login/facebook/", "_blank",
-  "EnableViewPortScale=yes" );
+                // Clear out the name in localStorage for subsequent opens.
+                //win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
 
-// Once the InAppBrowser finishes loading
-window.win.addEventListener( "loadstop", function() {
+                // Start an interval
+                var loop = setInterval(function() {
 
-    // Clear out the name in localStorage for subsequent opens.
-    //win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
+                    // Execute JavaScript to check for the existence of a name in the
+                    // child browser's localStorage.
+                    window.win.executeScript({
+                            code: "userID"
+                        },
+                        function(values) {
+                            var userID = values[0];
 
-    // Start an interval
-    var loop = setInterval(function() {
+                            // If a name was set, clear the interval and close the InAppBrowser.
+                            if (userID) {
+                                clearInterval(loop);
+                                window.win.close();
+                                localStorage.setItem("userID", userID);
+                                //alert(userID);
+                                window.location = "app.html";
+                            }
+                        }
+                    );
+                });
+            });
+        }
 
-        // Execute JavaScript to check for the existence of a name in the
-        // child browser's localStorage.
-        window.win.executeScript(
-            {
-                code: "userID"
-            },
-            function( values ) {
-                var userID = values[ 0 ];
+        function googleLogin() {
+            window.win = window.open("https://www.thebodyofchrist.us/login/google-oauth2/", "_blank",
+                "EnableViewPortScale=yes");
 
-                // If a name was set, clear the interval and close the InAppBrowser.
-                if ( userID ) {
-                    clearInterval( loop );
-                    window.win.close();
-                    localStorage.setItem( "userID", userID );
-                    //alert(userID);
-                    window.location = "app.html";
-                }
-            }
-        );
-    });
-});
-}
+            // Once the InAppBrowser finishes loading
+            window.win.addEventListener("loadstop", function() {
 
-function googleLogin(){
-    window.win = window.open( "https://www.thebodyofchrist.us/login/google-oauth2/", "_blank",
-  "EnableViewPortScale=yes" );
+                // Clear out the name in localStorage for subsequent opens.
+                window.win.executeScript({
+                    code: "localStorage.setItem( 'userID', '' );"
+                });
 
-// Once the InAppBrowser finishes loading
-window.win.addEventListener( "loadstop", function() {
+                // Start an interval
+                var loop = setInterval(function() {
 
-    // Clear out the name in localStorage for subsequent opens.
-    window.win.executeScript({ code: "localStorage.setItem( 'userID', '' );" });
+                    // Execute JavaScript to check for the existence of a name in the
+                    // child browser's localStorage.
+                    window.win.executeScript({
+                            code: "userID"
+                        },
+                        function(values) {
+                            var userID = values[0];
 
-    // Start an interval
-    var loop = setInterval(function() {
-
-        // Execute JavaScript to check for the existence of a name in the
-        // child browser's localStorage.
-        window.win.executeScript(
-            {
-                code: "userID"
-            },
-            function( values ) {
-                var userID = values[ 0 ];
-
-                // If a name was set, clear the interval and close the InAppBrowser.
-                if ( userID ) {
-                    clearInterval( loop );
-                    window.win.close();
-                    localStorage.setItem( "userID", userID );
-                    //alert('Welcome!');
-                    window.location = "app.html";
-                }
-            }
-        );
-    });
-});
-}
-
-
-</script>
+                            // If a name was set, clear the interval and close the InAppBrowser.
+                            if (userID) {
+                                clearInterval(loop);
+                                window.win.close();
+                                localStorage.setItem("userID", userID);
+                                //alert('Welcome!');
+                                window.location = "app.html";
+                            }
+                        }
+                    );
+                });
+            });
+        }
+    </script>
 
 </body>
+
 </html>
-
-
-
-

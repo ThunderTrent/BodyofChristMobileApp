@@ -1,16 +1,16 @@
-function initialLoad(){
+function initialLoad() {
 
 
-      var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-        if ( app ) {
-  teachingsLoadData();
-   speakersLoadData();
-   membersLoadData();
-    vbvLoadData();
-   //churchesLoad();
-  // vbvLoad();
-   //communityLoad();
-   sermonHistoryLoadData();
+        var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+        if (app) {
+                teachingsLoadData();
+                speakersLoadData();
+                membersLoadData();
+                vbvLoadData();
+                //churchesLoad();
+                // vbvLoad();
+                //communityLoad();
+                sermonHistoryLoadData();
         } else {
 
 
@@ -21,46 +21,49 @@ function initialLoad(){
 
 
 // Manual PC Loads
-  var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-        if ( app ) {
+var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+if (app) {
 
-        } else {
-             jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*',
-        type: "GET",
-    }).done(function(sermonDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonDataCACHE = (sermonDataCACHE);
-});
-        }
+} else { 
+        jQuery.ajax({        
+                url: 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*',
+                        type: "GET",
+                    
+        }).done(function(sermonDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonDataCACHE = (sermonDataCACHE);
+        });
+}
 
 
 
-var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-        if ( app ) {
+var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+if (app) {
 
-        } else {
-                 jQuery.ajax({
-        url: 'https://thebodyofchrist.us/rest/timeListened/',
-        type: "GET",
-    }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonHistoryCACHE = (sermonHistoryCACHE);
-});
-        }
+} else { 
+        jQuery.ajax({        
+                url: 'https://thebodyofchrist.us/rest/timeListened/',
+                        type: "GET",
+                    
+        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonHistoryCACHE = (sermonHistoryCACHE);
+        });
+}
 
-        var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
-        if ( app ) {
+var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+if (app) {
 
-        } else {
-                 jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse',
-        type: "GET",
-    }).done(function(VBVDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.VBVDataCACHE = (VBVDataCACHE);
-});
-        }
+} else { 
+        jQuery.ajax({        
+                url: 'https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse',
+                        type: "GET",
+                    
+        }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.VBVDataCACHE = (VBVDataCACHE);
+        });
+}
 
 
 
@@ -68,24 +71,26 @@ var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'htt
 //Device Loads
 
 
-function teachingsLoadData(){
-url ='https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*';
+function teachingsLoadData() {
+        url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*';
 
-  // var fileTransfer = new FileTransfer();
-  //   store = cordova.file.dataDirectory;
-  //   fileName = 'teachingPreloadData' +  ".json";
-  //   fileTransfer.download(url, store + fileName,
-  //       function(entry) {
+        // var fileTransfer = new FileTransfer();
+        //   store = cordova.file.dataDirectory;
+        //   fileName = 'teachingPreloadData' +  ".json";
+        //   fileTransfer.download(url, store + fileName,
+        //       function(entry) {
 
-                 jQuery.ajax({
-        url: 'data/teachingPreloadData.json',
-        type: "GET",
-    }).done(function(sermonDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonDataCACHE = JSON.parse(sermonDataCACHE);
-        localStorage.setItem('intialPullLoaded',"1");
-        console.log('setInitialPullLoaded to 1');
-});
+         
+        jQuery.ajax({        
+                url: 'data/teachingPreloadData.json',
+                        type: "GET",
+                    
+        }).done(function(sermonDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonDataCACHE = JSON.parse(sermonDataCACHE);
+                localStorage.setItem('intialPullLoaded', "1");
+                console.log('setInitialPullLoaded to 1');
+        });
 
         // },
         // function(err) {
@@ -95,69 +100,74 @@ url ='https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakeri
 
 }
 
-function speakersLoadData(){
-url ='https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount';
+function speakersLoadData() {
+        url = 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount';
 
-  var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = 'speakersPreloadData' +  ".json";
-    fileTransfer.download(url, store + fileName,
-        function(entry) {
+        var fileTransfer = new FileTransfer();
+        store = cordova.file.dataDirectory;
+        fileName = 'speakersPreloadData' + ".json";
+        fileTransfer.download(url, store + fileName,
+                function(entry) {
 
-                 jQuery.ajax({
-        url: 'cdvfile://localhost/library-nosync/speakersPreloadData.json',
-        type: "GET",
-    }).done(function(speakerDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.speakerDataCACHE = (speakerDataCACHE);
-});
+                         
+                        jQuery.ajax({        
+                                url: 'cdvfile://localhost/library-nosync/speakersPreloadData.json',
+                                        type: "GET",
+                                    
+                        }).done(function(speakerDataCACHE, textStatus, jqXHR) {        
+                                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                                window.speakerDataCACHE = (speakerDataCACHE);
+                        });
 
-        },
-        function(err) {
-            console.log(err);
-           });
-
-
-}
-
-
-function membersLoadData(){
-url ='https://www.thebodyofchrist.us/rest/members/?limit=1000&id=*';
-  var fileTransfer = new FileTransfer();
-    store = cordova.file.dataDirectory;
-    fileName = 'memberPreloadData' +  ".json";
-    fileTransfer.download(url, store + fileName,
-        function(entry) {
-                 jQuery.ajax({
-        url: 'cdvfile://localhost/library-nosync/memberPreloadData.json',
-        type: "GET",
-    }).done(function(memberDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.memberDataCACHE = (memberDataCACHE);
-});
-
-        },
-        function(err) {
-            console.log(err);
-           });
+                },
+                function(err) {
+                        console.log(err);
+                });
 
 
 }
 
-function sermonHistoryLoadData(){
-// url ='https://thebodyofchrist.us/rest/timeListened/';
-//   var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = 'sermonHistoryPreloadData' +  ".json";
-//     fileTransfer.download(url, store + fileName,
-//         function(entry) {
-     jQuery.ajax({
-        url: 'https://thebodyofchrist.us/rest/timeListened/',
-        type: "GET",
-    }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonHistoryCACHE = sermonHistoryCACHE;
-});
+
+function membersLoadData() {
+        url = 'https://www.thebodyofchrist.us/rest/members/?limit=1000&id=*';
+        var fileTransfer = new FileTransfer();
+        store = cordova.file.dataDirectory;
+        fileName = 'memberPreloadData' + ".json";
+        fileTransfer.download(url, store + fileName,
+                function(entry) { 
+                        jQuery.ajax({        
+                                url: 'cdvfile://localhost/library-nosync/memberPreloadData.json',
+                                        type: "GET",
+                                    
+                        }).done(function(memberDataCACHE, textStatus, jqXHR) {        
+                                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                                window.memberDataCACHE = (memberDataCACHE);
+                        });
+
+                },
+                function(err) {
+                        console.log(err);
+                });
+
+
+}
+
+function sermonHistoryLoadData() {
+        // url ='https://thebodyofchrist.us/rest/timeListened/';
+        //   var fileTransfer = new FileTransfer();
+        //     store = cordova.file.dataDirectory;
+        //     fileName = 'sermonHistoryPreloadData' +  ".json";
+        //     fileTransfer.download(url, store + fileName,
+        //         function(entry) {
+         
+        jQuery.ajax({        
+                url: 'https://thebodyofchrist.us/rest/timeListened/',
+                        type: "GET",
+                    
+        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonHistoryCACHE = sermonHistoryCACHE;
+        });
         // },
         // function(err) {
         //     console.log(err);
@@ -167,21 +177,23 @@ function sermonHistoryLoadData(){
 }
 
 
-function vbvLoadData(){
-// url ='https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse';
-//   var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = 'VBVPreloadData' +  ".json";
-//     fileTransfer.download(url, store + fileName,
-//         function(entry) {
+function vbvLoadData() {
+        // url ='https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse';
+        //   var fileTransfer = new FileTransfer();
+        //     store = cordova.file.dataDirectory;
+        //     fileName = 'VBVPreloadData' +  ".json";
+        //     fileTransfer.download(url, store + fileName,
+        //         function(entry) {
 
-     jQuery.ajax({
-        url: 'data/VBVPreloadData.json',
-        type: "GET",
-    }).done(function(VBVDataCACHE, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.VBVDataCACHE = JSON.parse(VBVDataCACHE);
-});
+         
+        jQuery.ajax({        
+                url: 'data/VBVPreloadData.json',
+                        type: "GET",
+                    
+        }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.VBVDataCACHE = JSON.parse(VBVDataCACHE);
+        });
         // },
         // function(err) {
         //     console.log(err);
@@ -273,7 +285,3 @@ function vbvLoadData(){
 // });
 
 // }
-
-
-
-
