@@ -1,17 +1,13 @@
 function initialLoad() {
         try {
-                teachingsLoadData();
-                speakersLoadData();
-                membersLoadData();
-                vbvLoadData();
-                sermonHistoryLoadData();
-                try {
+               // teachingsLoadData();
+               // speakersLoadData();
+              //  membersLoadData();
+              //  vbvLoadData();
                         sermonRatingHistoryLoadData();
-                } catch (err) {
-                        console.log(err);
-                }
+              
         } catch (err) {
-                console.log(err);
+                alert(err);
         }
 }
 
