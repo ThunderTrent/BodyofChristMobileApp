@@ -122,8 +122,15 @@ width:100%;
         }
        
         function facebookLogin() {
-            window.win = window.open("https://www.thebodyofchrist.us/login/facebook/", "_blank",
+            if (window.app){
+               window.win = window.open("https://www.thebodyofchrist.us/login/facebook/?platform=phonegap" , "_blank",
                 "EnableViewPortScale=yes");
+            }
+            else{
+                window.win = window.open("https://www.thebodyofchrist.us/login/facebook/?platform=chromeExtension" , "_self",
+                "EnableViewPortScale=yes");
+            }
+            
 
             // Once the InAppBrowser finishes loading
             window.win.addEventListener("loadstop", function() {
