@@ -55,7 +55,8 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
     target = '#contentHolder';        
     loadSermonsInsert(url, target, insert, name);    
   } else if (search == "Following") {        
-    window.followArray = []         $.each(followData.results, function(index, value) {            
+    window.followArray = [];
+     $.each(followData.results, function(index, value) {            
       if (followData.results[index].followtype == "Speaker") {                
         followArray.push(followData.results[index].followeeSpeaker);            
       } else {
