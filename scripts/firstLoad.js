@@ -5,7 +5,11 @@ function initialLoad() {
                 membersLoadData();
                 vbvLoadData();
                 sermonHistoryLoadData();
-                sermonRatingHistoryLoadData();
+                try {
+                        sermonRatingHistoryLoadData();
+                } catch (err) {
+                        console.log(err);
+                }
         } catch (err) {
                 console.log(err);
         }
@@ -22,6 +26,16 @@ window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('htt
 
 
 if (window.app) {
+
+        jQuery.ajax({        
+                url: 'https://thebodyofchrist.us/rest/timeListened/',
+                        type: "GET",
+                    
+        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonHistoryCACHE = (sermonHistoryCACHE);
+        });
+
 
 } else { 
         jQuery.ajax({        
@@ -150,51 +164,50 @@ function membersLoadData() {
         }
 }
 
-        function sermonHistoryLoadData() {
+function sermonHistoryLoadData() {
 
-                 
-                jQuery.ajax({        
-                        url: 'https://thebodyofchrist.us/rest/timeListened/',
-                                type: "GET",
-                            
-                }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
-                        console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                        window.sermonHistoryCACHE = sermonHistoryCACHE;
-                });
-
-
-
-        }
-
-        function sermonRatingHistoryLoadData() {
-
-                jQuery.ajax({        
-                        url: 'https://www.thebodyofchrist.us/rest/sermonRatings/?userid=' + localStorage.getItem('userID'),
-                                type: "GET",
-                            
-                }).done(function(sermonRatingHistory, textStatus, jqXHR) {        
-                        console.log("Sermon Rating History Data - HTTP Request Succeeded: " + jqXHR.status);        
-                        window.sermonRatingHistoryCACHE = sermonRatingHistory;
-                });
+         
+        jQuery.ajax({        
+                url: 'https://thebodyofchrist.us/rest/timeListened/',
+                        type: "GET",
+                    
+        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonHistoryCACHE = sermonHistoryCACHE;
+        });
 
 
 
-        }
+}
 
+function sermonRatingHistoryLoadData() {
 
-        function vbvLoadData() {
-
-                 
-                jQuery.ajax({        
-                        url: 'data/VBVPreloadData.json',
-                                type: "GET",
-                            
-                }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
-                        console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                        window.VBVDataCACHE = JSON.parse(VBVDataCACHE);
-                });
+        jQuery.ajax({        
+                url: 'https://www.thebodyofchrist.us/rest/sermonRatings/?userid=' + localStorage.getItem('userID'),
+                        type: "GET",
+                    
+        }).done(function(sermonRatingHistory, textStatus, jqXHR) {        
+                console.log("Sermon Rating History Data - HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonRatingHistoryCACHE = sermonRatingHistory;
+        });
 
 
 
-        }
-  
+}
+
+
+function vbvLoadData() {
+
+         
+        jQuery.ajax({        
+                url: 'data/VBVPreloadData.json',
+                        type: "GET",
+                    
+        }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.VBVDataCACHE = JSON.parse(VBVDataCACHE);
+        });
+
+
+
+}

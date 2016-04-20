@@ -23,10 +23,10 @@
     //  $('#filtersSpeakers').hide();
     //  $('#filtersMembers').hide();
     //  $('#filtersSermons').show();
-       bindToSearches();
+    //   bindToSearches();
 
        //Search Bar Change
-     bindToSearches();
+   //  bindToSearches();
    }
 
    function sermonsLoad() {
@@ -49,7 +49,7 @@
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
-       bindToSearches();
+      // bindToSearches();
 
    }
 
@@ -76,7 +76,7 @@
      loadVBV(localStorage.getItem('view'), communityID, '');
      console.log('Loaded Verse By Verse');
      closeSermon();
-       bindToSearches();
+      // bindToSearches();
 
    }
 
@@ -99,7 +99,7 @@
      $('#teachingsButton').removeClass('is-active');
      $('#bibleButton').addClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
-       bindToSearches();
+     //  bindToSearches();
    }
 
    function churchesLoad() {
@@ -122,7 +122,7 @@
     //  $('#filtersSpeakers').hide();
     //  $('#filtersMembers').hide();
      closeSermon();
-       bindToSearches();
+    //   bindToSearches();
    }
 
    function membersLoad() {
@@ -144,7 +144,7 @@
     //  $('#filtersSpeakers').hide();
     //  $('#filtersMembers').show();
      closeSermon();
-       bindToSearches();
+     //  bindToSearches();
    }
 
    function activityLoad() {
@@ -167,7 +167,7 @@
     //  $('#filtersMembers').hide();
     //  $('#filtersSermons').hide();
     //  $('#filtersVBV').hide();
-       bindToSearches();
+    //   bindToSearches();
    }
 
    function speakersLoad() {
@@ -189,7 +189,7 @@
     //  $('#filtersMembers').hide();
     //  $('#filtersSpeakers').show();
     //  $('filtersVBV').hide();
-     bindToSearches();
+    // bindToSearches();
    }
 
    function needsLoad() {
@@ -208,7 +208,7 @@
      $('#filtersSermons').hide();
     //  $('#filtersVBV').hide();
      alert('Needs not Implemented Yet.')
-       bindToSearches();
+     //  bindToSearches();
    }
 
    function setViewGlobal() {
@@ -344,7 +344,7 @@
                     setBackground();
                     ImgCache.init(function() {
                         setViewGlobal();
-                        bindToSearches();
+                       // bindToSearches();
                         loadEvents(localStorage.getItem('view'), communityID);
                     }, function() {
                         alert('ImgCache init: error! Check the log for errors');
@@ -364,7 +364,7 @@
                     setBackground();
                    //ImgCache.init(function() {
                     setViewGlobal();
-                    bindToSearches();
+                    //bindToSearches();
                     loadEvents(localStorage.getItem('view'), communityID);
                    // }, function() {
                    //     alert('ImgCache init: error! Check the log for errors');
