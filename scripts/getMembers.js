@@ -70,6 +70,15 @@ function loadMembersInsert(url, target, insert, name) {
         type: "GET",
     }).done(function(memberData, textStatus, jqXHR) {
         window.memberData = memberData;
+        
+           try{
+                userImage = arrayLookup(memberData.results,'id',parseInt(localStorage.getItem('userID'))).userImage;
+                $('#profileImage').css('background-image', 'url(' + userImage + ')');
+                }
+                catch(err){
+                    console.log(err);
+                }
+           
 
         if (url.split(':')[0] == "https") {
 
@@ -111,6 +120,10 @@ function loadMembersInsert(url, target, insert, name) {
                     return null;
                 }
 
+
+
+
+                        
                 try {
                     churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;
                     console.log(churchName);

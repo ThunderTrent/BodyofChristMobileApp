@@ -1,20 +1,16 @@
 function initialLoad() {
 
 
-        var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-        if (app) {
+
+//                alert('test');
                 teachingsLoadData();
                 speakersLoadData();
                 membersLoadData();
                 vbvLoadData();
-                //churchesLoad();
-                // vbvLoad();
-                //communityLoad();
                 sermonHistoryLoadData();
-        } else {
+                sermonRatingHistoryLoadData();
+               // alert('test');
 
-
-        }
 }
 
 
@@ -167,6 +163,30 @@ function sermonHistoryLoadData() {
         }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
                 window.sermonHistoryCACHE = sermonHistoryCACHE;
+        });
+        // },
+        // function(err) {
+        //     console.log(err);
+        //    });
+
+
+}
+
+function sermonRatingHistoryLoadData() {
+        // url ='https://thebodyofchrist.us/rest/timeListened/';
+        //   var fileTransfer = new FileTransfer();
+        //     store = cordova.file.dataDirectory;
+        //     fileName = 'sermonHistoryPreloadData' +  ".json";
+        //     fileTransfer.download(url, store + fileName,
+        //         function(entry) {
+         
+        jQuery.ajax({        
+                url: 'https://www.thebodyofchrist.us/rest/sermonRatings/?userid=' + localStorage.getItem('userID'),
+                        type: "GET",
+                    
+        }).done(function(sermonRatingHistory, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonRatingHistoryCACHE = sermonRatingHistory;
         });
         // },
         // function(err) {

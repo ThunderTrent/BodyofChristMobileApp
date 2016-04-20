@@ -1,6 +1,8 @@
    window.view = "Global";
 
    function teachingsLoad() {
+
+     window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
      $('#activity').removeClass('is-active');
@@ -13,27 +15,28 @@
      $('#needs').removeClass('is-active');
      $('#members').removeClass('is-active');
      $('#churches').removeClass('is-active');
-     $('#speakers').removeClass('is-active');
-     $('#filtersVBV').hide();
+    //  $('#speakers').removeClass('is-active');
+    //  $('#filtersVBV').hide();
      sermonsLoad();
-     $('#filtersVBV').hide();
-     $('#filtersChurches').hide();
-     $('#filtersSpeakers').hide();
-     $('#filtersMembers').hide();
-     $('#filtersSermons').show();
-     $('#searchIcon').addClass('is-focused')
-     $('#searchIconVBV').addClass('is-focused')
+    //  $('#filtersVBV').hide();
+    //  $('#filtersChurches').hide();
+    //  $('#filtersSpeakers').hide();
+    //  $('#filtersMembers').hide();
+    //  $('#filtersSermons').show();
+       bindToSearches();
+
        //Search Bar Change
      bindToSearches();
    }
 
    function sermonsLoad() {
+     window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
-     $('#filtersVBV').hide();
-     $('#filtersSermons').show();
-     $('#searchIcon').addClass('is-focused')
-     $('#searchIconVBV').addClass('is-focused')
+    //  $('#filtersVBV').hide();
+    //  $('#filtersSermons').show();
+     $('#searchIcon').addClass('is-focused');
+     $('#searchIconVBV').addClass('is-focused');
      $("#bars").animate({
        scrollTop: 0
      }, 250, function() {
@@ -46,21 +49,23 @@
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
+       bindToSearches();
 
    }
 
    function verseByVerseLoad() {
+     window.currentView = "VBV";
      $('#loading').show();
      $('#contentHolder').empty();
      $("#bars").animate({
        scrollTop: 0
      }, 250, function() {
        $('#individualSermonBar').hide();
-       $('#filtersSermons').hide();
-       $('#filtersVBV').show();
-       $('#filtersChurches').hide();
-       $('#filtersSpeakers').hide();
-       $('#filtersMembers').hide();
+      //  $('#filtersSermons').hide();
+      //  $('#filtersVBV').show();
+      //  $('#filtersChurches').hide();
+      //  $('#filtersSpeakers').hide();
+      //  $('#filtersMembers').hide();
      });
      $('#sermonsButton').removeClass('is-active');
      $('#verseByVerseButton').addClass('is-active');
@@ -71,17 +76,19 @@
      loadVBV(localStorage.getItem('view'), communityID, '');
      console.log('Loaded Verse By Verse');
      closeSermon();
+       bindToSearches();
 
    }
 
    function bibleLoad() {
+     window.currentView = "DownloadedContent";
      $('#loading').show();
      $('#contentHolder').empty();
-     $('filtersSermons').hide();
-     $('#filtersChurches').hide();
-     $('#filtersSpeakers').hide();
-     $('#filtersMembers').hide();
-     $('filtersVBV').hide();
+    //  $('filtersSermons').hide();
+    //  $('#filtersChurches').hide();
+    //  $('#filtersSpeakers').hide();
+    //  $('#filtersMembers').hide();
+    //  $('filtersVBV').hide();
      $("#bars").animate({
        scrollTop: 0
      }, 250, function() {
@@ -92,9 +99,11 @@
      $('#teachingsButton').removeClass('is-active');
      $('#bibleButton').addClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
+       bindToSearches();
    }
 
    function churchesLoad() {
+     window.currentView = "Churches";
      $('#loading').show();
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
@@ -105,17 +114,19 @@
      $('#members').removeClass('is-active');
      $('#teachingBar').hide();
      $('#needsBar').hide();
-     $('#filtersVBV').hide();
+    //  $('#filtersVBV').hide();
      loadChurches('Global', '', '', 'True');
-     $('#filtersVBV').hide();
-     $('#filtersSermons').hide();
-     $('#filtersChurches').show();
-     $('#filtersSpeakers').hide();
-     $('#filtersMembers').hide();
+    //  $('#filtersVBV').hide();
+    //  $('#filtersSermons').hide();
+    //  $('#filtersChurches').show();
+    //  $('#filtersSpeakers').hide();
+    //  $('#filtersMembers').hide();
      closeSermon();
+       bindToSearches();
    }
 
    function membersLoad() {
+     window.currentview = "Members";
      $('#loading').show();
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
@@ -127,15 +138,17 @@
      $('#teachingBar').hide();
      $('#needsBar').hide();
      loadMembers(localStorage.getItem('view'), communityID, 'True');
-     $('#filtersSermons').hide();
-     $('#filtersVBV').hide();
-     $('#filtersChurches').hide();
-     $('#filtersSpeakers').hide();
-     $('#filtersMembers').show();
+    //  $('#filtersSermons').hide();
+    //  $('#filtersVBV').hide();
+    //  $('#filtersChurches').hide();
+    //  $('#filtersSpeakers').hide();
+    //  $('#filtersMembers').show();
      closeSermon();
+       bindToSearches();
    }
 
    function activityLoad() {
+     window.currentView = "Activity";
      $('#loading').show();
      $('#contentHolder').empty();
      $('#activity').addClass('is-active');
@@ -148,15 +161,17 @@
      $('#needsBar').hide();
      loadEvents(view, '');
      closeSermon();
-     $('#filtersSermons').hide();
-     $('#filtersChurches').hide();
-     $('#filtersSpeakers').hide();
-     $('#filtersMembers').hide();
-     $('#filtersSermons').hide();
-     $('#filtersVBV').hide();
+    //  $('#filtersSermons').hide();
+    //  $('#filtersChurches').hide();
+    //  $('#filtersSpeakers').hide();
+    //  $('#filtersMembers').hide();
+    //  $('#filtersSermons').hide();
+    //  $('#filtersVBV').hide();
+       bindToSearches();
    }
 
    function speakersLoad() {
+     window.currentView = "Speakers";
      $('#loading').show();
      $('#contentHolder').empty();
      $('#activity').removeClass('is-active');
@@ -169,13 +184,16 @@
      $('#needsBar').hide();
      loadSpeakers(localStorage.getItem('view'), communityID, 'True');
      closeSermon();
-     $('filtersSermons').hide();
-     $('#filtersChurches').hide();
-     $('#filtersSpeakers').show();
-     $('filtersVBV').hide();
+    //  $('filtersSermons').hide();
+    //  $('#filtersChurches').hide();
+    //  $('#filtersMembers').hide();
+    //  $('#filtersSpeakers').show();
+    //  $('filtersVBV').hide();
+     bindToSearches();
    }
 
    function needsLoad() {
+     window.currentView = "Needs";
      $('#contentHolder').empty();
      $('#teachingBar').hide();
      $('#teachingBar').hide();
@@ -188,8 +206,9 @@
      $('#speakers').removeClass('is-active');
      closeSermon();
      $('#filtersSermons').hide();
-     $('#filtersVBV').hide();
+    //  $('#filtersVBV').hide();
      alert('Needs not Implemented Yet.')
+       bindToSearches();
    }
 
    function setViewGlobal() {
@@ -198,6 +217,23 @@
      $('#communityButton').removeClass('is-active');
      $('#followButton').removeClass('is-active');
      $('#contentHolder').empty();
+       if(window.currentView == "Teachings"){
+           teachingsLoad();
+          }
+         else if (window.currentView == "VBV"){
+             loadVBV();
+         }
+         else if(window.currentView == "Speakers"){
+        speakersLoad();
+               }
+         else if (window.currentView == "Members"){
+           membersLoad();
+                   }
+         else if (window.currentView == "Churches"){
+          churchesLoad();
+         }
+         else
+         {}
    }
 
    function setViewCommunity() {
@@ -206,6 +242,24 @@
      $('#communityButton').addClass('is-active');
      $('#followButton').removeClass('is-active');
      $('#contentHolder').empty();
+     
+      if(window.currentView == "Teachings"){
+           teachingsLoad();
+         }
+         else if (window.currentView == "VBV"){
+             verseByVerseLoad();
+         }
+         else if(window.currentView == "Speakers"){
+        speakersLoad();
+               }
+         else if (window.currentView == "Members"){
+           membersLoad();
+                   }
+         else if (window.currentView == "Churches"){
+          churchesLoad();
+         }
+         else
+         {}
 
    }
 
@@ -215,6 +269,23 @@
      $('#communityButton').removeClass('is-active');
      $('#followButton').addClass('is-active');
      $('#contentHolder').empty();
+       if(window.currentView == "Teachings"){
+           teachingsLoad();
+         }
+         else if (window.currentView == "VBV"){
+             verseByVerseLoad();
+         }
+         else if(window.currentView == "Speakers"){
+        speakersLoad();
+               }
+         else if (window.currentView == "Members"){
+           membersLoad();
+                   }
+         else if (window.currentView == "Churches"){
+          churchesLoad();
+         }
+         else
+         {}
    }
 
    function search() {
@@ -225,43 +296,35 @@
 
    function bindToSearches() {
 
-     $('#searchTitleBox').on('input', function(e) {
-       textValue = document.getElementById('searchTitleBox').value;
+    //  $('#searchIcon').addClass('is-focused');
+    //  $('#searchIconVBV').addClass('is-focused');
+    //  $('#searchIconChurches').addClass('is-focused');
+    //  $('#searchIconSpeakers').addClass('is-focused');
+    //  $('#searchIconMembers').addClass('is-focused');
+     //$('#searchIcon').addClass('is-focused');
+     
+     $('#searchTextBox').on('input', function(e) {
+       textValue = document.getElementById('searchTextBox').value;
        console.log(textValue);
        if (textValue.length > 2) {
-         loadTeachingDataCache(textValue);
-       }
-     });
-     $('#searchTitleBoxVBV').on('input', function(e) {
-       textValue = document.getElementById('searchTitleBoxVBV').value;
-       //console.log(textValue);
-       if (textValue.length > 2) {
-         loadTeachingDataCacheVBV(textValue);
-       }
-     });
-     
-       $('#searchTitleBoxSpeakers').on('input', function(e) {
-       textValue = document.getElementById('searchTitleBoxSpeakers').value;
-       //console.log(textValue);
-       if (textValue.length > 2) {
+         if(window.currentView == "Teachings"){
+           loadTeachingDataCache(textValue);
+           console.log('true');
+         }
+         else if (window.currentView == "VBV"){
+             loadTeachingDataCacheVBV(textValue);
+         }
+         else if(window.currentView == "Speakers"){
          loadSpeakerDataCache(textValue);
+         }
+         else if (window.currentView == "Members"){
+            loadMemberDataCache(textValue);
+         }
+         else if (window.currentView == "Churches"){
+          loadChurchDataCache(textValue);
+         }
+         else
+         {}
        }
      });
-     
-       $('#searchTitleBoxMembers').on('input', function(e) {
-       textValue = document.getElementById('searchTitleBoxMembers').value;
-       //console.log(textValue);
-       if (textValue.length > 2) {
-         loadMemberDataCache(textValue);
-       }
-     });
-     
-       $('#searchTitleBoxChurches').on('input', function(e) {
-       textValue = document.getElementById('searchTitleBoxChurches').value;
-       //console.log(textValue);
-       if (textValue.length > 2) {
-         loadChurchDataCache(textValue);
-       }
-     });
-
    }

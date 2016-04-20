@@ -33,10 +33,10 @@ function loadChurches(search, communityID, userID, insert) {
             url = 'cdvfile://localhost/library-nosync/churchCommunity.json';
         }
         name = 'churchCommunity';
-        console.log(url);
+       // console.log(url);
         target = '#contentHolder';
         loadChurchInsert(url, target, insert, name);
-        console.log('community');
+        //console.log('community');
     } else if (localStorage.getItem("view") == "Following") {
         window.followArray = []
         $.each(followData.results, function(index, value) {
@@ -63,7 +63,7 @@ function loadChurchInsert(url, target, insert, name) {
         url: url,
         type: "GET",
     }).done(function(churchData, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
+       // console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.churchData = churchData;
 
         if (url.split(':')[0] == "https") {
@@ -90,7 +90,7 @@ function loadChurchInsert(url, target, insert, name) {
             } else {}
         });
 
-        console.log('Churches Loaded');
+       // console.log('Churches Loaded');
         $('#loading').hide();
     });
 }

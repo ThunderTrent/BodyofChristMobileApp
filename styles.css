@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
-.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
-  background: white !important;
+.mdl-textfield__label:after{
+  background: #616161 !important;
+}
+
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after{
+  background:white !important;
+}
+
+#searchTextBox{
+  font-family:'Open Sans';
 }
 
 html,

@@ -30,5 +30,5 @@ $('#gradientSermonContent').height(sermonContentHeight + 'px');
 else{
     console.log('not listened yet.');
 }
-
 }
+

@@ -17,6 +17,7 @@ function loadVBV(search, communityID, userID) {
     var isOffline = 'onLine' in navigator && !navigator.onLine;
 
     if (search == "Global") {
+        viewNamely = 'Globally';
         if (isOffline === false) {
             url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse';
         } else {
@@ -26,8 +27,9 @@ function loadVBV(search, communityID, userID) {
         target = '#contentHolder';
         loadVBVInsert(url, target, name);
     } else if (search == "Community") {
+         viewNamely = 'in your community';
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&audioStatus=2&speakerid=*&title=*&typeofcontent=Verse%20By%20Verse&ordering=-downloadedcontentid&communityID=' + communityID;
+            url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&audioStatus=2&speakerid=*&title=*&typeofcontent=Verse%20By%20Verse&ordering=-downloadedcontentid&communityID=' + localStorage.getItem('communityID');
         } else {
             url = 'cdvfile://localhost/library-nosync/communityVBV.json';
         }
@@ -66,6 +68,10 @@ function loadVBVInsert(url, target, name) {
         } else {
             downloadFile(name, url);
         }
+        
+         $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + vbvData.count +   ' Verse by Verse Teachings '+ viewName + ' </span></div>');
+    
+    
         $.each(vbvData.results, function(index, value) {
 
             churchID = parseInt(vbvData.results[index].churchid);
@@ -90,7 +96,8 @@ function loadVBVInsert(url, target, name) {
             }
 
 
-        vbvImage = 'https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + vbvData.results[index].downloadedcontentid;
+        vbvImage = 'https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?speaker=' + vbvData.results[index].speaker;
+        
 
             $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;">' +
                 '<ul class="demo-list-two mdl-list">' +
@@ -107,7 +114,7 @@ function loadVBVInsert(url, target, name) {
                 '</div>');
              var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
                  if (app) {
-                var imageCacheTarget = $('#vbv_IMG_' + memberData.results[index].id);
+                var imageCacheTarget = $('#speaker_IMG_' + vbvData.results[index].speaker);
                 cacheImageCheck(imageCacheTarget);
             } else {
 

@@ -24,10 +24,10 @@
     <link rel="stylesheet" href="styles/datepicker.css">
     <link rel="stylesheet" href="font-awesome-css.css">
 </head>
+
 <body>
     <launch id="launch" class="" style="width: calc(100% + 10px);left:0px;height:100%;background-color:white;position:fixed;z-index:100;">
-        <object class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml">
-</object>
+        <object class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml"></object>
 
         <span id="bocText">BODY OF CHRIST</span>
 
@@ -39,24 +39,32 @@
                 <span style="color:#;">2.) Enabling People to Find Local Needs in their Community</span><br>
                 <span style="color:#;">3.) Enabling Local Christian Churches Globally to Index Teachings and share the Word of God throughout their community & the world.</span><br>
                 <b>May Grace and Peace be multiplied unto you!</b><br></p>
-            <center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  I'm Ready.. Enter.
-</button></center>
+            <center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">I'm Ready.. Enter.</button></center>
 
         </div>
     </launch>
 
 
 
-    <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;"></div>
+    <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;position:absolute;"></div>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
             <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">Body of Christ</span>
+                <span class="mdl-layout-title"></span>
                 <div class="mdl-layout-spacer"></div>
 
 
+                <div class="mdl-layout-spacer"></div>
+                <div id="searchTopDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i onclick="$('#searchTopDiv').addClass('is-focused');"class="material-icons">search</i>
+            </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
 
+                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
+                    </div>
+                </div>
 
                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
             <i class="material-icons">more_vert</i>
@@ -110,7 +118,7 @@
 
             <header class="demo-drawer-header" style="padding:0px;margin:0px;height:300px;opacity:.9;">
 
-                <div style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;background-size:cover;border-radius:30px;background:url('https://www.thebodyofchrist.us/media/2addedf1-2e2c-4078-86fa-1a268c356110.jpg.300x300_q85_detail_upscale.jpg');"></div>
+                <div id="profileImage" style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;border-radius:30px;background:url('https://www.thebodyofchrist.us/media/defaultavatar.png');background-size: cover;"></div>
 
                 <div class="demo-avatar-dropdown">
 
@@ -119,7 +127,7 @@
             </header>
             <nav class="demo-navigation mdl-navigation">
                 <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
-                <span onclick="window.reload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
+                <span onclick="window.preload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
                 <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
                 <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
                 <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
@@ -266,57 +274,7 @@
       </span>
                             </div>
                         </div>
-                        <div id="filtersVBV" style="display:none;">
-                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
-                                <center>
-                                    <form action="#">
-                                        <div id="searchIconVBV" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
-                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                                                <i style="color:white;"class="material-icons">search</i>
-                                             </label>
-                                            <div class="mdl-textfield__expandable-holder">
-                                                <input id="searchTitleBoxVBV" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
-                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </center>
-                            </div>
-                        </div>
-                        <div id="filtersChurches" style="display:none;">
-                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
-                                <center>
-                                    <form action="#">
-                                        <div id="searchIconChurches" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
-                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                                                <i style="color:white;"class="material-icons">search</i>
-                                             </label>
-                                            <div class="mdl-textfield__expandable-holder">
-                                                <input id="searchTitleBoxChurches" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
-                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </center>
-                            </div>
-                        </div>
-                        <div id="filtersSpeakers" style="display:none;">
-                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
-                                <center>
-                                    <form action="#">
-                                        <div id="searchIconSpeakers" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
-                                            <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                                                <i style="color:white;"class="material-icons">search</i>
-                                             </label>
-                                            <div class="mdl-textfield__expandable-holder">
-                                                <input id="searchTitleBoxSpeakers" style="color:white;font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="sample6">
-                                                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </center>
-                            </div>
-                        </div>
+
 
                         <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
                         </div>
@@ -336,19 +294,24 @@
                 $.mobile.loader.prototype.options.disabled = true;
             });
         </script>
-        <script src="scripts/dashboard.js"></script>
+        <script src="scripts/firstLoad.js"></script>
+        <script src="https://www.thebodyofchrist.us/static/js/mobile/dashboard.js"></script>
         <script src="scripts/getSpeakers.js"></script>
         <script src="js/imgcache.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
-        <script src="scripts/firstLoad.js"></script>
         <script type="text/javascript">
             //ImgCache.options.debug = true;
             ImgCache.options.chromeQuota = 50 * 1024 * 1024;
             document.addEventListener("deviceready", onDeviceReady, false);
+            viewName = 'Global';
+
             function onDeviceReady() {
                 getLocalFilesPushToLocalStorage();
+                setBackground();
+
                 ImgCache.init(function() {
                     setViewGlobal();
+                    bindToSearches();
                     loadEvents(localStorage.getItem('view'), communityID);
                 }, function() {
                     alert('ImgCache init: error! Check the log for errors');
@@ -358,16 +321,18 @@
                     $('.beta').show();
                 }
             }
+
             function startApp() {
                 $('#launch').hide();
+                initialLoad();
             }
             //initial run
             if (localStorage.getItem('betaEnabled') == null) {
                 localStorage.setItem('betaEnabled', 'False');
                 $('.beta').hide();
 
-            } else {
-            }
+            } else {}
+
             function toggleBeta() {
                 if (localStorage.getItem('betaEnabled') == null) {
                     localStorage.setItem('betaEnabled', 'True');
@@ -410,7 +375,6 @@
         <script src="scripts/bootstrapMaterialCalendar.js"></script>
         <script src="scripts/downloadedContent.js"></script>
         <script>
-            
             $('#firstDate').bootstrapMaterialDatePicker({
                 weekStart: 0,
                 time: false
@@ -423,7 +387,7 @@
             }).on('change', function(e, date) {
                 $('#secondDateLabel').addClass('is-dirty');
             });
-            
+
             function arrayLookup(array, prop, val) {
                 for (var i = 0, len = array.length; i < len; i++) {
                     if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
@@ -499,6 +463,8 @@
                 } else {
                     $('body').css('background-image', 'url(' + window.backgroundImage + ')');
                 }
+
+
             }
 
             function logout() {
@@ -508,7 +474,46 @@
         </script>
         <script src="js/jquery.barrating.js"></script>
         <script src="scripts/search.js"></script>
-       
-        </body>
+
+
+
+
+        <script type="text/javascript" src="scripts/autocomplete.js"></script>
+
+        <style>
+            .yourlabs-autocomplete {
+                width: 100%;
+            }
+        </style>
+        <script>
+            server = "https://www.thebodyofchrist.us";
+
+
+
+            $('#quick-search').on('input', function() {
+                $('#contentHolder').empty();
+                $('.yourlabs-autocomplete').css('display', 'block !important;');
+            });
+
+            $('#quick-search').yourlabsAutocomplete({
+                url: server + '/search-mobile/',
+                choiceSelector: '[data-value]',
+            }).input.bind('selectChoice', function(e, choice, autocomplete) {
+
+                dataLink = choice.attr('data-value');
+                if (dataLink.split('-')[0] == "14") {
+                    window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]
+                } else if (dataLink.split('-')[0] == "16") {
+                    window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]
+                } else if (dataLink.split('-')[0] == "7") {
+                    window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]
+                } else if (dataLink.split('-')[0] == "21") {
+                    window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]
+                }
+
+            });
+        </script>
+
+</body>
 
 </html>

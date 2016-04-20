@@ -102,7 +102,8 @@ else{
 
 
 
-
+ $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count +   ' Sermons Indexed Globally</span></div>');
+       
 
         $.each(teachingData.results, function(index, value) {
 
@@ -137,7 +138,7 @@ else{
                 speakerName = 'No Speaker Name Listed';
             }
 
-
+              
 
             $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +
                 '<ul class="demo-list-two mdl-list">' +
@@ -386,8 +387,8 @@ setTimeout(function(){
 sermonContentHeight = $('#sermonContentInside').height();
 $('#gradientSermonContent').height(sermonContentHeight + 'px');
   checkIfListened();
-  $('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
-  $('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
+  //$('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
+  //$('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
 
 
 },400);
@@ -410,20 +411,92 @@ rating = 0;
 }
 else{}
 
+
+try{
+yourRatingValue == null;
+}
+catch(err){
+  console.log('Rating Not Set Yet.');
+}
+try{
+sermonHistoryByUsernameThenSermonID == null;
+}
+catch(err){
+  console.log('Rating Not Set Yet.');
+}
+
+sermonHistoryByUsernameThenSermonID = $.fn.filterJSON({sermonRatingHistoryCACHE}, {
+    property: ["sermonid"], // mandatory
+    wrapper: true,
+    value: window.sermonID,
+    checkContains: true,
+    startsWith: true,
+    matchCase: false,
+    avoidDuplicates: true,
+    sort: false,
+    sortOrder: 'desc'
+});
+
+if (sermonHistoryByUsernameThenSermonID.length > 0){
+yourRatingValue =  sermonHistoryByUsernameThenSermonID[0].ratingvalue;
+}
+else{
+yourRatingValue = 0;
+}
+
+if (yourRatingValue > 0){
    $(function() {
       $('#yourRating').barrating({
         theme: 'fontawesome-stars',
-        initialRating: rating,
+        initialRating: yourRatingValue,
       });
    });
+}
+else{
+  $(function() {
+      $('#yourRating').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: yourRatingValue,
+      });
+   });
+  $('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
+}
+  
+   
+   
+   
+   $( "#yourRating" ).change(function() {
+  setRating();
+});
 
-    $(function() {
+
+if (rating > 0){
+  $(function() {
       $('#publicRating').barrating({
         theme: 'fontawesome-stars',
         initialRating: rating,
         readonly:true,
       });
    });
+}
+else{
+ $(function() {
+      $('#publicRating').barrating({
+        theme: 'fontawesome-stars',
+        initialRating: rating,
+        readonly:true,
+      });
+   });
+  $('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
+}
+
+
+addView();
+
+
+    
+   
+   
 
 
 
@@ -599,3 +672,34 @@ alert(results);
             playbtn.innerHTML = "play_arrow";
             playbtn.onclick = play;
     }
+
+
+function setRating(){
+  $('#loading').show();
+  sermonID = window.sermonInfo[0].SermonID; 
+  rating = document.getElementById('yourRating').value;
+  url = 'https://www.thebodyofchrist.us/service/setRatingFromSermonID/?sermonID=' + sermonID + '&sermonRating=' + rating;    
+  jQuery.ajax({
+        url: url,
+        type: "GET",
+    }).done(function(sermonData, textStatus, jqXHR) {
+        $('#loading').hide();
+alert("Your Rating has been updated.");
+  
+});
+}
+
+function addView(){
+  sermonID = window.sermonInfo[0].SermonID; 
+  url = 'https://www.thebodyofchrist.us/service/addView/?sermonID=' + sermonID; 
+  jQuery.ajax({
+        url: url,
+        type: "GET",
+    }).done(function(data, textStatus, jqXHR) {
+  console.log(data);
+        $('#loading').hide();
+
+  
+});
+  
+}

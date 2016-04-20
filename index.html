@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="styles/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/static/css/AdminLTE.min.css">
 
 </head>
@@ -55,9 +55,11 @@
         
         .login-box {
             position: absolute;
-            left: 50%;
-            margin-left: -180px;
+      
+     
             border-radius: 20px;
+            width:90%;
+            margin-left:5%;
         }
         
         .login-box-body {
@@ -91,9 +93,9 @@ width:100%;
             <p class="login-box-msg">Sign in to start your session</p>
             <div class="social-auth-links text-center" style="margin-top:-10px;">
                 <span style="font-family:'Open Sans';white-space:nowrap;font-size:;">Indexing Sermons|Fulfilling Needs|Discipleship</span>
-                <input type="text" style="width:100%;margin-top:10px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Username:">
+                <input id="username" type="text" style="width:100%;margin-top:10px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Username:">
                 </input>
-                <input type="password" style="width:100%;margin-top:00px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Super Secret Password:">
+                <input id="password" type="password" style="width:100%;margin-top:00px;height:30px;background-color:white;border: solid #767772 1px; border-radius:0px;margin-bottom:7px;font-style:'Open Sans';font-weight:300;"placeholder="Super Secret Password:">
                 </input>
                 <button onclick="login();" style="width:100%;margin-bottom:10px;border:solid #767772 1px;background-color:rgba(255, 255, 255, 0.91);">Sign In</button>
 
@@ -108,12 +110,10 @@ width:100%;
         </div>
         <!-- /.login-box-body -->
     </div>
+    <script src="scripts/jquery.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
-        function login(){
-        alert('Not Yet Implemented. Try Clicking Facebook or Google Button. Will try to make a register button soon. =)');    
-            
-        }
+       
         function facebookLogin() {
             window.win = window.open("https://www.thebodyofchrist.us/login/facebook/", "_blank",
                 "EnableViewPortScale=yes");
@@ -187,6 +187,30 @@ width:100%;
         }
     </script>
 
+
+<script> 
+function login() {
+    var username = $.trim($('#username').val());
+    var pwd = $.trim($('#password').val());
+    var stayloggedin = 'True';
+    $.ajax({
+        url : "https://www.thebodyofchrist.us/service/login/",
+        type : "get",
+        data : {
+            username: username,
+            pwd : pwd,
+            stayloggedin : stayloggedin
+        }
+    }).done(function(data) {
+        if (data > 0) {
+            localStorage.setItem('userID',data)
+            window.location = 'app.html';
+        } 
+        console.log(data);
+    });
+}
+
+</script> 
 </body>
 
 </html>
