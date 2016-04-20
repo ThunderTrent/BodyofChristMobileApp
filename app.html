@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="description" content="Body of Christ Phone App.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BoC</title>
     <meta name="mobile-web-app-capable" content="yes">
@@ -300,31 +300,56 @@
         <script src="js/imgcache.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript">
-            //ImgCache.options.debug = true;
-            ImgCache.options.chromeQuota = 50 * 1024 * 1024;
-            document.addEventListener("deviceready", onDeviceReady, false);
-            viewName = 'Global';
+        viewName = 'Global';
+        
+            var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+            //CODE RAN ON APP
+            if (app) {
+                ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                function onDeviceReady() {
+                    getLocalFilesPushToLocalStorage();
+                    setBackground();
+                    ImgCache.init(function() {
+                        setViewGlobal();
+                        bindToSearches();
+                        loadEvents(localStorage.getItem('view'), communityID);
+                    }, function() {
+                        alert('ImgCache init: error! Check the log for errors');
+                    });
+                    $('.beta').hide();
+                    if (localStorage.getItem('betaEnabled') === 'True') {
+                        $('.beta').show();
+                    }
+                    initialLoad();
+                }
+            } else {
+                //CODE RAN ON WEB
+                
+                $(document).ready(function() {
 
-            function onDeviceReady() {
-                getLocalFilesPushToLocalStorage();
-                setBackground();
-
-                ImgCache.init(function() {
+                    //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
+                    setBackground();
+                   //ImgCache.init(function() {
                     setViewGlobal();
                     bindToSearches();
                     loadEvents(localStorage.getItem('view'), communityID);
-                }, function() {
-                    alert('ImgCache init: error! Check the log for errors');
+                   // }, function() {
+                   //     alert('ImgCache init: error! Check the log for errors');
+                   // });
+                    $('.beta').hide();
+                    if (localStorage.getItem('betaEnabled') === 'True') {
+                        $('.beta').show();
+                    }
+                    //initialLoad();
                 });
-                $('.beta').hide();
-                if (localStorage.getItem('betaEnabled') === 'True') {
-                    $('.beta').show();
-                }
             }
 
+             
             function startApp() {
                 $('#launch').hide();
-                initialLoad();
+                
             }
             //initial run
             if (localStorage.getItem('betaEnabled') == null) {
@@ -487,14 +512,10 @@
         </style>
         <script>
             server = "https://www.thebodyofchrist.us";
-
-
-
             $('#quick-search').on('input', function() {
                 $('#contentHolder').empty();
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
             });
-
             $('#quick-search').yourlabsAutocomplete({
                 url: server + '/search-mobile/',
                 choiceSelector: '[data-value]',

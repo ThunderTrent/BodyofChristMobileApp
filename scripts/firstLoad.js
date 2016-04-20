@@ -2,14 +2,13 @@ function initialLoad() {
 
 
 
-//                alert('test');
                 teachingsLoadData();
                 speakersLoadData();
                 membersLoadData();
                 vbvLoadData();
                 sermonHistoryLoadData();
                 sermonRatingHistoryLoadData();
-               // alert('test');
+
 
 }
 

@@ -69,8 +69,8 @@ function loadMembersInsert(url, target, insert, name) {
         url: url,
         type: "GET",
     }).done(function(memberData, textStatus, jqXHR) {
-        window.memberData = memberData;
-        
+        window.memberData = memberData; 
+        activityLoad();
            try{
                 userImage = arrayLookup(memberData.results,'id',parseInt(localStorage.getItem('userID'))).userImage;
                 $('#profileImage').css('background-image', 'url(' + userImage + ')');
