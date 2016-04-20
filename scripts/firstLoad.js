@@ -1,15 +1,14 @@
 function initialLoad() {
-
-
-
+        try{
                 teachingsLoadData();
                 speakersLoadData();
                 membersLoadData();
                 vbvLoadData();
                 sermonHistoryLoadData();
                 sermonRatingHistoryLoadData();
-
-
+        }catch(err){
+                console.log(err);
+        }
 }
 
 
@@ -160,7 +159,7 @@ function sermonRatingHistoryLoadData() {
                         type: "GET",
                     
         }).done(function(sermonRatingHistory, textStatus, jqXHR) {        
-                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                console.log("Sermon Rating History Data - HTTP Request Succeeded: " + jqXHR.status);        
                 window.sermonRatingHistoryCACHE = sermonRatingHistory;
         });
     
