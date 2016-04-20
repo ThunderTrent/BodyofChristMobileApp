@@ -148,6 +148,7 @@ function membersLoadData() {
                 });
 
         }
+}
 
         function sermonHistoryLoadData() {
 
@@ -196,3 +197,4 @@ function membersLoadData() {
 
 
         }
+  
