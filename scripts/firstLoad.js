@@ -14,25 +14,14 @@ function initialLoad() {
 
 
 
-
-// Manual PC Loads
-var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-if (app) {
-
-} else { 
-        jQuery.ajax({        
-                url: 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*',
-                        type: "GET",
-                    
-        }).done(function(sermonDataCACHE, textStatus, jqXHR) {        
-                console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                window.sermonDataCACHE = (sermonDataCACHE);
-        });
-}
+window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
 
 
-var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+
+
+
+
 if (app) {
 
 } else { 
@@ -46,7 +35,7 @@ if (app) {
         });
 }
 
-var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+
 if (app) {
 
 } else { 
@@ -66,16 +55,10 @@ if (app) {
 //Device Loads
 
 
+
+
 function teachingsLoadData() {
-        url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*';
-
-        // var fileTransfer = new FileTransfer();
-        //   store = cordova.file.dataDirectory;
-        //   fileName = 'teachingPreloadData' +  ".json";
-        //   fileTransfer.download(url, store + fileName,
-        //       function(entry) {
-
-         
+if (window.app) {
         jQuery.ajax({        
                 url: 'data/teachingPreloadData.json',
                         type: "GET",
@@ -86,25 +69,27 @@ function teachingsLoadData() {
                 localStorage.setItem('intialPullLoaded', "1");
                 console.log('setInitialPullLoaded to 1');
         });
-
-        // },
-        // function(err) {
-        //     console.log(err);
-        //    });
-
+} else { 
+        jQuery.ajax({        
+                url: 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*',
+                        type: "GET",               
+        }).done(function(sermonDataCACHE, textStatus, jqXHR) {        
+                console.log("HTTP Request Succeeded: " + jqXHR.status);        
+                window.sermonDataCACHE = (sermonDataCACHE);
+        });
+}
 
 }
 
 function speakersLoadData() {
-        url = 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount';
 
-        var fileTransfer = new FileTransfer();
+if (window.app) {
+        url = 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount';
+         var fileTransfer = new FileTransfer();
         store = cordova.file.dataDirectory;
         fileName = 'speakersPreloadData' + ".json";
         fileTransfer.download(url, store + fileName,
-                function(entry) {
-
-                         
+                function(entry) {             
                         jQuery.ajax({        
                                 url: 'cdvfile://localhost/library-nosync/speakersPreloadData.json',
                                         type: "GET",
@@ -119,8 +104,13 @@ function speakersLoadData() {
                         console.log(err);
                 });
 
+} else { 
 
 }
+}
+       
+
+       
 
 
 function membersLoadData() {
@@ -148,12 +138,7 @@ function membersLoadData() {
 }
 
 function sermonHistoryLoadData() {
-        // url ='https://thebodyofchrist.us/rest/timeListened/';
-        //   var fileTransfer = new FileTransfer();
-        //     store = cordova.file.dataDirectory;
-        //     fileName = 'sermonHistoryPreloadData' +  ".json";
-        //     fileTransfer.download(url, store + fileName,
-        //         function(entry) {
+
          
         jQuery.ajax({        
                 url: 'https://thebodyofchrist.us/rest/timeListened/',
@@ -163,22 +148,13 @@ function sermonHistoryLoadData() {
                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
                 window.sermonHistoryCACHE = sermonHistoryCACHE;
         });
-        // },
-        // function(err) {
-        //     console.log(err);
-        //    });
+
 
 
 }
 
 function sermonRatingHistoryLoadData() {
-        // url ='https://thebodyofchrist.us/rest/timeListened/';
-        //   var fileTransfer = new FileTransfer();
-        //     store = cordova.file.dataDirectory;
-        //     fileName = 'sermonHistoryPreloadData' +  ".json";
-        //     fileTransfer.download(url, store + fileName,
-        //         function(entry) {
-         
+
         jQuery.ajax({        
                 url: 'https://www.thebodyofchrist.us/rest/sermonRatings/?userid=' + localStorage.getItem('userID'),
                         type: "GET",
@@ -187,22 +163,13 @@ function sermonRatingHistoryLoadData() {
                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
                 window.sermonRatingHistoryCACHE = sermonRatingHistory;
         });
-        // },
-        // function(err) {
-        //     console.log(err);
-        //    });
+    
 
 
 }
 
 
 function vbvLoadData() {
-        // url ='https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse';
-        //   var fileTransfer = new FileTransfer();
-        //     store = cordova.file.dataDirectory;
-        //     fileName = 'VBVPreloadData' +  ".json";
-        //     fileTransfer.download(url, store + fileName,
-        //         function(entry) {
 
          
         jQuery.ajax({        
@@ -213,94 +180,10 @@ function vbvLoadData() {
                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
                 window.VBVDataCACHE = JSON.parse(VBVDataCACHE);
         });
-        // },
-        // function(err) {
-        //     console.log(err);
-        //    });
+     
 
 
 }
 
 
 
-
-// function loadAllTeaching(){
-// var syncAllTeachings = ContentSync.sync({ src: 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=*', id: 'allTeachings.json' });
-
-// syncAllTeachings.on('progress', function(data) {
-//     console.log('Teaching Data: ' + data.progress);
-// });
-
-// syncAllTeachings.on('complete', function(data) {
-//     // data.localPath
-//     console.log('Sermon Data Loaded');
-//      jQuery.ajax({
-//         url: data.localPath,
-//         type: "GET",
-//     }).done(function(sermonDataALL, textStatus, jqXHR) {
-//         console.log("Local Load Successful: " + jqXHR.status);
-//         window.teachingDataALL = JSON.parse(sermonDataALL);
-//         loadAllSpeakers();
-// });
-// });
-
-// syncAllTeachings.on('error', function(e) {
-//     console.log(e);
-// });
-
-// syncAllTeachings.on('cancel', function() {
-//     console.log('error');
-// });
-// }
-
-// function loadAllSpeakers(){
-// var syncSpeakers = ContentSync.sync({ src: 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount', id: 'speakers.json' });
-
-// syncSpeakers.on('progress', function(data) {
-//     console.log('Speaker Data:'  + data.progress);
-// });
-
-// syncSpeakers.on('complete', function(data) {
-//     // data.localPath
-//     console.log('Speaker Data Loaded');
-//      jQuery.ajax({
-//         url: data.localPath,
-//         type: "GET",
-//     }).done(function(speakerDataALL, textStatus, jqXHR) {
-//         console.log("Local Load Successful: " + jqXHR.status);
-//         window.speakerDataALL = JSON.parse(speakerDataALL);
-//         //loadAllSpeakers();
-// });
-
-// });
-
-// syncSpeakers.on('error', function(e) {
-//     console.log(e);
-// });
-
-// syncSpeakers.on('cancel', function() {
-//     console.log('error');
-// });
-// }
-
-// function loadAllMembers(){
-//     var syncMembers = ContentSync.sync({ src: 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount', id: 'speakers.json' });
-
-// syncSpeakers.on('progress', function(data) {
-//     console.log('Members Data:'  + data.progress);
-// });
-
-// syncMembers.on('complete', function(data) {
-//     // data.localPath
-//     console.log('Members Data Loaded');
-// });
-
-// syncMembers.on('error', function(e) {
-//     console.log(e);
-// });
-
-// syncMembers.on('cancel', function() {
-//     console.log('error');
-// });
-
-// }
