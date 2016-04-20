@@ -113,6 +113,13 @@ width:100%;
     <script src="scripts/jquery.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
+        window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+        if (window.app) {
+            localStorage.setItem('platform','mobilePhone');
+        }
+        else{
+            localStorage.setItem('platform','browserOrChrome');
+        }
        
         function facebookLogin() {
             window.win = window.open("https://www.thebodyofchrist.us/login/facebook/", "_blank",

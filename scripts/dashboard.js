@@ -328,3 +328,78 @@
        }
      });
    }
+   
+   
+   
+     viewName = 'Global';
+        
+            var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+            //CODE RAN ON APP
+            if (app) {
+                ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+                document.addEventListener("deviceready", onDeviceReady, false);
+                
+                function onDeviceReady() {
+                    getLocalFilesPushToLocalStorage();
+                    setBackground();
+                    ImgCache.init(function() {
+                        setViewGlobal();
+                        bindToSearches();
+                        loadEvents(localStorage.getItem('view'), communityID);
+                    }, function() {
+                        alert('ImgCache init: error! Check the log for errors');
+                    });
+                    $('.beta').hide();
+                    if (localStorage.getItem('betaEnabled') === 'True') {
+                        $('.beta').show();
+                    }
+                    initialLoad();
+                }
+            } else {
+                //CODE RAN ON WEB
+                
+                $(document).ready(function() {
+
+                    //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
+                    setBackground();
+                   //ImgCache.init(function() {
+                    setViewGlobal();
+                    bindToSearches();
+                    loadEvents(localStorage.getItem('view'), communityID);
+                   // }, function() {
+                   //     alert('ImgCache init: error! Check the log for errors');
+                   // });
+                    $('.beta').hide();
+                    if (localStorage.getItem('betaEnabled') === 'True') {
+                        $('.beta').show();
+                    }
+                    //initialLoad();
+                });
+            }
+
+             
+            function startApp() {
+                $('#launch').hide();
+                
+            }
+            //initial run
+            if (localStorage.getItem('betaEnabled') == null) {
+                localStorage.setItem('betaEnabled', 'False');
+                $('.beta').hide();
+
+            } else {}
+
+            function toggleBeta() {
+                if (localStorage.getItem('betaEnabled') == null) {
+                    localStorage.setItem('betaEnabled', 'True');
+                    alert('Beta Features Enabled - Expect buttons to explode.');
+                } else if (localStorage.getItem('betaEnabled') == 'True') {
+                    localStorage.setItem('betaEnabled', 'False');
+                    alert('Disabled Beta Features.');
+                    $('.beta').hide();
+                } else {
+                    localStorage.setItem('betaEnabled', 'True');
+                    alert('Beta Features Enabled - Expect buttons to explode.');
+                    $('.beta').show();
+                }
+            }
