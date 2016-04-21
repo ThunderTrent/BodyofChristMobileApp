@@ -70,7 +70,7 @@ function loadMembersInsert(url, target, insert, name) {
         type: "GET",
     }).done(function(memberData, textStatus, jqXHR) {
         window.memberData = memberData; 
-        activityLoad();
+        loadEvents(view, '','','False');
         
            try{
                 userImage = arrayLookup(memberData.results,'id',parseInt(localStorage.getItem('userID'))).userImage;

@@ -159,7 +159,7 @@
      $('#teachingBar').hide();
      $('#speakers').removeClass('is-active');
      $('#needsBar').hide();
-     loadEvents(view, '');
+     loadEvents(view, '','','True');
      closeSermon();
     //  $('#filtersSermons').hide();
     //  $('#filtersChurches').hide();

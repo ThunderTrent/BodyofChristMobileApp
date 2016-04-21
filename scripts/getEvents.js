@@ -60,7 +60,7 @@ function loadEvents(search, communityID, userID) {
     }
 }
 
-function loadEventsInsert(url, target, name) {
+function loadEventsInsert(url, target, name, insert) {
     jQuery.ajax({
         url: url,
         type: "GET",
@@ -73,6 +73,7 @@ function loadEventsInsert(url, target, name) {
             downloadFile(name, url);
 
         }
+        if (insert == "True"){
         $.each(eventData.results, function(index, value) {
             //Get Name for user//
             userID = parseInt(eventData.results[index].userID);
@@ -141,8 +142,9 @@ function loadEventsInsert(url, target, name) {
 
         //Check if Image is in Cache//
 
-
+        }
     });
+
 }
 
 
