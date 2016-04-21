@@ -122,7 +122,13 @@ width:100%;
         }
        
         function facebookLogin() {
-            if (window.app){
+            var ua = navigator.userAgent.toLowerCase();
+            var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+            if(isAndroid) {
+	        window.win = window.open("https://www.thebodyofchrist.us/login/facebook/?platform=phonegap" , "_blank",
+                "EnableViewPortScale=yes");
+            }
+            else if (window.app){
                window.win = window.open("https://www.thebodyofchrist.us/login/facebook/?platform=phonegap" , "_blank",
                 "EnableViewPortScale=yes");
             }
