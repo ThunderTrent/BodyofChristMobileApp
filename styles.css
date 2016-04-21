@@ -464,3 +464,14 @@ span {
     margin-top: -16px !important;
   }
 }
+
+@media only screen and (min-width: 760px) {
+  
+  .demo-content{
+    max-width:100% !important;
+  }
+  .mdl-cell--12-col, .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop{
+    width:458.656px !important;
+  }
+  
+}
