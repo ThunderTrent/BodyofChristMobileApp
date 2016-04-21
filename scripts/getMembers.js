@@ -101,7 +101,7 @@ function loadMembersInsert(url, target, insert, name) {
         }
 
         if (insert == "True") {
-            $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + memberData.count +   ' Members Found '+ viewName + ' </span></div>');
+            $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + memberData.count +   ' Members Found ' + ' </span></div>');
 
             $.each(memberData.results, function(index, value) {
 
