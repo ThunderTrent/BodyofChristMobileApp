@@ -288,7 +288,7 @@ yourlabs.Autocomplete = function (input) {
     this.lastData = {};
 
     // The autocomplete box HTML.
-    this.box = $('<span style="position:static !Important;" class="yourlabs-autocomplete" ' +
+    this.box = $('<span style="display:flex;flex-flow: row wrap;position:static !Important;" class="yourlabs-autocomplete" ' +
         'data-input-id="' + this.input.attr('id') + '"></span>');
 
     /*
@@ -611,6 +611,8 @@ yourlabs.Autocomplete.prototype.fixPosition = function() {
         position: 'static',
         minWidth: parseInt(this.input.outerWidth()),
         top: top,
+        display: flex,
+        'flex-flow': 'row wrap',
         left: left,
         zIndex: zIndex
     });

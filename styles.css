@@ -471,7 +471,10 @@ span {
     max-width:100% !important;
   }
   .mdl-cell--12-col, .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop{
-    width:458.656px !important;
+    width:32% !important;
+  }
+  #sermonHeaders{
+    width:100% !important;
   }
   
 }
