@@ -14,7 +14,7 @@
 
 
 
-function loadEvents(search, communityID, userID) {
+function loadEvents(search, communityID, userID, insert) {
 
     var isOffline = 'onLine' in navigator && !navigator.onLine;
 
@@ -28,7 +28,7 @@ function loadEvents(search, communityID, userID) {
         }
         name = "globalEvents";
         target = '#contentHolder';
-        loadEventsInsert(url, target, name);
+        loadEventsInsert(url, target, name, insert);
     } else if (search == "Community") {
         if (isOffline === false) { 
             url = 'https://www.thebodyofchrist.us/rest/events/?limit=25&userid=*&ordering=-eventID&communityID=' + communityID;
@@ -38,7 +38,7 @@ function loadEvents(search, communityID, userID) {
         }
         name = "communityEvents";
         target = '#contentHolder';
-        loadEventsInsert(url, target, name);
+        loadEventsInsert(url, target, name, insert);
     } else if (search == "Following") {
         window.followArray = []
         $.each(followData.results, function(index, value) {
@@ -52,7 +52,7 @@ function loadEvents(search, communityID, userID) {
                 url = 'cdvfile://localhost/library-nosync/followerEvents.json';
             }
             target = '#contentHolder';
-            loadEventsInsert(url, target, name);
+            loadEventsInsert(url, target, name, insert);
 
 
 
