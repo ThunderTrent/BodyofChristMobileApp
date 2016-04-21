@@ -65,9 +65,9 @@ function loadChurchInsert(url, target, insert, name) {
     }).done(function(churchData, textStatus, jqXHR) {
        // console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.churchData = churchData;
-        
+        if (insert =="True"){
           $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + churchData.count +   ' Churches Found ' + ' </span></div>');
-
+        }
         if (url.split(':')[0] == "https") {
 
         } else {

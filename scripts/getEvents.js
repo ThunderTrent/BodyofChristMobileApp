@@ -21,7 +21,7 @@ function loadEvents(search, communityID, userID, insert) {
     if (search == "Global") {
 
         if (isOffline === false) { 
-            url = 'https://www.thebodyofchrist.us/rest/events/?limit=25&userid=*&ordering=-eventID';
+            url = 'https://www.thebodyofchrist.us/rest/events/?limit=50&userid=*&ordering=-eventID';
 
         } else {
             url = 'cdvfile://localhost/library-nosync/globalEvents.json';
@@ -31,7 +31,7 @@ function loadEvents(search, communityID, userID, insert) {
         loadEventsInsert(url, target, name, insert);
     } else if (search == "Community") {
         if (isOffline === false) { 
-            url = 'https://www.thebodyofchrist.us/rest/events/?limit=25&userid=*&ordering=-eventID&communityID=' + communityID;
+            url = 'https://www.thebodyofchrist.us/rest/events/?limit=50&userid=*&ordering=-eventID&communityID=' + communityID;
 
         } else {
             url = 'cdvfile://localhost/library-nosync/communityEvents.json';
@@ -46,7 +46,7 @@ function loadEvents(search, communityID, userID, insert) {
                 followArray.push(followData.results[index].followeeUser);
             } else {}
             if (isOffline === false) { 
-                url = 'https://www.thebodyofchrist.us/rest/events/?limit=25&userid=' + followArray;
+                url = 'https://www.thebodyofchrist.us/rest/events/?limit=50&userid=' + followArray;
                 name = "followerEvents";
             } else {
                 url = 'cdvfile://localhost/library-nosync/followerEvents.json';
@@ -67,6 +67,9 @@ function loadEventsInsert(url, target, name, insert) {
     }).done(function(eventData, textStatus, jqXHR) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.eventData = eventData;
+         if (insert =="True"){
+          $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + eventData.count +   ' Recent Events' + ' </span></div>');
+        }
         if (url.split(':')[0] == "https") {
 
         } else {
