@@ -345,7 +345,7 @@
                     ImgCache.init(function() {
                         setViewGlobal();
                        // bindToSearches();
-                        loadEvents(localStorage.getItem('view'), communityID, 'True');
+                        loadEvents(localStorage.getItem('view'), communityID, '', 'True');
                     }, function() {
                         alert('ImgCache init: error! Check the log for errors');
                     });
@@ -365,7 +365,7 @@
                    //ImgCache.init(function() {
                     setViewGlobal();
                     //bindToSearches();
-                    loadEvents(localStorage.getItem('view'), communityID, 'True');
+                    loadEvents(localStorage.getItem('view'), communityID,'', 'True');
                    // }, function() {
                    //     alert('ImgCache init: error! Check the log for errors');
                    // });
