@@ -265,7 +265,9 @@ function loadIndividualSermon(sermonID) {    
         arrayLength = (downloadedContent.length - 1);
         while (i <= arrayLength) {
           if (downloadedContent[i].SermonID == sermonID) {
-            alert('Found Sermon ID in local content');
+            var snackbarContainer = document.querySelector('#alertToast');
+            var data = {message: 'Pulling from Local Downloaded Content '};
+            snackbarContainer.MaterialSnackbar.showSnackbar(data);
             window.audioSource = 'cdvfile://localhost/library-nosync/' + sermonID + '.mp3';
             url = 'cdvfile://localhost/library-nosync/' + sermonID + '.mp3';
             initAudioPlayer(url);
@@ -573,7 +575,10 @@ function initAudioPlayer(url) {
 }
 
 function nyi() {
-  alert('Not Yet Implemented.');
+  //alert('Not Yet Implemented.');
+  var snackbarContainer = document.querySelector('#alertToast');
+  var data = {message: "Not Yet Implemented"};
+  snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
 
 
@@ -602,7 +607,9 @@ function markaslistened(sermonid) {
         
   }).done(function(results, textStatus, jqXHR) {
     $('#markAsListenedButton').hide();
-    alert(results);
+    var snackbarContainer = document.querySelector('#alertToast');
+    var data = {message: results};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
   });
 
 
@@ -640,8 +647,9 @@ function setRating() {
         
   }).done(function(sermonData, textStatus, jqXHR) {        
     $('#loading').hide();
-    alert("Your Rating has been updated.");
-
+    var snackbarContainer = document.querySelector('#alertToast');
+    var data = {message: "Your Rating has been updated."};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
   });
 }
 
