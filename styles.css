@@ -480,6 +480,10 @@ span {
    width:300px !important;
    margin-left:-150px !important; 
   }
+  .mdl-list__item--two-line .mdl-list__item-primary-content .mdl-list__item-sub-title{
+    font-size:17px !important;
+    line-height:24px !important;
+  }
   
 }
 
