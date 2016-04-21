@@ -611,7 +611,7 @@ yourlabs.Autocomplete.prototype.fixPosition = function() {
         position: 'static',
         minWidth: parseInt(this.input.outerWidth()),
         top: top,
-        display: flex,
+        display: 'flex',
         'flex-flow': 'row wrap',
         left: left,
         zIndex: zIndex
