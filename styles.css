@@ -476,5 +476,9 @@ span {
   #sermonHeaders{
     width:100% !important;
   }
+  #crossLaunch{
+   width:300px !important;
+   margin-left:-150px !important; 
+  }
   
 }
