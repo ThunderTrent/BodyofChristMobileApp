@@ -26,40 +26,7 @@
 </head>
 
 <body>
-    <style>
 
-
-@keyframes animateOpacity {
-  0% {
-    opacity:1;
-  }
-  50% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}
-
-    @keyframes animateOpacity2 {
-  0% {
-    opacity:0;
-  }
-  50% {
-    opacity:1;
-  }
-  100% {
-    opacity:0;
-  }
-}
-
-#Gradient1 {
-   animation: animateOpacity 10s infinite;
-}
-
-#Blue {
-   animation: animateOpacity2 10s infinite;
-}</style>
 
     <div id="Gradient1" class="animateOpacity" style="
 position:absolute;
@@ -501,6 +468,7 @@ width:100%;
             server = "https://www.thebodyofchrist.us";
             $('#quick-search').on('input', function() {
                 $('#contentHolder').empty();
+                closeSermon();
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
             });
             $('#quick-search').yourlabsAutocomplete({
