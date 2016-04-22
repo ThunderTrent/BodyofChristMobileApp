@@ -448,12 +448,12 @@ function loadIndividualSermon(sermonID) {    
       
      var audioMP3 = document.getElementById("teachingAudio");
      audioMP3.addEventListener("play", function() {
-      var polling = setTimeout(updateAudioStatus, 5000);
+       window.polling = setTimeout(updateAudioStatus, 5000);
      });
      
      
       audioMP3.addEventListener("pause", function() {
-       clearTimeout(polling);
+       clearTimeout(window.polling);
      });
    
 
@@ -698,7 +698,7 @@ function updateAudioStatus() {
   }catch(err){
     console.log(err);
   }
-   var polling = setTimeout(updateAudioStatus, 5000);
+   window.polling = setTimeout(updateAudioStatus, 5000);
 }
 
 
