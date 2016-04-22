@@ -446,13 +446,13 @@ function loadIndividualSermon(sermonID) {    
       addView();
 
       
-     var audioMP3 = document.getElementById("teachingAudio");
-     audioMP3.addEventListener("play", function() {
+     window.audioMP3 = document.getElementById("teachingAudio");
+     window.audioMP3.addEventListener("play", function() {
        window.polling = setTimeout(updateAudioStatus, 5000);
      });
      
      
-      audioMP3.addEventListener("pause", function() {
+      window.audioMP3.addEventListener("pause", function() {
        clearTimeout(window.polling);
      });
    
@@ -681,13 +681,20 @@ function addView() {
 
 function sendDuration(){
   sermonID = window.sermonInfo[0].SermonID;
-  url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID; 
+  window.duration = window.audioMP3.currentTime;
+  url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration; 
   jQuery.ajax({        
     url: url,
             type: "GET",
         
   }).done(function(data, textStatus, jqXHR) {
-    console.log(data);        
+    if (data == "Updated"){
+     console.log('Updated Timestamp...' + window.duration); 
+    }
+    else{
+      console.log('error...');
+    }
+    
   });
 }
 
