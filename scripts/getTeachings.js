@@ -457,6 +457,18 @@ function loadIndividualSermon(sermonID) {    
       window.audioMP3.addEventListener("pause", function() {
        clearTimeout(window.polling);
      });
+     
+      window.audioMP3.addEventListener("pause", function() {
+       clearTimeout(window.polling);
+     });
+     
+    window.audioMP3.onended = function() {
+    sermonID = window.sermonInfo[0].SermonID;
+    markaslistened(sermonID);
+    var snackbarContainer = document.querySelector('#alertToast');
+    var data = {message: "We Marked That Teaching as listened for you."};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+};
    
 
 
