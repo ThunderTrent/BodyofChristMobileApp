@@ -475,6 +475,9 @@ width:100%;
                if (document.getElementById('quick-search').value != 'null'){
                    $('#contentHolder').empty();
                 closeSermon();
+                previousSearch = document.getElementById('quick-search').value;
+                document.getElementById('quick-search').value = '';
+                document.getElementById('quick-search').value = previousSearch;
                }
                 
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
