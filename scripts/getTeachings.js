@@ -681,7 +681,7 @@ function addView() {
 
 function sendDuration(){
   sermonID = window.sermonInfo[0].SermonID;
-  window.duration = window.audioMP3.currentTime;
+  window.duration = Math.round(window.audioMP3.currentTime);
   url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration; 
   jQuery.ajax({        
     url: url,
