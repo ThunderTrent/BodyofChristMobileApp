@@ -446,7 +446,7 @@ function loadIndividualSermon(sermonID) {    
       addView();
 
       
-     var audioMP3 = document.getElementById("teachingAudio")[0];
+     var audioMP3 = document.getElementById("teachingAudio");
      audioMP3.addEventListener("play", function() {
       var polling = setTimeout(updateAudioStatus, 5000);
      });
