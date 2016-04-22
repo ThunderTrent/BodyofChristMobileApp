@@ -471,6 +471,14 @@ width:100%;
                 closeSermon();
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
             });
+            $('#quick-search').on('click', function() {
+               if (document.getElementById('quick-search').value != 'null'){
+                   
+               }
+                $('#contentHolder').empty();
+                closeSermon();
+                $('.yourlabs-autocomplete').css('display', 'block !important;');
+            });
             $('#quick-search').yourlabsAutocomplete({
                 url: server + '/search-mobile/',
                 choiceSelector: '[data-value]',
