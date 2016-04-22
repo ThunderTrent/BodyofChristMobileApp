@@ -444,6 +444,8 @@ function loadIndividualSermon(sermonID) {    
 
 
       addView();
+      
+      getDuration();
 
       
      window.audioMP3 = document.getElementById("teachingAudio");
@@ -693,6 +695,27 @@ function sendDuration(){
     }
     else{
       console.log('error...');
+    }
+    
+  });
+}
+
+function getDuration(){
+  sermonID = window.sermonInfo[0].SermonID;
+  url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime'; 
+  jQuery.ajax({        
+    url: url,
+            type: "GET",
+  }).done(function(data, textStatus, jqXHR) {
+    if (data == "0"){
+     console.log('No Previous Listened Data...');
+     
+    }
+    else{
+     window.audioMP3.currentTime = data;
+    var snackbarContainer = document.querySelector('#alertToast');
+    var data = {message: "Starting where you left off.."};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
     }
     
   });
