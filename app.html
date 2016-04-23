@@ -13,9 +13,10 @@
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
     <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300,300italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     <meta name="msapplication-TileColor" content="#3372DF">
     <link rel="shortcut icon" href="images/favicon.png">
     <link rel="stylesheet" href="fonts/material-icons.css">
@@ -104,19 +105,19 @@ width:100%;
                 </div>
                 <div id="primaryBar" class="mdl-layout__tab-bar" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
                     <a href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
-                    <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-file-audio-o" style="margin-right:10px"></i>Your Community</a>
-                    <a href="#" id="followButton" onclick="setViewFollow();" class="mdl-layout__tab">Following</a>
+                    <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-universal-access" style="margin-right:10px"></i>Your Community</a>
+                    <a href="#" id="followButton" onclick="setViewFollow();" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;"class="material-icons">stars</i><span style="margin-left:20px;">Following</span></a>
                 </div>
                 <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(0, 115, 183, 0.91);">
-                    <a id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active">News Feed</a>
+                    <a id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
                     <a id="teachings" href="#" onclick="teachingsLoad('True');" class="mdl-layout__tab"><i class="fa fa-file-audio-o" style="margin-right:10px"></i>Teachings</a>
                     <a id="needs" href="#" onclick="needsLoad('True');" class="mdl-layout__tab">Needs</a>
-                    <a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab">Churches</a>
-                    <a id="speakers" href="#" onclick="speakersLoad('True');" class="mdl-layout__tab">Speakers</a>
-                    <a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab">Members</a>
+                    <a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;" class="material-icons">home</i><span style="margin-left:20px;">Churches</span></a>
+                    <a id="speakers" href="#" onclick="speakersLoad('True');" class="mdl-layout__tab"><i class="fa fa-microphone" style="margin-right:10px;" aria-hidden="true"></i>Speakers</a>
+                    <a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-users" aria-hidden="true"></i>Members</a>
                 </div>
                 <div id="teachingBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(221, 75, 57, 0.85);display:none;">
-                    <a id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab">Sermons</a>
+                    <a id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="ion ion-ios-bookmarks"></i>Sermons</a>
                     <a id="verseByVerseButton" href="#" onclick="verseByVerseLoad('True');" class="mdl-layout__tab"><i class="ion ion-ios-bookmarks" style="margin-right:10px;"></i>Verse By Verse</a>
                     <a id="bibleButton" href="#" onclick="bibleLoad('True');" class="mdl-layout__tab">Downloaded Teachings</a>
                 </div>
