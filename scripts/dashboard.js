@@ -1,5 +1,14 @@
    window.view = "Global";
 
+   window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+if (window.app) {
+window.deepLinkURL = 'app.html';
+}
+else{
+ window.deepLinkURL = '';
+}
+   
+   
    function teachingsLoad(pressed) {
 
      window.currentView = "Teachings";
@@ -28,7 +37,7 @@
      //Search Bar Change
      //  bindToSearches();
      if (pressed == "True"){
-     setURLChange('Teachings', 'app.html?section=Teachings');
+     setURLChange('Teachings', window.deepLinkURL + '?section=Teachings');
      }
    }
 
@@ -54,7 +63,7 @@
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
      // bindToSearches();
      if (pressed == "True"){
-     setURLChange('Sermons', 'app.html?section=Sermons');
+     setURLChange('Sermons',  window.deepLinkURL +'?section=Sermons');
      }
    }
 
@@ -83,7 +92,7 @@
      closeSermon();
      // bindToSearches();
      if (pressed == "True"){
-     setURLChange('VerseByVerse', 'app.html?section=VerseByVerse');
+     setURLChange('VerseByVerse',  window.deepLinkURL + '?section=VerseByVerse');
      }
    }
 
@@ -134,7 +143,7 @@
      closeSermon();
      //   bindToSearches();
      if (pressed == "True"){
-     setURLChange('Churches', 'app.html?section=Churches');
+     setURLChange('Churches',  window.deepLinkURL + '?section=Churches');
    }
    }
 
@@ -159,7 +168,7 @@
      closeSermon();
      //  bindToSearches();
      if (pressed == "True"){
-     setURLChange('Members', 'app.html?section=Members');
+     setURLChange('Members',  window.deepLinkURL + '?section=Members');
    }
    }
 
@@ -185,7 +194,7 @@
      //  $('#filtersVBV').hide();
      //   bindToSearches();
      if (pressed == "True"){
-     setURLChange('NewsFeed', 'app.html?section=NewsFeed');
+     setURLChange('NewsFeed',  window.deepLinkURL + '?section=NewsFeed');
    }
    }
 
@@ -210,7 +219,7 @@
      //  $('filtersVBV').hide();
      // bindToSearches();
      if (pressed == "True"){
-     setURLChange('Speakers', 'app.html?section=Speakers');
+     setURLChange('Speakers',  window.deepLinkURL + '?section=Speakers');
    }
   }
 
@@ -234,7 +243,7 @@
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
        //  bindToSearches();
        if (pressed == "True"){
-       setURLChange('Needs', 'app.html?section=Needs');
+       setURLChange('Needs',  window.deepLinkURL + '?section=Needs');
        }
    }
 
