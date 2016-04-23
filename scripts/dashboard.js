@@ -1,6 +1,6 @@
    window.view = "Global";
 
-   function teachingsLoad() {
+   function teachingsLoad(pressed) {
 
      window.currentView = "Teachings";
      $('#loading').show();
@@ -15,26 +15,29 @@
      $('#needs').removeClass('is-active');
      $('#members').removeClass('is-active');
      $('#churches').removeClass('is-active');
-    //  $('#speakers').removeClass('is-active');
-    //  $('#filtersVBV').hide();
+     //  $('#speakers').removeClass('is-active');
+     //  $('#filtersVBV').hide();
      sermonsLoad();
-    //  $('#filtersVBV').hide();
-    //  $('#filtersChurches').hide();
-    //  $('#filtersSpeakers').hide();
-    //  $('#filtersMembers').hide();
-    //  $('#filtersSermons').show();
-    //   bindToSearches();
+     //  $('#filtersVBV').hide();
+     //  $('#filtersChurches').hide();
+     //  $('#filtersSpeakers').hide();
+     //  $('#filtersMembers').hide();
+     //  $('#filtersSermons').show();
+     //   bindToSearches();
 
-       //Search Bar Change
-   //  bindToSearches();
+     //Search Bar Change
+     //  bindToSearches();
+     if (pressed == "True"){
+     setURLChange('Teachings', 'app.html?section=Teachings');
+     }
    }
 
-   function sermonsLoad() {
+   function sermonsLoad(pressed) {
      window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
-    //  $('#filtersVBV').hide();
-    //  $('#filtersSermons').show();
+     //  $('#filtersVBV').hide();
+     //  $('#filtersSermons').show();
      $('#searchIcon').addClass('is-focused');
      $('#searchIconVBV').addClass('is-focused');
      $("#bars").animate({
@@ -49,11 +52,13 @@
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
-      // bindToSearches();
-
+     // bindToSearches();
+     if (pressed == "True"){
+     setURLChange('Sermons', 'app.html?section=Sermons');
+     }
    }
 
-   function verseByVerseLoad() {
+   function verseByVerseLoad(pressed) {
      window.currentView = "VBV";
      $('#loading').show();
      $('#contentHolder').empty();
@@ -61,11 +66,11 @@
        scrollTop: 0
      }, 250, function() {
        $('#individualSermonBar').hide();
-      //  $('#filtersSermons').hide();
-      //  $('#filtersVBV').show();
-      //  $('#filtersChurches').hide();
-      //  $('#filtersSpeakers').hide();
-      //  $('#filtersMembers').hide();
+       //  $('#filtersSermons').hide();
+       //  $('#filtersVBV').show();
+       //  $('#filtersChurches').hide();
+       //  $('#filtersSpeakers').hide();
+       //  $('#filtersMembers').hide();
      });
      $('#sermonsButton').removeClass('is-active');
      $('#verseByVerseButton').addClass('is-active');
@@ -76,19 +81,21 @@
      loadVBV(localStorage.getItem('view'), communityID, '');
      console.log('Loaded Verse By Verse');
      closeSermon();
-      // bindToSearches();
-
+     // bindToSearches();
+     if (pressed == "True"){
+     setURLChange('VerseByVerse', 'app.html?section=VerseByVerse');
+     }
    }
 
-   function bibleLoad() {
+   function bibleLoad(pressed) {
      window.currentView = "DownloadedContent";
      $('#loading').show();
      $('#contentHolder').empty();
-    //  $('filtersSermons').hide();
-    //  $('#filtersChurches').hide();
-    //  $('#filtersSpeakers').hide();
-    //  $('#filtersMembers').hide();
-    //  $('filtersVBV').hide();
+     //  $('filtersSermons').hide();
+     //  $('#filtersChurches').hide();
+     //  $('#filtersSpeakers').hide();
+     //  $('#filtersMembers').hide();
+     //  $('filtersVBV').hide();
      $("#bars").animate({
        scrollTop: 0
      }, 250, function() {
@@ -100,9 +107,12 @@
      $('#bibleButton').addClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
      //  bindToSearches();
+     if (pressed == "True"){
+     //setURLChange('Teachings', 'app.html?section=Teachings');
+   }
    }
 
-   function churchesLoad() {
+   function churchesLoad(pressed) {
      window.currentView = "Churches";
      $('#loading').show();
      $('#contentHolder').empty();
@@ -114,18 +124,21 @@
      $('#members').removeClass('is-active');
      $('#teachingBar').hide();
      $('#needsBar').hide();
-    //  $('#filtersVBV').hide();
+     //  $('#filtersVBV').hide();
      loadChurches('Global', '', '', 'True');
-    //  $('#filtersVBV').hide();
-    //  $('#filtersSermons').hide();
-    //  $('#filtersChurches').show();
-    //  $('#filtersSpeakers').hide();
-    //  $('#filtersMembers').hide();
+     //  $('#filtersVBV').hide();
+     //  $('#filtersSermons').hide();
+     //  $('#filtersChurches').show();
+     //  $('#filtersSpeakers').hide();
+     //  $('#filtersMembers').hide();
      closeSermon();
-    //   bindToSearches();
+     //   bindToSearches();
+     if (pressed == "True"){
+     setURLChange('Churches', 'app.html?section=Churches');
+   }
    }
 
-   function membersLoad() {
+   function membersLoad(pressed) {
      window.currentview = "Members";
      $('#loading').show();
      $('#contentHolder').empty();
@@ -138,16 +151,19 @@
      $('#teachingBar').hide();
      $('#needsBar').hide();
      loadMembers(localStorage.getItem('view'), communityID, 'True');
-    //  $('#filtersSermons').hide();
-    //  $('#filtersVBV').hide();
-    //  $('#filtersChurches').hide();
-    //  $('#filtersSpeakers').hide();
-    //  $('#filtersMembers').show();
+     //  $('#filtersSermons').hide();
+     //  $('#filtersVBV').hide();
+     //  $('#filtersChurches').hide();
+     //  $('#filtersSpeakers').hide();
+     //  $('#filtersMembers').show();
      closeSermon();
      //  bindToSearches();
+     if (pressed == "True"){
+     setURLChange('Members', 'app.html?section=Members');
+   }
    }
 
-   function activityLoad() {
+   function activityLoad(pressed) {
      window.currentView = "Activity";
      $('#loading').show();
      $('#contentHolder').empty();
@@ -159,18 +175,21 @@
      $('#teachingBar').hide();
      $('#speakers').removeClass('is-active');
      $('#needsBar').hide();
-     loadEvents(view, '','','True');
+     loadEvents(view, '', '', 'True');
      closeSermon();
-    //  $('#filtersSermons').hide();
-    //  $('#filtersChurches').hide();
-    //  $('#filtersSpeakers').hide();
-    //  $('#filtersMembers').hide();
-    //  $('#filtersSermons').hide();
-    //  $('#filtersVBV').hide();
-    //   bindToSearches();
+     //  $('#filtersSermons').hide();
+     //  $('#filtersChurches').hide();
+     //  $('#filtersSpeakers').hide();
+     //  $('#filtersMembers').hide();
+     //  $('#filtersSermons').hide();
+     //  $('#filtersVBV').hide();
+     //   bindToSearches();
+     if (pressed == "True"){
+     setURLChange('NewsFeed', 'app.html?section=NewsFeed');
+   }
    }
 
-   function speakersLoad() {
+   function speakersLoad(pressed) {
      window.currentView = "Speakers";
      $('#loading').show();
      $('#contentHolder').empty();
@@ -184,15 +203,18 @@
      $('#needsBar').hide();
      loadSpeakers(localStorage.getItem('view'), communityID, 'True');
      closeSermon();
-    //  $('filtersSermons').hide();
-    //  $('#filtersChurches').hide();
-    //  $('#filtersMembers').hide();
-    //  $('#filtersSpeakers').show();
-    //  $('filtersVBV').hide();
-    // bindToSearches();
+     //  $('filtersSermons').hide();
+     //  $('#filtersChurches').hide();
+     //  $('#filtersMembers').hide();
+     //  $('#filtersSpeakers').show();
+     //  $('filtersVBV').hide();
+     // bindToSearches();
+     if (pressed == "True"){
+     setURLChange('Speakers', 'app.html?section=Speakers');
    }
+  }
 
-   function needsLoad() {
+   function needsLoad(pressed) {
      window.currentView = "Needs";
      $('#contentHolder').empty();
      $('#teachingBar').hide();
@@ -206,9 +228,12 @@
      $('#speakers').removeClass('is-active');
      closeSermon();
      $('#filtersSermons').hide();
-    //  $('#filtersVBV').hide();
+     //  $('#filtersVBV').hide();
      alert('Needs not Implemented Yet.')
-     //  bindToSearches();
+       //  bindToSearches();
+       if (pressed == "True"){
+       setURLChange('Needs', 'app.html?section=Needs');
+       }
    }
 
    function setViewGlobal() {
@@ -217,23 +242,21 @@
      $('#communityButton').removeClass('is-active');
      $('#followButton').removeClass('is-active');
      $('#contentHolder').empty();
-       if(window.currentView == "Teachings"){
-           teachingsLoad();
-          }
-         else if (window.currentView == "VBV"){
-             loadVBV();
-         }
-         else if(window.currentView == "Speakers"){
-        speakersLoad();
-               }
-         else if (window.currentView == "Members"){
-           membersLoad();
-                   }
-         else if (window.currentView == "Churches"){
-          churchesLoad();
-         }
-         else
-         {}
+     if (window.currentView == "Teachings") {
+       teachingsLoad();
+     } else if (window.currentView == "VBV") {
+       loadVBV();
+     } else if (window.currentView == "Speakers") {
+       speakersLoad();
+     } else if (window.currentView == "Members") {
+       membersLoad();
+     } else if (window.currentView == "Churches") {
+       churchesLoad();
+     } else if (window.currentView == "Sermons")  {
+       sermonsLoad();
+     } else if (window.currentView == "VerseByVerse") {
+       verseByVerseLoad();
+   }
    }
 
    function setViewCommunity() {
@@ -242,24 +265,18 @@
      $('#communityButton').addClass('is-active');
      $('#followButton').removeClass('is-active');
      $('#contentHolder').empty();
-     
-      if(window.currentView == "Teachings"){
-           teachingsLoad();
-         }
-         else if (window.currentView == "VBV"){
-             verseByVerseLoad();
-         }
-         else if(window.currentView == "Speakers"){
-        speakersLoad();
-               }
-         else if (window.currentView == "Members"){
-           membersLoad();
-                   }
-         else if (window.currentView == "Churches"){
-          churchesLoad();
-         }
-         else
-         {}
+
+     if (window.currentView == "Teachings") {
+       teachingsLoad();
+     } else if (window.currentView == "VBV") {
+       verseByVerseLoad();
+     } else if (window.currentView == "Speakers") {
+       speakersLoad();
+     } else if (window.currentView == "Members") {
+       membersLoad();
+     } else if (window.currentView == "Churches") {
+       churchesLoad();
+     } else {}
 
    }
 
@@ -269,23 +286,17 @@
      $('#communityButton').removeClass('is-active');
      $('#followButton').addClass('is-active');
      $('#contentHolder').empty();
-       if(window.currentView == "Teachings"){
-           teachingsLoad();
-         }
-         else if (window.currentView == "VBV"){
-             verseByVerseLoad();
-         }
-         else if(window.currentView == "Speakers"){
-        speakersLoad();
-               }
-         else if (window.currentView == "Members"){
-           membersLoad();
-                   }
-         else if (window.currentView == "Churches"){
-          churchesLoad();
-         }
-         else
-         {}
+     if (window.currentView == "Teachings") {
+       teachingsLoad();
+     } else if (window.currentView == "VBV") {
+       verseByVerseLoad();
+     } else if (window.currentView == "Speakers") {
+       speakersLoad();
+     } else if (window.currentView == "Members") {
+       membersLoad();
+     } else if (window.currentView == "Churches") {
+       churchesLoad();
+     } else {}
    }
 
    function search() {
@@ -296,110 +307,152 @@
 
    function bindToSearches() {
 
-    //  $('#searchIcon').addClass('is-focused');
-    //  $('#searchIconVBV').addClass('is-focused');
-    //  $('#searchIconChurches').addClass('is-focused');
-    //  $('#searchIconSpeakers').addClass('is-focused');
-    //  $('#searchIconMembers').addClass('is-focused');
+     //  $('#searchIcon').addClass('is-focused');
+     //  $('#searchIconVBV').addClass('is-focused');
+     //  $('#searchIconChurches').addClass('is-focused');
+     //  $('#searchIconSpeakers').addClass('is-focused');
+     //  $('#searchIconMembers').addClass('is-focused');
      //$('#searchIcon').addClass('is-focused');
-     
+
      $('#searchTextBox').on('input', function(e) {
        textValue = document.getElementById('searchTextBox').value;
        console.log(textValue);
        if (textValue.length > 2) {
-         if(window.currentView == "Teachings"){
+         if (window.currentView == "Teachings") {
            loadTeachingDataCache(textValue);
            console.log('true');
-         }
-         else if (window.currentView == "VBV"){
-             loadTeachingDataCacheVBV(textValue);
-         }
-         else if(window.currentView == "Speakers"){
-         loadSpeakerDataCache(textValue);
-         }
-         else if (window.currentView == "Members"){
-            loadMemberDataCache(textValue);
-         }
-         else if (window.currentView == "Churches"){
-          loadChurchDataCache(textValue);
-         }
-         else
-         {}
+         } else if (window.currentView == "VBV") {
+           loadTeachingDataCacheVBV(textValue);
+         } else if (window.currentView == "Speakers") {
+           loadSpeakerDataCache(textValue);
+         } else if (window.currentView == "Members") {
+           loadMemberDataCache(textValue);
+         } else if (window.currentView == "Churches") {
+           loadChurchDataCache(textValue);
+         } else {}
        }
      });
    }
-   
-   
-   
-     viewName = 'Global';
-        
-            var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-            //CODE RAN ON APP
-            if (app) {
-                ImgCache.options.chromeQuota = 50 * 1024 * 1024;
-                document.addEventListener("deviceready", onDeviceReady, false);
-                
-                function onDeviceReady() {
-                    getLocalFilesPushToLocalStorage();
-                    setBackground();
-                    ImgCache.init(function() {
-                        setViewGlobal();
-                       // bindToSearches();
-                        loadEvents(localStorage.getItem('view'), communityID, '', 'True');
-                    }, function() {
-                        alert('ImgCache init: error! Check the log for errors');
-                    });
-                    $('.beta').hide();
-                    if (localStorage.getItem('betaEnabled') === 'True') {
-                        $('.beta').show();
-                    }
-                    initialLoad();
-                }
-            } else {
-                //CODE RAN ON WEB
-                
-                $(document).ready(function() {
 
-                    //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
-                    setBackground();
-                   //ImgCache.init(function() {
-                    setViewGlobal();
-                    //bindToSearches();
-                    loadEvents(localStorage.getItem('view'), communityID,'', 'True');
-                   // }, function() {
-                   //     alert('ImgCache init: error! Check the log for errors');
-                   // });
-                    $('.beta').hide();
-                    if (localStorage.getItem('betaEnabled') === 'True') {
-                        $('.beta').show();
-                    }
-                    //initialLoad();
-                });
-            }
 
-             
-            function startApp() {
-                $('#launch').hide();
-                
-            }
-            //initial run
-            if (localStorage.getItem('betaEnabled') == null) {
-                localStorage.setItem('betaEnabled', 'False');
-                $('.beta').hide();
 
-            } else {}
+   viewName = 'Global';
 
-            function toggleBeta() {
-                if (localStorage.getItem('betaEnabled') == null) {
-                    localStorage.setItem('betaEnabled', 'True');
-                    alert('Beta Features Enabled - Expect buttons to explode.');
-                } else if (localStorage.getItem('betaEnabled') == 'True') {
-                    localStorage.setItem('betaEnabled', 'False');
-                    alert('Disabled Beta Features.');
-                    $('.beta').hide();
-                } else {
-                    localStorage.setItem('betaEnabled', 'True');
-                    alert('Beta Features Enabled - Expect buttons to explode.');
-                    $('.beta').show();
-                }
-            }
+   var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+   //CODE RAN ON APP
+   if (app) {
+     ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+     document.addEventListener("deviceready", onDeviceReady, false);
+
+     function onDeviceReady() {
+       getLocalFilesPushToLocalStorage();
+       setBackground();
+       ImgCache.init(function() {
+         setViewGlobal();
+         // bindToSearches();
+         loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+       }, function() {
+         alert('ImgCache init: error! Check the log for errors');
+       });
+       $('.beta').hide();
+       if (localStorage.getItem('betaEnabled') === 'True') {
+         $('.beta').show();
+       }
+       initialLoad();
+       startApp();
+       initializeDeepLinks();
+     }
+   } else {
+     //CODE RAN ON WEB
+
+     $(document).ready(function() {
+
+       //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
+       setBackground();
+       //ImgCache.init(function() {
+       setViewGlobal();
+       //bindToSearches();
+       loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+       // }, function() {
+       //     alert('ImgCache init: error! Check the log for errors');
+       // });
+       $('.beta').hide();
+       if (localStorage.getItem('betaEnabled') === 'True') {
+         $('.beta').show();
+       }
+       //initialLoad();
+       startApp();
+       initializeDeepLinks();
+     });
+   }
+
+    
+   function startApp() {
+     $('#launch').hide();
+
+   }
+   //initial run
+   if (localStorage.getItem('betaEnabled') == null) {
+     localStorage.setItem('betaEnabled', 'False');
+     $('.beta').hide();
+
+   } else {}
+
+   function toggleBeta() {
+     if (localStorage.getItem('betaEnabled') == null) {
+       localStorage.setItem('betaEnabled', 'True');
+       alert('Beta Features Enabled - Expect buttons to explode.');
+     } else if (localStorage.getItem('betaEnabled') == 'True') {
+       localStorage.setItem('betaEnabled', 'False');
+       alert('Disabled Beta Features.');
+       $('.beta').hide();
+     } else {
+       localStorage.setItem('betaEnabled', 'True');
+       alert('Beta Features Enabled - Expect buttons to explode.');
+       $('.beta').show();
+     }
+   }
+
+
+
+
+
+   function initializeDeepLinks() {
+
+     if ($.url().param('sermonid') == null) {} else {
+       sermonID = parseInt($.url().param('sermonid'));
+       loadIndividualSermon(sermonID);
+     }
+
+     if ($.url().param('section') != "null") {
+       section = $.url().param('section');
+       if (section == "Teachings") {
+         teachingsLoad();
+       } else if (section == "Churches") {
+         churchesLoad();
+       } else if (section == "Members") {
+         membersLoad();
+     } else if (section == "Speakers") {
+        speakersLoad(); 
+     } else if (section == "NewsFeed") {
+        activityLoad(); 
+    }
+     }
+
+
+   }
+
+
+
+   function setURLChange(title, urlPath) {
+     window.history.pushState({
+       "pageTitle": title
+     }, "", urlPath);
+   }
+
+   window.onpopstate = function(e) {
+     if (e.state) {
+       console.log(event.state);
+       document.title = e.state.pageTitle;
+     }
+   };
