@@ -229,7 +229,9 @@
      closeSermon();
      $('#filtersSermons').hide();
      //  $('#filtersVBV').hide();
-     alert('Needs not Implemented Yet.')
+     var snackbarContainer = document.querySelector('#alertToast');
+    var data = {message: "Needs not Implemented Yet.."};
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
        //  bindToSearches();
        if (pressed == "True"){
        setURLChange('Needs', 'app.html?section=Needs');
@@ -456,3 +458,21 @@
        document.title = e.state.pageTitle;
      }
    };
+   
+   function disableNonMemberFunction(){
+     $('#communityButton').css('color','#946720');
+     $('#communityButton').prop('onclick',null).off('click');
+     $('#followButton').css('color','#946720');
+     $('#followButton').prop('onclick',null).off('click');
+     $('profileImage').hide();
+     $('#bibleButton').css('color','rgb(158, 70, 58)');
+     $('#bibleButton').prop('onclick',null).off('click');
+     $('#needsButton').css('color','#946720');
+     $('#needsButton').prop('onclick',null).off('click');
+    
+     $('#loginButton').show();
+    //var snackbarContainer = document.querySelector('#alertToast');
+   // var data = {message: "You Are Not Logged In.. Register or Login."};
+    //snackbarContainer.MaterialSnackbar.showSnackbar(data);
+     
+   }
