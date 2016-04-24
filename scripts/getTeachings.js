@@ -56,7 +56,7 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
     loadSermonsInsert(url, target, insert, name);    
   } else if (search == "Following") {        
     window.followArray = [];
-     $.each(followData.results, function(index, value) {            
+    $.each(followData.results, function(index, value) {            
       if (followData.results[index].followtype == "Speaker") {                
         followArray.push(followData.results[index].followeeSpeaker);            
       } else {
@@ -102,68 +102,67 @@ function loadSermonsInsert(url, target, insert, name) {
 
     //$('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count + ' Sermons Indexed Globally</span></div>');
 
-    $('#contentHolder').append(teachingData);
-            
+    $('#contentHolder').append(teachingData);        
     // $.each(teachingData.results, function(index, value) {
 
 
 
-                   //Get Name for user
-      //             
-      // churchID = parseInt(teachingData.results[index].churchid);            
-      // speakerID = parseInt(teachingData.results[index].speaker);
+                 //Get Name for user
+    //             
+    // churchID = parseInt(teachingData.results[index].churchid);            
+    // speakerID = parseInt(teachingData.results[index].speaker);
 
-                  
-      function arrayLookup(array, prop, val) {                
-        for (var i = 0, len = array.length; i < len; i++) {                    
-          if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {                        
-            return array[i];                    
-          }                
+                
+    function arrayLookup(array, prop, val) {                
+      for (var i = 0, len = array.length; i < len; i++) {                    
+        if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {                        
+          return array[i];                    
         }                
-        return null;            
-      }
+      }                
+      return null;            
+    }
 
-      //             
-      // try {                
-      //   churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;                
-      //   console.log(churchName);            
-      // } catch (err) {                
-      //   console.log('error');                
-      //   churchName = 'No Church Listed';            
-      // }
+    //             
+    // try {                
+    //   churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;                
+    //   console.log(churchName);            
+    // } catch (err) {                
+    //   console.log('error');                
+    //   churchName = 'No Church Listed';            
+    // }
 
-      //             
-      // try {                
-      //   speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;                
-      //   console.log(speakerName);            
-      // } catch (err) {                
-      //   console.log('error');                
-      //   speakerName = 'No Speaker Name Listed';            
-      // }
-
-
-
-      //             
-      // $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +                 '<ul class="demo-list-two mdl-list">' +                 '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +                 '<span class="mdl-list__item-primary-content" style="margin-top:-35px;width:100%;">' +
-      //   '<img style="border-radius:20px;margin-top:-6px;width:80px;height:80px;position:absolute;" id="teachingID_IMG_' + teachingData.results[index].downloadedcontentid + '" src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + teachingData.results[index].downloadedcontentid + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +                             '<span style="margin-left:100px;display:-webkit-inline-box;" onclick="loadIndividualSermon(' + teachingData.results[index].downloadedcontentid + ');">' + teachingData.results[index].title + '</span><br>' +                 '<span style="margin-left:100px;"class="mdl-list__item-sub-title">' + speakerName + '</span>' +                 '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +                 '</span>' +                 '</li>' +                 '</ul>' +                 '</div>');
+    //             
+    // try {                
+    //   speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;                
+    //   console.log(speakerName);            
+    // } catch (err) {                
+    //   console.log('error');                
+    //   speakerName = 'No Speaker Name Listed';            
+    // }
 
 
 
-      var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-      if (app) {
-        var imageCacheTarget = $('#teachingID_IMG_' + teachingData.results[index].downloadedcontentid);
-        cacheImageCheck(imageCacheTarget);
-      } else {
-
-      }
+    //             
+    // $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +                 '<ul class="demo-list-two mdl-list">' +                 '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +                 '<span class="mdl-list__item-primary-content" style="margin-top:-35px;width:100%;">' +
+    //   '<img style="border-radius:20px;margin-top:-6px;width:80px;height:80px;position:absolute;" id="teachingID_IMG_' + teachingData.results[index].downloadedcontentid + '" src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + teachingData.results[index].downloadedcontentid + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +                             '<span style="margin-left:100px;display:-webkit-inline-box;" onclick="loadIndividualSermon(' + teachingData.results[index].downloadedcontentid + ');">' + teachingData.results[index].title + '</span><br>' +                 '<span style="margin-left:100px;"class="mdl-list__item-sub-title">' + speakerName + '</span>' +                 '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +                 '</span>' +                 '</li>' +                 '</ul>' +                 '</div>');
 
 
-              
-    });        
-    componentHandler.upgradeDom();        
-    console.log('Teachings Loaded');        
-    $('#loading').hide();    
-  
+
+    var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+    if (app) {
+      var imageCacheTarget = $('#teachingID_IMG_' + teachingData.results[index].downloadedcontentid);
+      cacheImageCheck(imageCacheTarget);
+    } else {
+
+    }
+
+
+            
+  });        
+  componentHandler.upgradeDom();        
+  console.log('Teachings Loaded');        
+  $('#loading').hide();    
+
 }
 
 
@@ -265,7 +264,9 @@ function loadIndividualSermon(sermonID) {    
         while (i <= arrayLength) {
           if (downloadedContent[i].SermonID == sermonID) {
             var snackbarContainer = document.querySelector('#alertToast');
-            var data = {message: 'Pulling from Local Downloaded Content '};
+            var data = {
+              message: 'Pulling from Local Downloaded Content '
+            };
             snackbarContainer.MaterialSnackbar.showSnackbar(data);
             window.audioSource = 'cdvfile://localhost/library-nosync/' + sermonID + '.mp3';
             url = 'cdvfile://localhost/library-nosync/' + sermonID + '.mp3';
@@ -296,10 +297,11 @@ function loadIndividualSermon(sermonID) {    
       $('#sermonContent').append('<div id="gradientSermonContent" style="   position: absolute; border-radius:40px;    width: calc(100% - 32px); margin:8px;  height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);' +
         '"></div>' +
         '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">' +
-
-        '<center><img src="https://www.thebodyofchrist.us/app/img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>' +                     '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +                      // '<div><img src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=5439" style="height:100px;width:100px;border-radius:20px;" /></div>'+
-                            '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +                     '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Church: ' + churchName + '</span>' +                     // '<canvas id="teachingCanvas" style="width:100%;height:100%;"></canvas>'+
-                                              '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';">Public Rating: ' +
+        '<center><img src="https://www.thebodyofchrist.us/app/img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>' + 
+        '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +              
+        '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
+        '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Church: ' + churchName + '</span>' +                     
+        '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';">Public Rating: ' +
         '<div class="stars">' +
         '<form action="">' +
         '<select id="publicRating">' +
@@ -310,7 +312,6 @@ function loadIndividualSermon(sermonID) {    
         '<option value="5">5</option>' +
         '</select>' +
         '</form>' +
-
         '</div>' +
         '</span>' +  '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';">Your Rating: ' +
         '<div class="stars">' +
@@ -323,7 +324,6 @@ function loadIndividualSermon(sermonID) {    
         '<option value="5">5</option>' +
         '</select>' +
         '</form>' +
-
         '</div>' +
         '</span>' +
         window.audioCode +                     '' +                     '' +
@@ -335,7 +335,10 @@ function loadIndividualSermon(sermonID) {    
         '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="markaslistened(' +   sermonID + ');" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Mark as Listened</button></span>' +     '</span>' +
         '</div>' +   '<div class="mdl-list__item">' +     '<span style="width:100%;" class="mdl-list__item-primary-content">' +       '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">person</i>' +       '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Recommend Teaching</button></span>' +     '</span>' +     '<span class="mdl-list__item-secondary-content">' +   '</span>' +   '</div>' +     '<div class="mdl-list__item">' +     '<span style="width:100%;" class="mdl-list__item-primary-content">' +       '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">cast</i>' +       '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Cast to Device</button></span>' +     '</span>' +     '<span class="mdl-list__item-secondary-content">' +   '</span>' +   '</div>' +     '<div class="mdl-list__item">' +     '<span style="width:100%;" class="mdl-list__item-primary-content">' +       '<i class="material-icons mdl-list__item-avatar" style="color:white;background-color:rgba(0, 115, 183, 0.79);">airplay</i>' +       '<span style="width:100%;"><button style="width:100%;background-color:rgba(221, 75, 57, 0.75);color:white;" onclick="nyi();" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">Airplay to Apple TV</button></span>' +     '</span>' +     '<span class="mdl-list__item-secondary-content">' +   '</span>' +   '</div>' +
         '</div>' +
-        '</div>' +                     '</div>');
+        '</div>' + 
+        '</div>'+
+        '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:hidden;left:33%;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;"></div>'+
+        '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:hidden;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;" id="thirdTabSermon"></div>');
 
       setTimeout(function() {
         sermonContentHeight = $('#sermonContentInside').height();
@@ -443,32 +446,34 @@ function loadIndividualSermon(sermonID) {    
 
 
       addView();
-      
+
       getDuration();
 
-      
-     window.audioMP3 = document.getElementById("teachingAudio");
-     window.audioMP3.addEventListener("play", function() {
-       window.polling = setTimeout(updateAudioStatus, 5000);
-     });
-     
-     
+
+      window.audioMP3 = document.getElementById("teachingAudio");
+      window.audioMP3.addEventListener("play", function() {
+        window.polling = setTimeout(updateAudioStatus, 5000);
+      });
+
+
       window.audioMP3.addEventListener("pause", function() {
-       clearTimeout(window.polling);
-     });
-     
+        clearTimeout(window.polling);
+      });
+
       window.audioMP3.addEventListener("pause", function() {
-       clearTimeout(window.polling);
-     });
-     
-    window.audioMP3.onended = function() {
-    sermonID = window.sermonInfo[0].SermonID;
-    markaslistened(sermonID);
-    var snackbarContainer = document.querySelector('#alertToast');
-    var data = {message: "We Marked That Teaching as listened for you."};
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-};
-   
+        clearTimeout(window.polling);
+      });
+
+      window.audioMP3.onended = function() {
+        sermonID = window.sermonInfo[0].SermonID;
+        markaslistened(sermonID);
+        var snackbarContainer = document.querySelector('#alertToast');
+        var data = {
+          message: "We Marked That Teaching as listened for you."
+        };
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+      };
+
 
 
 
@@ -600,7 +605,9 @@ function initAudioPlayer(url) {
 function nyi() {
   //alert('Not Yet Implemented.');
   var snackbarContainer = document.querySelector('#alertToast');
-  var data = {message: "Not Yet Implemented"};
+  var data = {
+    message: "Not Yet Implemented"
+  };
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
 
@@ -631,7 +638,9 @@ function markaslistened(sermonid) {
   }).done(function(results, textStatus, jqXHR) {
     $('#markAsListenedButton').hide();
     var snackbarContainer = document.querySelector('#alertToast');
-    var data = {message: results};
+    var data = {
+      message: results
+    };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   });
 
@@ -671,7 +680,9 @@ function setRating() {
   }).done(function(sermonData, textStatus, jqXHR) {        
     $('#loading').hide();
     var snackbarContainer = document.querySelector('#alertToast');
-    var data = {message: "Your Rating has been updated."};
+    var data = {
+      message: "Your Rating has been updated."
+    };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
   });
 }
@@ -692,7 +703,7 @@ function addView() {
 
 }
 
-function sendDuration(){
+function sendDuration() {
   sermonID = window.sermonInfo[0].SermonID;
   window.duration = Math.round(window.audioMP3.currentTime);
   url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration; 
@@ -701,45 +712,44 @@ function sendDuration(){
             type: "GET",
         
   }).done(function(data, textStatus, jqXHR) {
-    if (data == "Updated"){
-     console.log('Updated Timestamp...' + window.duration); 
-    }
-    else{
+    if (data == "Updated") {
+      console.log('Updated Timestamp...' + window.duration);
+    } else {
       console.log('error...');
     }
-    
+
   });
 }
 
-function getDuration(){
+function getDuration() {
   sermonID = window.sermonInfo[0].SermonID;
   url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime'; 
   jQuery.ajax({        
     url: url,
             type: "GET",
   }).done(function(data, textStatus, jqXHR) {
-    if (data == "0"){
-     console.log('No Previous Listened Data...');
-     
+    if (data == "0") {
+      console.log('No Previous Listened Data...');
+
+    } else {
+      alert(data);
+      window.audioMP3.currentTime = data;
+      var snackbarContainer = document.querySelector('#alertToast');
+      var data = {
+        message: "Starting where you left off.."
+      };
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
     }
-    else{
-     window.audioMP3.currentTime = data;
-    var snackbarContainer = document.querySelector('#alertToast');
-    var data = {message: "Starting where you left off.."};
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-    }
-    
+
   });
 }
 
 
 function updateAudioStatus() {
-  try{
-   sendDuration();
-  }catch(err){
+  try {
+    sendDuration();
+  } catch (err) {
     console.log(err);
   }
-   window.polling = setTimeout(updateAudioStatus, 5000);
+  window.polling = setTimeout(updateAudioStatus, 5000);
 }
-
-

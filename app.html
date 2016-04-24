@@ -20,7 +20,7 @@
     <meta name="msapplication-TileColor" content="#3372DF">
     <link rel="shortcut icon" href="https://www.thebodyofchrist.us/app/images/favicon.png">
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/fonts/material-icons.css">
-    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/blue_material.css" />
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/datepicker.css">
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/font-awesome-css.css">
@@ -38,7 +38,7 @@ height:100%;
 
 width:100%;
 "></div>
-<div id="Blue" class="animateOpactiy" style="
+    <div id="Blue" class="animateOpactiy" style="
 position:absolute;
 display:none;
 top:0;
@@ -97,7 +97,7 @@ width:100%;
                     <li onclick="toggleBeta();" class="mdl-menu__item">Toggle Beta</li>
                     <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
                 </ul>
-                 <span id="loginButton" onclick="login();" href="index.html" style="display:none;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
+                <span id="loginButton" onclick="login();" href="index.html" style="display:none;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
             </div>
             <div id="bars" style="max-height:146px;overflow-x:hidden;">
                 <div id="primaryBar1" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="background-color:#f39c12;height:48px;display:none;">
@@ -128,6 +128,16 @@ width:100%;
                 </div>
                 <div id="individualSermonBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color:rgba(243, 156, 18, 0.84);display:none;">
                     <a id="viewSermonTab" href="#" onclick="loadSermonPage()" class="mdl-layout__tab is-active">View Sermon</a>
+                    <a id="viewSermonTab" href="#" onclick="loadSermonPage()" class="mdl-layout__tab is-active">Enable Bible</a>
+                   <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+  <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+  <span class="mdl-switch__label"></span>
+</label>
+                    <a id="viewSermonTab" href="#" onclick="loadSermonPage()" class="mdl-layout__tab is-active">Enable Comments</a>
+                    <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+  <input type="checkbox" id="switch-1" class="mdl-switch__input" checked>
+  <span class="mdl-switch__label"></span>
+</label>
 
                 </div>
             </div>
@@ -321,7 +331,7 @@ width:100%;
                 $.mobile.loader.prototype.options.disabled = true;
             });
         </script>
-        
+
         <script src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>
         <script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>
         <script src="https://www.thebodyofchrist.us/app/scripts/dashboard.js"></script>
@@ -342,7 +352,7 @@ width:100%;
         <script src="https://www.thebodyofchrist.us/app/scripts/getFollowed.js"></script>
         <script src="https://www.thebodyofchrist.us/app/scripts/getEvents.js"></script>
         <script src="https://www.thebodyofchrist.us/app/scripts/checkIfListened.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getTeachings.js"></script>
+        <script src="scripts/getTeachings.js"></script>
         <script src="https://www.thebodyofchrist.us/app/scripts/getVBV.js"></script>
 
         <script>
@@ -474,14 +484,14 @@ width:100%;
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
             });
             $('#quick-search').on('click', function() {
-               if (document.getElementById('quick-search').value != 'null'){
-                   $('#contentHolder').empty();
-                closeSermon();
-                previousSearch = document.getElementById('quick-search').value;
-                document.getElementById('quick-search').value = '';
-                document.getElementById('quick-search').value = previousSearch;
-               }
-                
+                if (document.getElementById('quick-search').value != 'null') {
+                    $('#contentHolder').empty();
+                    closeSermon();
+                    previousSearch = document.getElementById('quick-search').value;
+                    document.getElementById('quick-search').value = '';
+                    document.getElementById('quick-search').value = previousSearch;
+                }
+
                 $('.yourlabs-autocomplete').css('display', 'block !important;');
             });
             $('#quick-search').yourlabsAutocomplete({
@@ -501,12 +511,12 @@ width:100%;
                 }
 
             });
-            
-            function login(){
+
+            function login() {
                 window.location = "https://www.thebodyofchrist.us/login/";
             }
         </script>
-<script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
+        <script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
 </body>
 
 </html>
