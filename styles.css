@@ -410,6 +410,18 @@ span {
   #sermonContentInside {
     width: 345px !important;
   }
+
+    #teachingTitleOverview{
+    white-space:nowrap !important;
+  }
+  #eventTitleSpan{
+    width:200px !important;
+  }
+  #titleSpan{
+    text-overflow: ellipsis;
+    width:226px;
+    overflow:hidden;
+  }
   div.br-widget.br-readonly {
     margin-left: -12px !important;
   }
