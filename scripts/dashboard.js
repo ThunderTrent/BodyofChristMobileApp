@@ -361,7 +361,7 @@ else{
        ImgCache.init(function() {
          setViewGlobal();
          // bindToSearches();
-         loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+        // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
        }, function() {
          alert('ImgCache init: error! Check the log for errors');
        });
@@ -383,7 +383,7 @@ else{
        //ImgCache.init(function() {
        setViewGlobal();
        //bindToSearches();
-       loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+      // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
        // }, function() {
        //     alert('ImgCache init: error! Check the log for errors');
        // });

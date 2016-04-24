@@ -431,6 +431,17 @@ span {
   #sermonContentInside {
     width: 382px !important;
   }
+    #teachingTitleOverview{
+    white-space:nowrap !important;
+  }
+  #eventTitleSpan{
+    width:200px !important;
+  }
+  #titleSpan{
+    text-overflow: ellipsis;
+    width:226px;
+    overflow:hidden;
+  }
   .sermonText {
     font-size: 21px !important;
   }
@@ -451,6 +462,7 @@ span {
   #textHolderLaunch {
     top: 56% !important;
   }
+
   #sermonContentInside {
     width: 735px !important;
   }

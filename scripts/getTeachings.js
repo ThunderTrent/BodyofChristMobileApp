@@ -82,37 +82,36 @@ function loadSermonsInsert(url, target, insert, name) {
 
       
   jQuery.ajax({        
-    url: url,
+    url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
             type: "GET",
         
   }).done(function(teachingData, textStatus, jqXHR) {        
     console.log("HTTP Request Succeeded: " + jqXHR.status);        
-    window.teachingData = teachingData;
 
     //check to see if file exists in cache to save it to
     //console.log('test');
     if (url.split(':')[0] == "https") {
 
     } else {
-      downloadFile(name, url);
+      //downloadFile(name, url);
 
     }
     //console.log('test');
 
 
 
-    $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count + ' Sermons Indexed Globally</span></div>');
+    //$('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count + ' Sermons Indexed Globally</span></div>');
 
-
+    $('#contentHolder').append(teachingData);
             
-    $.each(teachingData.results, function(index, value) {
+    // $.each(teachingData.results, function(index, value) {
 
 
 
                    //Get Name for user
-                  
-      churchID = parseInt(teachingData.results[index].churchid);            
-      speakerID = parseInt(teachingData.results[index].speaker);
+      //             
+      // churchID = parseInt(teachingData.results[index].churchid);            
+      // speakerID = parseInt(teachingData.results[index].speaker);
 
                   
       function arrayLookup(array, prop, val) {                
@@ -124,29 +123,29 @@ function loadSermonsInsert(url, target, insert, name) {
         return null;            
       }
 
-                  
-      try {                
-        churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;                
-        console.log(churchName);            
-      } catch (err) {                
-        console.log('error');                
-        churchName = 'No Church Listed';            
-      }
+      //             
+      // try {                
+      //   churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;                
+      //   console.log(churchName);            
+      // } catch (err) {                
+      //   console.log('error');                
+      //   churchName = 'No Church Listed';            
+      // }
 
-                  
-      try {                
-        speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;                
-        console.log(speakerName);            
-      } catch (err) {                
-        console.log('error');                
-        speakerName = 'No Speaker Name Listed';            
-      }
+      //             
+      // try {                
+      //   speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;                
+      //   console.log(speakerName);            
+      // } catch (err) {                
+      //   console.log('error');                
+      //   speakerName = 'No Speaker Name Listed';            
+      // }
 
 
 
-                  
-      $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +                 '<ul class="demo-list-two mdl-list">' +                 '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +                 '<span class="mdl-list__item-primary-content" style="margin-top:-35px;width:100%;">' +
-        '<img style="border-radius:20px;margin-top:-6px;width:80px;height:80px;position:absolute;" id="teachingID_IMG_' + teachingData.results[index].downloadedcontentid + '" src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + teachingData.results[index].downloadedcontentid + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +                             '<span style="margin-left:100px;display:-webkit-inline-box;" onclick="loadIndividualSermon(' + teachingData.results[index].downloadedcontentid + ');">' + teachingData.results[index].title + '</span><br>' +                 '<span style="margin-left:100px;"class="mdl-list__item-sub-title">' + speakerName + '</span>' +                 '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +                 '</span>' +                 '</li>' +                 '</ul>' +                 '</div>');
+      //             
+      // $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +                 '<ul class="demo-list-two mdl-list">' +                 '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +                 '<span class="mdl-list__item-primary-content" style="margin-top:-35px;width:100%;">' +
+      //   '<img style="border-radius:20px;margin-top:-6px;width:80px;height:80px;position:absolute;" id="teachingID_IMG_' + teachingData.results[index].downloadedcontentid + '" src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + teachingData.results[index].downloadedcontentid + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +                             '<span style="margin-left:100px;display:-webkit-inline-box;" onclick="loadIndividualSermon(' + teachingData.results[index].downloadedcontentid + ');">' + teachingData.results[index].title + '</span><br>' +                 '<span style="margin-left:100px;"class="mdl-list__item-sub-title">' + speakerName + '</span>' +                 '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +                 '</span>' +                 '</li>' +                 '</ul>' +                 '</div>');
 
 
 
@@ -164,7 +163,7 @@ function loadSermonsInsert(url, target, insert, name) {
     componentHandler.upgradeDom();        
     console.log('Teachings Loaded');        
     $('#loading').hide();    
-  });
+  
 }
 
 
