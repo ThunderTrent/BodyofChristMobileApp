@@ -451,6 +451,7 @@ span {
   }
    #viewsCount{
   margin-left:calc(100% - 55px)!important;
+    display:block !important;
   }
 }
 
@@ -466,6 +467,9 @@ span {
   }
   #eventTitleSpan{
     width:200px !important;
+  }
+  #viewsCount{
+    display:block !important;
   }
   #titleSpan{
     text-overflow: ellipsis;
@@ -496,6 +500,9 @@ span {
 
   #sermonContentInside {
     width: 735px !important;
+  }
+   #viewsCount{
+    display:block !important;
   }
   .sermonText {
     font-size: 26px !important;
