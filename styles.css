@@ -409,7 +409,7 @@ span {
   }
    #viewsCount{
   margin-left:calc(100% - 55px)!important;
-  display:none !important;
+  display:none;
   }
   #titleSpan{
     text-overflow: ellipsis;
