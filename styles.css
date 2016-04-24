@@ -584,3 +584,7 @@ span {
 #Blue {
    animation: animateOpacity2 10s infinite;
 }
+
+.br-theme-fontawesome-stars .br-widget a:after{
+  color:#FFF;
+}
