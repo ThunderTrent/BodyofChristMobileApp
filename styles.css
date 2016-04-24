@@ -497,6 +497,7 @@ span {
   #textHolderLaunch {
     top: 56% !important;
   }
+  
 
   #sermonContentInside {
     width: 735px !important;
@@ -519,6 +520,14 @@ span {
   
   .demo-content{
     max-width:100% !important;
+  }
+  #titleSpan{
+    text-overflow: ellipsis;
+    width:292px;
+    overflow:hidden;
+  }
+    #teachingTitleOverview{
+    white-space:nowrap !important;
   }
   .mdl-cell--12-col, .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop{
     width:32% !important;
