@@ -407,6 +407,10 @@ span {
   #eventTitleSpan{
     width:200px !important;
   }
+   #viewsCount{
+  margin-left:calc(100% - 55px)!important;
+  display:none !important;
+  }
   #titleSpan{
     text-overflow: ellipsis;
     width:140px!important;
@@ -445,6 +449,9 @@ span {
   .br-theme-fontawesome-stars .br-widget {
     margin-top: 9px !important;
   }
+   #viewsCount{
+  margin-left:calc(100% - 55px)!important;
+  }
 }
 
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
@@ -465,9 +472,7 @@ span {
     width:226px;
     overflow:hidden;
   }
-  #viewsCount{
-  margin-left:calc(100% - 55px)!important;
-  }
+ 
   .sermonText {
     font-size: 21px !important;
   }
