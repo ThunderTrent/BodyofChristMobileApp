@@ -296,7 +296,7 @@ function loadIndividualSermon(sermonID) {    
       audioStatus = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).audioStatus;                           
       $('#sermonContent').append('<div id="gradientSermonContent" style="   position: absolute; border-radius:40px;    width: calc(100% - 32px); margin:8px;  height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);' +
         '"></div>' +
-        '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">' +
+        '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;position:absolute;background-color:rgba(255, 255, 255, 0.77) !importantborder-radius:5px;">' +
         '<center><img src="https://www.thebodyofchrist.us/app/img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>' + 
         '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +              
         '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
