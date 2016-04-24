@@ -401,6 +401,17 @@ span {
   .br-theme-fontawesome-stars .br-widget {
     margin-top: 9px !important;
   }
+    #teachingTitleOverview{
+    white-space:nowrap !important;
+  }
+  #eventTitleSpan{
+    width:200px !important;
+  }
+  #titleSpan{
+    text-overflow: ellipsis;
+    width:140px!important;
+    overflow:hidden !important;
+  }
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
@@ -419,8 +430,8 @@ span {
   }
   #titleSpan{
     text-overflow: ellipsis;
-    width:226px;
-    overflow:hidden;
+    width:200px!important;
+    overflow:hidden !important;
   }
   div.br-widget.br-readonly {
     margin-left: -12px !important;
