@@ -732,7 +732,7 @@ function getDuration() {
       console.log('No Previous Listened Data...');
 
     } else {
-      alert(data);
+      console.log(data);
       window.audioMP3.currentTime = data;
       var snackbarContainer = document.querySelector('#alertToast');
       var data = {
