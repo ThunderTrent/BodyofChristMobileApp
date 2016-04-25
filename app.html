@@ -28,7 +28,7 @@
 
 <body>
 
-
+<div id="fb-root"></div>
     <div id="Gradient1" class="animateOpacity" style="
 position:absolute;
 display:none;
@@ -463,6 +463,7 @@ width:100%;
 
 
         <script type="text/javascript" src="https://www.thebodyofchrist.us/app/scripts/autocomplete.js"></script>
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 
         <style>
             .yourlabs-autocomplete {
@@ -537,7 +538,8 @@ width:100%;
              $('#commentSermonTabButton').addClass('is-active');
               if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon"}
              if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"}
-             $(window.targetTab).append('<H1>Comments:</h1>');
+             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+             $(window.targetTab).append('<fb:comments href="' + url +  '" num_posts="2" width="500"></fb:comments>');
            }
           
         }
