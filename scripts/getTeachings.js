@@ -338,7 +338,7 @@ function loadIndividualSermon(sermonID) {    
         '</div>' + 
         '</div>'+
         '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;left:33%;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">'+
-        '<iframe id="bibleFrame" style="width:100%;height:' + parseInt($('#sermonContentInside').height()) + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>'+
+        '<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>'+
         '</div>'+
         '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;" id="thirdTabSermon"></div>');
 
