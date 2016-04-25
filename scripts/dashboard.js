@@ -435,7 +435,7 @@ else{
        loadIndividualSermon(sermonID);
      }
 
-     if ($.url().param('section') != "null") {
+     if ($.url().param('section') != null) {
        section = $.url().param('section');
        if (section == "Teachings") {
          teachingsLoad();
