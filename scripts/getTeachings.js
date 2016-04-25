@@ -106,30 +106,6 @@ function loadSermonsInsert(url, target, insert, name) {
       return null;            
     }
 
-    //             
-    // try {                
-    //   churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;                
-    //   console.log(churchName);            
-    // } catch (err) {                
-    //   console.log('error');                
-    //   churchName = 'No Church Listed';            
-    // }
-
-    //             
-    // try {                
-    //   speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;                
-    //   console.log(speakerName);            
-    // } catch (err) {                
-    //   console.log('error');                
-    //   speakerName = 'No Speaker Name Listed';            
-    // }
-
-
-
-    //             
-    // $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid"  style=";">' +                 '<ul class="demo-list-two mdl-list">' +                 '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +                 '<span class="mdl-list__item-primary-content" style="margin-top:-35px;width:100%;">' +
-    //   '<img style="border-radius:20px;margin-top:-6px;width:80px;height:80px;position:absolute;" id="teachingID_IMG_' + teachingData.results[index].downloadedcontentid + '" src="https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?sermonid=' + teachingData.results[index].downloadedcontentid + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +                             '<span style="margin-left:100px;display:-webkit-inline-box;" onclick="loadIndividualSermon(' + teachingData.results[index].downloadedcontentid + ');">' + teachingData.results[index].title + '</span><br>' +                 '<span style="margin-left:100px;"class="mdl-list__item-sub-title">' + speakerName + '</span>' +                 '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +                 '</span>' +                 '</li>' +                 '</ul>' +                 '</div>');
-
 
 
     var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
@@ -142,8 +118,7 @@ function loadSermonsInsert(url, target, insert, name) {
 
 
             
-  });        
-  componentHandler.upgradeDom();        
+  });             
   console.log('Teachings Loaded');        
   $('#loading').hide();    
 
@@ -341,7 +316,7 @@ function loadIndividualSermon(sermonID) {    
           $('#bibleSermonTabButton').addClass('is-active');
           }
           else if (tab2 == "Comments"){
-            $(target).append('<h1>Comments:</h1>');
+            $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
             $('#commentSermonTabButton').addClass('is-active');
           }
         }
@@ -354,15 +329,13 @@ function loadIndividualSermon(sermonID) {    
           $('#bibleSermonTabButton').addClass('is-active');
           }
           else if (tab3 == "Comments"){
-          $(target).append('<h1>Comments:</h1>');
+          $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
           $('#commentSermonTabButton').addClass('is-active');
           }
         }
         
        
-        function toggleComments(){
-          
-        }
+       
         initiateTab2();
         initiateTab3();
 
@@ -370,10 +343,6 @@ function loadIndividualSermon(sermonID) {    
         sermonContentHeight = $('#sermonContentInside').height();
         $('#gradientSermonContent').height(sermonContentHeight + 'px');
         checkIfListened();
-        //$('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
-        //$('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected br-current');
-
-
       }, 400);
 
 

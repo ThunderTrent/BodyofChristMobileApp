@@ -561,7 +561,7 @@ width:100%;
                         window.targetTab = "#secondTabSermon";
                         localStorage.setItem('sermonTab2', 'Comments');
                         url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-                        $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+                        $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
                         FB.XFBML.parse();
                         return;
                     }
@@ -569,7 +569,7 @@ width:100%;
                         window.targetTab = "#thirdTabSermon";
                         localStorage.setItem('sermonTab3', 'Comments');
                         url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-                        $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+                        $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
                         FB.XFBML.parse();
                         return;
                     }
