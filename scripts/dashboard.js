@@ -433,6 +433,7 @@ else{
      if ($.url().param('sermonid') == null) {} else {
        sermonID = parseInt($.url().param('sermonid'));
        teachingsLoad('True');
+       $('#contentHolder').empty();
        loadIndividualSermon(sermonID);
      }
 
