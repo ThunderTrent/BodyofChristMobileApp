@@ -339,9 +339,40 @@ function loadIndividualSermon(sermonID) {    
         '</div>' + 
         '</div>'+
         '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;left:33%;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">'+
-        '<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>'+
         '</div>'+
         '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;" id="thirdTabSermon"></div>');
+         
+         if (localStorage.getItem('sermonTab2') == null){
+            localStorage.setItem('sermonTab2','Bible');
+          }
+           if (localStorage.getItem('sermonTab3') ==null){
+            localStorage.setItem('sermonTab2','Comments');
+          }
+          
+        function initiateTab2(){
+          target = "#secondTabSermon"
+          tab2 = localStorage.getItem('sermonTab2');
+          if (tab2 == "Bible"){
+          $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
+          }
+          else if (tab2 == "Comments"){
+            $(target).append('<h1>Comments:</h1>');
+          }
+        }
+        
+        function initiateTab3(){
+          target = "#thirdTabSermon"
+          tab3 = localStorage.getItem('sermonTab2');
+          if (tab3 == "Bible"){
+          $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
+          }
+          else if (tab3 == "Comments"){
+          $(target).append('<h1>Comments:</h1>');
+          }
+        }
+        
+        initiateTab2();
+        initiateTab3();
 
       setTimeout(function() {
         sermonContentHeight = $('#sermonContentInside').height();
