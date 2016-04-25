@@ -530,13 +530,13 @@ width:100%;
                         window.targetTab = "#secondTabSermon";
                         localStorage.setItem('sermonTab2', 'Bible');
                         $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
-                        break toggleBible;
+                        return;
                     }
                     if (localStorage.getItem('sermonTab3') == "Empty") {
                         window.targetTab = "#thirdTabSermon";
                         localStorage.setItem('sermonTab3', 'Bible');
                         $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
-                        break toggleBible;
+                        return;
                     }
 
 
@@ -563,7 +563,7 @@ width:100%;
                         url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
                         $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
                         FB.XFBML.parse();
-                        break toggleComments;
+                        return;
                     }
                     if (localStorage.getItem('sermonTab3') == "Empty") {
                         window.targetTab = "#thirdTabSermon";
@@ -571,7 +571,7 @@ width:100%;
                         url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
                         $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
                         FB.XFBML.parse();
-                        break toggleComments;
+                        return;
                     }
 
 
