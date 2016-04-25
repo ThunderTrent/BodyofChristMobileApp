@@ -488,38 +488,6 @@ else{
     //snackbarContainer.MaterialSnackbar.showSnackbar(data);
      
    }
-   try{
-    function toggleBible(){
-             if($('#bibleSermonTabButton').hasClass('is-active')){
-             $('#bibleSermonTabButton').removeClass('is-active');
-             if(localStorage.getItem('sermonTab3') == "Bible"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
-             if(localStorage.getItem('sermonTab2') == "Bible"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
-             $(window.targetTab).empty();
-           }
-           else{
-             $('#bibleSermonTabButton').addClass('is-active');
-              if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon"}
-             if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"}
-             $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
-           }
-        }
-        
-         function toggleComments(){
-              if($('commentSermonTabButton').hasClass('is-active')){
-             $('#commentSermonTabButton').removeClass('is-active');
-             if(localStorage.getItem('sermonTab3') == "Comments"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
-             if(localStorage.getItem('sermonTab2') == "Comments"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
-             $(window.targetTab).empty();
-           }
-           else{
-             $('#commentSermonTabButton').addClass('is-active');
-              if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon"}
-             if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"}
-             $(window.targetTab).append('<H1>Comments:</h1>');
-           }
-          
-        }
-   }
-        catch(err){
-          alert(err);
-          }
+
+
+  
