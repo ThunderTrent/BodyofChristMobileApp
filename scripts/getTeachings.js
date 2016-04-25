@@ -179,7 +179,8 @@ function loadIndividualSermon(sermonID) {    
   }).done(function(sermonData, textStatus, jqXHR) {        
     $('#loading').hide();        
     console.log("HTTP Request Succeeded: " + jqXHR.status);        
-    window.sermonData = sermonData;        
+    window.sermonData = sermonData;
+     setURLChange(sermonData.title,  window.deepLinkURL + '?section=sermonid=' + sermonID);        
     window.sermonID = sermonID;        
     window.sermonView = 1;        
     $('#individualSermonBar').show();        
