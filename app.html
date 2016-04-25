@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
     <link rel="apple-touch-icon-precomposed" href="https://www.thebodyofchrist.us/app/images/ios-desktop.png">
     <meta name="msapplication-TileImage" content="https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png">
-    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css'>    
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css'>
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300,300italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
@@ -28,7 +28,7 @@
 
 <body>
 
-<div id="fb-root"></div>
+    <div id="fb-root"></div>
     <div id="Gradient1" class="animateOpacity" style="
 position:absolute;
 display:none;
@@ -512,39 +512,72 @@ width:100%;
         </script>
         <script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
         <script>
-                function toggleBible(){
-             if($('#bibleSermonTabButton').hasClass('is-active')){
-             $('#bibleSermonTabButton').removeClass('is-active');
-             if(localStorage.getItem('sermonTab2') == "Bible"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
-             if(localStorage.getItem('sermonTab3') == "Bible"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
-             $(window.targetTab).empty();
-           }
-           else{
-             $('#bibleSermonTabButton').addClass('is-active');
-              if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon";localStorage.setItem('sermonTab2','Bible')}
-             if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Bible')}
-             $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
-             
-           }
-        }
-        
-         function toggleComments(){
-              if($('#commentSermonTabButton').hasClass('is-active')){
-             $('#commentSermonTabButton').removeClass('is-active');
-             if(localStorage.getItem('sermonTab2') == "Comments"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
-             if(localStorage.getItem('sermonTab3') == "Comments"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
-             $(window.targetTab).empty();
-           }
-           else{
-             $('#commentSermonTabButton').addClass('is-active');
-              if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Comments');}
-             if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3', 'Comments');}
-             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-             $(window.targetTab).append('<fb:comments href="' + url +  '" num_posts="2" width="500"></fb:comments>');
-             FB.XFBML.parse();
-           }
-          
-        }
+            function toggleBible() {
+                if ($('#bibleSermonTabButton').hasClass('is-active')) {
+                    $('#bibleSermonTabButton').removeClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Bible") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Empty');
+                    }
+                    if (localStorage.getItem('sermonTab3') == "Bible") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Empty');
+                    }
+                    $(window.targetTab).empty();
+                } else {
+                    $('#bibleSermonTabButton').addClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Empty") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Bible');
+                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
+                        break toggleBible;
+                    }
+                    if (localStorage.getItem('sermonTab3') == "Empty") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Bible');
+                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
+                        break toggleBible;
+                    }
+
+
+                }
+            }
+
+            function toggleComments() {
+                if ($('#commentSermonTabButton').hasClass('is-active')) {
+                    $('#commentSermonTabButton').removeClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Comments") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Empty');
+                    }
+                    if (localStorage.getItem('sermonTab3') == "Comments") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Empty');
+                    }
+                    $(window.targetTab).empty();
+                } else {
+                    $('#commentSermonTabButton').addClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Empty") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Comments');
+                        url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+                        $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+                        FB.XFBML.parse();
+                        break toggleComments;
+                    }
+                    if (localStorage.getItem('sermonTab3') == "Empty") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Comments');
+                        url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+                        $(window.targetTab).append('<fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+                        FB.XFBML.parse();
+                        break toggleComments;
+                    }
+
+
+                }
+
+            }
         </script>
 </body>
 
