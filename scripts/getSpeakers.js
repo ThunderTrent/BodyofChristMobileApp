@@ -61,6 +61,7 @@ function loadSpeakers(search, communityID, insert) {
         }else{}
       
     });
+}
 
 function cacheImageCheck(imageCacheTarget) {
 
