@@ -488,7 +488,7 @@ else{
     //snackbarContainer.MaterialSnackbar.showSnackbar(data);
      
    }
-   
+   try{
     function toggleBible(){
              if($('#bibleSermonTabButton').hasClass('is-active')){
              $('#bibleSermonTabButton').removeClass('is-active');
@@ -519,3 +519,7 @@ else{
            }
           
         }
+   }
+        catch(err){
+          alert(err);
+          }
