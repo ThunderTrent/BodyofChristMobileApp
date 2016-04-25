@@ -340,6 +340,7 @@ function loadIndividualSermon(sermonID) {    
        
         initiateTab2();
         initiateTab3();
+        $('#contentHolder').empty();
 
       setTimeout(function() {
         sermonContentHeight = $('#sermonContentInside').height();
