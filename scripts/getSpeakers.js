@@ -53,7 +53,7 @@ function loadSpeakers(search, communityID, insert) {
     } else {}
 
     jQuery.ajax({
-        url: url,
+        url: 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/',
         type: "GET",
     }).done(function(speakerData, textStatus, jqXHR) {    
         if (insert == "True") {
