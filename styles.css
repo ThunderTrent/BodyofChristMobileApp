@@ -415,7 +415,7 @@ span {
   #titleSpan{
     text-overflow: ellipsis;
     width:140px!important;
-    overflow:hidden !important;
+    overflow:scroll !important;
   }
 }
 
@@ -436,7 +436,7 @@ span {
   #titleSpan{
     text-overflow: ellipsis;
     width:200px!important;
-    overflow:hidden !important;
+    overflow:scroll !important;
   }
   div.br-widget.br-readonly {
     margin-left: -12px !important;
@@ -475,7 +475,7 @@ span {
   #titleSpan{
     text-overflow: ellipsis;
     width:226px;
-    overflow:hidden;
+    overflow:scroll;
   }
  
   .sermonText {
@@ -543,7 +543,7 @@ span {
   #titleSpan{
     text-overflow: ellipsis;
     width:292px;
-    overflow:hidden;
+    overflow:scroll;
   }
     #teachingTitleOverview{
     white-space:nowrap !important;
