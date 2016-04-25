@@ -362,7 +362,7 @@ function loadIndividualSermon(sermonID) {    
         
         function initiateTab3(){
           target = "#thirdTabSermon"
-          tab3 = localStorage.getItem('sermonTab2');
+          tab3 = localStorage.getItem('sermonTab3');
           if (tab3 == "Bible"){
           $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
           }
