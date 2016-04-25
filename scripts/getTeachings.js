@@ -346,7 +346,7 @@ function loadIndividualSermon(sermonID) {    
             localStorage.setItem('sermonTab2','Bible');
           }
            if (localStorage.getItem('sermonTab3') ==null){
-            localStorage.setItem('sermonTab2','Comments');
+            localStorage.setItem('sermonTab3','Comments');
           }
           
         function initiateTab2(){
