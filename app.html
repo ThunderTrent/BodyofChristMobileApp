@@ -11,6 +11,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <meta name="theme-color" content="#604732">
+<!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#604732">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-status-bar-style" content="#604732">
     <link rel="apple-touch-icon-precomposed" href="https://www.thebodyofchrist.us/app/images/ios-desktop.png">
     <meta name="msapplication-TileImage" content="https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css'>
@@ -20,7 +25,7 @@
     <meta name="msapplication-TileColor" content="#3372DF">
     <link rel="shortcut icon" href="https://www.thebodyofchrist.us/app/images/favicon.png">
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/fonts/material-icons.css">
-    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/blue_material.css" />
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/datepicker.css">
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/font-awesome-css.css">
@@ -71,46 +76,29 @@ width:100%;
     <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;position:absolute;"></div>
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title"></span>
-                <div class="mdl-layout-spacer"></div>
-
-
-                <div class="mdl-layout-spacer"></div>
-                <div id="searchTopDiv" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i onclick="$('#searchTopDiv').addClass('is-focused');$('#quick-search').focus();"class="material-icons">search</i>
-            </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
-
-                        <label class="mdl-textfield__label" for="search">Enter your query...</label>
-                    </div>
-                </div>
-
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
-            <i class="material-icons">more_vert</i>
-          </button>
-                <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
-                    <li onclick="cordova.InAppBrowser.open('https://www.thebodyofchrist.us/about/');" class="mdl-menu__item">About</li>
-                    <li onclick="clearCache();" class="mdl-menu__item">Clear Cache</li>
-                    <li onclick="toggleBeta();" class="mdl-menu__item">Toggle Beta</li>
-                    <li onclick="logout();" href="#" class="mdl-menu__item">Logout</li>
-                </ul>
-                <span id="loginButton" onclick="login();" href="index.html" style="display:none;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
-            </div>
+          
             <div id="bars" style="max-height:146px;overflow-x:hidden;">
                 <div id="primaryBar1" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="background-color:#f39c12;height:48px;display:none;">
                     <a href="#" onclick="setView('Global');" class="mdl-layout__tab is-active">Global</a>
 
                 </div>
                 <div id="primaryBar" class="mdl-layout__tab-bar" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
-                    <a href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
+                    <a style="" href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
                     <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-universal-access" style="margin-right:10px"></i>Your Community</a>
-                    <a href="#" id="followButton" onclick="setViewFollow();" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;"class="material-icons">stars</i><span style="margin-left:20px;">Following</span></a>
+                    <div id="searchTopDiv" style="margin-top:30px;" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i style="color:white;"onclick="$('#searchTopDiv').addClass('is-focused');$('#quick-search').focus();$('#globalButton').hide();$('#communityButton').hide();$('#searchTopDiv').addClass('searchMarginLeft');"class="material-icons">search</i>
+            </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input style="color:white;" id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
+
+                        <label style="color:white;"class="mdl-textfield__label" for="search">Enter your query...</label>
+                    </div>
+                </div>
+                 
                 </div>
                 <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(0, 115, 183, 0.91);">
-                    <a id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
+                    <a style="" id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
                     <a id="teachings" href="#" onclick="teachingsLoad('True');" class="mdl-layout__tab"><i class="fa fa-file-audio-o" style="margin-right:10px"></i>Teachings</a>
                     <a id="needs" href="#" onclick="needsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;"class="fa fa-heart"></i>Needs</a>
                     <a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;" class="material-icons">home</i><span style="margin-left:20px;">Churches</span></a>
@@ -118,7 +106,7 @@ width:100%;
                     <a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-users" aria-hidden="true"></i>Members</a>
                 </div>
                 <div id="teachingBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(221, 75, 57, 0.85);display:none;">
-                    <a id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="ion ion-ios-bookmarks"></i>Sermons</a>
+                    <a style="" id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="ion ion-ios-bookmarks"></i>Sermons</a>
                     <a id="verseByVerseButton" href="#" onclick="verseByVerseLoad('True');" class="mdl-layout__tab"><i class="ion ion-ios-bookmarks" style="margin-right:10px;"></i>Verse By Verse</a>
                     <a id="bibleButton" href="#" onclick="bibleLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-cloud-download" aria-hidden="true"></i>Downloaded Teachings</a>
                 </div>
@@ -327,14 +315,14 @@ width:100%;
 
         <script src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>
         <script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/dashboard.js"></script>
+        <script src="scripts/dashboard.js"></script>
         <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
 
         <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
         <script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>
         <script src='https://www.thebodyofchrist.us/app/scripts/nprogress.js'></script>
-        <link rel='stylesheet' href='css/nprogress.css' />
+        <link rel='stylesheet' href='https://www.thebodyofchrist.us/app/css/nprogress.css' />
         <script>
             window.userID = localStorage.getItem('userID');
             window.communityID = localStorage.getItem('userCommunityID');

@@ -360,7 +360,7 @@ else{
        setBackground();
        ImgCache.init(function() {
          setViewGlobal();
-         // bindToSearches();
+    
         // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
        }, function() {
          alert('ImgCache init: error! Check the log for errors');
@@ -372,6 +372,7 @@ else{
        initialLoad();
        startApp();
        initializeDeepLinks();
+       bindSearchButton();
      }
    } else {
      //CODE RAN ON WEB
@@ -382,7 +383,8 @@ else{
        setBackground();
        //ImgCache.init(function() {
        setViewGlobal();
-       //bindToSearches();
+   
+        bindSearchButton();
 
        // }, function() {
        //     alert('ImgCache init: error! Check the log for errors');
@@ -492,5 +494,12 @@ else{
      
    }
 
-
   
+  function bindSearchButton(){
+  $('#quick-search').blur(function() {
+  $('#globalButton').show();
+  $('#searchTopDiv').removeClass('searchMarginLeft');
+  $('#communityButton').show();
+  $('#searchTopDiv').removeClass('is-dirty');
+  });
+  }

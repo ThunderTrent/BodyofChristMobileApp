@@ -15,8 +15,9 @@
  */
 
 .mdl-textfield__label:after{
-  background: #616161 !important;
+  background: #fff !important;
 }
+
 
 .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after{
   background:white !important;
@@ -518,6 +519,18 @@ span {
 
 @media only screen and (min-width: 1000px) {
   
+  .searchMarginLeft{
+    margin-left:50px !important;
+  }
+  #globalButton{
+   margin-left:50px !important;
+  }
+  #activity{
+    margin-left:50px !important;
+  }
+  #sermonsButton{
+    margin-left:50px !important;
+  }
   #secondTabSermon{
     display:block!important;
   }
