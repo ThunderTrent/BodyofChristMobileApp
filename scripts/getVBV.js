@@ -58,71 +58,13 @@ function loadVBV(search, communityID, userID) {
 
 function loadVBVInsert(url, target, name) {
     jQuery.ajax({
-        url: url,
+        url: 'https://www.thebodyofchrist.us/service/phonegap/versebyversefeed/',
         type: "GET",
     }).done(function(vbvData, textStatus, jqXHR) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.vbvData = vbvData;
-        if (url.split(':')[0] == "https") {
-
-        } else {
-            downloadFile(name, url);
-        }
-        
-         $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + vbvData.count +   ' Verse by Verse Teachings '+ viewName + ' </span></div>');
+       
+        $('#contentHolder').append(vbvData);
     
     
-        $.each(vbvData.results, function(index, value) {
-
-            churchID = parseInt(vbvData.results[index].churchid);
-            speakerID = parseInt(vbvData.results[index].speaker);
-
-
-
-            try {
-                churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;
-                console.log(churchName);
-            } catch (err) {
-                console.log('error');
-                churchName = 'No Church Listed';
-            }
-
-            try {
-                speakerName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;
-                console.log(speakerName);
-            } catch (err) {
-                console.log('error');
-                speakerName = 'No Speaker Name Listed';
-            }
-
-
-        vbvImage = 'https://www.thebodyofchrist.us/service/getSpeakerImageFromSermon/?speaker=' + vbvData.results[index].speaker;
-        
-
-            $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;">' +
-                '<ul class="demo-list-two mdl-list">' +
-                '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +
-                '<span class="mdl-list__item-primary-content" style="margin-top:-15px;">' +
-                 '<img style="border-radius:20px;margin-top:-15px;width:80px;height:80px;position:absolute;" id="vbv_IMG_' + vbvData.results[index].id + '" src="' + vbvImage + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +
-                //'<div style="background-size:cover;margin-top:-10px;width:80px;border-radius:10px;height:80px;float:left;margin-right:20px;background-image:url(\' '\');"></div>' +
-                '<span style="margin-left:100px;" onclick="loadIndividualSermon(' + vbvData.results[index].downloadedcontentid + ');">' + vbvData.results[index].title + '</span><br>' +
-                '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + speakerName + '</span>' +
-                '<span style="margin-left:100px;" class="mdl-list__item-sub-title">' + churchName + '</span>' +
-                '</span>' +
-                '</li>' +
-                '</ul>' +
-                '</div>');
-             var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-                 if (app) {
-                var imageCacheTarget = $('#speaker_IMG_' + vbvData.results[index].speaker);
-                cacheImageCheck(imageCacheTarget);
-            } else {
-
-            }
-
-        });
-
-        console.log('Teachings Loaded');
-        $('#loading').hide();
     });
 }
