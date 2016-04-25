@@ -180,7 +180,7 @@ function loadIndividualSermon(sermonID) {    
     $('#loading').hide();        
     console.log("HTTP Request Succeeded: " + jqXHR.status);        
     window.sermonData = sermonData;
-     setURLChange(sermonData.title,  window.deepLinkURL + '?section=sermonid=' + sermonID);        
+     setURLChange(sermonData.results[0].title,  window.deepLinkURL + '?sermonid=' + sermonID);        
     window.sermonID = sermonID;        
     window.sermonView = 1;        
     $('#individualSermonBar').show();        
