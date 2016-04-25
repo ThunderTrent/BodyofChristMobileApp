@@ -450,7 +450,8 @@ else{
     }
     }
     else{
-    loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+    //loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+    activityLoad();
     }
 
 
