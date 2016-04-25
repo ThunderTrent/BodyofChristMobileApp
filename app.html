@@ -527,7 +527,7 @@ width:100%;
         }
         
          function toggleComments(){
-              if($('commentSermonTabButton').hasClass('is-active')){
+              if($('#commentSermonTabButton').hasClass('is-active')){
              $('#commentSermonTabButton').removeClass('is-active');
              if(localStorage.getItem('sermonTab3') == "Comments"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
              if(localStorage.getItem('sermonTab2') == "Comments"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
