@@ -1,19 +1,3 @@
-// function downloadFile(name,dataUrl) {
-//   var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = name +  ".json";
-//     fileTransfer.download(dataUrl, store + fileName,
-//         function(entry) {
-//             console.log("DownloadedJSON!");
-//             //alert('Downloaded');
-//         },
-//         function(err) {
-//             console.log("Error");
-//            });
-
-
-// }
-
 
 
 function loadTeachings(search, communityID, userID, insert, title, date, date2, sermonID) {    
@@ -375,20 +359,7 @@ function loadIndividualSermon(sermonID) {    
           }
         }
         
-        function toggleBible(){
-             if($('#bibleSermonTabButton').hasClass('is-active')){
-             $('#bibleSermonTabButton').removeClass('is-active');
-             if(localStorage.getItem('sermonTab3') == "Bible"){window.targetTab = "#thirdTabSermon"; localStorage.setItem('sermonTab3','Empty');}
-             if(localStorage.getItem('sermonTab2') == "Bible"){window.targetTab = "#secondTabSermon"; localStorage.setItem('sermonTab2','Empty');}
-             $(window.targetTab).empty();
-           }
-           else{
-             $('#bibleSermonTabButton').addClass('is-active');
-              if(localStorage.getItem('sermonTab2') == "Empty"){window.targetTab = "#secondTabSermon"}
-             if(localStorage.getItem('sermonTab3') == "Empty"){window.targetTab = "#thirdTabSermon"}
-             $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1"></iframe>');
-           }
-        }
+       
         function toggleComments(){
           
         }
