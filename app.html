@@ -513,6 +513,14 @@ width:100%;
                     }
                     $(window.targetTab).empty();
                 } else {
+
+                    if (sermonData.results[0].book == null){
+                    var snackbarContainer = document.querySelector('#alertToast');
+                    var data = {message: "This sermon doesn't have a particular book registered."};
+                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+          }
+          else{
                     $('#bibleSermonTabButton').addClass('is-active');
                     if (localStorage.getItem('sermonTab2') == "Empty") {
                         window.targetTab = "#secondTabSermon";
@@ -527,6 +535,7 @@ width:100%;
                         return;
                     }
 
+                    }
 
                 }
             }
