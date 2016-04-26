@@ -130,6 +130,7 @@ function loadIndividualSermon(sermonID) {    
   $('#teachingBar').show();
   $('#filters').hide();    
   $('#loading').show();    
+  
   url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=1&speakerid=*&title=*&downloadedcontentid=' + sermonID;
 
       
