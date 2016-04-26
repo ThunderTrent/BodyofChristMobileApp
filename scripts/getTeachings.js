@@ -297,9 +297,9 @@ function loadIndividualSermon(sermonID) {    
         '</div>' +
         '</div>' + 
         '</div>'+
-        '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;left:33%;position:absolute;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;">'+
+        '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;left:33%;position:absolute;background-color:rgba(255, 255, 255, 0.77) !important;border-radius:5px;">'+
         '</div>'+
-        '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.42) !important;border-radius:40px;" id="thirdTabSermon"></div>');
+        '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.77) !important;border-radius:5px;" id="thirdTabSermon"></div>');
          
          if (localStorage.getItem('sermonTab2') == null){
             localStorage.setItem('sermonTab2','Bible');

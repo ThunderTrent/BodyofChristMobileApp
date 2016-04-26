@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5d19494-d199-45ac-a956-86c81b6aaefa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.html" afterPath="$PROJECT_DIR$/app.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/getTeachings.js" afterPath="$PROJECT_DIR$/scripts/getTeachings.js" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +33,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6511628">
+            <state vertical-scroll-proportion="2.764706">
               <caret line="518" column="95" selection-start-line="518" selection-start-column="95" selection-end-line="518" selection-end-column="95" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -133,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getTeachings.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="getTeachings.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="208.77777">
-              <caret line="338" column="11" selection-start-line="338" selection-start-column="11" selection-end-line="338" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.43609023">
+              <caret line="299" column="239" selection-start-line="299" selection-start-column="239" selection-end-line="299" selection-end-column="239" />
               <folding />
             </state>
           </provider>
@@ -152,9 +152,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/cisco.txt" />
-        <option value="$PROJECT_DIR$/scripts/getTeachings.js" />
         <option value="$PROJECT_DIR$/scripts/dashboard.js" />
         <option value="$PROJECT_DIR$/app.html" />
+        <option value="$PROJECT_DIR$/scripts/getTeachings.js" />
       </list>
     </option>
   </component>
@@ -517,17 +517,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="208.77777">
-          <caret line="338" column="11" selection-start-line="338" selection-start-column="11" selection-end-line="338" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6511628">
+        <state vertical-scroll-proportion="2.764706">
           <caret line="518" column="95" selection-start-line="518" selection-start-column="95" selection-end-line="518" selection-end-column="95" />
           <folding>
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -610,6 +602,14 @@
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#form#0;n#center#0;n#span#0;n#div#0;n#div#0;n#div#0;n#section#0;n#main#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#section#0;n#main#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43609023">
+          <caret line="299" column="239" selection-start-line="299" selection-start-column="239" selection-end-line="299" selection-end-column="239" />
+          <folding />
         </state>
       </provider>
     </entry>
