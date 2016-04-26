@@ -312,8 +312,13 @@ function loadIndividualSermon(sermonID) {    
           target = "#secondTabSermon"
           tab2 = localStorage.getItem('sermonTab2');
           if (tab2 == "Bible"){
+          if (sermonData.results[0].book == null){
+          localStorage.setItem('sermonTab2','Empty');
+          }
+          else{
           $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
           $('#bibleSermonTabButton').addClass('is-active');
+          }
           }
           else if (tab2 == "Comments"){
             $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
@@ -326,8 +331,12 @@ function loadIndividualSermon(sermonID) {    
           target = "#thirdTabSermon"
           tab3 = localStorage.getItem('sermonTab3');
           if (tab3 == "Bible"){
+          if (sermonData.results[0].book == null){
+          localStorage.setItem('sermonTab3','Empty');
+          }else{
           $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
           $('#bibleSermonTabButton').addClass('is-active');
+          }
           }
           else if (tab3 == "Comments"){
           $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
