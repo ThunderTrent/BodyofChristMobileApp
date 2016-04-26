@@ -126,6 +126,8 @@ function loadSermonsInsert(url, target, insert, name) {
 
 
 function loadIndividualSermon(sermonID) {    
+  $('#teachings').addClass('is-active');
+  $('#teachingBar').show();
   $('#filters').hide();    
   $('#loading').show();    
   url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=1&speakerid=*&title=*&downloadedcontentid=' + sermonID;
