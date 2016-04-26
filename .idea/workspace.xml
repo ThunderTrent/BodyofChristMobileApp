@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5d19494-d199-45ac-a956-86c81b6aaefa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/getTeachings.js" afterPath="$PROJECT_DIR$/scripts/getTeachings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/dashboard.js" afterPath="$PROJECT_DIR$/scripts/dashboard.js" />
     </list>
     <ignored path="www.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,20 +43,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/dashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="467" column="8" selection-start-line="467" selection-start-column="8" selection-end-line="467" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.2">
+              <caret line="436" column="9" selection-start-line="436" selection-start-column="9" selection-end-line="436" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getTeachings.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="getTeachings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78446114">
+            <state vertical-scroll-proportion="208.77777">
               <caret line="338" column="11" selection-start-line="338" selection-start-column="11" selection-end-line="338" selection-end-column="11" />
               <folding />
             </state>
@@ -74,8 +73,8 @@
       <list>
         <option value="$PROJECT_DIR$/app.html" />
         <option value="$PROJECT_DIR$/cisco.txt" />
-        <option value="$PROJECT_DIR$/scripts/dashboard.js" />
         <option value="$PROJECT_DIR$/scripts/getTeachings.js" />
+        <option value="$PROJECT_DIR$/scripts/dashboard.js" />
       </list>
     </option>
   </component>
@@ -358,18 +357,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/dashboard.js">
+    <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="467" column="8" selection-start-line="467" selection-start-column="8" selection-end-line="467" selection-end-column="8" />
+        <state vertical-scroll-proportion="208.77777">
+          <caret line="338" column="11" selection-start-line="338" selection-start-column="11" selection-end-line="338" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/getTeachings.js">
+    <entry file="file://$PROJECT_DIR$/scripts/dashboard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78446114">
-          <caret line="338" column="11" selection-start-line="338" selection-start-column="11" selection-end-line="338" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.2">
+          <caret line="436" column="9" selection-start-line="436" selection-start-column="9" selection-end-line="436" selection-end-column="9" />
           <folding />
         </state>
       </provider>
