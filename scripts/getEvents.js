@@ -1,16 +1,3 @@
-// function downloadFile(name, dataUrl) {
-//     var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = name + ".json";
-//     fileTransfer.download(dataUrl, store + fileName,
-//         function(entry) {
-//             console.log("DownloadedJSON!" + name);
-//             //alert('Downloaded');
-//         },
-//         function(err) {
-//             console.log("Error");
-//         });
-// }
 
 
 
@@ -66,6 +53,9 @@ function loadEventsInsert(url, target, name, insert) {
         type: "GET",
     }).done(function(eventData, textStatus, jqXHR) {
         console.log("HTTP Request Succeeded: " + jqXHR.status);
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
         //window.eventData = eventData;
          if (insert =="True"){
          // $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + eventData.count +   ' Recent Events' + ' </span></div>');

@@ -7,8 +7,8 @@ window.deepLinkURL = 'app.html';
 else{
  window.deepLinkURL = '';
 }
-   
-   
+
+
    function teachingsLoad(pressed) {
 
      window.currentView = "Teachings";
@@ -25,6 +25,9 @@ else{
      $('#members').removeClass('is-active');
      $('#churches').removeClass('is-active');
      //  $('#speakers').removeClass('is-active');
+     $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      //  $('#filtersVBV').hide();
      sermonsLoad();
      //  $('#filtersVBV').hide();
@@ -45,6 +48,9 @@ else{
      window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      //  $('#filtersVBV').hide();
      //  $('#filtersSermons').show();
      $('#searchIcon').addClass('is-focused');
@@ -81,6 +87,10 @@ else{
        //  $('#filtersSpeakers').hide();
        //  $('#filtersMembers').hide();
      });
+
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      $('#sermonsButton').removeClass('is-active');
      $('#verseByVerseButton').addClass('is-active');
      $('#speakers').removeClass('is-active');
@@ -129,6 +139,9 @@ else{
      $('#activity').removeClass('is-active');
      $('#teachings').removeClass('is-active');
      $('#needs').removeClass('is-active');
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      $('#churches').addClass('is-active');
      $('#members').removeClass('is-active');
      $('#teachingBar').hide();
@@ -153,6 +166,9 @@ else{
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
      $('#activity').removeClass('is-active');
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      $('#teachings').removeClass('is-active');
      $('#churches').removeClass('is-active');
      $('#needs').removeClass('is-active');
@@ -178,6 +194,9 @@ else{
      $('#contentHolder').empty();
      $('#activity').addClass('is-active');
      $('#teachings').removeClass('is-active');
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      $('#needs').removeClass('is-active');
      $('#churches').removeClass('is-active');
      $('#members').removeClass('is-active');
@@ -209,6 +228,9 @@ else{
      $('#churches').removeClass('is-active');
      $('#members').removeClass('is-active');
      $('#teachingBar').hide();
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
      $('#needsBar').hide();
      loadSpeakers(localStorage.getItem('view'), communityID, 'True');
      closeSermon();
@@ -228,6 +250,7 @@ else{
      $('#contentHolder').empty();
      $('#teachingBar').hide();
      $('#teachingBar').hide();
+
      $('#needsBar').show();
      $('#activity').removeClass('is-active');
      $('#teachings').removeClass('is-active');
@@ -360,7 +383,7 @@ else{
        setBackground();
        ImgCache.init(function() {
          setViewGlobal();
-    
+
         // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
        }, function() {
          alert('ImgCache init: error! Check the log for errors');
@@ -383,7 +406,7 @@ else{
        setBackground();
        //ImgCache.init(function() {
        setViewGlobal();
-   
+
         bindSearchButton();
 
        // }, function() {
@@ -448,14 +471,14 @@ else{
        } else if (section == "Members") {
          membersLoad();
      } else if (section == "Speakers") {
-        speakersLoad(); 
+        speakersLoad();
      } else if (section == "NewsFeed") {
-        activityLoad(); 
+        activityLoad();
     }
     }
     else{
     //loadEvents(localStorage.getItem('view'), communityID, '', 'True');
-    activityLoad();
+    teachingsLoad();
     }
 
 
@@ -475,7 +498,7 @@ else{
        document.title = e.state.pageTitle;
      }
    };
-   
+
    function disableNonMemberFunction(){
      $('#communityButton').css('color','#946720');
      $('#communityButton').prop('onclick',null).off('click');
@@ -486,15 +509,15 @@ else{
      $('#bibleButton').prop('onclick',null).off('click');
      $('#needsButton').css('color','#946720');
      $('#needsButton').prop('onclick',null).off('click');
-    
+
      $('#loginButton').show();
     //var snackbarContainer = document.querySelector('#alertToast');
    // var data = {message: "You Are Not Logged In.. Register or Login."};
     //snackbarContainer.MaterialSnackbar.showSnackbar(data);
-     
+
    }
 
-  
+
   function bindSearchButton(){
   $('#quick-search').blur(function() {
   $('#globalButton').show();

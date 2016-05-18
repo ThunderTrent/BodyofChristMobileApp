@@ -1,16 +1,4 @@
-// function downloadFile(name, dataUrl) {
-//     var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = name + ".json";
-//     fileTransfer.download(dataUrl, store + fileName,
-//         function(entry) {
-//             console.log("DownloadedJSON!" + name);
-//             //alert('Downloaded');
-//         },
-//         function(err) {
-//             console.log("Error");
-//         });
-// }
+
 
 function loadChurches(search, communityID, userID, insert) {
 
@@ -63,6 +51,9 @@ function loadChurchInsert(url, target, insert, name) {
         url: url,
         type: "GET",
     }).done(function(churchData, textStatus, jqXHR) {
+         $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
        // console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.churchData = churchData;
         if (insert =="True"){

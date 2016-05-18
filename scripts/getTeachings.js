@@ -5,12 +5,12 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
 
     var isOffline = 'onLine' in navigator && !navigator.onLine;
 
-  
+
     if (search == "Global") {
         //check online status
         if (isOffline === false) {
 
-           
+
             url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=' + title;
             name = "globalTeachings";
         } else {
@@ -19,21 +19,21 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
         target = '#contentHolder';
         loadSermonsInsert(url, target, insert, name);
     } else if (search == "Community") {
-        if (isOffline === false) { 
+        if (isOffline === false) {
             url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&communityID=' + communityID + '&title=' + title;
             name = "communityTeachings";
         } else {
             url = 'localurl';
-        } 
+        }
         target = '#contentHolder';
         loadSermonsInsert(url, target, insert, name);
     } else if (search == "IndividualSermon") {
-        if (isOffline === false) { 
+        if (isOffline === false) {
             url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&title=*&downloadedcontentid=' + sermonID;
             name = sermonID + '_Teachings';
         } else {
             url = 'localurl';
-        } 
+        }
         target = '#contentHolder';
         loadSermonsInsert(url, target, insert, name);
     } else if (search == "Following") {
@@ -44,57 +44,49 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
             } else {
 
             }
-            if (isOffline === false) { 
+            if (isOffline === false) {
                 url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&ypeofcontent=Sermon&speakerid=' + followArray + '&title=' + window.title;
                 name = 'followingTeachings'
             } else {
                 url = 'localurl';
-            } 
+            }
             target = '#contentHolder';
             loadSermonsInsert(url, target, insert, name);
 
 
 
-        
+
         })
     }
 }
 
 function loadSermonsInsert(url, target, insert, name) {
 
-  
+
     jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
     type: "GET",
-      
+
     }).done(function(teachingData, textStatus, jqXHR) {
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
 
-        //check to see if file exists in cache to save it to
-        //console.log('test');
-        if (url.split(':')[0] == "https") {
 
-        } else {
-            //downloadFile(name, url);
 
-        }
-        //console.log('test');
 
 
 
         //$('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count + ' Sermons Indexed Globally</span></div>');
 
         $('#contentHolder').append(teachingData);
+
+
         // $.each(teachingData.results, function(index, value) {
 
 
 
-   //Get Name for user
-        // 
-        // churchID = parseInt(teachingData.results[index].churchid);
-        // speakerID = parseInt(teachingData.results[index].speaker);
 
-  
         function arrayLookup(array, prop, val) {
             for (var i = 0, len = array.length; i < len; i++) {
                 if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
@@ -114,17 +106,21 @@ function loadSermonsInsert(url, target, insert, name) {
 
         }
 
+            jQuery('.scrollbar-rail').scrollbar();
 
-    
-    }); 
-    console.log('Teachings Loaded');
-    $('#loading').hide();
+
+
+    });
+
 
 }
 
 
 function loadIndividualSermon(sermonID) {
-    $('#contentHolder').empty();
+    $('#sermonContent').empty();
+        $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
     $('#teachings').addClass('is-active');
     $('#teachingBar').show();
     $('#filters').hide();
@@ -132,12 +128,15 @@ function loadIndividualSermon(sermonID) {
 
     url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=1&speakerid=*&title=*&downloadedcontentid=' + sermonID;
 
-  
+
     jQuery.ajax({
         url: url,
     type: "GET",
-      
+
     }).done(function(sermonData, textStatus, jqXHR) {
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
         $('#loading').hide();
         console.log("HTTP Request Succeeded: " + jqXHR.status);
         window.sermonData = sermonData;
@@ -148,7 +147,7 @@ function loadIndividualSermon(sermonID) {
         $("#bars").animate({
             scrollTop: $(document).height()
         }, 5000); //Hide Content
-    
+
         $("#contentHolder").animate({
             opacity: 0.25,
       left: "-=2000",
@@ -157,7 +156,7 @@ function loadIndividualSermon(sermonID) {
 
 
 
-      
+
             function arrayLookup(array, prop, val) {
                 for (var i = 0, len = array.length; i < len; i++) {
                     if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
@@ -169,7 +168,7 @@ function loadIndividualSermon(sermonID) {
 
 
 
-      
+
             try {
                 title = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).title;
                 console.log(title);
@@ -178,7 +177,7 @@ function loadIndividualSermon(sermonID) {
                 title = 'No Title Listed';
             }
 
-      
+
             try {
                 rating = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).rating;
                 console.log(rating);
@@ -187,7 +186,7 @@ function loadIndividualSermon(sermonID) {
                 rating = 'Not Yet Rated';
             }
 
-      
+
             try {
                 churchID = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).churchid;
                 console.log(churchID);
@@ -197,7 +196,7 @@ function loadIndividualSermon(sermonID) {
                 churchName = 'No Church Name Listed';
             }
 
-      
+
             try {
                 speakerid = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).speaker;
                 console.log(speakerid);
@@ -243,22 +242,22 @@ function loadIndividualSermon(sermonID) {
             try {
                 if (window.audioSource) {
                     window.audioCode = '<input id="teachingSlider" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="0" tabindex="0">' + '<div id="audioHolderContainer" style="display:-webkit-box;color:#23140B;">' +'<div style="width:32%;text-align:center;"><i id="rewindButton" class="material-icons" style="text-align:center;font-size:30px;">fast_rewind</i></div>' + '<div style="width:32%;text-align:center;"><i id="playButton" onclick="play();"class="material-icons" style="text-align:center;font-size:30px;">play_arrow</i></div>' + '<div style="width:32%;text-align:center;"><i id="fastforwardButton" class="material-icons" style="text-align:center;font-size:30px;">fast_forward</i></div></div>';
-                } else { 
+                } else {
                     window.audioCode = '<audio style="margin-top:50px;width:100%;" id="teachingAudio" controls>' +
                         '<source src="' + 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + sermonID + '.mp3' + '" type="audio/mp3">' + '</audio>';
 
                 }
-            } catch (err) { 
+            } catch (err) {
                 window.audioCode = '<audio style="margin-top:50px;width:100%;" id="teachingAudio" controls>' +
                     '<source src="' + 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + sermonID + '.mp3' + '" type="audio/mp3">' + '</audio>';
             }
 
 
-      
-            audioStatus = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).audioStatus; 
+
+            audioStatus = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).audioStatus;
             $('#sermonContent').append('<div id="gradientSermonContent" style="   position: absolute; border-radius:40px;    width: calc(100% - 32px); margin:8px;  height: 100%;   background: -webkit-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0) 0%,rgba(0, 0, 0, 0) 50%,rgba(2, 2, 2, 0.25) 100%);' +
                 '"></div>' +
-                '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;position:absolute;background-color:rgba(255, 255, 255, 0.77) !important; border-radius:5px;">' +
+                '<div id="sermonContentInside" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;height:1040px;position:absolute;background-color:rgba(255, 255, 255, 0.77) !important; border-radius:5px;">' +
                 '<center><img src="https://www.thebodyofchrist.us/app/img/CrossWood.png" style="width: 50%; -webkit-animation: crossChange 10s infinite;"></center>' +
                 '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;"> Title:' + cleanTitle + '</span>' +
                 '<span class="mdl-list__item sermonText" style="font-family:\'Ubuntu\';font-size:23px;">Speaker: ' + speakerName + '</span>' +
@@ -299,15 +298,15 @@ function loadIndividualSermon(sermonID) {
                 '</div>' +
                 '</div>' +
                 '</div>' +
-                '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;left:33%;position:absolute;background-color:rgba(255, 255, 255, 0.77) !important;border-radius:5px;">' +
+                '<div id="secondTabSermon" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="max-height:1040px;overflow:scroll;height:1040px;display:none;left:33%;position:absolute;background-color:rgba(255, 255, 255, 0.77) !important;border-radius:5px;">' +
                 '</div>' +
-                '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;background-color: rgba(255, 255, 255, 0.77) !important;border-radius:5px;" id="thirdTabSermon"></div>');
+                '<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:none;position:absolute;left:66%;max-height:1040px;height:1040px;overflow:scroll;background-color: rgba(255, 255, 255, 0.77) !important;border-radius:5px;" id="thirdTabSermon"></div>');
 
             if (localStorage.getItem('sermonTab2') == null) {
                 localStorage.setItem('sermonTab2', 'Bible');
             }
             if (localStorage.getItem('sermonTab3') == null) {
-                localStorage.setItem('sermonTab3', 'Comments');
+                localStorage.setItem('sermonTab3', 'Playlist');
             }
 
             function initiateTab2() {
@@ -317,7 +316,7 @@ function loadIndividualSermon(sermonID) {
                     if (sermonData.results[0].book == null) {
                         localStorage.setItem('sermonTab2', 'Empty');
                     } else {
-                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
                         $('#bibleSermonTabButton').addClass('is-active');
                     }
                 } else if (tab2 == "Comments") {
@@ -325,6 +324,15 @@ function loadIndividualSermon(sermonID) {
                     FB.XFBML.parse();
                     $('#commentSermonTabButton').addClass('is-active');
                 }
+                else if (tab2 == "Playlist") {
+                    jQuery.ajax({
+                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+                   type: "GET",
+                  }).done(function(playlistHTML, textStatus, jqXHR) {
+                    $(target).append(playlistHTML);
+                    $('#playlistSermonTab').addClass('is-active');
+                });
+              }
             }
 
             function initiateTab3() {
@@ -334,14 +342,23 @@ function loadIndividualSermon(sermonID) {
                     if (sermonData.results[0].book == null) {
                         localStorage.setItem('sermonTab3', 'Empty');
                     } else {
-                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
                         $('#bibleSermonTabButton').addClass('is-active');
                     }
                 } else if (tab3 == "Comments") {
-                    $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+
                     FB.XFBML.parse();
                     $('#commentSermonTabButton').addClass('is-active');
                 }
+                else if (tab3 == "Playlist") {
+                    jQuery.ajax({
+                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+                   type: "GET",
+                  }).done(function(playlistHTML, textStatus, jqXHR) {
+                    $(target).append(playlistHTML);
+                    $('#playlistSermonTab').addClass('is-active');
+                });
+              }
             }
 
 
@@ -358,7 +375,7 @@ function loadIndividualSermon(sermonID) {
 
 
 
-   
+
             url = 'https://storage.googleapis.com/boc-audio/sermons_mp3/' + sermonID + '.mp3';
 
             window.sermonInfo = [];
@@ -483,10 +500,10 @@ function loadIndividualSermon(sermonID) {
 
 
 
-    
+
         });
 
-    
+
         $('#loading').hide();
     });
 }
@@ -541,9 +558,9 @@ function initAudioPlayer(url) {
     window.media = new Media(url); //audio = document.getElementById('teachingAudio');
    //audio.play();
    // Set object references
-  
+
     playbtn = document.getElementById('playButton'); //mutebtn = document.getElementById("mutebtn");
-  
+
     seekslider = document.getElementById("teachingSlider"); //volumeslider = document.getElementById("volumeslider");
    // Add Event Handling
    //mutebtn.addEventListener("click", mute);
@@ -573,10 +590,10 @@ function initAudioPlayer(url) {
    // }
    // }
 
-  
+
     function seekAudio() {
         var duration = window.media.getDuration();
-        var seekto = (duration * (seekslider.value / 100)); 
+        var seekto = (duration * (seekslider.value / 100));
         window.media.seekTo(seekto * 1000);
     }
 
@@ -626,11 +643,11 @@ function closeSermon() {
 
 function markaslistened(sermonid) {
 
-  
+
     jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/sermonhistory/add/?sermonid=' + sermonid,
     type: "GET",
-      
+
     }).done(function(results, textStatus, jqXHR) {
         $('#markAsListenedButton').hide();
         var snackbarContainer = document.querySelector('#alertToast');
@@ -646,7 +663,7 @@ function markaslistened(sermonid) {
 
 
 function seekAudio() {
-    var seekto = window.media.getDuration() * (seekslider.value / 100); 
+    var seekto = window.media.getDuration() * (seekslider.value / 100);
     window.media.seekTo(seekto);
 }
 
@@ -672,7 +689,7 @@ function setRating() {
     jQuery.ajax({
         url: url,
     type: "GET",
-      
+
     }).done(function(sermonData, textStatus, jqXHR) {
         $('#loading').hide();
         var snackbarContainer = document.querySelector('#alertToast');
@@ -685,11 +702,11 @@ function setRating() {
 
 function addView() {
     sermonID = window.sermonInfo[0].SermonID;
-    url = 'https://www.thebodyofchrist.us/service/addView/?sermonID=' + sermonID; 
+    url = 'https://www.thebodyofchrist.us/service/addView/?sermonID=' + sermonID;
     jQuery.ajax({
         url: url,
     type: "GET",
-      
+
     }).done(function(data, textStatus, jqXHR) {
         console.log(data);
         $('#loading').hide();
@@ -702,11 +719,11 @@ function addView() {
 function sendDuration() {
     sermonID = window.sermonInfo[0].SermonID;
     window.duration = Math.round(window.audioMP3.currentTime);
-    url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration; 
+    url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration;
     jQuery.ajax({
         url: url,
     type: "GET",
-      
+
     }).done(function(data, textStatus, jqXHR) {
         if (data == "Updated") {
             console.log('Updated Timestamp...' + window.duration);
@@ -719,7 +736,7 @@ function sendDuration() {
 
 function getDuration() {
     sermonID = window.sermonInfo[0].SermonID;
-    url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime'; 
+    url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime';
     jQuery.ajax({
         url: url,
     type: "GET",

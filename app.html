@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Body of Christ Phone App.">
+    <meta name="keywords" content="Jesus Christ, Sermons,Teachings,TheBodyofChrist, The Body of Christ, Fulfill Needs, Become Discipled,Paul Washer, Zac Poonen, Leonard Ravenhill, Commentaries, David Wilkerson, Steve Gregg, A.W. Tozer, John Piper, Francis Chan, Keith Daniel, Shane Idleman, Todd White, Todd Wagner, JP Pokluda   " />
+<meta name="description" content="Striving to unite the many churches of Jesus under a single banner, The Body of Christ is a web application that seeks to empower the sanctification of the believer through sermons/teachings, sharing the Love of Christ through fulfilling needs, and implanting individual members into community groups and discipleship programs for the Glory of God." />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BoC</title>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <meta name="apple-mobile-web-app-title" content="Body of Christ">
     <meta name="theme-color" content="#604732">
 <!-- Windows Phone -->
     <meta name="msapplication-navbutton-color" content="#604732">
@@ -53,24 +54,6 @@ height:100%;
 width:100%;
 
 "></div>
-    <!--<launch id="launch" class="" style="width: calc(100% + 10px);left:0px;height:100%;background-color:white;position:fixed;z-index:100;">
-        <object id="crossLaunch" class="" style="width:50%;left:50%;margin-left:-25%;position:absolute;" data="img/CROSS.svg" type="image/svg+xml"></object>
-
-        <span id="bocText">BODY OF CHRIST</span>
-
-        <div id="textHolderLaunch" style="top:45%;position:absolute;">
-            <p class="textIntro">
-                <b>Welcome! </b> Struggling with Sin? You are only as strong on this earth as the amount of time you spend seeking God through his word. Attempting to equip the believer with tools that will help them in their walk, I created this app
-                with three different core goals:<br>
-                <span style="color:#;">1.) Enabling People to Find Community Groups</span><br>
-                <span style="color:#;">2.) Enabling People to Find Local Needs in their Community</span><br>
-                <span style="color:#;">3.) Enabling Local Christian Churches Globally to Index Teachings and share the Word of God throughout their community & the world.</span><br>
-                <b>May Grace and Peace be multiplied unto you!</b><br></p>
-            <center><button onclick="startApp();" id="enterButton" style="background-color:rgb(115, 115, 115) !important;margin-top:-30px;" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">I'm Ready.. Enter.</button></center>
-
-        </div>
-    </launch>-->
-
 
 
     <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;position:absolute;"></div>
@@ -116,9 +99,9 @@ width:100%;
                 </div>
                 <div id="individualSermonBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color:rgba(243, 156, 18, 0.84);display:none;">
                     <a id="viewSermonTab" href="#" onclick="loadSermonPage()" class="mdl-layout__tab is-active">View Sermon</a>
-                    <a id="playlistSermonTab" href="#" onclick="togglePlaylist()" class="mdl-layout__tab is-active">Enable Playlist</a>
                     <a id="bibleSermonTabButton" href="#" onclick="toggleBible();" class="mdl-layout__tab">Enable Bible</a>
                     <a id="captionsSermonTabButton" href="#" onclick="nyi();" class="mdl-layout__tab">Enable Automated Captions</a>
+                    <a id="playlistSermonTab" href="#" onclick="togglePlaylist()" class="mdl-layout__tab">Enable Playlist</a>
                     <a id="commentSermonTabButton" href="#" onclick="toggleComments();" class="mdl-layout__tab">Enable Comments</a>
                     <a id="infoSermonTabButton" href="#" onclick="nyi();" class="mdl-layout__tab">Enable Sermon Origin Information</a>
                 </div>
@@ -526,13 +509,13 @@ width:100%;
                     if (localStorage.getItem('sermonTab2') == "Empty") {
                         window.targetTab = "#secondTabSermon";
                         localStorage.setItem('sermonTab2', 'Bible');
-                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
                         return;
                     }
                     if (localStorage.getItem('sermonTab3') == "Empty") {
                         window.targetTab = "#thirdTabSermon";
                         localStorage.setItem('sermonTab3', 'Bible');
-                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:' + window.innerHeight + 'px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
                         return;
                     }
 
@@ -571,10 +554,46 @@ width:100%;
                         FB.XFBML.parse();
                         return;
                     }
-
-
                 }
+            }
 
+            function togglePlaylist() {
+                if ($('#playlistSermonTab').hasClass('is-active')) {
+                    $('#playlistSermonTab').removeClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Playlist") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Empty');
+                    }
+                    if (localStorage.getItem('sermonTab3') == "Playlist") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Empty');
+                    }
+                    $(window.targetTab).empty();
+                } else {
+                    $('#playlistSermonTab').addClass('is-active');
+                    if (localStorage.getItem('sermonTab2') == "Empty") {
+                        window.targetTab = "#secondTabSermon";
+                        localStorage.setItem('sermonTab2', 'Playlist');
+                         jQuery.ajax({
+                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+                   type: "GET",
+                  }).done(function(playlistHTML, textStatus, jqXHR) {
+                    $(winow.targetTab).append(playlistHTML);
+                        return;
+                    });
+              }
+                    if (localStorage.getItem('sermonTab3') == "Empty") {
+                        window.targetTab = "#thirdTabSermon";
+                        localStorage.setItem('sermonTab3', 'Playlist');
+                         jQuery.ajax({
+                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+                   type: "GET",
+                  }).done(function(playlistHTML, textStatus, jqXHR) {
+                    $(window.targetTab).append(playlistHTML);
+                        return;
+                    });
+              }
+                }
             }
         </script>
 <script>

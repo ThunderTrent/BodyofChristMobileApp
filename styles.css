@@ -421,6 +421,21 @@ span {
     width:140px!important;
     overflow:scroll !important;
   }
+  #sermonContentInside{
+display:block !important;
+position: relative !important;
+}
+#secondTabSermon{
+left:0% !important;
+display:block !important;
+position: relative !important;
+}
+#thirdTabSermon{
+left:0% !important;
+display:block !important;
+position:relative !important;
+}
+
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
@@ -458,6 +473,21 @@ span {
   margin-left:calc(100% - 55px)!important;
     display:block !important;
   }
+  #sermonContentInside{
+display:block !important;
+position: relative !important;
+}
+#secondTabSermon{
+left:0% !important;
+display:block !important;
+position: relative !important;
+}
+#thirdTabSermon{
+left:0% !important;
+display:block !important;
+position:relative !important;
+}
+
 }
 
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
@@ -491,6 +521,23 @@ span {
   .br-theme-fontawesome-stars .br-widget {
     margin-top: 2px !important;
   }
+
+
+#sermonContentInside{
+display:block !important;
+position: relative !important;
+}
+#secondTabSermon{
+left:0% !important;
+display:block !important;
+position: relative !important;
+}
+#thirdTabSermon{
+left:0% !important;
+display:block !important;
+position:relative !important;
+}
+
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {

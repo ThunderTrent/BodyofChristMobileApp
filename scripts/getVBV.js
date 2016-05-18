@@ -61,6 +61,9 @@ function loadVBVInsert(url, target, name) {
         url: 'https://www.thebodyofchrist.us/service/phonegap/versebyversefeed/',
         type: "GET",
     }).done(function(vbvData, textStatus, jqXHR) {
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
         console.log("HTTP Request Succeeded: " + jqXHR.status);
        
         $('#contentHolder').append(vbvData);
