@@ -581,10 +581,12 @@ else{
   recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 
   if ($(recommendedSermonBox).css("display") == "none"){
+  $('#recommendedSermonBox').children().show();
+  $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
 
   }
   else{
   $('#recommendedSermonBox').children().hide();
-  $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
+  $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
   }
