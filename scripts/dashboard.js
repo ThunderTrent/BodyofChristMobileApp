@@ -567,7 +567,7 @@ else{
    }
 
 
-  function bindSearchButton(){
+function bindSearchButton(){
   $('#quick-search').blur(function() {
   $('#globalButton').show();
   $('#searchTopDiv').removeClass('searchMarginLeft');
@@ -576,8 +576,7 @@ else{
   });
   }
 
-
-  function toggleHideRecommendedSermons(){
+function toggleHideRecommendedSermons(){
   recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 
   if ($(recommendedSermonBox).css("display") == "none"){
@@ -594,7 +593,28 @@ else{
    $('#recommendedSermonBox').children().hide();
   });
 
-
   $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
   }
+
+function toggleHideRecommendedPlaylists(){
+  recommendedSermonBox = $('#recommendedPlaylistBox').children()[1];
+
+  if ($(recommendedPlaylistBox).css("display") == "none"){
+   $( "#recommendedPlaylistBox" ).children().fadeIn( "slow", function() {
+  });
+
+
+  $('#recommendedPlaylistArrowButton').css('transform','rotate(180deg)');
+
+  }
+  else{
+
+   $( "#recommendedPlaylistBox" ).children().fadeOut( "slow", function() {
+   $('#recommendedPlaylistBox').children().hide();
+  });
+
+  $('#recommendedPlaylistArrowButton').css('transform','rotate(0deg)');
+}
+  }
+
