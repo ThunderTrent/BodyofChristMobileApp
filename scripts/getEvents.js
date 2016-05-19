@@ -18,7 +18,7 @@ function loadEvents(search, communityID, userID, insert) {
         loadEventsInsert(url, target, name, insert);
     } else if (search == "Community") {
         if (isOffline === false) { 
-            url = 'https://www.thebodyofchrist.us/rest/events/?limit=50&userid=*&ordering=-eventID&communityID=' + communityID;
+            url = 'https://www.thebodyofchrist.us/service/phonegap/newsfeed/'
 
         } else {
             url = 'cdvfile://localhost/library-nosync/communityEvents.json';

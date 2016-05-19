@@ -41,14 +41,26 @@ function loadSpeakers(search, communityID, insert) {
     jQuery.ajax({
         url: url,
         type: "GET",
-    }).done(function(speakerData, textStatus, jqXHR) { 
-       $( "#loader-wrapper" ).fadeOut( "slow", function() {
-    // Animation complete
-  });
-          if (insert == "True") {
-    $('#contentHolder').append(speakerData);
-        }else{}
-      
+    }).done(function(speakerData, textStatus, jqXHR) {
+
+         if (insert == "True") {
+
+      $('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="speakerInput" placeholder="Search Speaker Name" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
+
+      $('#contentHolder').append(speakerData);
+
+      $('#speakerInput').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) {
+    e.preventDefault();
+    return false;
+  }
+   }else{
+   }
+   }
+
+
+
     });
 }
 
