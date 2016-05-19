@@ -5,7 +5,7 @@ function loadSermonHistory(search, communityID, userID) {
 
     if (search == "Global") {
         viewNamely = 'Globally';
-
+        url ='https://www.thebodyofchrist.us/service/phonegap/sermonhistory/'
         name = 'globalVBV';
         target = '#contentHolder';
         sermonHistoryInsert(url, target, name);
@@ -24,19 +24,35 @@ function loadSermonHistory(search, communityID, userID) {
 
 function sermonHistoryInsert(url, target, name) {
     jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/phonegap/sermonhistory/',
+        url: url,
         type: "GET",
     }).done(function(sermonHistoryData, textStatus, jqXHR) {
 
-    $( "#loader-wrapper" ).fadeOut( "slow", function() {
+      $('#filtersSermons').after('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;"><input id="searchHistoryInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
 
-    });
-
-         $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' +' Teaching History Count '+ viewName + ' </span></div>');
-    
       $('#contentHolder').append(sermonHistoryData);
 
+$( "#loader-wrapper" ).fadeOut( "slow", function() {
 
+$( "#sermonHistoryInput" ).change(function() {
+
+ $('#contentHolder').empty();
+
+ query = document.getElementById('searchHistoryInput').value;
+
+ jQuery.ajax({
+        url: 'https://www.thebodyofchrist.us/service/phonegap/sermonhistory/?q=' + query,
+        type: "GET",
+    }).done(function(sermonHistoryData, textStatus, jqXHR) {
+    $('#contentHolder').append(sermonHistoryData);
+    });
+
+
+
+
+});
+
+    });
 
 
 
