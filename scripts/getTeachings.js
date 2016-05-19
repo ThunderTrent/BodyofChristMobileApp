@@ -91,7 +91,7 @@ function loadSermonsInsert(url, target, insert, name) {
   }
 });
 
-√
+
 
 $("#sermonInput").on("change paste keyup", function() {
 
