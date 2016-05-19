@@ -106,6 +106,40 @@ else{
      }
    }
 
+   function sermonHistoryLoad(pressed) {
+     window.currentView = "SermonHistory";
+     $('#loading').show();
+     $('#contentHolder').empty();
+     $("#bars").animate({
+       scrollTop: 0
+     }, 250, function() {
+       $('#individualSermonBar').hide();
+       //  $('#filtersSermons').hide();
+       //  $('#filtersVBV').show();
+       //  $('#filtersChurches').hide();
+       //  $('#filtersSpeakers').hide();
+       //  $('#filtersMembers').hide();
+     });
+
+      $( "#loader-wrapper" ).fadeIn( "slow", function() {
+    // Animation complete
+  });
+     $('#sermonsButton').removeClass('is-active');
+     $('#verseByVerseButton').removeClass('is-active');
+     $('#sermonsButton').addClass('is-active');
+     $('#speakers').removeClass('is-active');
+     $('#searchIcon').addClass('is-focused')
+     $('#searchIconVBV').addClass('is-focused')
+     $('#bibleButton').removeClass('is-active');
+     loadSermonHistory(localStorage.getItem('view'), communityID, '');
+     closeSermon();
+
+     if (pressed == "True"){
+     setURLChange('SermonHistory',  window.deepLinkURL + '?section=SermonHistory');
+     }
+   }
+
+
    function bibleLoad(pressed) {
      window.currentView = "DownloadedContent";
      $('#loading').show();
