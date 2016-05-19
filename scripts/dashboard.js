@@ -66,6 +66,7 @@ else{
      $('#speakers').removeClass('is-active');
      $('#sermonsButton').addClass('is-active');
      $('#teachingsButton').removeClass('is-active');
+     $('#sermonHistoryButton').removeClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
