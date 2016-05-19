@@ -1,24 +1,10 @@
-// function downloadFile(name, dataUrl) {
-//     var fileTransfer = new FileTransfer();
-//     store = cordova.file.dataDirectory;
-//     fileName = name + ".json";
-//     fileTransfer.download(dataUrl, store + fileName,
-//         function(entry) {
-//             console.log("DownloadedJSON!" + name);
-//             //alert('Downloaded');
-//         },
-//         function(err) {
-//             console.log("Error");
-//         });
-// }
-
 function loadSpeakers(search, communityID, insert) {
 
     var isOffline = 'onLine' in navigator && !navigator.onLine;
 
     if (search == "Global") {
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount';
+            url = 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/';
         } else {
             url = 'cdvfile://localhost/library-nosync/globalSpeakers.json';
         }
@@ -26,7 +12,7 @@ function loadSpeakers(search, communityID, insert) {
         target = '#contentHolder';
     } else if (search == "Community") {
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/rest/speakers/?limit=1000&ordering=-sermonCount&communityID=' + communityID;
+            url = 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/?c=' + communityID;
         } else {
             url = 'cdvfile://localhost/library-nosync/communitySpeakers.json';
         }
@@ -53,7 +39,7 @@ function loadSpeakers(search, communityID, insert) {
     } else {}
 
     jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/',
+        url: url,
         type: "GET",
     }).done(function(speakerData, textStatus, jqXHR) { 
        $( "#loader-wrapper" ).fadeOut( "slow", function() {
