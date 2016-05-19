@@ -77,13 +77,13 @@ function loadSermonsInsert(url, target, insert, name) {
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 
 $("#sermonInput").on("change paste keyup", function() {
- $('#contentHolder').empty();
+ $('#sermonContentHolder').empty();
  query = document.getElementById('sermonInput').value;
  jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?q=' + query,
         type: "GET",
     }).done(function(teachingData, textStatus, jqXHR) {
-    $('#contentHolder').append(teachingData);
+    $('#sermonContentHolder').append(teachingData);
     });
 });
 
