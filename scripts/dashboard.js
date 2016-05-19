@@ -274,7 +274,7 @@ else{
     // Animation complete
   });
      $('#needsBar').hide();
-     loadSpeakers(localStorage.getItem('view'), communityID, 'True');
+     loadSpeakers(localStorage.getItem('view'), localStorage.getItem('communityID'), 'True');
      closeSermon();
      //  $('filtersSermons').hide();
      //  $('#filtersChurches').hide();
