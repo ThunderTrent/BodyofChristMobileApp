@@ -38,7 +38,7 @@ function loadSpeakers(search, communityID, insert) {
         target = '#contentHolder';
     } else {
     }
-    }
+
 
     jQuery.ajax({
         url: url,
@@ -94,4 +94,5 @@ function loadSpeakers(search, communityID, insert) {
         });
 
 
+    }
     }
