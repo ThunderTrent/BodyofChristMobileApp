@@ -581,12 +581,16 @@ else{
   recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 
   if ($(recommendedSermonBox).css("display") == "none"){
-  $('#recommendedSermonBox').children().show();
+  $( "#recommendedSermonBox" ).fadeIn( "slow", function() {
+  });
   $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
-
   }
   else{
-  $('#recommendedSermonBox').children().hide();
+   $( "#recommendedSermonBox" ).fadeOut( "slow", function() {
+   $('#recommendedSermonBox').children().hide();
+  });
+
+
   $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
   }
