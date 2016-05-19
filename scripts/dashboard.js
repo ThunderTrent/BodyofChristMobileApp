@@ -583,7 +583,7 @@ function toggleHideRecommendedSermons(){
    $( "#recommendedSermonBox" ).children().fadeIn( "slow", function() {
   });
 
-('#recommendedSermonBox').parent().show();
+$('#recommendedSermonBox').parent().show();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
 
@@ -594,7 +594,7 @@ function toggleHideRecommendedSermons(){
    $('#recommendedSermonBox').children().hide();
   });
 
-('#recommendedSermonBox').parent().hide();
+$('#recommendedSermonBox').parent().hide();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
