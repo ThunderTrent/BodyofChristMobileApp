@@ -70,7 +70,7 @@ function loadSermonsInsert(url, target, insert, name) {
 
     }).done(function(recommendedFeedData, textStatus, jqXHR) {
 
-    $('#contentHolder').append(teachingData);
+    $('#contentHolder').append(recommendedFeedData);
 
     });
 
