@@ -27,8 +27,9 @@ function sermonHistoryInsert(url, target, name) {
         url: url,
         type: "GET",
     }).done(function(sermonHistoryData, textStatus, jqXHR) {
+      $('#sermonHistorySearchBar').remove();
 
-      $('#filtersSermons').after('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="searchHistoryInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
+      $('#filtersSermons').after('<div id="sermonHistorySearchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="searchHistoryInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
 
       $('#contentHolder').append(sermonHistoryData);
 
