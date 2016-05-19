@@ -511,6 +511,10 @@ position:relative !important;
     width:226px;
     overflow:scroll;
   }
+
+  #recommendedSermonBox{
+  width:399px !important;
+  }
  
   .sermonText {
     font-size: 21px !important;
