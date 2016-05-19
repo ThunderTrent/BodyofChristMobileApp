@@ -57,6 +57,20 @@ function loadSpeakers(search, communityID, insert) {
   }
    }else{
    }
+
+   $("#speakerInput").on("change paste keyup", function() {
+
+ $('#contentHolder').empty();
+ query = document.getElementById('sermonInput').value;
+ jQuery.ajax({
+        url: 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/?q=' + query,
+        type: "GET",
+    }).done(function(teachingData, textStatus, jqXHR) {
+    $('#contentHolder').append(teachingData);
+    });
+});
+
+
    }
 
 

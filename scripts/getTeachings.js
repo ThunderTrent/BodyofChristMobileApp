@@ -95,6 +95,8 @@ $( "#loader-wrapper" ).fadeOut( "slow", function() {
 
 $("#sermonInput").on("change paste keyup", function() {
 
+
+
 recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 
  if ($(recommendedSermonBox).css("display") == "none"){
