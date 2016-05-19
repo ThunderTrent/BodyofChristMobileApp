@@ -553,6 +553,9 @@ else{
      $('#needsButton').css('color','#946720');
      $('#needsButton').prop('onclick',null).off('click');
 
+     $('#sermonHistoryButton').css('color','#946720');
+     $('#sermonHistoryButton').prop('onclick',null).off('click');
+
      $('#loginButton').show();
     //var snackbarContainer = document.querySelector('#alertToast');
    // var data = {message: "You Are Not Logged In.. Register or Login."};
