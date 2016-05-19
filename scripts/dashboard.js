@@ -605,7 +605,7 @@ function toggleHideRecommendedPlaylists(){
   });
 
 
-  $('#recommendedPlaylistArrowButton').css('transform','rotate(180deg)');
+  $('#recommendedPlaylistsArrowButton').css('transform','rotate(180deg)');
 
   }
   else{
@@ -614,7 +614,7 @@ function toggleHideRecommendedPlaylists(){
    $('#recommendedPlaylistBox').children().hide();
   });
 
-  $('#recommendedPlaylistArrowButton').css('transform','rotate(0deg)');
+  $('#recommendedPlaylistsArrowButton').css('transform','rotate(0deg)');
 }
   }
 
