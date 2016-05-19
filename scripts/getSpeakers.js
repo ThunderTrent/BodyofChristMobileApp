@@ -55,6 +55,7 @@ function loadSpeakers(search, communityID, insert) {
     e.preventDefault();
     return false;
   }
+   }
    }else{
    }
 
