@@ -9,9 +9,7 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
     if (search == "Global") {
         //check online status
         if (isOffline === false) {
-
-
-            url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&title=' + title;
+            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/'
             name = "globalTeachings";
         } else {
             url = 'cdvfile://localhost/library-nosync/globalTeachings.json';
@@ -20,7 +18,7 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
         loadSermonsInsert(url, target, insert, name);
     } else if (search == "Community") {
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/rest/sermons/?audioStatus=2&limit=25&speakerid=*&ordering=-downloadedcontentid&typeofcontent=Sermon&communityID=' + communityID + '&title=' + title;
+            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/' + communityID;
             name = "communityTeachings";
         } else {
             url = 'localurl';
@@ -75,7 +73,7 @@ function loadSermonsInsert(url, target, insert, name) {
     });
 
     jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
+        url: url,
     type: "GET",
 
     }).done(function(teachingData, textStatus, jqXHR) {
