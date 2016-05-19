@@ -35,7 +35,7 @@ function sermonHistoryInsert(url, target, name) {
 
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 
-$("searchHistoryInput").on("change paste keyup", function() {
+$("#searchHistoryInput").on("change paste keyup", function() {
  $('#contentHolder').empty();
  query = document.getElementById('searchHistoryInput').value;
  jQuery.ajax({
