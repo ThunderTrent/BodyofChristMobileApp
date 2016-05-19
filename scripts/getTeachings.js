@@ -82,7 +82,7 @@ $("#sermonInput").on("change paste keyup", function() {
  jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?q=' + query,
         type: "GET",
-    }).done(function(sermonHistoryData, textStatus, jqXHR) {
+    }).done(function(teachingData, textStatus, jqXHR) {
     $('#contentHolder').append(teachingData);
     });
 });
