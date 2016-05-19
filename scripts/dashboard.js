@@ -601,7 +601,7 @@ $('#recommendedSermonBox').parent().hide();
   }
 
 function toggleHideRecommendedPlaylists(){
-  recommendedSermonBox = $('#recommendedPlaylistBox').children()[1];
+  recommendedPlaylistBox = $('#recommendedPlaylistBox').children()[1];
 
   if ($(recommendedPlaylistBox).css("display") == "none"){
    $( "#recommendedPlaylistBox" ).children().fadeIn( "slow", function() {

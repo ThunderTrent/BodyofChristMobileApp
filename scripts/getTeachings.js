@@ -96,6 +96,24 @@ function loadSermonsInsert(url, target, insert, name) {
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 
 $("#sermonInput").on("change paste keyup", function() {
+
+recommendedSermonBox = $('#recommendedSermonBox').children()[1];
+
+ if ($(recommendedSermonBox).css("display") == "none"){
+ }
+ else{
+ toggleHideRecommendedSermons();
+ }
+
+ recommendedPlaylistBox = $('#recommendedPlaylistBox').children()[1];
+
+ if ($(recommendedPlaylistBox).css("display") == "none"){
+
+ }
+ else{
+ toggleHideRecommendedPlaylists();
+ }
+
  $('#sermonContentHolder').empty();
  query = document.getElementById('sermonInput').value;
  jQuery.ajax({
