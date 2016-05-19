@@ -583,7 +583,7 @@ else{
   if ($(recommendedSermonBox).css("display") == "none"){
 
   }
-  else{}
+  else{
   $('#recommendedSermonBox').children().hide();
   $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
 }
