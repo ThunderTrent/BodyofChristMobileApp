@@ -51,10 +51,8 @@ function loadSpeakers(search, communityID, insert) {
 
             $('#contentHolder').append(speakerData);
 
-               $( "#loader-wrapper" ).fadeIn( "slow", function() {
-                // Animation complete
-  });
-               }
+               $( "#loader-wrapper" ).fadeIn( "slow", function() {});
+
             $('#speakerInput').on('keyup keypress', function(e) {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode === 13) {
@@ -73,9 +71,7 @@ function loadSpeakers(search, communityID, insert) {
                     type: "GET",
                 }).done(function(teachingData, textStatus, jqXHR) {
                     $('#contentHolder').append(teachingData);
-                    $( "#loader-wrapper" ).fadeIn( "slow", function() {
-                     // Animation complete
-  });
+                    $( "#loader-wrapper" ).fadeIn( "slow", function() {});
                 });
             });
 
