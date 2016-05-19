@@ -575,3 +575,16 @@ else{
   $('#searchTopDiv').removeClass('is-dirty');
   });
   }
+
+
+  function toggleHideRecommendedSermons(){
+  recommendedSermonBox = $('#recommendedSermonBox').children()[1];
+
+  if ($(recommendedSermonBox).css("display") == "none"){
+
+  }
+  else{}
+  $('#recommendedSermonBox').children().hide();
+  $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
+}
+  }
