@@ -65,10 +65,12 @@ function loadSermonsInsert(url, target, insert, name) {
 
 
    jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
+        url: 'https://www.thebodyofchrist.us/service/phonegap/recommendedfeed/',
     type: "GET",
 
-    }).done(function(teachingData, textStatus, jqXHR) {
+    }).done(function(recommendedFeedData, textStatus, jqXHR) {
+
+    $('#contentHolder').append(teachingData);
 
     }
 
