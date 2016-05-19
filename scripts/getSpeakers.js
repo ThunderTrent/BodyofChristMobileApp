@@ -73,6 +73,9 @@ function loadSpeakers(search, communityID, insert) {
                     type: "GET",
                 }).done(function(teachingData, textStatus, jqXHR) {
                     $('#contentHolder').append(teachingData);
+                    $( "#loader-wrapper" ).fadeIn( "slow", function() {
+                     // Animation complete
+  });
                 });
             });
 
