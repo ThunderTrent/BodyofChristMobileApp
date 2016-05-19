@@ -518,6 +518,9 @@ else{
      } else if (section == "NewsFeed") {
         activityLoad();
     }
+     else if (section == "SermonHistory"){
+     sermonHistoryLoad();
+     }
     }
     else{
     //loadEvents(localStorage.getItem('view'), communityID, '', 'True');
