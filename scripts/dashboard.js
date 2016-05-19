@@ -14,6 +14,7 @@ else{
      window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
+     $('#searchBar').remove();
      $('#activity').removeClass('is-active');
      $('#teachings').addClass('is-active');
      $('#teachingBar').show();
@@ -48,6 +49,7 @@ else{
      window.currentView = "Teachings";
      $('#loading').show();
      $('#contentHolder').empty();
+     $('#searchBar').remove();
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
     // Animation complete
   });
@@ -76,6 +78,7 @@ else{
    function verseByVerseLoad(pressed) {
      window.currentView = "VBV";
      $('#loading').show();
+     $('#searchBar').remove();
      $('#contentHolder').empty();
      $("#bars").animate({
        scrollTop: 0
@@ -108,6 +111,7 @@ else{
 
    function sermonHistoryLoad(pressed) {
      window.currentView = "SermonHistory";
+     $('#searchBar').remove();
      $('#loading').show();
      $('#contentHolder').empty();
      $("#bars").animate({
@@ -139,10 +143,10 @@ else{
      }
    }
 
-
    function bibleLoad(pressed) {
      window.currentView = "DownloadedContent";
      $('#loading').show();
+     $('#searchBar').remove();
      $('#contentHolder').empty();
      //  $('filtersSermons').hide();
      //  $('#filtersChurches').hide();
@@ -168,6 +172,7 @@ else{
    function churchesLoad(pressed) {
      window.currentView = "Churches";
      $('#loading').show();
+     $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
      $('#activity').removeClass('is-active');
@@ -196,6 +201,7 @@ else{
 
    function membersLoad(pressed) {
      window.currentview = "Members";
+     $('#searchBar').remove();
      $('#loading').show();
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
@@ -226,6 +232,7 @@ else{
      window.currentView = "Activity";
      $('#loading').show();
      $('#contentHolder').empty();
+     $('#searchBar').remove();
      $('#activity').addClass('is-active');
      $('#teachings').removeClass('is-active');
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
@@ -254,6 +261,7 @@ else{
    function speakersLoad(pressed) {
      window.currentView = "Speakers";
      $('#loading').show();
+     $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#activity').removeClass('is-active');
      $('#teachings').removeClass('is-active');
@@ -281,6 +289,7 @@ else{
 
    function needsLoad(pressed) {
      window.currentView = "Needs";
+     $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#teachingBar').hide();
      $('#teachingBar').hide();
