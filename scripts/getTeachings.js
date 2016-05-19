@@ -81,7 +81,7 @@ function loadSermonsInsert(url, target, insert, name) {
     }).done(function(teachingData, textStatus, jqXHR) {
 
 
-      $('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="sermonInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
+      $('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="sermonInput" placeholder="Search Title Name, Book, Topic, Speaker, Church" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
 
       $('#contentHolder').append(teachingData);
 
