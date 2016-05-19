@@ -583,6 +583,7 @@ function toggleHideRecommendedSermons(){
    $( "#recommendedSermonBox" ).children().fadeIn( "slow", function() {
   });
 
+('#recommendedSermonBox').parent().show();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
 
@@ -592,6 +593,8 @@ function toggleHideRecommendedSermons(){
    $( "#recommendedSermonBox" ).children().fadeOut( "slow", function() {
    $('#recommendedSermonBox').children().hide();
   });
+
+('#recommendedSermonBox').parent().hide();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
@@ -603,6 +606,7 @@ function toggleHideRecommendedPlaylists(){
   if ($(recommendedPlaylistBox).css("display") == "none"){
    $( "#recommendedPlaylistBox" ).children().fadeIn( "slow", function() {
   });
+   $('#recommendedPlaylistBox').parent().show();
 
 
   $('#recommendedPlaylistsArrowButton').css('transform','rotate(180deg)');
@@ -613,6 +617,8 @@ function toggleHideRecommendedPlaylists(){
    $( "#recommendedPlaylistBox" ).children().fadeOut( "slow", function() {
    $('#recommendedPlaylistBox').children().hide();
   });
+
+  $('#recommendedPlaylistBox').parent().hide();
 
   $('#recommendedPlaylistsArrowButton').css('transform','rotate(0deg)');
 }
