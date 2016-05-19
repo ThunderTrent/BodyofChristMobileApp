@@ -63,6 +63,15 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
 function loadSermonsInsert(url, target, insert, name) {
 
 
+
+   jQuery.ajax({
+        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
+    type: "GET",
+
+    }).done(function(teachingData, textStatus, jqXHR) {
+
+    }
+
     jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
     type: "GET",
@@ -73,6 +82,14 @@ function loadSermonsInsert(url, target, insert, name) {
       $('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="sermonInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
 
       $('#contentHolder').append(teachingData);
+
+      $('#sermonInput').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) {
+    e.preventDefault();
+    return false;
+  }
+});
 
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 
