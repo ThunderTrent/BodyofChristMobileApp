@@ -51,7 +51,7 @@ function loadSpeakers(search, communityID, insert) {
 
             $('#contentHolder').append(speakerData);
 
-               $( "#loader-wrapper" ).fadeIn( "slow", function() {});
+               $( "#loader-wrapper" ).fadeOut( "slow", function() {});
 
             $('#speakerInput').on('keyup keypress', function(e) {
                 var keyCode = e.keyCode || e.which;
@@ -71,7 +71,7 @@ function loadSpeakers(search, communityID, insert) {
                     type: "GET",
                 }).done(function(teachingData, textStatus, jqXHR) {
                     $('#contentHolder').append(teachingData);
-                    $( "#loader-wrapper" ).fadeIn( "slow", function() {});
+                    $( "#loader-wrapper" ).fadeOut( "slow", function() {});
                 });
             });
 
