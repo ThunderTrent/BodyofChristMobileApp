@@ -302,7 +302,7 @@ width:100%;
                 <div id="primaryBar" class="mdl-layout__tab-bar" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
                     <a style="" href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
                     <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-universal-access" style="margin-right:10px"></i>Your Community</a>
-                   
+
                 </div>
                   <span id="loginButton" onclick="login();" href="index.html" style="display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
                 </div>
@@ -674,40 +674,40 @@ width:100%;
             }
         </style>
         <script>
-            server = "https://www.thebodyofchrist.us";
-            $('#quick-search').on('input', function() {
-                $('#contentHolder').empty();
-                closeSermon();
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').on('click', function() {
-                if (document.getElementById('quick-search').value != 'null') {
-                    $('#contentHolder').empty();
-                    closeSermon();
-                    previousSearch = document.getElementById('quick-search').value;
-                    document.getElementById('quick-search').value = '';
-                    document.getElementById('quick-search').value = previousSearch;
-                }
+            <!--server = "https://www.thebodyofchrist.us";-->
+            <!--$('#quick-search').on('input', function() {-->
+                <!--$('#contentHolder').empty();-->
+                <!--closeSermon();-->
+                <!--$('.yourlabs-autocomplete').css('display', 'block !important;');-->
+            <!--});-->
+            <!--$('#quick-search').on('click', function() {-->
+                <!--if (document.getElementById('quick-search').value != 'null') {-->
+                    <!--$('#contentHolder').empty();-->
+                    <!--closeSermon();-->
+                    <!--previousSearch = document.getElementById('quick-search').value;-->
+                    <!--document.getElementById('quick-search').value = '';-->
+                    <!--document.getElementById('quick-search').value = previousSearch;-->
+                <!--}-->
 
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').yourlabsAutocomplete({
-                url: server + '/search-mobile/',
-                choiceSelector: '[data-value]',
-            }).input.bind('selectChoice', function(e, choice, autocomplete) {
+                <!--$('.yourlabs-autocomplete').css('display', 'block !important;');-->
+            <!--});-->
+            <!--$('#quick-search').yourlabsAutocomplete({-->
+                <!--url: server + '/search-mobile/',-->
+                <!--choiceSelector: '[data-value]',-->
+            <!--}).input.bind('selectChoice', function(e, choice, autocomplete) {-->
 
-                dataLink = choice.attr('data-value');
-                if (dataLink.split('-')[0] == "14") {
-                    window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "16") {
-                    window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "7") {
-                    window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "21") {
-                    window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]
-                }
+                <!--dataLink = choice.attr('data-value');-->
+                <!--if (dataLink.split('-')[0] == "14") {-->
+                    <!--window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]-->
+                <!--} else if (dataLink.split('-')[0] == "16") {-->
+                    <!--window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]-->
+                <!--} else if (dataLink.split('-')[0] == "7") {-->
+                    <!--window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]-->
+                <!--} else if (dataLink.split('-')[0] == "21") {-->
+                    <!--window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]-->
+                <!--}-->
 
-            });
+            <!--});-->
 
             function login() {
                 window.location = "https://www.thebodyofchrist.us/login/";
