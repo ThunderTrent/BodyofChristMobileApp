@@ -95,6 +95,7 @@ else{
     // Animation complete
   });
      $('#sermonsButton').removeClass('is-active');
+     $('#sermonHistoryButton').removeClass('is-active');
      $('#verseByVerseButton').addClass('is-active');
      $('#speakers').removeClass('is-active');
      $('#searchIcon').addClass('is-focused')

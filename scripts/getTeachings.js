@@ -68,43 +68,28 @@ function loadSermonsInsert(url, target, insert, name) {
     type: "GET",
 
     }).done(function(teachingData, textStatus, jqXHR) {
-            $( "#loader-wrapper" ).fadeOut( "slow", function() {
-    // Animation complete
-  });
 
 
+      $('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="sermonInput" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
+
+      $('#contentHolder').append(teachingData);
+
+$( "#loader-wrapper" ).fadeOut( "slow", function() {
+
+$("#sermonInput").on("change paste keyup", function() {
+ $('#contentHolder').empty();
+ query = document.getElementById('sermonInput').value;
+ jQuery.ajax({
+        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?q=' + query,
+        type: "GET",
+    }).done(function(sermonHistoryData, textStatus, jqXHR) {
+    $('#contentHolder').append(teachingData);
+    });
+});
+
+    });
 
 
-
-
-        //$('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;"><span style="margin-top: 8px;font-size: 17px;">' + teachingData.count + ' Sermons Indexed Globally</span></div>');
-
-        $('#contentHolder').append(teachingData);
-
-
-        // $.each(teachingData.results, function(index, value) {
-
-
-
-
-        function arrayLookup(array, prop, val) {
-            for (var i = 0, len = array.length; i < len; i++) {
-                if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
-                    return array[i];
-                }
-            }
-            return null;
-        }
-
-
-
-        var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-        if (app) {
-            var imageCacheTarget = $('#teachingID_IMG_' + teachingData.results[index].downloadedcontentid);
-            cacheImageCheck(imageCacheTarget);
-        } else {
-
-        }
 
             jQuery('.scrollbar-rail').scrollbar();
 
