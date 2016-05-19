@@ -51,6 +51,10 @@ function loadSpeakers(search, communityID, insert) {
 
             $('#contentHolder').append(speakerData);
 
+               $( "#loader-wrapper" ).fadeIn( "slow", function() {
+                // Animation complete
+  });
+               }
             $('#speakerInput').on('keyup keypress', function(e) {
                 var keyCode = e.keyCode || e.which;
                 if (keyCode === 13) {
