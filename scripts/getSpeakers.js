@@ -54,10 +54,8 @@ function loadSpeakers(search, communityID, insert) {
   if (keyCode === 13) {
     e.preventDefault();
     return false;
-  }
-   }
-   }else{
-   }
+  }else{}
+
 
    $("#speakerInput").on("change paste keyup", function() {
 
@@ -72,12 +70,13 @@ function loadSpeakers(search, communityID, insert) {
 });
 
 
-   }
+   });
 
 
 
-    });
-}
+    }
+    else{}
+});
 
 function cacheImageCheck(imageCacheTarget) {
 
