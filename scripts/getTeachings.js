@@ -72,7 +72,7 @@ function loadSermonsInsert(url, target, insert, name) {
 
     $('#contentHolder').append(teachingData);
 
-    }
+    });
 
     jQuery.ajax({
         url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/',
