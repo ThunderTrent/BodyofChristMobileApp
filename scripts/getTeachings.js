@@ -18,7 +18,7 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
         loadSermonsInsert(url, target, insert, name);
     } else if (search == "Community") {
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/' + communityID;
+            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?c=' + communityID;
             name = "communityTeachings";
         } else {
             url = 'localurl';

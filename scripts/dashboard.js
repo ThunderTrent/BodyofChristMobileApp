@@ -338,6 +338,7 @@ else{
 
    function setViewCommunity() {
      localStorage.setItem("view", 'Community');
+     window.view = "Community"
      $('#globalButton').removeClass('is-active');
      $('#communityButton').addClass('is-active');
      $('#followButton').removeClass('is-active');
@@ -414,6 +415,7 @@ else{
 
 
    viewName = 'Global';
+
 
    var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
    //CODE RAN ON APP
