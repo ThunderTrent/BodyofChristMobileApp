@@ -130,10 +130,8 @@ else{
   });
      $('#sermonsButton').removeClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
-     $('#sermonsButton').addClass('is-active');
+     $('#sermonHistoryButton').addClass('is-active');
      $('#speakers').removeClass('is-active');
-     $('#searchIcon').addClass('is-focused')
-     $('#searchIconVBV').addClass('is-focused')
      $('#bibleButton').removeClass('is-active');
      loadSermonHistory(localStorage.getItem('view'), communityID, '');
      closeSermon();
