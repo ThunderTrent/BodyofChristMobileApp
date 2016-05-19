@@ -65,7 +65,7 @@ function loadSpeakers(search, communityID, insert) {
             $("#speakerInput").on("change paste keyup", function() {
 
                 $('#contentHolder').empty();
-                query = document.getElementById('sermonInput').value;
+                query = document.getElementById('speakerInput').value;
                 jQuery.ajax({
                     url: 'https://www.thebodyofchrist.us/service/phonegap/speakerfeed/?q=' + query,
                     type: "GET",
