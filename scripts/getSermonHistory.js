@@ -32,7 +32,7 @@ function sermonHistoryInsert(url, target, name) {
 
     });
 
-         $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + vbvData.count +   ' Teaching History Count '+ viewName + ' </span></div>');
+         $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' +' Teaching History Count '+ viewName + ' </span></div>');
     
       $('#contentHolder').append(sermonHistoryData);
 
