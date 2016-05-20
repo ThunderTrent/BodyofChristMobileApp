@@ -520,6 +520,13 @@ else{
      } else if (section == "NewsFeed") {
         activityLoad();
     }
+    else if (section == "Sermons") {
+        sermonsLoad();
+    }
+     else if (section == "VerseByVerse") {
+        verseByVerseLoad();
+    }
+
      else if (section == "SermonHistory"){
      sermonHistoryLoad();
      }
