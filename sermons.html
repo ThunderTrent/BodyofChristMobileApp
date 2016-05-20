@@ -1,11 +1,8 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    {{metaKeywords|safe}}
-    {{metaDescription|safe}}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> {{metaKeywords|safe}} {{metaDescription|safe}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{pageTitle}}</title>
     <meta name="mobile-web-app-capable" content="yes">
@@ -13,10 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Body of Christ">
     <meta name="theme-color" content="#604732">
-<!-- Windows Phone -->
     <meta name="msapplication-navbutton-color" content="#604732">
-<!-- iOS Safari -->
-<meta name="apple-mobile-web-app-status-bar-style" content="#604732">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#604732">
     <link rel="apple-touch-icon-precomposed" href="https://www.thebodyofchrist.us/app/images/ios-desktop.png">
     <meta name="msapplication-TileImage" content="https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png">
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.min.css'>
@@ -32,262 +27,18 @@
     <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/font-awesome-css.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.print.css">
-
-
-
 </head>
 
-<body onload=>
-<style>
-#loader{
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #3498db;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    z-index: 1001;
-    }
-    @keyframes spin{to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}
-
-#loader:before{
-        content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #e74c3c;
-    -webkit-animation: spin 3s linear infinite;
-    animation: spin 3s linear infinite;
-}
-#loader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #f9c922;
-    -webkit-animation: spin 1.5s linear infinite;
-    animation: spin 1.5s linear infinite;
-}
-
-.scroll-wrapper {
-    overflow: hidden !important;
-    padding: 0 !important;
-    position: relative;
-}
-
-.scroll-wrapper > .scroll-content {
-    border: none !important;
-    box-sizing: content-box !important;
-    height: auto;
-    left: 0;
-    margin: 0;
-    max-height: none;
-    max-width: none !important;
-    overflow: scroll !important;
-    padding: 0;
-    position: relative !important;
-    top: 0;
-    width: auto !important;
-}
-
-.scroll-wrapper > .scroll-content::-webkit-scrollbar {
-    height: 0;
-    width: 0;
-}
-
-.scroll-element {
-    display: none;
-}
-.scroll-element, .scroll-element div {
-    box-sizing: content-box;
-}
-
-.scroll-element.scroll-x.scroll-scrollx_visible,
-.scroll-element.scroll-y.scroll-scrolly_visible {
-    display: block;
-}
-
-.scroll-element .scroll-bar,
-.scroll-element .scroll-arrow {
-    cursor: default;
-}
-
-.scroll-textarea {
-    border: 1px solid #cccccc;
-    border-top-color: #999999;
-}
-.scroll-textarea > .scroll-content {
-    overflow: hidden !important;
-}
-.scroll-textarea > .scroll-content > textarea {
-    border: none !important;
-    box-sizing: border-box;
-    height: 100% !important;
-    margin: 0;
-    max-height: none !important;
-    max-width: none !important;
-    overflow: scroll !important;
-    outline: none;
-    padding: 2px;
-    position: relative !important;
-    top: 0;
-    width: 100% !important;
-}
-.scroll-textarea > .scroll-content > textarea::-webkit-scrollbar {
-    height: 0;
-    width: 0;
-}
-
-
-
-
-/*************** SCROLLBAR RAIL ***************/
-
-.scrollbar-rail > .scroll-element,
-.scrollbar-rail > .scroll-element div
-{
-    border: none;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    z-index: 10;
-}
-
-.scrollbar-rail > .scroll-element {
-    background-color: #ffffff;
-}
-
-.scrollbar-rail > .scroll-element div {
-    display: block;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-}
-
-.scrollbar-rail > .scroll-element .scroll-element_size {
-    background-color: #999;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.scrollbar-rail > .scroll-element .scroll-element_outer:hover .scroll-element_size {
-    background-color: #666;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.scrollbar-rail > .scroll-element.scroll-x {
-    bottom: 0;
-    height: 12px;
-    left: 0;
-    min-width: 100%;
-    padding: 3px 0 2px;
-    width: 100%;
-}
-
-.scrollbar-rail > .scroll-element.scroll-y {
-    height: 100%;
-    min-height: 100%;
-    padding: 0 2px 0 3px;
-    right: 0;
-    top: 0;
-    width: 12px;
-}
-
-.scrollbar-rail > .scroll-element .scroll-bar {
-    background-color: #d0b9a0;
-
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-.scrollbar-rail > .scroll-element .scroll-element_outer:hover .scroll-bar {
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-}
-
-/* scrollbar height/width & offset from container borders */
-
-.scrollbar-rail > .scroll-content.scroll-scrolly_visible { left: -17px; margin-left: 17px; }
-.scrollbar-rail > .scroll-content.scroll-scrollx_visible { margin-top: 17px; top: -17px; }
-
-.scrollbar-rail > .scroll-element.scroll-x .scroll-bar { height: 10px; min-width: 10px; top: 1px; }
-.scrollbar-rail > .scroll-element.scroll-y .scroll-bar { left: 1px; min-height: 10px; width: 10px; }
-
-.scrollbar-rail > .scroll-element.scroll-x .scroll-element_outer { height: 15px; left: 5px; }
-.scrollbar-rail > .scroll-element.scroll-x .scroll-element_size { height: 2px; left: -10px; top: 5px; }
-
-.scrollbar-rail > .scroll-element.scroll-y .scroll-element_outer { top: 5px; width: 15px; }
-.scrollbar-rail > .scroll-element.scroll-y .scroll-element_size { left: 5px; top: -10px; width: 2px; }
-
-/* update scrollbar offset if both scrolls are visible */
-
-.scrollbar-rail > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_size { left: -25px; }
-.scrollbar-rail > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_size { top: -25px; }
-
-.scrollbar-rail > .scroll-element.scroll-x.scroll-scrolly_visible .scroll-element_track { left: -25px; }
-.scrollbar-rail > .scroll-element.scroll-y.scroll-scrollx_visible .scroll-element_track { top: -25px; }
-
-.scrollbar-rail > .scroll-element{
-background-color: rgba(208, 185, 160, 0) !important;
-}
-.scrollbar-rail > .scroll-element .scroll-bar{
-    background-color: #EFA22A !important;
-}
-.scroll-wrapper{
-    width:100% !important;
-}
-</style>
-
+<body>
     <div id="fb-root"></div>
-    <div id="Gradient1" class="animateOpacity" style="
-position:absolute;
-display:none;
-top:0;
-background:linear-gradient(to right, rgba(243, 156, 18, .35) 0%,rgba(0, 115, 183, .3) 50%,rgba(221, 75, 57, .3) 100%);
-height:100%;
+    <div id="Gradient1" class="animateOpacity" style="position:absolute;display:none;top:0;background:linear-gradient(to right, rgba(243, 156, 18, .35) 0%,rgba(0, 115, 183, .3) 50%,rgba(221, 75, 57, .3) 100%);height:100%;width:100%;"></div>
+    <div id="Blue" class="animateOpactiy" style="position:absolute;display:none;top:0;opacity:0;background:linear-gradient(to right, rgba(11, 100, 152, 0.3) 0%,rgba(18, 108, 202, 0.41) 50%,rgba(20, 32, 152, 0.3) 100%);height:100%;width:100%;"></div>
 
-width:100%;
-"></div>
-    <div id="Blue" class="animateOpactiy" style="
-position:absolute;
-display:none;
-top:0;
-opacity:0;
-background:linear-gradient(to right, rgba(11, 100, 152, 0.3) 0%,rgba(18, 108, 202, 0.41) 50%,rgba(20, 32, 152, 0.3) 100%);
-height:100%;
-width:100%;
-
-"></div>
-
-<div id="loader-wrapper" style="
-    width: 100%;
-    display:none;
-    height: 100%;
-    position: absolute;
-    z-index: 1000;
-        background: -webkit-radial-gradient(center, ellipse cover, rgba(254, 254, 254, 0.47) 0%,rgba(80, 80, 80, 0.64) 50%,rgba(67, 67, 67, 0.96) 100%);
-">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right" style=""></div>
-  </div>
+    <div id="loader-wrapper" style="width: 100%;display:none;height: 100%;position: absolute;z-index: 1000;background: -webkit-radial-gradient(center, ellipse cover, rgba(254, 254, 254, 0.47) 0%,rgba(80, 80, 80, 0.64) 50%,rgba(67, 67, 67, 0.96) 100%);">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right" style=""></div>
+    </div>
 
 
     <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;position:absolute;"></div>
@@ -303,16 +54,16 @@ width:100%;
                     <a style="" href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
                     <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-universal-access" style="margin-right:10px"></i>Your Community</a>
                     <div id="searchTopDiv" style="margin-top:30px;display:none;" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
               <i style="color:white;"onclick="$('#searchTopDiv').addClass('is-focused');$('#quick-search').focus();$('#globalButton').hide();$('#communityButton').hide();$('#searchTopDiv').addClass('searchMarginLeft');"class="material-icons">search</i>
             </label>
-                    <div class="mdl-textfield__expandable-holder">
-                        <input style="color:white;" id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
+                        <div class="mdl-textfield__expandable-holder">
+                            <input style="color:white;" id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
 
-                        <label style="color:white;"class="mdl-textfield__label" for="search">Enter your query...</label>
+                            <label style="color:white;" class="mdl-textfield__label" for="search">Enter your query...</label>
+                        </div>
                     </div>
-                </div>
-                  <span id="loginButton" onclick="login();" href="index.html" style="display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
+                    <span id="loginButton" onclick="login();" href="index.html" style="display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
                 </div>
                 <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(0, 115, 183, 0.91);">
                     <a style="" id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
@@ -341,22 +92,11 @@ width:100%;
                     <a id="infoSermonTabButton" href="#" onclick="nyi();" class="mdl-layout__tab">Enable Sermon Origin Information</a>
                 </div>
             </div>
-
-
-
-
-
         </header>
         <div class="demo-drawer mdl-layout__drawer mdl-color-text--blue-grey-50" style="background-color: rgba(34, 45, 50, 0.81);">
-
             <header class="demo-drawer-header" style="padding:0px;margin:0px;height:300px;opacity:.9;">
-
                 <div id="profileImage" style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;border-radius:30px;background:url('');background-size: cover;"></div>
-
                 <div class="demo-avatar-dropdown">
-
-
-
             </header>
             <nav class="demo-navigation mdl-navigation">
                 <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
@@ -370,27 +110,11 @@ width:100%;
                 <span class="beta" style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
                 <span class="beta" onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
 
-                <span class=""  style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><a style="color: #b8c7ce;text-decoration:none;"href="http://mabank.tech/"><i style="width:20px;margin-left:10px;"class="fa fa-heart-o"></i>Created with Love</a></span>
+                <span class="" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><a style="color: #b8c7ce;text-decoration:none;"href="http://mabank.tech/"><i style="width:20px;margin-left:10px;"class="fa fa-heart-o"></i>Created with Love</a></span>
             </nav>
             </div>
             <style>
-                .demo-list-two {
-                    width: calc(100% - 16px);
-                }
 
-                input {
-                    text-align: center;
-                }
-
-                .material-icons.md-48 {
-                    font-size: 30px;
-                }
-
-                .mdl-list__item .mdl-list__item-primary-content {
-                    flex-grow: 0;
-                    -webkit-flex-grow: 0;
-                    text-align: left;
-                }
             </style>
             <main class="mdl-layout__content mdl-color--grey-100">
 
@@ -402,450 +126,96 @@ width:100%;
                         <div id="filtersSermons" style="display:none;">
 
 
-                            <div id="background-filters" style="background-color: #323B3F;max-width:100%;width: auto;">
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">date_range</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="firstDateLabel">
-                                        <input class="mdl-textfield__input" type="text" id="firstDate" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (Start Date)</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="firstDate">Search From this Date Preached</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">date_range</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="secondDateLabel">
-                                        <input class="mdl-textfield__input" type="text" id="secondDate" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Date Preached (End Date)</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="secondDate">Search To this Date Preached</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-     <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="searchLabel">
-                                        <input class="mdl-textfield__input" type="text" id="search" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Teaching Title</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="search">Enter Title to Search</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-    <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">face</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                        <input class="mdl-textfield__input" type="text" id="speakerName" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Speaker Name</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="speakerName">Enter Speaker's Name</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-    <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">book</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                        <input class="mdl-textfield__input" type="text" id="nameOfBook" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Book</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="nameOfBook">Name of Book</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-    <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">home</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                        <input class="mdl-textfield__input" type="text" id="nameOfChurch" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Name of Church</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="nameOfChurch">Name of Church</div>
-
-                                <li class="mdl-list__item" style="display: -webkit-inline-box;display:none;">
-                                    <span class="mdl-list__item-primary-content">
-    <i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">star</i>
-    </span>
-                                    <div class="mdl-textfield mdl-js-textfield" id="speakerLabel">
-                                        <input class="mdl-textfield__input" type="text" id="rating" style="color:white;">
-                                        <label class="mdl-textfield__label" for="sample1" style="color:white;">Rating</label>
-                                    </div>
-                                </li>
-
-                                <div class="mdl-tooltip" for="rating">Rating</div>
-
-
-
-                                <span style="margin-top:20;">
-                                    <center>
-
-  <form action="#">
-  <div id="searchIcon"class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-focused">
-    <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-      <i style="color:white;"class="material-icons">search</i>
-    </label>
-    <div class="mdl-textfield__expandable-holder">
-      <input id="searchTitleBox" style="color:white;font-family:'Open Sans';"class="mdl-textfield__input" type="text" id="sample6">
-      <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
-    </div>
-  </div>
-</form>
-</center>
-
-      </span>
-                            </div>
-                        </div>
-
-
-                        <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
-                        </div>
-                        <div id="sermonContent" class="mdl-grid demo-content">
-
                         </div>
                     </div>
-                    <div id="alertToast" class="mdl-js-snackbar mdl-snackbar">
-                        <div class="mdl-snackbar__text"></div>
-                        <button class="mdl-snackbar__action" type="button"></button>
-                    </div>
-                </section>
 
-            </main>
+
+                    <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
+                    </div>
+                    <div id="sermonContent" class="mdl-grid demo-content">
+
+                    </div>
         </div>
-        <script src="https://www.thebodyofchrist.us/app/scripts/jquery.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/js/jquery.mobile-1.4.5.js"></script>
+        <div id="alertToast" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+        </section>
 
-        <script>
-            $.mobile.loading().hide();
-            $(document).on("mobileinit", function() {
-                $.mobile.loader.prototype.options.disabled = true;
-            });
-        </script>
+        </main>
+    </div>
+    <script src="https://www.thebodyofchrist.us/app/scripts/jquery.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/jquery.mobile-1.4.5.js"></script>
 
-        <script src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/dashboard.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
+    <script>
+        $.mobile.loading().hide();
+        $(document).on("mobileinit", function() {
+            $.mobile.loader.prototype.options.disabled = true;
+        });
+    </script>
 
-        <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>
-        <script src='https://www.thebodyofchrist.us/app/scripts/nprogress.js'></script>
-        <link rel='stylesheet' href='https://www.thebodyofchrist.us/app/css/nprogress.css' />
-        <script>
-            window.userID = localStorage.getItem('userID');
-            window.communityID = localStorage.getItem('userCommunityID');
-        </script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getChurches.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getMembers.js"></script>
-         <script src="https://www.thebodyofchrist.us/app/scripts/getSermonHistory.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getFollowed.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getEvents.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/checkIfListened.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getTeachings.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/getVBV.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/js/sly.min.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/dashboard.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
 
-        <script>
-            loadMembers('Global', '');
-            loadChurches('Global', '', '', 'False');
-            loadSpeakers('Global', '', 'False');
-        </script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/jquery.cookie.js"></script>
-        <script defer src="https://www.thebodyofchrist.us/app/scripts/material.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/moment.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/bootstrapMaterialCalendar.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/downloadedContent.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/js/purl.js"></script>
-        <script>
-            $('#firstDate').bootstrapMaterialDatePicker({
-                weekStart: 0,
-                time: false
-            }).on('change', function(e, date) {
-                $('#firstDateLabel').addClass('is-dirty');
-            });
-            $('#secondDate').bootstrapMaterialDatePicker({
-                weekStart: 0,
-                time: false
-            }).on('change', function(e, date) {
-                $('#secondDateLabel').addClass('is-dirty');
-            });
+    <script src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>
+    <script src='https://www.thebodyofchrist.us/app/scripts/nprogress.js'></script>
+    <link rel='stylesheet' href='https://www.thebodyofchrist.us/app/css/nprogress.css' />
+    <script>
+        window.userID = localStorage.getItem('userID');
+        window.communityID = localStorage.getItem('userCommunityID');
+    </script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getChurches.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getMembers.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getSermonHistory.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getFollowed.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getEvents.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/checkIfListened.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getTeachings.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/getVBV.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/sly.min.js"></script>
 
-            function arrayLookup(array, prop, val) {
-                for (var i = 0, len = array.length; i < len; i++) {
-                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
-                        return array[i];
-                    }
-                }
-                return null;
-            }
+    <script>
+        loadMembers('Global', '');
+        loadChurches('Global', '', '', 'False');
+        loadSpeakers('Global', '', 'False');
+    </script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/jquery.cookie.js"></script>
+    <script defer src="https://www.thebodyofchrist.us/app/scripts/material.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/moment.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/bootstrapMaterialCalendar.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/downloadedContent.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/purl.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/dashboardExtra1.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/js/jquery.barrating.js"></script>
+    <script src="https://www.thebodyofchrist.us/app/scripts/search.js"></script>
+    <script type="text/javascript" src="https://www.thebodyofchrist.us/app/scripts/autocomplete.js"></script>
+    <script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
 
-            Storage.prototype.setArray = function(key, obj) {
-                return this.setItem(key, JSON.stringify(obj))
-            }
-            Storage.prototype.getArray = function(key) {
-                return JSON.parse(this.getItem(key))
-            }
+    <script src="https://www.thebodyofchrist.us/app/scripts/dashboardExtra.js"></script>
+    <script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
+    <script type="text/javascript" src="https://www.thebodyofchrist.us/app/js/jquery.scrollbar.js"></script>
+    <script>
+    </script>
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-            function getLocalFilesPushToLocalStorage() {
-
-                function listDirectory() {
-
-                    window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dirEntry) {
-                        var directoryReader = dirEntry.createReader();
-                        directoryReader.readEntries(dirSuccess, dirFail);
-                    });
-                }
-
-                window.filesArray = []
-
-                function dirSuccess(entries) {
-                    console.log("INFO: Listing entries");
-                    var i;
-                    for (i = 0; i < entries.length; i++) {
-                        console.log(entries[i].name);
-                        window.filesArray.push(entries[i].name);
-
-                    }
-                }
-
-                function dirFail(error) {
-                    console.log("Failed to list directory contents: " + error.code);
-                }
-
-                listDirectory();
-
-
-
-            }
-
-            function clearCache() {
-                ImgCache.clearCache(function() {
-                    // continue cleanup...
-                }, function() {
-                    // something went wrong
-                });
-            }
-        </script>
-
-
-        <script>
-            function showSearchFilter() {
-                document.getElementById('searchButton').innerText = 'Search';
-                $('searchButton').prepend('<i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>');
-                $('.mdl-list__item').show();
-                search();
-            }
-        </script>
-        <script>
-            function setBackground() {
-                window.backgroundImage = localStorage.getItem('backgroundImage');
-                if (window.backgroundImage == null) {
-                    window.backgroundImage = 'https://www.thebodyofchrist.us/app/img/wood.png';
-                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
-                } else {
-                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
-                }
-            }
-            setBackground();
-
-            function logout() {
-                window.location = 'index.html';
-                //localStorage.clear();
-            }
-        </script>
-        <script src="https://www.thebodyofchrist.us/app/js/jquery.barrating.js"></script>
-        <script src="https://www.thebodyofchrist.us/app/scripts/search.js"></script>
-
-
-
-
-        <script type="text/javascript" src="https://www.thebodyofchrist.us/app/scripts/autocomplete.js"></script>
-        <script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-
-        <style>
-            .yourlabs-autocomplete {
-                width: 100%;
-            }
-        </style>
-        <script>
-            server = "https://www.thebodyofchrist.us";
-            $('#quick-search').on('input', function() {
-                $('#contentHolder').empty();
-                closeSermon();
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').on('click', function() {
-                if (document.getElementById('quick-search').value != 'null') {
-                    $('#contentHolder').empty();
-                    closeSermon();
-                    previousSearch = document.getElementById('quick-search').value;
-                    document.getElementById('quick-search').value = '';
-                    document.getElementById('quick-search').value = previousSearch;
-                }
-
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').yourlabsAutocomplete({
-                url: server + '/search-mobile/',
-                choiceSelector: '[data-value]',
-            }).input.bind('selectChoice', function(e, choice, autocomplete) {
-
-                dataLink = choice.attr('data-value');
-                if (dataLink.split('-')[0] == "14") {
-                    window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "16") {
-                    window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "7") {
-                    window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "21") {
-                    window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]
-                }
-
-            });
-
-            function login() {
-                window.location = "https://www.thebodyofchrist.us/login/";
-            }
-        </script>
-        <script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
-          <script type="text/javascript" src="https://www.thebodyofchrist.us/app/js/jquery.scrollbar.js"></script>
-        <script>
-            function toggleBible() {
-                if ($('#bibleSermonTabButton').hasClass('is-active')) {
-                    $('#bibleSermonTabButton').removeClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Bible") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Empty');
-                    }
-                    if (localStorage.getItem('sermonTab3') == "Bible") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Empty');
-                    }
-                    $(window.targetTab).empty();
-                } else {
-
-                    if (sermonData.results[0].book == null){
-                    var snackbarContainer = document.querySelector('#alertToast');
-                    var data = {message: "This sermon doesn't have a particular book registered."};
-                    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-
-          }
-          else{
-                    $('#bibleSermonTabButton').addClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Empty") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Bible');
-                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
-                        return;
-                    }
-                    if (localStorage.getItem('sermonTab3') == "Empty") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Bible');
-                        $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
-                        return;
-                    }
-
-                    }
-
-                }
-            }
-
-            function toggleComments() {
-                if ($('#commentSermonTabButton').hasClass('is-active')) {
-                    $('#commentSermonTabButton').removeClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Comments") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Empty');
-                    }
-                    if (localStorage.getItem('sermonTab3') == "Comments") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Empty');
-                    }
-                    $(window.targetTab).empty();
-                } else {
-                    $('#commentSermonTabButton').addClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Empty") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Comments');
-                        url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-                        $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-                        FB.XFBML.parse();
-                        return;
-                    }
-                    if (localStorage.getItem('sermonTab3') == "Empty") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Comments');
-                        url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-                        $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-                        FB.XFBML.parse();
-                        return;
-                    }
-                }
-            }
-
-            function togglePlaylist() {
-                if ($('#playlistSermonTab').hasClass('is-active')) {
-                    $('#playlistSermonTab').removeClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Playlist") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Empty');
-                    }
-                    if (localStorage.getItem('sermonTab3') == "Playlist") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Empty');
-                    }
-                    $(window.targetTab).empty();
-                } else {
-                    $('#playlistSermonTab').addClass('is-active');
-                    if (localStorage.getItem('sermonTab2') == "Empty") {
-                        window.targetTab = "#secondTabSermon";
-                        localStorage.setItem('sermonTab2', 'Playlist');
-                         jQuery.ajax({
-                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-                   type: "GET",
-                  }).done(function(playlistHTML, textStatus, jqXHR) {
-                    $(winow.targetTab).append(playlistHTML);
-                        return;
-                    });
-              }
-                    if (localStorage.getItem('sermonTab3') == "Empty") {
-                        window.targetTab = "#thirdTabSermon";
-                        localStorage.setItem('sermonTab3', 'Playlist');
-                         jQuery.ajax({
-                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-                   type: "GET",
-                  }).done(function(playlistHTML, textStatus, jqXHR) {
-                    $(window.targetTab).append(playlistHTML);
-                        return;
-                    });
-              }
-                }
-            }
-        </script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-72498569-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+        ga('create', 'UA-72498569-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 
 
 </body>
