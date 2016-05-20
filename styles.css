@@ -495,6 +495,8 @@ position:relative !important;
 }
 
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
+
+
   .textIntro {
     max-height: 286px !important;
   }
@@ -548,7 +550,47 @@ position:relative !important;
 
 }
 
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+
+  #recommendedSermonBox{
+  width:1299px !important;
+  }
+
+.teachingImage{
+  margin-left: 8px !important;
+}
+#viewsCount{
+  margin-left: calc(100% - 59px) !important;
+}
+
+.teachingTitle{
+  width: 176px !important;
+  left: 103px !important;
+}
+    .teachingBox{
+    margin:6px !important;
+  }
+
+   #recommendedPlaylistBox{
+  width:initial !important;
+  }
+
+}
+
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+
+  #ipad{
+
+  }
+
+ #recommendedSermonBox{
+  width:748px !important;
+  }
+
   #bocText {
     font-size: 60px !important;
     top: 50% !important;
