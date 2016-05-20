@@ -415,7 +415,7 @@ else{
 
 
    viewName = 'Global';
- setBackground();
+
   setViewGlobal();
   $('.beta').hide();
    initializeDeepLinks();
