@@ -415,57 +415,60 @@ else{
 
 
    viewName = 'Global';
-
+ setBackground();
+  setViewGlobal();
+  $('.beta').hide();
+   initializeDeepLinks();
 
    var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-   //CODE RAN ON APP
-   if (app) {
-     ImgCache.options.chromeQuota = 50 * 1024 * 1024;
-     document.addEventListener("deviceready", onDeviceReady, false);
-
-     function onDeviceReady() {
-       getLocalFilesPushToLocalStorage();
-       setBackground();
-       ImgCache.init(function() {
-         setViewGlobal();
-
-        // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
-       }, function() {
-         alert('ImgCache init: error! Check the log for errors');
-       });
-       $('.beta').hide();
-       if (localStorage.getItem('betaEnabled') === 'True') {
-         $('.beta').show();
-       }
-       initialLoad();
-       startApp();
-       initializeDeepLinks();
-       bindSearchButton();
-     }
-   } else {
-     //CODE RAN ON WEB
-
-     $(document).ready(function() {
-
-       //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
-       setBackground();
-       //ImgCache.init(function() {
-       setViewGlobal();
-
-        bindSearchButton();
-
-       // }, function() {
-       //     alert('ImgCache init: error! Check the log for errors');
-       // });
-       $('.beta').hide();
-       if (localStorage.getItem('betaEnabled') === 'True') {
-         $('.beta').show();
-       }
-       //initialLoad();
-       startApp();
-       initializeDeepLinks();
-     });
-   }
+//   //CODE RAN ON APP
+//   if (app) {
+//     ImgCache.options.chromeQuota = 50 * 1024 * 1024;
+//     document.addEventListener("deviceready", onDeviceReady, false);
+//
+//     function onDeviceReady() {
+//       getLocalFilesPushToLocalStorage();
+//       setBackground();
+//       ImgCache.init(function() {
+//         setViewGlobal();
+//
+//        // loadEvents(localStorage.getItem('view'), communityID, '', 'True');
+//       }, function() {
+//         alert('ImgCache init: error! Check the log for errors');
+//       });
+//       $('.beta').hide();
+//       if (localStorage.getItem('betaEnabled') === 'True') {
+//         $('.beta').show();
+//       }
+//       initialLoad();
+//       startApp();
+//       initializeDeepLinks();
+//       bindSearchButton();
+//     }
+//   } else {
+//     //CODE RAN ON WEB
+//
+//     $(document).ready(function() {
+//
+//       //  getLocalFilesPushToLocalStorage(); -- NO LOCAL STORAGE ENABLED FOR WEB YET.
+//
+//       //ImgCache.init(function() {
+//
+//
+//       // bindSearchButton();
+//
+//       // }, function() {
+//       //     alert('ImgCache init: error! Check the log for errors');
+//       // });
+//
+//       if (localStorage.getItem('betaEnabled') === 'True') {
+//         $('.beta').show();
+//       }
+//       //initialLoad();
+//       startApp();
+//
+//     });
+//   }
 
     
    function startApp() {
