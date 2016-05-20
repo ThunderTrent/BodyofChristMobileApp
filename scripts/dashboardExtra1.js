@@ -73,16 +73,7 @@
                 search();
             }
 
-            function setBackground() {
-                window.backgroundImage = localStorage.getItem('backgroundImage');
-                if (window.backgroundImage == null) {
-                    window.backgroundImage = 'https://www.thebodyofchrist.us/app/img/wood.png';
-                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
-                } else {
-                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
-                }
-            }
-            setBackground();
+
 
             function logout() {
                 window.location = 'index.html';
