@@ -199,6 +199,18 @@
     <script src="https://www.thebodyofchrist.us/app/scripts/dashboard.js"></script>
     <script src="https://www.thebodyofchrist.us/service/getUserID/"></script>
     <script>
+        function setBackground() {
+                window.backgroundImage = localStorage.getItem('backgroundImage');
+                if (window.backgroundImage == null) {
+                    window.backgroundImage = 'https://www.thebodyofchrist.us/app/img/wood.png';
+                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
+                } else {
+                    $('body').css('background-image', 'url(' + window.backgroundImage + ')');
+                }
+            }
+            setBackground();
+    </script>
+    <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function() {
