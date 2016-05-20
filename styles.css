@@ -812,7 +812,11 @@ position:relative !important;
 }
 
 @media only screen and (min-width: 1000px) {
-  
+
+  #recommendedPlaylistBox{
+  width: 100% !important;
+  }
+
   .searchMarginLeft{
     margin-left:50px !important;
   }
