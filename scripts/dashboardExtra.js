@@ -1,37 +1,37 @@
-  server = "https://www.thebodyofchrist.us";
-            $('#quick-search').on('input', function() {
-                $('#contentHolder').empty();
-                closeSermon();
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').on('click', function() {
-                if (document.getElementById('quick-search').value != 'null') {
-                    $('#contentHolder').empty();
-                    closeSermon();
-                    previousSearch = document.getElementById('quick-search').value;
-                    document.getElementById('quick-search').value = '';
-                    document.getElementById('quick-search').value = previousSearch;
-                }
-
-                $('.yourlabs-autocomplete').css('display', 'block !important;');
-            });
-            $('#quick-search').yourlabsAutocomplete({
-                url: server + '/search-mobile/',
-                choiceSelector: '[data-value]',
-            }).input.bind('selectChoice', function(e, choice, autocomplete) {
-
-                dataLink = choice.attr('data-value');
-                if (dataLink.split('-')[0] == "14") {
-                    window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "16") {
-                    window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "7") {
-                    window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]
-                } else if (dataLink.split('-')[0] == "21") {
-                    window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]
-                }
-
-            });
+//  server = "https://www.thebodyofchrist.us";
+//            $('#quick-search').on('input', function() {
+//                $('#contentHolder').empty();
+//                closeSermon();
+//                $('.yourlabs-autocomplete').css('display', 'block !important;');
+//            });
+//            $('#quick-search').on('click', function() {
+//                if (document.getElementById('quick-search').value != 'null') {
+//                    $('#contentHolder').empty();
+//                    closeSermon();
+//                    previousSearch = document.getElementById('quick-search').value;
+//                    document.getElementById('quick-search').value = '';
+//                    document.getElementById('quick-search').value = previousSearch;
+//                }
+//
+//                $('.yourlabs-autocomplete').css('display', 'block !important;');
+//            });
+//            $('#quick-search').yourlabsAutocomplete({
+//                url: server + '/search-mobile/',
+//                choiceSelector: '[data-value]',
+//            }).input.bind('selectChoice', function(e, choice, autocomplete) {
+//
+//                dataLink = choice.attr('data-value');
+//                if (dataLink.split('-')[0] == "14") {
+//                    window.location.href = server + '/sermons/?sermonid=' + dataLink.split('-')[1]
+//                } else if (dataLink.split('-')[0] == "16") {
+//                    window.location.href = server + '/userprofile/?user=' + dataLink.split('-')[1]
+//                } else if (dataLink.split('-')[0] == "7") {
+//                    window.location.href = server + '/web/contentdownloadtable/?churchid=' + dataLink.split('-')[1]
+//                } else if (dataLink.split('-')[0] == "21") {
+//                    window.location.href = server + '/web/contentdownloadtable/?speaker=' + dataLink.split('-')[1]
+//                }
+//
+//            });
 
             function login() {
                 window.location = "https://www.thebodyofchrist.us/login/";
