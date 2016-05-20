@@ -557,7 +557,7 @@ else{
      }
    };
 
-   function disableNonMemberFunction(){
+  function disableNonMemberFunction(){
      $('#communityButton').css('color','#946720');
      $('#communityButton').prop('onclick',null).off('click');
      $('#followButton').css('color','#946720');
