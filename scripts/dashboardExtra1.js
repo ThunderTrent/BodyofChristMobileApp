@@ -1,24 +1,24 @@
-   $('#firstDate').bootstrapMaterialDatePicker({
-                weekStart: 0,
-                time: false
-            }).on('change', function(e, date) {
-                $('#firstDateLabel').addClass('is-dirty');
-            });
-            $('#secondDate').bootstrapMaterialDatePicker({
-                weekStart: 0,
-                time: false
-            }).on('change', function(e, date) {
-                $('#secondDateLabel').addClass('is-dirty');
-            });
+//   $('#firstDate').bootstrapMaterialDatePicker({
+//                weekStart: 0,
+//                time: false
+//            }).on('change', function(e, date) {
+//                $('#firstDateLabel').addClass('is-dirty');
+//            });
+//            $('#secondDate').bootstrapMaterialDatePicker({
+//                weekStart: 0,
+//                time: false
+//            }).on('change', function(e, date) {
+//                $('#secondDateLabel').addClass('is-dirty');
+//            });
 
-            function arrayLookup(array, prop, val) {
-                for (var i = 0, len = array.length; i < len; i++) {
-                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
-                        return array[i];
-                    }
-                }
-                return null;
-            }
+//            function arrayLookup(array, prop, val) {
+//                for (var i = 0, len = array.length; i < len; i++) {
+//                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
+//                        return array[i];
+//                    }
+//                }
+//                return null;
+//            }
 
             Storage.prototype.setArray = function(key, obj) {
                 return this.setItem(key, JSON.stringify(obj))
