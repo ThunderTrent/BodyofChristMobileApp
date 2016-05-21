@@ -747,7 +747,6 @@ position:relative !important;
 }
 
 
-
 @media only screen and (min-device-width: 414px) and (max-device-width: 414px) and (orientation: portrait) {
   .textIntro {
     max-height: 286px !important;
