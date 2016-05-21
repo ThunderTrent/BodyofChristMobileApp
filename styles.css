@@ -724,6 +724,9 @@ position:relative !important;
     width: 345px !important;
   }
 
+  #recommendedSermonBox{
+      width: 359px !important;
+      }
   .ratingStars{
   margin-top:-31px !important;
   font-size: 30px;
