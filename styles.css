@@ -788,6 +788,11 @@ position:relative !important;
   .textIntro {
     max-height: 286px !important;
   }
+  #ratingBox{
+  margin-left: 103px;
+    width: 200px;
+    margin-top: -10px;
+    }
 
   #sermonContentInside {
     width: calc(100% - 18px) !important;
