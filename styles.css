@@ -850,7 +850,9 @@ position:relative !important;
     .ratingStars{
     margin-left: 10px;
     }
-
+#recommendedSermonBox{
+width: 750px !important;
+}
   #sermonContentInside {
     width: 735px !important;
   }
