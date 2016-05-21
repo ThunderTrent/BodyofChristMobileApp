@@ -702,6 +702,12 @@ position:relative !important;
     width: 345px !important;
   }
 
+  .ratingStars{
+  margin-top:-31px !important;
+  }
+  #ratingBox{
+  }
+
     #teachingTitleOverview{
     white-space:nowrap !important;
   }
