@@ -16,6 +16,10 @@
 .ui-body-inherit{
 width:100%;
 }
+
+#global > iframe{
+width:auto !important;
+}
 #loader{
     display: block;
     position: relative;
