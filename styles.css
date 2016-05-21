@@ -753,7 +753,7 @@ position:relative !important;
   }
 
   #sermonContentInside {
-    width: calc(100% - 29px) !important;
+    width: calc(100% - 18px) !important;
   }
     #teachingTitleOverview{
     white-space:nowrap !important;
