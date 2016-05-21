@@ -653,6 +653,19 @@ span {
 
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 320px) {
+
+  .ratingStars{
+  margin-top:-31px !important;
+  font-size: 30px;
+  }
+  #ratingBox{
+   margin-left: 122px;
+    width: 100px;
+    margin-top: -7px;
+  }
+
+
+
   .textIntro {
     max-height: 243px !important;
   }
