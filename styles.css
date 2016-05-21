@@ -842,7 +842,14 @@ position:relative !important;
   #textHolderLaunch {
     top: 56% !important;
   }
-  
+#ratingBox{
+      margin-left: 169px;
+    width: 100px;
+    margin-top: -10px;
+    }
+    .ratingStars{
+    margin-left: 10px;
+    }
 
   #sermonContentInside {
     width: 735px !important;
