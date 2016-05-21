@@ -480,7 +480,7 @@ function loadIndividualSermon(sermonID) {
     });
 }
 function downloadMP3() {
-    url = 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + window.sermonInfo[0].SermonID + '.mp3';
+    url = 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + window.sermonID + '.mp3';
     var fileTransfer = new FileTransfer();
     fileTransfer.onprogress = function(result) {
         var percent = result.loaded / result.total * 100;
