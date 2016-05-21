@@ -1,4 +1,6 @@
    window.view = "Global";
+      window.userID = localStorage.getItem('userID');
+        window.communityID = localStorage.getItem('userCommunityID');
 
    window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 if (window.app) {
