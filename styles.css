@@ -704,8 +704,11 @@ position:relative !important;
 
   .ratingStars{
   margin-top:-31px !important;
+  font-size: 30px;
   }
   #ratingBox{
+      margin-left: 142px;
+    width: 100px;
   }
 
     #teachingTitleOverview{
