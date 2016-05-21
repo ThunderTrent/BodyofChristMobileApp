@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@media (min-device-width: 412px) and (max-device-width: 690px) {
+@media (min-device-width: 435) and (max-device-width: 773px) {
 #sermonContentInside{
     width: 402px !important;
     }
