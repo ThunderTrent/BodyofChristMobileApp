@@ -642,10 +642,7 @@ span {
 }
 
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 414px) {
-    width: calc(100% - 29px) !important;
 
-}
 @media only screen and (min-device-width: 320px) and (max-device-width: 320px) {
   .textIntro {
     max-height: 243px !important;
@@ -750,17 +747,28 @@ position:relative !important;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
 
 
 =======
+=======
+@media only screen and (min-device-width: 414px) and (max-device-width: 414px) {
+   #sermonContentInside {
+    width: calc(100% - 29px) !important;
+  }
+}
+
+
+>>>>>>> 202869807a329f9ffd97153e9aa0c01c61a6d612
 @media only screen and (min-device-width: 414px) and (max-device-width: 734px) and (orientation: portrait) {
 >>>>>>> 0afdef4e1046aaabaf5fd0e4f630f00c2d416aa3
   .textIntro {
     max-height: 286px !important;
   }
+
   #sermonContentInside {
-    width: 382px !important;
+    width: calc(100% - 29px) !important;
   }
     #teachingTitleOverview{
     white-space:nowrap !important;
