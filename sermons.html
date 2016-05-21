@@ -71,9 +71,9 @@
                     <a style="" id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
                     <a id="teachings" href="#" onclick="teachingsLoad('True');" class="mdl-layout__tab"><i class="fa fa-file-audio-o" style="margin-right:10px"></i>Teachings</a>
                     <a id="needs" href="#" onclick="needsLoad('True');" class="mdl-layout__tab" style="display:none;"><i style="margin-right:10px;"class="fa fa-heart"></i>Needs</a>
-                    <a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;" class="material-icons">home</i><span style="margin-left:20px;">Churches</span></a>
+                    <!--<a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;" class="material-icons">home</i><span style="margin-left:20px;">Churches</span></a>-->
                     <a id="speakers" href="#" onclick="speakersLoad('True');" class="mdl-layout__tab"><i class="fa fa-microphone" style="margin-right:10px;" aria-hidden="true"></i>Speakers</a>
-                    <a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-users" aria-hidden="true"></i>Members</a>
+                    <!--<a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-users" aria-hidden="true"></i>Members</a>-->
                 </div>
                 <div id="teachingBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(221, 75, 57, 0.85);display:none;">
                     <a style="" id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="ion ion-ios-bookmarks"></i>Sermons</a>
@@ -159,28 +159,27 @@
     <script defer src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>
     <!--<script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>-->
 
-    <script  src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
 
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>
-    <script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>
+    <!--<script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>-->
     <!--<script src='https://www.thebodyofchrist.us/app/scripts/nprogress.js'></script>-->
     <!--<link rel='stylesheet' href='https://www.thebodyofchrist.us/app/css/nprogress.css' />-->
     <script>
         window.userID = localStorage.getItem('userID');
         window.communityID = localStorage.getItem('userCommunityID');
     </script>
-    <script  src="https://www.thebodyofchrist.us/app/scripts/getChurches.js"></script>
-    <script  src="https://www.thebodyofchrist.us/app/scripts/getMembers.js"></script>
+    <!--<script  src="https://www.thebodyofchrist.us/app/scripts/getChurches.js"></script>-->
+    <!--<script  src="https://www.thebodyofchrist.us/app/scripts/getMembers.js"></script>-->
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getSermonHistory.js"></script>
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getFollowed.js"></script>
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getEvents.js"></script>
-    <script defer src="https://www.thebodyofchrist.us/app/scripts/checkIfListened.js"></script>
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/checkIfListened.js"></script>-->
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getTeachings.js"></script>
     <script defer src="https://www.thebodyofchrist.us/app/scripts/getVBV.js"></script>
 
 
     <script>
-        loadMembers('Global', '');
+        <!--loadMembers('Global', '');-->
         loadChurches('Global', '', '', 'False');
         loadSpeakers('Global', '', 'False');
     </script>
