@@ -570,7 +570,7 @@ else{
      $('#needsButton').css('color','#946720');
      $('#needsButton').prop('onclick',null).off('click');
 
-     $('#sermonHistoryButton').css('color','#946720');
+     $('#sermonHistoryButton').css('color','rgb(102, 84, 82)');
      $('#sermonHistoryButton').prop('onclick',null).off('click');
 
      $('#loginButton').show();
