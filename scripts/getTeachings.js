@@ -57,7 +57,6 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
         })
     }
 }
-
 function loadSermonsInsert(url, target, insert, name) {
 
 
@@ -136,8 +135,6 @@ recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 
 
 }
-
-
 function loadIndividualSermon(sermonID) {
     $('#sermonContent').empty();
         $( "#loader-wrapper" ).fadeIn( "slow", function() {
@@ -276,7 +273,35 @@ function loadIndividualSermon(sermonID) {
 
             $.get( "https://www.thebodyofchrist.us/service/phonegap/sermoncontent/?sermonid=" + sermonID, function( sermonData ) {
               $('#sermonContent').append(sermonData);
+            }).done(function(sermonData, textStatus, jqXHR) {
+
+
+            window.audioMP3 = document.getElementById("teachingAudio");
+            window.audioMP3.addEventListener("play", function() {
+                window.polling = setTimeout(updateAudioStatus, 5000);
             });
+
+
+            window.audioMP3.addEventListener("pause", function() {
+                clearTimeout(window.polling);
+            });
+
+            window.audioMP3.addEventListener("pause", function() {
+                clearTimeout(window.polling);
+            });
+
+            window.audioMP3.onended = function() {
+                sermonID = window.sermonInfo[0].SermonID;
+                markaslistened(sermonID);
+                var snackbarContainer = document.querySelector('#alertToast');
+                var data = {
+                    message: "We Marked That Teaching as listened for you."
+                };
+                snackbarContainer.MaterialSnackbar.showSnackbar(data);
+            };
+
+
+  });
 
 
 
@@ -450,30 +475,6 @@ function loadIndividualSermon(sermonID) {
             getDuration();
 
 
-            window.audioMP3 = document.getElementById("teachingAudio");
-            window.audioMP3.addEventListener("play", function() {
-                window.polling = setTimeout(updateAudioStatus, 5000);
-            });
-
-
-            window.audioMP3.addEventListener("pause", function() {
-                clearTimeout(window.polling);
-            });
-
-            window.audioMP3.addEventListener("pause", function() {
-                clearTimeout(window.polling);
-            });
-
-            window.audioMP3.onended = function() {
-                sermonID = window.sermonInfo[0].SermonID;
-                markaslistened(sermonID);
-                var snackbarContainer = document.querySelector('#alertToast');
-                var data = {
-                    message: "We Marked That Teaching as listened for you."
-                };
-                snackbarContainer.MaterialSnackbar.showSnackbar(data);
-            };
-
 
 
 
@@ -484,7 +485,6 @@ function loadIndividualSermon(sermonID) {
         $('#loading').hide();
     });
 }
-
 function downloadMP3() {
     url = 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + window.sermonInfo[0].SermonID + '.mp3';
     var fileTransfer = new FileTransfer();
@@ -526,10 +526,6 @@ function downloadMP3() {
 
 
 }
-
-
-
-
 function initAudioPlayer(url) {
 
     window.media = new Media(url); //audio = document.getElementById('teachingAudio');
@@ -591,7 +587,6 @@ function initAudioPlayer(url) {
    // audio.volume = volumeslider.value / 100;
    // }
 }
-
 function nyi() {
     //alert('Not Yet Implemented.');
     var snackbarContainer = document.querySelector('#alertToast');
@@ -600,9 +595,6 @@ function nyi() {
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
-
-
-
 function closeSermon() {
     if (window.sermonView == 1) {
         $("#contentHolder").animate({
@@ -616,8 +608,6 @@ function closeSermon() {
     $('#individualSermonBar').hide();
 
 }
-
-
 function markaslistened(sermonid) {
 
 
@@ -637,13 +627,10 @@ function markaslistened(sermonid) {
 
 
 }
-
-
 function seekAudio() {
     var seekto = window.media.getDuration() * (seekslider.value / 100);
     window.media.seekTo(seekto);
 }
-
 function play() {
     window.media.play();
     playbtn = document.getElementById('playButton');
@@ -656,8 +643,6 @@ function pause() {
     playbtn.innerHTML = "play_arrow";
     playbtn.onclick = play;
 }
-
-
 function setRating() {
     $('#loading').show();
     sermonID = window.sermonID;
@@ -676,7 +661,6 @@ function setRating() {
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
     });
 }
-
 function addView() {
     sermonID = window.sermonID;
     url = 'https://www.thebodyofchrist.us/service/addView/?sermonID=' + sermonID;
@@ -692,7 +676,6 @@ function addView() {
     });
 
 }
-
 function sendDuration() {
     sermonID = window.sermonID;
     window.duration = Math.round(window.audioMP3.currentTime);
@@ -710,7 +693,6 @@ function sendDuration() {
 
     });
 }
-
 function getDuration() {
     sermonID = window.sermonID;
     url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime';
@@ -733,8 +715,6 @@ function getDuration() {
 
     });
 }
-
-
 function updateAudioStatus() {
     try {
         sendDuration();
