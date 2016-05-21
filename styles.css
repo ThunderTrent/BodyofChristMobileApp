@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@media (min-device-width: 435) and (max-device-width: 773px) {
+@media (min-device-width: 435) and (max-device-width: 435px) {
 #sermonContentInside{
     width: 402px !important;
     }
@@ -748,9 +748,13 @@ position:relative !important;
 
 }
 
+<<<<<<< HEAD
 @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
 
 
+=======
+@media only screen and (min-device-width: 414px) and (max-device-width: 734px) and (orientation: portrait) {
+>>>>>>> 0afdef4e1046aaabaf5fd0e4f630f00c2d416aa3
   .textIntro {
     max-height: 286px !important;
   }
