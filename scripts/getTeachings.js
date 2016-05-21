@@ -660,7 +660,7 @@ function pause() {
 
 function setRating() {
     $('#loading').show();
-    sermonID = window.sermonID
+    sermonID = window.sermonID;
     rating = document.getElementById('yourRating').value;
     url = 'https://www.thebodyofchrist.us/service/setRatingFromSermonID/?sermonID=' + sermonID + '&sermonRating=' + rating;
     jQuery.ajax({
@@ -678,7 +678,7 @@ function setRating() {
 }
 
 function addView() {
-    sermonID = window.sermonInfo[0].SermonID;
+    sermonID = window.sermonID;
     url = 'https://www.thebodyofchrist.us/service/addView/?sermonID=' + sermonID;
     jQuery.ajax({
         url: url,
@@ -694,7 +694,7 @@ function addView() {
 }
 
 function sendDuration() {
-    sermonID = window.sermonInfo[0].SermonID;
+    sermonID = window.sermonID;
     window.duration = Math.round(window.audioMP3.currentTime);
     url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration;
     jQuery.ajax({
@@ -712,7 +712,7 @@ function sendDuration() {
 }
 
 function getDuration() {
-    sermonID = window.sermonInfo[0].SermonID;
+    sermonID = window.sermonID;
     url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=getLastTime';
     jQuery.ajax({
         url: url,
