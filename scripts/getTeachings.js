@@ -345,11 +345,11 @@ function loadIndividualSermon(sermonID) {
             initiateTab3();
             $('#contentHolder').empty();
 
-            setTimeout(function() {
-                sermonContentHeight = $('#sermonContentInside').height();
-                $('#gradientSermonContent').height(sermonContentHeight + 'px');
-                checkIfListened();
-            }, 400);
+//            setTimeout(function() {
+//                sermonContentHeight = $('#sermonContentInside').height();
+//                $('#gradientSermonContent').height(sermonContentHeight + 'px');
+//                checkIfListened();
+//            }, 400);
 
 
 
