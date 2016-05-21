@@ -13,10 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@media (min-device-width: 435) and (max-device-width: 435px) {
-#sermonContentInside{
-    width: 402px !important;
-    }
 
 }
  @media only screen and (min-device-width : 1440px) and
@@ -1003,3 +999,9 @@ and (orientation : landscape) {
     color: black;
   }
 }
+
+
+@media (min-device-width: 435px) and (max-device-width: 435px) {
+#sermonContentInside{
+    width: 402px !important;
+    }
