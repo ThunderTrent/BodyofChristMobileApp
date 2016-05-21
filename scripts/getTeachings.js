@@ -452,13 +452,7 @@ function loadIndividualSermon(sermonID) {
 //
 //
 //            if (rating > 0) {
-                $(function() {
-                    $('#publicRating').barrating({
-                        theme: 'fontawesome-stars',
-                        initialRating: rating,
-                        readonly: true,
-                    });
-                });
+
 //            } else {
 //                $(function() {
 //                    $('#publicRating').barrating({
