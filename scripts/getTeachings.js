@@ -178,61 +178,61 @@ function loadIndividualSermon(sermonID) {
 
 
 
-
-            function arrayLookup(array, prop, val) {
-                for (var i = 0, len = array.length; i < len; i++) {
-                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
-                        return array[i];
-                    }
-                }
-                return null;
-            }
-
-
-
-
-            try {
-                title = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).title;
-                console.log(title);
-            } catch (err) {
-                console.log('error');
-                title = 'No Title Listed';
-            }
+//
+//            function arrayLookup(array, prop, val) {
+//                for (var i = 0, len = array.length; i < len; i++) {
+//                    if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
+//                        return array[i];
+//                    }
+//                }
+//                return null;
+//            }
+//
 
 
-            try {
-                rating = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).rating;
-                console.log(rating);
-            } catch (err) {
-                console.log('error');
-                rating = 'Not Yet Rated';
-            }
 
-
-            try {
-                churchID = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).churchid;
-                console.log(churchID);
-                churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;
-            } catch (err) {
-                console.log('error');
-                churchName = 'No Church Name Listed';
-            }
-
-
-            try {
-                speakerid = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).speaker;
-                console.log(speakerid);
-                speakerName = arrayLookup(speakerData.results, 'speakerid', speakerid).speakername;
-            } catch (err) {
-                console.log('error');
-                speakerName = 'No Speaker Listed';
-            }
-
-            try {
-                cleanTitle = title.split('by')[0];
-            } catch (err) {
-                cleanTitle = title;
-            }
+//            try {
+//                title = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).title;
+//                console.log(title);
+//            } catch (err) {
+//                console.log('error');
+//                title = 'No Title Listed';
+//            }
+//
+//
+//            try {
+//                rating = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).rating;
+//                console.log(rating);
+//            } catch (err) {
+//                console.log('error');
+//                rating = 'Not Yet Rated';
+//            }
+//
+//
+//            try {
+//                churchID = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).churchid;
+//                console.log(churchID);
+//                churchName = arrayLookup(churchData.results, 'churchid', churchID).churchname;
+//            } catch (err) {
+//                console.log('error');
+//                churchName = 'No Church Name Listed';
+//            }
+//
+//
+//            try {
+//                speakerid = arrayLookup(sermonData.results, 'downloadedcontentid', sermonID).speaker;
+//                console.log(speakerid);
+//                speakerName = arrayLookup(speakerData.results, 'speakerid', speakerid).speakername;
+//            } catch (err) {
+//                console.log('error');
+//                speakerName = 'No Speaker Listed';
+//            }
+//
+//            try {
+//                cleanTitle = title.split('by')[0];
+//            } catch (err) {
+//                cleanTitle = title;
+//            }
 
             downloadedContent = window.localStorage.getArray("downloadedContent");
 
@@ -354,100 +354,99 @@ function loadIndividualSermon(sermonID) {
 
 
 
-            url = 'https://storage.googleapis.com/boc-audio/sermons_mp3/' + sermonID + '.mp3';
+//            url = 'https://storage.googleapis.com/boc-audio/sermons_mp3/' + sermonID + '.mp3';
+//
+//            window.sermonInfo = [];
+//            window.sermonInfo.push({
+//                "teachingTitle": title,
+//                "speaker": speakerName,
+//                "SermonID": sermonID,
+//                "churchName": churchName,
+//                "rating": rating
+//            });
+//
+//            if (rating == null) {
+//                rating = 0;
+//            } else {}
+//
+//
+//            try {
+//                yourRatingValue == null;
+//            } catch (err) {
+//                console.log('Rating Not Set Yet.');
+//            }
+//            try {
+//                sermonHistoryByUsernameThenSermonID == null;
+//            } catch (err) {
+//                console.log('Rating Not Set Yet.');
+//            }
+//
+//            sermonHistoryByUsernameThenSermonID = $.fn.filterJSON({
+//                sermonRatingHistoryCACHE
+//            }, {
+//                property: ["sermonid"], // mandatory
+//                wrapper: true,
+//                value: window.sermonID,
+//                checkContains: true,
+//                startsWith: true,
+//                matchCase: false,
+//                avoidDuplicates: true,
+//                sort: false,
+//                sortOrder: 'desc'
+//            });
 
-            window.sermonInfo = [];
-            window.sermonInfo.push({
-                "teachingTitle": title,
-                "speaker": speakerName,
-                "SermonID": sermonID,
-                "churchName": churchName,
-                "rating": rating
-            });
+//            if (sermonHistoryByUsernameThenSermonID.length > 0) {
+//                yourRatingValue = sermonHistoryByUsernameThenSermonID[0].ratingvalue;
+//            } else {
+//                yourRatingValue = 0;
+//            }
+//
+//            if (yourRatingValue > 0) {
+//                $(function() {
+//                    $('#yourRating').barrating({
+//                        theme: 'fontawesome-stars',
+//                        initialRating: yourRatingValue,
+//                    });
+//                });
+//            } else {
+//                $(function() {
+//                    $('#yourRating').barrating({
+//                        theme: 'fontawesome-stars',
+//                        initialRating: yourRatingValue,
+//                    });
+//                });
+//                $('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
+//            }
+//
+//
+//
+//
+//            $("#yourRating").change(function() {
+//                setRating();
+//            });
+//
+//
+//            if (rating > 0) {
+//                $(function() {
+//                    $('#publicRating').barrating({
+//                        theme: 'fontawesome-stars',
+//                        initialRating: rating,
+//                        readonly: true,
+//                    });
+//                });
+//            } else {
+//                $(function() {
+//                    $('#publicRating').barrating({
+//                        theme: 'fontawesome-stars',
+//                        initialRating: rating,
+//                        readonly: true,
+//                    });
+//                });
+//                $('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
+//            }
 
-            if (rating == null) {
-                rating = 0;
-            } else {}
-
-
-            try {
-                yourRatingValue == null;
-            } catch (err) {
-                console.log('Rating Not Set Yet.');
-            }
-            try {
-                sermonHistoryByUsernameThenSermonID == null;
-            } catch (err) {
-                console.log('Rating Not Set Yet.');
-            }
-
-            sermonHistoryByUsernameThenSermonID = $.fn.filterJSON({
-                sermonRatingHistoryCACHE
-            }, {
-                property: ["sermonid"], // mandatory
-                wrapper: true,
-                value: window.sermonID,
-                checkContains: true,
-                startsWith: true,
-                matchCase: false,
-                avoidDuplicates: true,
-                sort: false,
-                sortOrder: 'desc'
-            });
-
-            if (sermonHistoryByUsernameThenSermonID.length > 0) {
-                yourRatingValue = sermonHistoryByUsernameThenSermonID[0].ratingvalue;
-            } else {
-                yourRatingValue = 0;
-            }
-
-            if (yourRatingValue > 0) {
-                $(function() {
-                    $('#yourRating').barrating({
-                        theme: 'fontawesome-stars',
-                        initialRating: yourRatingValue,
-                    });
-                });
-            } else {
-                $(function() {
-                    $('#yourRating').barrating({
-                        theme: 'fontawesome-stars',
-                        initialRating: yourRatingValue,
-                    });
-                });
-                $('#sermonContentInside > span:nth-child(6) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
-            }
-
-
-
-
-            $("#yourRating").change(function() {
-                setRating();
-            });
-
-
-            if (rating > 0) {
-                $(function() {
-                    $('#publicRating').barrating({
-                        theme: 'fontawesome-stars',
-                        initialRating: rating,
-                        readonly: true,
-                    });
-                });
-            } else {
-                $(function() {
-                    $('#publicRating').barrating({
-                        theme: 'fontawesome-stars',
-                        initialRating: rating,
-                        readonly: true,
-                    });
-                });
-                $('#sermonContentInside > span:nth-child(5) > div > form > div > div > a.br-selected.br-current').removeClass('br-selected');
-            }
-
-
+//
             addView();
-
             getDuration();
 
 
