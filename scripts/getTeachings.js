@@ -291,7 +291,7 @@ function loadIndividualSermon(sermonID) {
             });
 
             window.audioMP3.onended = function() {
-                sermonID = window.sermonInfo[0].SermonID;
+                sermonID = window.sermonID;
                 markaslistened(sermonID);
                 var snackbarContainer = document.querySelector('#alertToast');
                 var data = {
@@ -452,13 +452,13 @@ function loadIndividualSermon(sermonID) {
 //
 //
 //            if (rating > 0) {
-//                $(function() {
-//                    $('#publicRating').barrating({
-//                        theme: 'fontawesome-stars',
-//                        initialRating: rating,
-//                        readonly: true,
-//                    });
-//                });
+                $(function() {
+                    $('#publicRating').barrating({
+                        theme: 'fontawesome-stars',
+                        initialRating: rating,
+                        readonly: true,
+                    });
+                });
 //            } else {
 //                $(function() {
 //                    $('#publicRating').barrating({
