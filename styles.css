@@ -746,14 +746,9 @@ position:relative !important;
 
 }
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 414px) {
-   #sermonContentInside {
-    width: calc(100% - 29px) !important;
-  }
-}
 
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 734px) and (orientation: portrait) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 414px) and (orientation: portrait) {
   .textIntro {
     max-height: 286px !important;
   }
