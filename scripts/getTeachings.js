@@ -697,7 +697,10 @@ function getDuration() {
         if (data == "0") {
             console.log('No Previous Listened Data...');
 
-        } else {
+        } else if (data == "Not Authenticated") {
+
+        }
+         else {
             console.log(data);
             window.audioMP3.currentTime = data;
             var snackbarContainer = document.querySelector('#alertToast');
