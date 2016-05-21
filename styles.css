@@ -549,7 +549,7 @@ _:-ms-input-placeholder,
 }
 
 .br-theme-fontawesome-stars .br-widget a.br-selected:after {
-  color: #4A3B2E !important;
+  /* color: #4A3B2E !important; */
 }
 
 .br-theme-fontawesome-stars .br-widget {
