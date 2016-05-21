@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@media (min-device-width: 435) and (max-device-width: 773px) {
+@media (min-device-width: 435) and (max-device-width: 435px) {
 #sermonContentInside{
     width: 402px !important;
     }
@@ -748,7 +748,7 @@ position:relative !important;
 
 }
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
+@media only screen and (min-device-width: 414px) and (max-device-width: 734px) and (orientation: portrait) {
   .textIntro {
     max-height: 286px !important;
   }
