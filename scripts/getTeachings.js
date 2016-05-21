@@ -660,7 +660,7 @@ function pause() {
 
 function setRating() {
     $('#loading').show();
-    sermonID = window.sermonInfo[0].SermonID;
+    sermonID = window.sermonID
     rating = document.getElementById('yourRating').value;
     url = 'https://www.thebodyofchrist.us/service/setRatingFromSermonID/?sermonID=' + sermonID + '&sermonRating=' + rating;
     jQuery.ajax({
