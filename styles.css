@@ -19,6 +19,7 @@ width:100%;
 
 #global > iframe{
 width:auto !important;
+display:none;
 }
 #loader{
     display: block;
