@@ -1013,3 +1013,29 @@ width: 750px !important;
 
 }
 
+
+
+.mdl-slider__background-upper{
+background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.mdl-slider__background-lower {
+    background: rgb(241, 165, 45);
+}
+
+.mdl-slider {
+    &:active::-webkit-slider-thumb,
+    &::-webkit-slider-thumb {
+        background: white !important;
+    }
+
+    &:active::-moz-range-thumb,
+    &::-moz-range-thumb {
+        background: white !important;
+    }
+
+    &:active::-ms-thumb,
+    &::-ms-thumb {
+        background: white !important;
+    }
+}
