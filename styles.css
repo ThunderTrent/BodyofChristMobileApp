@@ -882,57 +882,6 @@ width: 750px !important;
   }
 }
 
-@media only screen and (min-width: 1000px) {
-
-  #recommendedPlaylistBox{
-  width: 100% !important;
-  }
-
-  .searchMarginLeft{
-    margin-left:50px !important;
-  }
-  #globalButton{
-   margin-left:50px !important;
-  }
-  #activity{
-    margin-left:50px !important;
-  }
-  #sermonsButton{
-    margin-left:50px !important;
-  }
-  #secondTabSermon{
-    display:block!important;
-  }
-  #thirdTabSermon{
-    display:block!important;
-  }
-  .demo-content{
-    max-width:100% !important;
-  }
-  #titleSpan{
-    text-overflow: ellipsis;
-    width:292px;
-    overflow:scroll;
-  }
-    #teachingTitleOverview{
-    white-space:nowrap !important;
-  }
-  .mdl-cell--12-col, .mdl-cell--12-col-desktop.mdl-cell--12-col-desktop{
-    width:32% !important;
-  }
-  #sermonHeaders{
-    width:100% !important;
-  }
-  #crossLaunch{
-   width:300px !important;
-   margin-left:-150px !important; 
-  }
-  .mdl-list__item--two-line .mdl-list__item-primary-content .mdl-list__item-sub-title{
-    font-size:17px !important;
-    line-height:24px !important;
-  }
-  
-}
 
 
 
