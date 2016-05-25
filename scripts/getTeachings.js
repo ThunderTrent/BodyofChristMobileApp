@@ -625,10 +625,10 @@ function markaslistened(sermonid) {
 
 
 }
-function seekAudio() {
-    var seekto = window.media.getDuration() * (seekslider.value / 100);
-    window.media.seekTo(seekto);
-}
+//function seekAudio() {
+//    var seekto = window.media.getDuration() * (seekslider.value / 100);
+//    window.media.seekTo(seekto);
+//}
 function play() {
     window.teachingAudio.play();
     playbtn = document.getElementById('playButton');
@@ -636,7 +636,7 @@ function play() {
     playbtn.onclick = pause;
 }
 function pause() {
-    window.teachingAudio.stop();
+    window.teachingAudio.pause();
     playbtn = document.getElementById('playButton');
     playbtn.innerHTML = "play_arrow";
     playbtn.onclick = play;
