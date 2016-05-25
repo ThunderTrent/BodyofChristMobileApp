@@ -1,4 +1,5 @@
    $('#loading').hide();
+
    window.view = "Global";
    window.userID = localStorage.getItem('userID');
    window.communityID = localStorage.getItem('userCommunityID');

@@ -143,7 +143,7 @@ function loadIndividualSermon(sermonID) {
     $('#teachings').addClass('is-active');
     $('#teachingBar').show();
     $('#filters').hide();
-    $('#loading').show();
+
 
     url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=1&speakerid=*&title=*&downloadedcontentid=' + sermonID;
 
@@ -638,7 +638,7 @@ function pause() {
     playbtn.onclick = play;
 }
 function setRating() {
-    $('#loading').show();
+
     sermonID = window.sermonID;
     rating = document.getElementById('yourRating').value;
     url = 'https://www.thebodyofchrist.us/service/setRatingFromSermonID/?sermonID=' + sermonID + '&sermonRating=' + rating;
