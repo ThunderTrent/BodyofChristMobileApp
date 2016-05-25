@@ -1,6 +1,6 @@
    $('#loading').hide();
 
-  $(body).append('<div id="audioHolder" class="mdl-js-snackbar mdl-snackbar mdl-snackbar--active" aria-hidden="true" style="display:none;padding-left: 20px;padding-right: 20px; padding-bottom: 20px;margin-left: -144px;"></div>');
+  $('body').append('<div id="audioHolder" class="mdl-js-snackbar mdl-snackbar mdl-snackbar--active" aria-hidden="true" style="display:none;padding-left: 20px;padding-right: 20px; padding-bottom: 20px;margin-left: -144px;"></div>');
 
 
    window.view = "Global";
