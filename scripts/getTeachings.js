@@ -138,6 +138,8 @@ recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 function loadIndividualSermon(sermonID) {
   $('#audioHolder').show();
 
+  $('#searchBar').remove();
+
     $('#sermonContent').empty();
         $( "#loader-wrapper" ).fadeIn( "slow", function() {
     // Animation complete
