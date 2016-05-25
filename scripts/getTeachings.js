@@ -524,15 +524,15 @@ function downloadMP3() {
 
 
 }
-function initAudioPlayer(url) {
-
-    window.media = new Media(url); //audio = document.getElementById('teachingAudio');
+//function initAudioPlayer(url) {
+//
+//    window.media = new Media(url); //audio = document.getElementById('teachingAudio');
    //audio.play();
    // Set object references
 
-    playbtn = document.getElementById('playButton'); //mutebtn = document.getElementById("mutebtn");
-
-    seekslider = document.getElementById("teachingSlider"); //volumeslider = document.getElementById("volumeslider");
+//    playbtn = document.getElementById('playButton'); //mutebtn = document.getElementById("mutebtn");
+//
+//    seekslider = document.getElementById("teachingSlider"); //volumeslider = document.getElementById("volumeslider");
    // Add Event Handling
    //mutebtn.addEventListener("click", mute);
    //seekslider.addEventListener("change",seekAudio,false);
@@ -562,29 +562,29 @@ function initAudioPlayer(url) {
    // }
 
 
-    function seekAudio() {
-        var duration = window.media.getDuration();
-        var seekto = (duration * (seekslider.value / 100));
-        window.media.seekTo(seekto * 1000);
-    }
+//    function seekAudio() {
+//        var duration = window.media.getDuration();
+//        var seekto = (duration * (seekslider.value / 100));
+//        window.media.seekTo(seekto * 1000);
+//    }
 
     // function seektimeupdate(){
     // var nt = audio.currentTime * (100 / audio.duration);
     // seekslider.value = nt;
     // }
 
-    function seek(event) {
-    if (seeking) {
-    seekslider.value = event.clientX - seekslider.offsetLeft;
-    seekto = audio.duration * (seekslider.value / 100);
-    audio.currentTime = seekto;
-    }
-    }
+//    function seek(event) {
+//    if (seeking) {
+//    seekslider.value = event.clientX - seekslider.offsetLeft;
+//    seekto = audio.duration * (seekslider.value / 100);
+//    audio.currentTime = seekto;
+//    }
+//    }
 
    // function setvolume() {
    // audio.volume = volumeslider.value / 100;
    // }
-}
+//}
 function nyi() {
     //alert('Not Yet Implemented.');
     var snackbarContainer = document.querySelector('#alertToast');
