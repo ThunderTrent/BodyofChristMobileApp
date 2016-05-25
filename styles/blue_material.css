@@ -5490,7 +5490,7 @@ _:-ms-input-placeholder {
     height: 12px;
     box-sizing: border-box;
     border-radius: 50%;
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     border: none;
     transition: transform .18s cubic-bezier(.4, 0, .2, 1), border .18s cubic-bezier(.4, 0, .2, 1), box-shadow .18s cubic-bezier(.4, 0, .2, 1), background .28s cubic-bezier(.4, 0, .2, 1);
     transition: transform .18s cubic-bezier(.4, 0, .2, 1), border .18s cubic-bezier(.4, 0, .2, 1), box-shadow .18s cubic-bezier(.4, 0, .2, 1), background .28s cubic-bezier(.4, 0, .2, 1), -webkit-transform .18s cubic-bezier(.4, 0, .2, 1)
@@ -5503,7 +5503,7 @@ _:-ms-input-placeholder {
     box-sizing: border-box;
     border-radius: 50%;
     background-image: none;
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     border: none
 }
 
@@ -5517,14 +5517,14 @@ _:-ms-input-placeholder {
 
 .mdl-slider.is-upgraded:active::-webkit-slider-thumb {
     background-image: none;
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     -webkit-transform: scale(1.5);
     transform: scale(1.5)
 }
 
 .mdl-slider.is-upgraded:active::-moz-range-thumb {
     background-image: none;
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     transform: scale(1.5)
 }
 
@@ -5533,7 +5533,7 @@ _:-ms-input-placeholder {
     height: 32px;
     border: none;
     border-radius: 50%;
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     transform: scale(.375);
     transition: transform .18s cubic-bezier(.4, 0, .2, 1), background .28s cubic-bezier(.4, 0, .2, 1);
     transition: transform .18s cubic-bezier(.4, 0, .2, 1), background .28s cubic-bezier(.4, 0, .2, 1), -webkit-transform .18s cubic-bezier(.4, 0, .2, 1)
@@ -5545,7 +5545,7 @@ _:-ms-input-placeholder {
 }
 
 .mdl-slider.is-upgraded:active::-ms-thumb {
-    background: rgb(0, 115, 183);
+    background: #DE5F4D;
     transform: scale(.5625)
 }
 
@@ -5565,12 +5565,12 @@ _:-ms-input-placeholder {
 
 .mdl-slider.is-upgraded.is-lowest-value:focus:not(:active)::-webkit-slider-thumb {
     box-shadow: 0 0 0 10px rgba(0, 0, 0, .12);
-    background: rgba(0, 0, 0, .12)
+    background: #DE5F4D;
 }
 
 .mdl-slider.is-upgraded.is-lowest-value:focus:not(:active)::-moz-range-thumb {
     box-shadow: 0 0 0 10px rgba(0, 0, 0, .12);
-    background: rgba(0, 0, 0, .12)
+    background: #DE5F4D;
 }
 
 .mdl-slider.is-upgraded.is-lowest-value:active::-webkit-slider-thumb {
