@@ -5707,7 +5707,8 @@ _:-ms-input-placeholder {
     -ms-flex-direction: row;
     flex-direction: row;
     height: 18px;
-    position: relative
+    position: relative;
+    width: 260px;
 }
 
 .mdl-slider__background-flex {
