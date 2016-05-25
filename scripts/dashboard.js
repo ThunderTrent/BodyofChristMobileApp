@@ -14,7 +14,7 @@ else{
    function teachingsLoad(pressed) {
 
      window.currentView = "Teachings";
-     $('#loading').show();
+
      $('#contentHolder').empty();
      $('#searchBar').remove();
      $('#activity').removeClass('is-active');
@@ -49,7 +49,7 @@ else{
 
    function sermonsLoad(pressed) {
      window.currentView = "Teachings";
-     $('#loading').show();
+
      $('#contentHolder').empty();
      $('#searchBar').remove();
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
@@ -80,7 +80,7 @@ else{
 
    function verseByVerseLoad(pressed) {
      window.currentView = "VBV";
-     $('#loading').show();
+
      $('#searchBar').remove();
      $('#contentHolder').empty();
      $("#bars").animate({
@@ -116,7 +116,7 @@ else{
    function sermonHistoryLoad(pressed) {
      window.currentView = "SermonHistory";
      $('#searchBar').remove();
-     $('#loading').show();
+
      $('#contentHolder').empty();
      $("#bars").animate({
        scrollTop: 0
@@ -147,7 +147,7 @@ else{
 
    function bibleLoad(pressed) {
      window.currentView = "DownloadedContent";
-     $('#loading').show();
+
      $('#searchBar').remove();
      $('#contentHolder').empty();
      //  $('filtersSermons').hide();
@@ -173,7 +173,7 @@ else{
 
    function churchesLoad(pressed) {
      window.currentView = "Churches";
-     $('#loading').show();
+
      $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
@@ -204,7 +204,7 @@ else{
    function membersLoad(pressed) {
      window.currentview = "Members";
      $('#searchBar').remove();
-     $('#loading').show();
+
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
      $('#activity').removeClass('is-active');
@@ -232,7 +232,7 @@ else{
 
    function activityLoad(pressed) {
      window.currentView = "Activity";
-     $('#loading').show();
+
      $('#contentHolder').empty();
      $('#searchBar').remove();
      $('#activity').addClass('is-active');
@@ -262,7 +262,7 @@ else{
 
    function speakersLoad(pressed) {
      window.currentView = "Speakers";
-     $('#loading').show();
+
      $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#activity').removeClass('is-active');
