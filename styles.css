@@ -1018,7 +1018,7 @@ background: rgba(255, 255, 255, 0.85) !important;
 }
 
 .mdl-slider__background-lower {
-    background: rgb(241, 165, 45);
+    background: rgb(241, 165, 45) !important;
 }
 
 .mdl-slider {

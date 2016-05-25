@@ -5735,11 +5735,11 @@ _:-ms-input-placeholder {
 }
 
 .mdl-slider__background-lower {
-    background: rgb(0, 115, 183)
+background: rgb(241, 165, 45) !important;
 }
 
 .mdl-slider__background-upper {
-    background: rgba(0, 0, 0, .26);
+    background: rgba(255, 255, 255, 0.85) !important;
     transition: left .18s cubic-bezier(.4, 0, .2, 1)
 }
 
