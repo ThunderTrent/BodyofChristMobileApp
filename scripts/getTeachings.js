@@ -537,16 +537,16 @@ function initAudioPlayer(url) {
    //mutebtn.addEventListener("click", mute);
    //seekslider.addEventListener("change",seekAudio,false);
    //audio.addEventListener("timeupdate",seektimeupdate,false);
-   // seekslider.addEventListener("mousedown", function(event) {
-   // seeking = true;
-   // seek(event);
-   // });
-   //seekslider.addEventListener("mousemove", function(event) {
-  // seek(event);
-   // });
-    //seekslider.addEventListener("mouseup", function() {
-   // seeking = false;
+   //seekslider.addEventListener("mousedown", function(event) {
+   //seeking = true;
+   //seek(event);
    //});
+//   seekslider.addEventListener("mousemove", function(event) {
+//   seek(event);
+//   });
+//    seekslider.addEventListener("mouseup", function() {
+//    seeking = false;
+//   });
    //volumeslider.addEventListener("mousemove", setvolume);
    // Functions
 
@@ -573,13 +573,13 @@ function initAudioPlayer(url) {
     // seekslider.value = nt;
     // }
 
-   // function seek(event) {
-   // if (seeking) {
-   // seekslider.value = event.clientX - seekslider.offsetLeft;
-   // seekto = audio.duration * (seekslider.value / 100);
-   // audio.currentTime = seekto;
-   // }
-   // }
+    function seek(event) {
+    if (seeking) {
+    seekslider.value = event.clientX - seekslider.offsetLeft;
+    seekto = audio.duration * (seekslider.value / 100);
+    audio.currentTime = seekto;
+    }
+    }
 
    // function setvolume() {
    // audio.volume = volumeslider.value / 100;
@@ -630,13 +630,13 @@ function seekAudio() {
     window.media.seekTo(seekto);
 }
 function play() {
-    window.media.play();
+    window.teachingAudio.play();
     playbtn = document.getElementById('playButton');
     playbtn.innerHTML = "stop";
     playbtn.onclick = pause;
 }
 function pause() {
-    window.media.stop();
+    window.teachingAudio.stop();
     playbtn = document.getElementById('playButton');
     playbtn.innerHTML = "play_arrow";
     playbtn.onclick = play;
