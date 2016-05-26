@@ -206,6 +206,30 @@ else{
    }
    }
 
+    function bibleLoad(pressed) {
+     window.currentView = "Bible";
+     $('#searchBar').remove();
+     $('#contentHolder').empty();
+     $('#speakers').removeClass('is-active');
+     $('#activity').removeClass('is-active');
+     $('#teachings').removeClass('is-active');
+     $('#needs').removeClass('is-active');
+
+     $("#loader-wrapper").fadeIn("slow", function() {});
+
+     $('#bible').addClass('is-active');
+     $('#members').removeClass('is-active');
+     $('#teachingBar').hide();
+     $('#needsBar').hide();
+
+     loadBible();
+
+     closeSermon();
+     if (pressed == "True"){
+     setURLChange('Bible',  window.deepLinkURL + '?section=Bible');
+   }
+   }
+
    function membersLoad(pressed) {
      window.currentview = "Members";
      $('#searchBar').remove();
