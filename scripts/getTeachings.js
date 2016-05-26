@@ -676,7 +676,7 @@ function addView() {
 }
 function sendDuration() {
     sermonID = window.sermonID;
-    window.duration = Math.round(window.audioMP3.currentTime);
+    window.duration = Math.round(window.teachingAudio.currentTime);
     url = 'https://www.thebodyofchrist.us/service/updateAudioDuration/?sermonID=' + sermonID + '&action=setAudioDuration&duration=' + window.duration;
     jQuery.ajax({
         url: url,
@@ -706,7 +706,7 @@ function getDuration() {
         }
          else {
             console.log(data);
-            window.audioMP3.currentTime = data;
+            window.teachingAudio.currentTime = data;
             var snackbarContainer = document.querySelector('#alertToast');
             var data = {
                 message: "Starting where you left off.."
