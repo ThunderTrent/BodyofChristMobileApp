@@ -65,9 +65,9 @@ function loadVBVInsert(url, target, name) {
     // Animation complete
   });
         console.log("HTTP Request Succeeded: " + jqXHR.status);
-       
+
         $('#contentHolder').append(vbvData);
-    
-    
+
+
     });
 }

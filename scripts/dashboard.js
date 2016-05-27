@@ -15578,7 +15578,9514 @@ function loadSpeakers(search, communityID, insert) {
     }
     }
 
-//
+//EVENTS
+
+function loadEvents(search, communityID, userID, insert) {
+
+    var isOffline = 'onLine' in navigator && !navigator.onLine;
+
+    if (search == "Global") {
+
+        if (isOffline === false) { 
+            url = 'https://www.thebodyofchrist.us/service/phonegap/newsfeed/';
+
+        } else {
+            url = 'cdvfile://localhost/library-nosync/globalEvents.json';
+        }
+        name = "globalEvents";
+        target = '#contentHolder';
+        loadEventsInsert(url, target, name, insert);
+    } else if (search == "Community") {
+        if (isOffline === false) { 
+            url = 'https://www.thebodyofchrist.us/service/phonegap/newsfeed/'
+
+        } else {
+            url = 'cdvfile://localhost/library-nosync/communityEvents.json';
+        }
+        name = "communityEvents";
+        target = '#contentHolder';
+        loadEventsInsert(url, target, name, insert);
+    } else if (search == "Following") {
+        window.followArray = []
+        $.each(followData.results, function(index, value) {
+            if (followData.results[index].followtype == "User") {
+                followArray.push(followData.results[index].followeeUser);
+            } else {}
+            if (isOffline === false) { 
+                url = 'https://www.thebodyofchrist.us/rest/events/?limit=50&userid=' + followArray;
+                name = "followerEvents";
+            } else {
+                url = 'cdvfile://localhost/library-nosync/followerEvents.json';
+            }
+            target = '#contentHolder';
+            loadEventsInsert(url, target, name, insert);
+
+
+
+        })
+    }
+}
+
+function loadEventsInsert(url, target, name, insert) {
+    jQuery.ajax({
+        url: url,
+        type: "GET",
+    }).done(function(eventData, textStatus, jqXHR) {
+        console.log("HTTP Request Succeeded: " + jqXHR.status);
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
+        //window.eventData = eventData;
+         if (insert =="True"){
+         // $('#contentHolder').append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="height: 52px;width:100% !important;"><span style="margin-top: 8px;font-size: 17px;">' + eventData.count +   ' Recent Events' + ' </span></div>');
+        }
+        if (url.split(':')[0] == "https") {
+
+        } else {
+            //downloadFile(name, url);
+
+        }
+        if (insert == "True"){
+
+            $('#contentHolder').append(eventData);
+        // $.each(eventData.results, function(index, value) {
+        //     //Get Name for user//
+            // userID = parseInt(eventData.results[index].userID);
+            // speakerID = parseInt(eventData.results[index].speakerID);
+
+            // function arrayLookup(array, prop, val) {
+            //     for (var i = 0, len = array.length; i < len; i++) {
+            //         if (array[i].hasOwnProperty(prop) && array[i][prop] === val) {
+            //             return array[i];
+            //         }
+            //     }
+            //     return null;
+            // }
+
+            // try {
+            //     if (eventData.results[index].type == "Speaker") {
+            //         fullName = arrayLookup(speakerData.results, 'speakerid', speakerID).speakername;
+            //     } else if (eventData.results[index].type == "User") {
+            //         fullName = arrayLookup(memberData.results, 'id', userID).username;
+            //     }
+
+            // } catch (err) {
+            //     console.log('error');
+            //     fullName = 'None';
+            // }
+
+
+
+            // appLink = eventData.results[index].appLink;
+
+
+
+
+            // $(target).append('<div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="display:block;">' +
+            //     '<ul class="demo-list-two mdl-list"> <center>' +
+            //     '<li class="mdl-list__item mdl-list__item--two-line" style="height:90px;">' +
+            //     '<span class="mdl-list__item-primary-content" style="margin-top:-15px;width:100%;">' +
+            //     // '<div style="background-size:cover;border-radius:20px;margin-top:-15px;width:80px;height:80px;float:left;margin-right:20px;background-image:url(\'' + imageURL+ '\');"></div>' +
+            //     '<img style="border-radius:20px;margin-top:-15px;width:80px;height:80px;position:absolute;" id="eventID_IMG_' + eventData.results[index].eventID + '" src="' + eventData.results[index].eventImageLink + '" width="80px" height="80px" style="float:left;margin-right:20px;"/>' +
+            //     '<span>' + '' + '</span>' +
+            //     '<span onClick="' + appLink + '" class="mdl-list__item-sub-title" style="margin-left:100px;">' + fullName + ' ' + eventData.results[index].eventDescription + '</span>' +
+            //     '</span>' +
+            //     '</li>' +
+            //     '</ul>' +
+            //     '</div>');
+
+
+
+            var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+            if (app) {
+                var imageCacheTarget = $('#eventID_IMG_' + eventData.results[index].eventID);
+                cacheImageCheck(imageCacheTarget);
+            } else {
+
+            }
+
+
+
+            //   try{
+
+            // }
+            //
+        // });
+        componentHandler.upgradeDom();
+        $('#loading').hide();
+
+        //Check if Image is in Cache//
+
+        }
+    });
+
+}
+
+function cacheImageCheck(imageCacheTarget) {
+
+
+    ImgCache.isCached(imageCacheTarget.attr('src'), function(path, success) {
+        if (success) {
+            //already cached
+            ImgCache.useCachedFile(imageCacheTarget);
+        } else {
+            //   not there, need to cache the image
+            ImgCache.cacheFile(imageCacheTarget.attr('src'), function() {
+                ImgCache.useCachedFile(imageCacheTarget);
+            });
+        }
+    });
+
+
+}
+
+
+//VBV
+
+
+function loadVBV(search, communityID, userID) {
+
+    var isOffline = 'onLine' in navigator && !navigator.onLine;
+
+    if (search == "Global") {
+        viewNamely = 'Globally';
+        if (isOffline === false) {
+            url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse';
+        } else {
+            url = 'cdvfile://localhost/library-nosync/globalVBV.json';
+        }
+        name = 'globalVBV';
+        target = '#contentHolder';
+        loadVBVInsert(url, target, name);
+    } else if (search == "Community") {
+         viewNamely = 'in your community';
+        if (isOffline === false) {
+            url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&audioStatus=2&speakerid=*&title=*&typeofcontent=Verse%20By%20Verse&ordering=-downloadedcontentid&communityID=' + localStorage.getItem('communityID');
+        } else {
+            url = 'cdvfile://localhost/library-nosync/communityVBV.json';
+        }
+        target = '#contentHolder';
+        name = 'communityVBV';
+        loadVBVInsert(url, target, name);
+    } else if (search == "Following") {
+        window.followArray = []
+        $.each(followData.results, function(index, value) {
+            if (followData.results[index].followtype == "Speaker") {
+                followArray.push(followData.results[index].followeeSpeaker);
+            } else {
+
+            }
+            if (isOffline === false) {
+                url = 'https://www.thebodyofchrist.us/rest/sermons/?limit=25&title=*&typeofcontent=Verse%20By%20Verse&speakerid=' + followArray;
+            } else {
+                url = 'cdvfile://localhost/library-nosync/followerVBV.json';
+            }
+            target = '#contentHolder';
+            name = 'followerVBV';
+            loadVBVInsert(url, target, name);
+        })
+    }
+}
+
+function loadVBVInsert(url, target, name) {
+    jQuery.ajax({
+        url: 'https://www.thebodyofchrist.us/service/phonegap/versebyversefeed/',
+        type: "GET",
+    }).done(function(vbvData, textStatus, jqXHR) {
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {
+    // Animation complete
+  });
+        console.log("HTTP Request Succeeded: " + jqXHR.status);
+
+        $('#contentHolder').append(vbvData);
+
+
+    });
+}
+
+// MATERIAL JS
+
+;(function() {
+"use strict";
+
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * A component handler interface using the revealing module design pattern.
+ * More details on this design pattern here:
+ * https://github.com/jasonmayes/mdl-component-design-pattern
+ *
+ * @author Jason Mayes.
+ */
+/* exported componentHandler */
+
+// Pre-defining the componentHandler interface, for closure documentation and
+// static verification.
+var componentHandler = {
+  /**
+   * Searches existing DOM for elements of our component type and upgrades them
+   * if they have not already been upgraded.
+   *
+   * @param {string=} optJsClass the programatic name of the element class we
+   * need to create a new instance of.
+   * @param {string=} optCssClass the name of the CSS class elements of this
+   * type will have.
+   */
+  upgradeDom: function(optJsClass, optCssClass) {},
+  /**
+   * Upgrades a specific element rather than all in the DOM.
+   *
+   * @param {!Element} element The element we wish to upgrade.
+   * @param {string=} optJsClass Optional name of the class we want to upgrade
+   * the element to.
+   */
+  upgradeElement: function(element, optJsClass) {},
+  /**
+   * Upgrades a specific list of elements rather than all in the DOM.
+   *
+   * @param {!Element|!Array<!Element>|!NodeList|!HTMLCollection} elements
+   * The elements we wish to upgrade.
+   */
+  upgradeElements: function(elements) {},
+  /**
+   * Upgrades all registered components found in the current DOM. This is
+   * automatically called on window load.
+   */
+  upgradeAllRegistered: function() {},
+  /**
+   * Allows user to be alerted to any upgrades that are performed for a given
+   * component type
+   *
+   * @param {string} jsClass The class name of the MDL component we wish
+   * to hook into for any upgrades performed.
+   * @param {function(!HTMLElement)} callback The function to call upon an
+   * upgrade. This function should expect 1 parameter - the HTMLElement which
+   * got upgraded.
+   */
+  registerUpgradedCallback: function(jsClass, callback) {},
+  /**
+   * Registers a class for future use and attempts to upgrade existing DOM.
+   *
+   * @param {componentHandler.ComponentConfigPublic} config the registration configuration
+   */
+  register: function(config) {},
+  /**
+   * Downgrade either a given node, an array of nodes, or a NodeList.
+   *
+   * @param {!Node|!Array<!Node>|!NodeList} nodes
+   */
+  downgradeElements: function(nodes) {}
+};
+
+componentHandler = (function() {
+  'use strict';
+
+  /** @type {!Array<componentHandler.ComponentConfig>} */
+  var registeredComponents_ = [];
+
+  /** @type {!Array<componentHandler.Component>} */
+  var createdComponents_ = [];
+
+  var componentConfigProperty_ = 'mdlComponentConfigInternal_';
+
+  /**
+   * Searches registered components for a class we are interested in using.
+   * Optionally replaces a match with passed object if specified.
+   *
+   * @param {string} name The name of a class we want to use.
+   * @param {componentHandler.ComponentConfig=} optReplace Optional object to replace match with.
+   * @return {!Object|boolean}
+   * @private
+   */
+  function findRegisteredClass_(name, optReplace) {
+    for (var i = 0; i < registeredComponents_.length; i++) {
+      if (registeredComponents_[i].className === name) {
+        if (typeof optReplace !== 'undefined') {
+          registeredComponents_[i] = optReplace;
+        }
+        return registeredComponents_[i];
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Returns an array of the classNames of the upgraded classes on the element.
+   *
+   * @param {!Element} element The element to fetch data from.
+   * @return {!Array<string>}
+   * @private
+   */
+  function getUpgradedListOfElement_(element) {
+    var dataUpgraded = element.getAttribute('data-upgraded');
+    // Use `['']` as default value to conform the `,name,name...` style.
+    return dataUpgraded === null ? [''] : dataUpgraded.split(',');
+  }
+
+  /**
+   * Returns true if the given element has already been upgraded for the given
+   * class.
+   *
+   * @param {!Element} element The element we want to check.
+   * @param {string} jsClass The class to check for.
+   * @returns {boolean}
+   * @private
+   */
+  function isElementUpgraded_(element, jsClass) {
+    var upgradedList = getUpgradedListOfElement_(element);
+    return upgradedList.indexOf(jsClass) !== -1;
+  }
+
+  /**
+   * Searches existing DOM for elements of our component type and upgrades them
+   * if they have not already been upgraded.
+   *
+   * @param {string=} optJsClass the programatic name of the element class we
+   * need to create a new instance of.
+   * @param {string=} optCssClass the name of the CSS class elements of this
+   * type will have.
+   */
+  function upgradeDomInternal(optJsClass, optCssClass) {
+    if (typeof optJsClass === 'undefined' &&
+        typeof optCssClass === 'undefined') {
+      for (var i = 0; i < registeredComponents_.length; i++) {
+        upgradeDomInternal(registeredComponents_[i].className,
+            registeredComponents_[i].cssClass);
+      }
+    } else {
+      var jsClass = /** @type {string} */ (optJsClass);
+      if (typeof optCssClass === 'undefined') {
+        var registeredClass = findRegisteredClass_(jsClass);
+        if (registeredClass) {
+          optCssClass = registeredClass.cssClass;
+        }
+      }
+
+      var elements = document.querySelectorAll('.' + optCssClass);
+      for (var n = 0; n < elements.length; n++) {
+        upgradeElementInternal(elements[n], jsClass);
+      }
+    }
+  }
+
+  /**
+   * Upgrades a specific element rather than all in the DOM.
+   *
+   * @param {!Element} element The element we wish to upgrade.
+   * @param {string=} optJsClass Optional name of the class we want to upgrade
+   * the element to.
+   */
+  function upgradeElementInternal(element, optJsClass) {
+    // Verify argument type.
+    if (!(typeof element === 'object' && element instanceof Element)) {
+      throw new Error('Invalid argument provided to upgrade MDL element.');
+    }
+    var upgradedList = getUpgradedListOfElement_(element);
+    var classesToUpgrade = [];
+    // If jsClass is not provided scan the registered components to find the
+    // ones matching the element's CSS classList.
+    if (!optJsClass) {
+      var classList = element.classList;
+      registeredComponents_.forEach(function(component) {
+        // Match CSS & Not to be upgraded & Not upgraded.
+        if (classList.contains(component.cssClass) &&
+            classesToUpgrade.indexOf(component) === -1 &&
+            !isElementUpgraded_(element, component.className)) {
+          classesToUpgrade.push(component);
+        }
+      });
+    } else if (!isElementUpgraded_(element, optJsClass)) {
+      classesToUpgrade.push(findRegisteredClass_(optJsClass));
+    }
+
+    // Upgrade the element for each classes.
+    for (var i = 0, n = classesToUpgrade.length, registeredClass; i < n; i++) {
+      registeredClass = classesToUpgrade[i];
+      if (registeredClass) {
+        // Mark element as upgraded.
+        upgradedList.push(registeredClass.className);
+        element.setAttribute('data-upgraded', upgradedList.join(','));
+        var instance = new registeredClass.classConstructor(element);
+        instance[componentConfigProperty_] = registeredClass;
+        createdComponents_.push(instance);
+        // Call any callbacks the user has registered with this component type.
+        for (var j = 0, m = registeredClass.callbacks.length; j < m; j++) {
+          registeredClass.callbacks[j](element);
+        }
+
+        if (registeredClass.widget) {
+          // Assign per element instance for control over API
+          element[registeredClass.className] = instance;
+        }
+      } else {
+        throw new Error(
+          'Unable to find a registered component for the given class.');
+      }
+
+      var ev = document.createEvent('Events');
+      ev.initEvent('mdl-componentupgraded', true, true);
+      element.dispatchEvent(ev);
+    }
+  }
+
+  /**
+   * Upgrades a specific list of elements rather than all in the DOM.
+   *
+   * @param {!Element|!Array<!Element>|!NodeList|!HTMLCollection} elements
+   * The elements we wish to upgrade.
+   */
+  function upgradeElementsInternal(elements) {
+    if (!Array.isArray(elements)) {
+      if (typeof elements.item === 'function') {
+        elements = Array.prototype.slice.call(/** @type {Array} */ (elements));
+      } else {
+        elements = [elements];
+      }
+    }
+    for (var i = 0, n = elements.length, element; i < n; i++) {
+      element = elements[i];
+      if (element instanceof HTMLElement) {
+        upgradeElementInternal(element);
+        if (element.children.length > 0) {
+          upgradeElementsInternal(element.children);
+        }
+      }
+    }
+  }
+
+  /**
+   * Registers a class for future use and attempts to upgrade existing DOM.
+   *
+   * @param {componentHandler.ComponentConfigPublic} config
+   */
+  function registerInternal(config) {
+    // In order to support both Closure-compiled and uncompiled code accessing
+    // this method, we need to allow for both the dot and array syntax for
+    // property access. You'll therefore see the `foo.bar || foo['bar']`
+    // pattern repeated across this method.
+    var widgetMissing = (typeof config.widget === 'undefined' &&
+        typeof config['widget'] === 'undefined');
+    var widget = true;
+
+    if (!widgetMissing) {
+      widget = config.widget || config['widget'];
+    }
+
+    var newConfig = /** @type {componentHandler.ComponentConfig} */ ({
+      classConstructor: config.constructor || config['constructor'],
+      className: config.classAsString || config['classAsString'],
+      cssClass: config.cssClass || config['cssClass'],
+      widget: widget,
+      callbacks: []
+    });
+
+    registeredComponents_.forEach(function(item) {
+      if (item.cssClass === newConfig.cssClass) {
+        throw new Error('The provided cssClass has already been registered: ' + item.cssClass);
+      }
+      if (item.className === newConfig.className) {
+        throw new Error('The provided className has already been registered');
+      }
+    });
+
+    if (config.constructor.prototype
+        .hasOwnProperty(componentConfigProperty_)) {
+      throw new Error(
+          'MDL component classes must not have ' + componentConfigProperty_ +
+          ' defined as a property.');
+    }
+
+    var found = findRegisteredClass_(config.classAsString, newConfig);
+
+    if (!found) {
+      registeredComponents_.push(newConfig);
+    }
+  }
+
+  /**
+   * Allows user to be alerted to any upgrades that are performed for a given
+   * component type
+   *
+   * @param {string} jsClass The class name of the MDL component we wish
+   * to hook into for any upgrades performed.
+   * @param {function(!HTMLElement)} callback The function to call upon an
+   * upgrade. This function should expect 1 parameter - the HTMLElement which
+   * got upgraded.
+   */
+  function registerUpgradedCallbackInternal(jsClass, callback) {
+    var regClass = findRegisteredClass_(jsClass);
+    if (regClass) {
+      regClass.callbacks.push(callback);
+    }
+  }
+
+  /**
+   * Upgrades all registered components found in the current DOM. This is
+   * automatically called on window load.
+   */
+  function upgradeAllRegisteredInternal() {
+    for (var n = 0; n < registeredComponents_.length; n++) {
+      upgradeDomInternal(registeredComponents_[n].className);
+    }
+  }
+
+  /**
+   * Check the component for the downgrade method.
+   * Execute if found.
+   * Remove component from createdComponents list.
+   *
+   * @param {?componentHandler.Component} component
+   */
+  function deconstructComponentInternal(component) {
+    if (component) {
+      var componentIndex = createdComponents_.indexOf(component);
+      createdComponents_.splice(componentIndex, 1);
+
+      var upgrades = component.element_.getAttribute('data-upgraded').split(',');
+      var componentPlace = upgrades.indexOf(component[componentConfigProperty_].classAsString);
+      upgrades.splice(componentPlace, 1);
+      component.element_.setAttribute('data-upgraded', upgrades.join(','));
+
+      var ev = document.createEvent('Events');
+      ev.initEvent('mdl-componentdowngraded', true, true);
+      component.element_.dispatchEvent(ev);
+    }
+  }
+
+  /**
+   * Downgrade either a given node, an array of nodes, or a NodeList.
+   *
+   * @param {!Node|!Array<!Node>|!NodeList} nodes
+   */
+  function downgradeNodesInternal(nodes) {
+    /**
+     * Auxiliary function to downgrade a single node.
+     * @param  {!Node} node the node to be downgraded
+     */
+    var downgradeNode = function(node) {
+      createdComponents_.filter(function(item) {
+        return item.element_ === node;
+      }).forEach(deconstructComponentInternal);
+    };
+    if (nodes instanceof Array || nodes instanceof NodeList) {
+      for (var n = 0; n < nodes.length; n++) {
+        downgradeNode(nodes[n]);
+      }
+    } else if (nodes instanceof Node) {
+      downgradeNode(nodes);
+    } else {
+      throw new Error('Invalid argument provided to downgrade MDL nodes.');
+    }
+  }
+
+  // Now return the functions that should be made public with their publicly
+  // facing names...
+  return {
+    upgradeDom: upgradeDomInternal,
+    upgradeElement: upgradeElementInternal,
+    upgradeElements: upgradeElementsInternal,
+    upgradeAllRegistered: upgradeAllRegisteredInternal,
+    registerUpgradedCallback: registerUpgradedCallbackInternal,
+    register: registerInternal,
+    downgradeElements: downgradeNodesInternal
+  };
+})();
+
+/**
+ * Describes the type of a registered component type managed by
+ * componentHandler. Provided for benefit of the Closure compiler.
+ *
+ * @typedef {{
+ *   constructor: Function,
+ *   classAsString: string,
+ *   cssClass: string,
+ *   widget: (string|boolean|undefined)
+ * }}
+ */
+componentHandler.ComponentConfigPublic;  // jshint ignore:line
+
+/**
+ * Describes the type of a registered component type managed by
+ * componentHandler. Provided for benefit of the Closure compiler.
+ *
+ * @typedef {{
+ *   constructor: !Function,
+ *   className: string,
+ *   cssClass: string,
+ *   widget: (string|boolean),
+ *   callbacks: !Array<function(!HTMLElement)>
+ * }}
+ */
+componentHandler.ComponentConfig;  // jshint ignore:line
+
+/**
+ * Created component (i.e., upgraded element) type as managed by
+ * componentHandler. Provided for benefit of the Closure compiler.
+ *
+ * @typedef {{
+ *   element_: !HTMLElement,
+ *   className: string,
+ *   classAsString: string,
+ *   cssClass: string,
+ *   widget: string
+ * }}
+ */
+componentHandler.Component;  // jshint ignore:line
+
+// Export all symbols, for the benefit of Closure compiler.
+// No effect on uncompiled code.
+componentHandler['upgradeDom'] = componentHandler.upgradeDom;
+componentHandler['upgradeElement'] = componentHandler.upgradeElement;
+componentHandler['upgradeElements'] = componentHandler.upgradeElements;
+componentHandler['upgradeAllRegistered'] =
+    componentHandler.upgradeAllRegistered;
+componentHandler['registerUpgradedCallback'] =
+    componentHandler.registerUpgradedCallback;
+componentHandler['register'] = componentHandler.register;
+componentHandler['downgradeElements'] = componentHandler.downgradeElements;
+window.componentHandler = componentHandler;
+window['componentHandler'] = componentHandler;
+
+window.addEventListener('load', function() {
+  'use strict';
+
+  /**
+   * Performs a "Cutting the mustard" test. If the browser supports the features
+   * tested, adds a mdl-js class to the <html> element. It then upgrades all MDL
+   * components requiring JavaScript.
+   */
+  if ('classList' in document.createElement('div') &&
+      'querySelector' in document &&
+      'addEventListener' in window && Array.prototype.forEach) {
+    document.documentElement.classList.add('mdl-js');
+    componentHandler.upgradeAllRegistered();
+  } else {
+    /**
+     * Dummy function to avoid JS errors.
+     */
+    componentHandler.upgradeElement = function() {};
+    /**
+     * Dummy function to avoid JS errors.
+     */
+    componentHandler.register = function() {};
+  }
+});
+
+// Source: https://github.com/darius/requestAnimationFrame/blob/master/requestAnimationFrame.js
+// Adapted from https://gist.github.com/paulirish/1579671 which derived from
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// requestAnimationFrame polyfill by Erik MÃ¶ller.
+// Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen SlaviÄ, Darius Bacon
+// MIT license
+if (!Date.now) {
+    /**
+   * Date.now polyfill.
+   * @return {number} the current Date
+   */
+    Date.now = function () {
+        return new Date().getTime();
+    };
+    Date['now'] = Date.now;
+}
+var vendors = [
+    'webkit',
+    'moz'
+];
+for (var i = 0; i < vendors.length && !window.requestAnimationFrame; ++i) {
+    var vp = vendors[i];
+    window.requestAnimationFrame = window[vp + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vp + 'CancelAnimationFrame'] || window[vp + 'CancelRequestAnimationFrame'];
+    window['requestAnimationFrame'] = window.requestAnimationFrame;
+    window['cancelAnimationFrame'] = window.cancelAnimationFrame;
+}
+if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) || !window.requestAnimationFrame || !window.cancelAnimationFrame) {
+    var lastTime = 0;
+    /**
+   * requestAnimationFrame polyfill.
+   * @param  {!Function} callback the callback function.
+   */
+    window.requestAnimationFrame = function (callback) {
+        var now = Date.now();
+        var nextTime = Math.max(lastTime + 16, now);
+        return setTimeout(function () {
+            callback(lastTime = nextTime);
+        }, nextTime - now);
+    };
+    window.cancelAnimationFrame = clearTimeout;
+    window['requestAnimationFrame'] = window.requestAnimationFrame;
+    window['cancelAnimationFrame'] = window.cancelAnimationFrame;
+}
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Button MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialButton = function MaterialButton(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialButton'] = MaterialButton;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialButton.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialButton.prototype.CssClasses_ = {
+    RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_CONTAINER: 'mdl-button__ripple-container',
+    RIPPLE: 'mdl-ripple'
+};
+/**
+   * Handle blur of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialButton.prototype.blurHandler_ = function (event) {
+    if (event) {
+        this.element_.blur();
+    }
+};
+// Public methods.
+/**
+   * Disable button.
+   *
+   * @public
+   */
+MaterialButton.prototype.disable = function () {
+    this.element_.disabled = true;
+};
+MaterialButton.prototype['disable'] = MaterialButton.prototype.disable;
+/**
+   * Enable button.
+   *
+   * @public
+   */
+MaterialButton.prototype.enable = function () {
+    this.element_.disabled = false;
+};
+MaterialButton.prototype['enable'] = MaterialButton.prototype.enable;
+/**
+   * Initialize element.
+   */
+MaterialButton.prototype.init = function () {
+    if (this.element_) {
+        if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
+            var rippleContainer = document.createElement('span');
+            rippleContainer.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
+            this.rippleElement_ = document.createElement('span');
+            this.rippleElement_.classList.add(this.CssClasses_.RIPPLE);
+            rippleContainer.appendChild(this.rippleElement_);
+            this.boundRippleBlurHandler = this.blurHandler_.bind(this);
+            this.rippleElement_.addEventListener('mouseup', this.boundRippleBlurHandler);
+            this.element_.appendChild(rippleContainer);
+        }
+        this.boundButtonBlurHandler = this.blurHandler_.bind(this);
+        this.element_.addEventListener('mouseup', this.boundButtonBlurHandler);
+        this.element_.addEventListener('mouseleave', this.boundButtonBlurHandler);
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialButton,
+    classAsString: 'MaterialButton',
+    cssClass: 'mdl-js-button',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Checkbox MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialCheckbox = function MaterialCheckbox(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialCheckbox'] = MaterialCheckbox;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialCheckbox.prototype.Constant_ = { TINY_TIMEOUT: 0.001 };
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialCheckbox.prototype.CssClasses_ = {
+    INPUT: 'mdl-checkbox__input',
+    BOX_OUTLINE: 'mdl-checkbox__box-outline',
+    FOCUS_HELPER: 'mdl-checkbox__focus-helper',
+    TICK_OUTLINE: 'mdl-checkbox__tick-outline',
+    RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE_CONTAINER: 'mdl-checkbox__ripple-container',
+    RIPPLE_CENTER: 'mdl-ripple--center',
+    RIPPLE: 'mdl-ripple',
+    IS_FOCUSED: 'is-focused',
+    IS_DISABLED: 'is-disabled',
+    IS_CHECKED: 'is-checked',
+    IS_UPGRADED: 'is-upgraded'
+};
+/**
+   * Handle change of state.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialCheckbox.prototype.onChange_ = function (event) {
+    this.updateClasses_();
+};
+/**
+   * Handle focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialCheckbox.prototype.onFocus_ = function (event) {
+    this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle lost focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialCheckbox.prototype.onBlur_ = function (event) {
+    this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle mouseup.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialCheckbox.prototype.onMouseUp_ = function (event) {
+    this.blur_();
+};
+/**
+   * Handle class updates.
+   *
+   * @private
+   */
+MaterialCheckbox.prototype.updateClasses_ = function () {
+    this.checkDisabled();
+    this.checkToggleState();
+};
+/**
+   * Add blur.
+   *
+   * @private
+   */
+MaterialCheckbox.prototype.blur_ = function () {
+    // TODO: figure out why there's a focus event being fired after our blur,
+    // so that we can avoid this hack.
+    window.setTimeout(function () {
+        this.inputElement_.blur();
+    }.bind(this), this.Constant_.TINY_TIMEOUT);
+};
+// Public methods.
+/**
+   * Check the inputs toggle state and update display.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.checkToggleState = function () {
+    if (this.inputElement_.checked) {
+        this.element_.classList.add(this.CssClasses_.IS_CHECKED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_CHECKED);
+    }
+};
+MaterialCheckbox.prototype['checkToggleState'] = MaterialCheckbox.prototype.checkToggleState;
+/**
+   * Check the inputs disabled state and update display.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.checkDisabled = function () {
+    if (this.inputElement_.disabled) {
+        this.element_.classList.add(this.CssClasses_.IS_DISABLED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DISABLED);
+    }
+};
+MaterialCheckbox.prototype['checkDisabled'] = MaterialCheckbox.prototype.checkDisabled;
+/**
+   * Disable checkbox.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.disable = function () {
+    this.inputElement_.disabled = true;
+    this.updateClasses_();
+};
+MaterialCheckbox.prototype['disable'] = MaterialCheckbox.prototype.disable;
+/**
+   * Enable checkbox.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.enable = function () {
+    this.inputElement_.disabled = false;
+    this.updateClasses_();
+};
+MaterialCheckbox.prototype['enable'] = MaterialCheckbox.prototype.enable;
+/**
+   * Check checkbox.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.check = function () {
+    this.inputElement_.checked = true;
+    this.updateClasses_();
+};
+MaterialCheckbox.prototype['check'] = MaterialCheckbox.prototype.check;
+/**
+   * Uncheck checkbox.
+   *
+   * @public
+   */
+MaterialCheckbox.prototype.uncheck = function () {
+    this.inputElement_.checked = false;
+    this.updateClasses_();
+};
+MaterialCheckbox.prototype['uncheck'] = MaterialCheckbox.prototype.uncheck;
+/**
+   * Initialize element.
+   */
+MaterialCheckbox.prototype.init = function () {
+    if (this.element_) {
+        this.inputElement_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
+        var boxOutline = document.createElement('span');
+        boxOutline.classList.add(this.CssClasses_.BOX_OUTLINE);
+        var tickContainer = document.createElement('span');
+        tickContainer.classList.add(this.CssClasses_.FOCUS_HELPER);
+        var tickOutline = document.createElement('span');
+        tickOutline.classList.add(this.CssClasses_.TICK_OUTLINE);
+        boxOutline.appendChild(tickOutline);
+        this.element_.appendChild(tickContainer);
+        this.element_.appendChild(boxOutline);
+        if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
+            this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_EFFECT);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
+            this.boundRippleMouseUp = this.onMouseUp_.bind(this);
+            this.rippleContainerElement_.addEventListener('mouseup', this.boundRippleMouseUp);
+            var ripple = document.createElement('span');
+            ripple.classList.add(this.CssClasses_.RIPPLE);
+            this.rippleContainerElement_.appendChild(ripple);
+            this.element_.appendChild(this.rippleContainerElement_);
+        }
+        this.boundInputOnChange = this.onChange_.bind(this);
+        this.boundInputOnFocus = this.onFocus_.bind(this);
+        this.boundInputOnBlur = this.onBlur_.bind(this);
+        this.boundElementMouseUp = this.onMouseUp_.bind(this);
+        this.inputElement_.addEventListener('change', this.boundInputOnChange);
+        this.inputElement_.addEventListener('focus', this.boundInputOnFocus);
+        this.inputElement_.addEventListener('blur', this.boundInputOnBlur);
+        this.element_.addEventListener('mouseup', this.boundElementMouseUp);
+        this.updateClasses_();
+        this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialCheckbox,
+    classAsString: 'MaterialCheckbox',
+    cssClass: 'mdl-js-checkbox',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for icon toggle MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialIconToggle = function MaterialIconToggle(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialIconToggle'] = MaterialIconToggle;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialIconToggle.prototype.Constant_ = { TINY_TIMEOUT: 0.001 };
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialIconToggle.prototype.CssClasses_ = {
+    INPUT: 'mdl-icon-toggle__input',
+    JS_RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE_CONTAINER: 'mdl-icon-toggle__ripple-container',
+    RIPPLE_CENTER: 'mdl-ripple--center',
+    RIPPLE: 'mdl-ripple',
+    IS_FOCUSED: 'is-focused',
+    IS_DISABLED: 'is-disabled',
+    IS_CHECKED: 'is-checked'
+};
+/**
+   * Handle change of state.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialIconToggle.prototype.onChange_ = function (event) {
+    this.updateClasses_();
+};
+/**
+   * Handle focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialIconToggle.prototype.onFocus_ = function (event) {
+    this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle lost focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialIconToggle.prototype.onBlur_ = function (event) {
+    this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle mouseup.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialIconToggle.prototype.onMouseUp_ = function (event) {
+    this.blur_();
+};
+/**
+   * Handle class updates.
+   *
+   * @private
+   */
+MaterialIconToggle.prototype.updateClasses_ = function () {
+    this.checkDisabled();
+    this.checkToggleState();
+};
+/**
+   * Add blur.
+   *
+   * @private
+   */
+MaterialIconToggle.prototype.blur_ = function () {
+    // TODO: figure out why there's a focus event being fired after our blur,
+    // so that we can avoid this hack.
+    window.setTimeout(function () {
+        this.inputElement_.blur();
+    }.bind(this), this.Constant_.TINY_TIMEOUT);
+};
+// Public methods.
+/**
+   * Check the inputs toggle state and update display.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.checkToggleState = function () {
+    if (this.inputElement_.checked) {
+        this.element_.classList.add(this.CssClasses_.IS_CHECKED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_CHECKED);
+    }
+};
+MaterialIconToggle.prototype['checkToggleState'] = MaterialIconToggle.prototype.checkToggleState;
+/**
+   * Check the inputs disabled state and update display.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.checkDisabled = function () {
+    if (this.inputElement_.disabled) {
+        this.element_.classList.add(this.CssClasses_.IS_DISABLED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DISABLED);
+    }
+};
+MaterialIconToggle.prototype['checkDisabled'] = MaterialIconToggle.prototype.checkDisabled;
+/**
+   * Disable icon toggle.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.disable = function () {
+    this.inputElement_.disabled = true;
+    this.updateClasses_();
+};
+MaterialIconToggle.prototype['disable'] = MaterialIconToggle.prototype.disable;
+/**
+   * Enable icon toggle.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.enable = function () {
+    this.inputElement_.disabled = false;
+    this.updateClasses_();
+};
+MaterialIconToggle.prototype['enable'] = MaterialIconToggle.prototype.enable;
+/**
+   * Check icon toggle.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.check = function () {
+    this.inputElement_.checked = true;
+    this.updateClasses_();
+};
+MaterialIconToggle.prototype['check'] = MaterialIconToggle.prototype.check;
+/**
+   * Uncheck icon toggle.
+   *
+   * @public
+   */
+MaterialIconToggle.prototype.uncheck = function () {
+    this.inputElement_.checked = false;
+    this.updateClasses_();
+};
+MaterialIconToggle.prototype['uncheck'] = MaterialIconToggle.prototype.uncheck;
+/**
+   * Initialize element.
+   */
+MaterialIconToggle.prototype.init = function () {
+    if (this.element_) {
+        this.inputElement_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
+        if (this.element_.classList.contains(this.CssClasses_.JS_RIPPLE_EFFECT)) {
+            this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.JS_RIPPLE_EFFECT);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
+            this.boundRippleMouseUp = this.onMouseUp_.bind(this);
+            this.rippleContainerElement_.addEventListener('mouseup', this.boundRippleMouseUp);
+            var ripple = document.createElement('span');
+            ripple.classList.add(this.CssClasses_.RIPPLE);
+            this.rippleContainerElement_.appendChild(ripple);
+            this.element_.appendChild(this.rippleContainerElement_);
+        }
+        this.boundInputOnChange = this.onChange_.bind(this);
+        this.boundInputOnFocus = this.onFocus_.bind(this);
+        this.boundInputOnBlur = this.onBlur_.bind(this);
+        this.boundElementOnMouseUp = this.onMouseUp_.bind(this);
+        this.inputElement_.addEventListener('change', this.boundInputOnChange);
+        this.inputElement_.addEventListener('focus', this.boundInputOnFocus);
+        this.inputElement_.addEventListener('blur', this.boundInputOnBlur);
+        this.element_.addEventListener('mouseup', this.boundElementOnMouseUp);
+        this.updateClasses_();
+        this.element_.classList.add('is-upgraded');
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialIconToggle,
+    classAsString: 'MaterialIconToggle',
+    cssClass: 'mdl-js-icon-toggle',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for dropdown MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialMenu = function MaterialMenu(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialMenu'] = MaterialMenu;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialMenu.prototype.Constant_ = {
+    // Total duration of the menu animation.
+    TRANSITION_DURATION_SECONDS: 0.3,
+    // The fraction of the total duration we want to use for menu item animations.
+    TRANSITION_DURATION_FRACTION: 0.8,
+    // How long the menu stays open after choosing an option (so the user can see
+    // the ripple).
+    CLOSE_TIMEOUT: 150
+};
+/**
+   * Keycodes, for code readability.
+   *
+   * @enum {number}
+   * @private
+   */
+MaterialMenu.prototype.Keycodes_ = {
+    ENTER: 13,
+    ESCAPE: 27,
+    SPACE: 32,
+    UP_ARROW: 38,
+    DOWN_ARROW: 40
+};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialMenu.prototype.CssClasses_ = {
+    CONTAINER: 'mdl-menu__container',
+    OUTLINE: 'mdl-menu__outline',
+    ITEM: 'mdl-menu__item',
+    ITEM_RIPPLE_CONTAINER: 'mdl-menu__item-ripple-container',
+    RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE: 'mdl-ripple',
+    // Statuses
+    IS_UPGRADED: 'is-upgraded',
+    IS_VISIBLE: 'is-visible',
+    IS_ANIMATING: 'is-animating',
+    // Alignment options
+    BOTTOM_LEFT: 'mdl-menu--bottom-left',
+    // This is the default.
+    BOTTOM_RIGHT: 'mdl-menu--bottom-right',
+    TOP_LEFT: 'mdl-menu--top-left',
+    TOP_RIGHT: 'mdl-menu--top-right',
+    UNALIGNED: 'mdl-menu--unaligned'
+};
+/**
+   * Initialize element.
+   */
+MaterialMenu.prototype.init = function () {
+    if (this.element_) {
+        // Create container for the menu.
+        var container = document.createElement('div');
+        container.classList.add(this.CssClasses_.CONTAINER);
+        this.element_.parentElement.insertBefore(container, this.element_);
+        this.element_.parentElement.removeChild(this.element_);
+        container.appendChild(this.element_);
+        this.container_ = container;
+        // Create outline for the menu (shadow and background).
+        var outline = document.createElement('div');
+        outline.classList.add(this.CssClasses_.OUTLINE);
+        this.outline_ = outline;
+        container.insertBefore(outline, this.element_);
+        // Find the "for" element and bind events to it.
+        var forElId = this.element_.getAttribute('for') || this.element_.getAttribute('data-mdl-for');
+        var forEl = null;
+        if (forElId) {
+            forEl = document.getElementById(forElId);
+            if (forEl) {
+                this.forElement_ = forEl;
+                forEl.addEventListener('click', this.handleForClick_.bind(this));
+                forEl.addEventListener('keydown', this.handleForKeyboardEvent_.bind(this));
+            }
+        }
+        var items = this.element_.querySelectorAll('.' + this.CssClasses_.ITEM);
+        this.boundItemKeydown_ = this.handleItemKeyboardEvent_.bind(this);
+        this.boundItemClick_ = this.handleItemClick_.bind(this);
+        for (var i = 0; i < items.length; i++) {
+            // Add a listener to each menu item.
+            items[i].addEventListener('click', this.boundItemClick_);
+            // Add a tab index to each menu item.
+            items[i].tabIndex = '-1';
+            // Add a keyboard listener to each menu item.
+            items[i].addEventListener('keydown', this.boundItemKeydown_);
+        }
+        // Add ripple classes to each item, if the user has enabled ripples.
+        if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
+            this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            for (i = 0; i < items.length; i++) {
+                var item = items[i];
+                var rippleContainer = document.createElement('span');
+                rippleContainer.classList.add(this.CssClasses_.ITEM_RIPPLE_CONTAINER);
+                var ripple = document.createElement('span');
+                ripple.classList.add(this.CssClasses_.RIPPLE);
+                rippleContainer.appendChild(ripple);
+                item.appendChild(rippleContainer);
+                item.classList.add(this.CssClasses_.RIPPLE_EFFECT);
+            }
+        }
+        // Copy alignment classes to the container, so the outline can use them.
+        if (this.element_.classList.contains(this.CssClasses_.BOTTOM_LEFT)) {
+            this.outline_.classList.add(this.CssClasses_.BOTTOM_LEFT);
+        }
+        if (this.element_.classList.contains(this.CssClasses_.BOTTOM_RIGHT)) {
+            this.outline_.classList.add(this.CssClasses_.BOTTOM_RIGHT);
+        }
+        if (this.element_.classList.contains(this.CssClasses_.TOP_LEFT)) {
+            this.outline_.classList.add(this.CssClasses_.TOP_LEFT);
+        }
+        if (this.element_.classList.contains(this.CssClasses_.TOP_RIGHT)) {
+            this.outline_.classList.add(this.CssClasses_.TOP_RIGHT);
+        }
+        if (this.element_.classList.contains(this.CssClasses_.UNALIGNED)) {
+            this.outline_.classList.add(this.CssClasses_.UNALIGNED);
+        }
+        container.classList.add(this.CssClasses_.IS_UPGRADED);
+    }
+};
+/**
+   * Handles a click on the "for" element, by positioning the menu and then
+   * toggling it.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialMenu.prototype.handleForClick_ = function (evt) {
+    if (this.element_ && this.forElement_) {
+        var rect = this.forElement_.getBoundingClientRect();
+        var forRect = this.forElement_.parentElement.getBoundingClientRect();
+        if (this.element_.classList.contains(this.CssClasses_.UNALIGNED)) {
+        } else if (this.element_.classList.contains(this.CssClasses_.BOTTOM_RIGHT)) {
+            // Position below the "for" element, aligned to its right.
+            this.container_.style.right = forRect.right - rect.right + 'px';
+            this.container_.style.top = this.forElement_.offsetTop + this.forElement_.offsetHeight + 'px';
+        } else if (this.element_.classList.contains(this.CssClasses_.TOP_LEFT)) {
+            // Position above the "for" element, aligned to its left.
+            this.container_.style.left = this.forElement_.offsetLeft + 'px';
+            this.container_.style.bottom = forRect.bottom - rect.top + 'px';
+        } else if (this.element_.classList.contains(this.CssClasses_.TOP_RIGHT)) {
+            // Position above the "for" element, aligned to its right.
+            this.container_.style.right = forRect.right - rect.right + 'px';
+            this.container_.style.bottom = forRect.bottom - rect.top + 'px';
+        } else {
+            // Default: position below the "for" element, aligned to its left.
+            this.container_.style.left = this.forElement_.offsetLeft + 'px';
+            this.container_.style.top = this.forElement_.offsetTop + this.forElement_.offsetHeight + 'px';
+        }
+    }
+    this.toggle(evt);
+};
+/**
+   * Handles a keyboard event on the "for" element.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialMenu.prototype.handleForKeyboardEvent_ = function (evt) {
+    if (this.element_ && this.container_ && this.forElement_) {
+        var items = this.element_.querySelectorAll('.' + this.CssClasses_.ITEM + ':not([disabled])');
+        if (items && items.length > 0 && this.container_.classList.contains(this.CssClasses_.IS_VISIBLE)) {
+            if (evt.keyCode === this.Keycodes_.UP_ARROW) {
+                evt.preventDefault();
+                items[items.length - 1].focus();
+            } else if (evt.keyCode === this.Keycodes_.DOWN_ARROW) {
+                evt.preventDefault();
+                items[0].focus();
+            }
+        }
+    }
+};
+/**
+   * Handles a keyboard event on an item.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialMenu.prototype.handleItemKeyboardEvent_ = function (evt) {
+    if (this.element_ && this.container_) {
+        var items = this.element_.querySelectorAll('.' + this.CssClasses_.ITEM + ':not([disabled])');
+        if (items && items.length > 0 && this.container_.classList.contains(this.CssClasses_.IS_VISIBLE)) {
+            var currentIndex = Array.prototype.slice.call(items).indexOf(evt.target);
+            if (evt.keyCode === this.Keycodes_.UP_ARROW) {
+                evt.preventDefault();
+                if (currentIndex > 0) {
+                    items[currentIndex - 1].focus();
+                } else {
+                    items[items.length - 1].focus();
+                }
+            } else if (evt.keyCode === this.Keycodes_.DOWN_ARROW) {
+                evt.preventDefault();
+                if (items.length > currentIndex + 1) {
+                    items[currentIndex + 1].focus();
+                } else {
+                    items[0].focus();
+                }
+            } else if (evt.keyCode === this.Keycodes_.SPACE || evt.keyCode === this.Keycodes_.ENTER) {
+                evt.preventDefault();
+                // Send mousedown and mouseup to trigger ripple.
+                var e = new MouseEvent('mousedown');
+                evt.target.dispatchEvent(e);
+                e = new MouseEvent('mouseup');
+                evt.target.dispatchEvent(e);
+                // Send click.
+                evt.target.click();
+            } else if (evt.keyCode === this.Keycodes_.ESCAPE) {
+                evt.preventDefault();
+                this.hide();
+            }
+        }
+    }
+};
+/**
+   * Handles a click event on an item.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialMenu.prototype.handleItemClick_ = function (evt) {
+    if (evt.target.hasAttribute('disabled')) {
+        evt.stopPropagation();
+    } else {
+        // Wait some time before closing menu, so the user can see the ripple.
+        this.closing_ = true;
+        window.setTimeout(function (evt) {
+            this.hide();
+            this.closing_ = false;
+        }.bind(this), this.Constant_.CLOSE_TIMEOUT);
+    }
+};
+/**
+   * Calculates the initial clip (for opening the menu) or final clip (for closing
+   * it), and applies it. This allows us to animate from or to the correct point,
+   * that is, the point it's aligned to in the "for" element.
+   *
+   * @param {number} height Height of the clip rectangle
+   * @param {number} width Width of the clip rectangle
+   * @private
+   */
+MaterialMenu.prototype.applyClip_ = function (height, width) {
+    if (this.element_.classList.contains(this.CssClasses_.UNALIGNED)) {
+        // Do not clip.
+        this.element_.style.clip = '';
+    } else if (this.element_.classList.contains(this.CssClasses_.BOTTOM_RIGHT)) {
+        // Clip to the top right corner of the menu.
+        this.element_.style.clip = 'rect(0 ' + width + 'px ' + '0 ' + width + 'px)';
+    } else if (this.element_.classList.contains(this.CssClasses_.TOP_LEFT)) {
+        // Clip to the bottom left corner of the menu.
+        this.element_.style.clip = 'rect(' + height + 'px 0 ' + height + 'px 0)';
+    } else if (this.element_.classList.contains(this.CssClasses_.TOP_RIGHT)) {
+        // Clip to the bottom right corner of the menu.
+        this.element_.style.clip = 'rect(' + height + 'px ' + width + 'px ' + height + 'px ' + width + 'px)';
+    } else {
+        // Default: do not clip (same as clipping to the top left corner).
+        this.element_.style.clip = '';
+    }
+};
+/**
+   * Cleanup function to remove animation listeners.
+   *
+   * @param {Event} evt
+   * @private
+   */
+MaterialMenu.prototype.removeAnimationEndListener_ = function (evt) {
+    evt.target.classList.remove(MaterialMenu.prototype.CssClasses_.IS_ANIMATING);
+};
+/**
+   * Adds an event listener to clean up after the animation ends.
+   *
+   * @private
+   */
+MaterialMenu.prototype.addAnimationEndListener_ = function () {
+    this.element_.addEventListener('transitionend', this.removeAnimationEndListener_);
+    this.element_.addEventListener('webkitTransitionEnd', this.removeAnimationEndListener_);
+};
+/**
+   * Displays the menu.
+   *
+   * @public
+   */
+MaterialMenu.prototype.show = function (evt) {
+    if (this.element_ && this.container_ && this.outline_) {
+        // Measure the inner element.
+        var height = this.element_.getBoundingClientRect().height;
+        var width = this.element_.getBoundingClientRect().width;
+        // Apply the inner element's size to the container and outline.
+        this.container_.style.width = width + 'px';
+        this.container_.style.height = height + 'px';
+        this.outline_.style.width = width + 'px';
+        this.outline_.style.height = height + 'px';
+        var transitionDuration = this.Constant_.TRANSITION_DURATION_SECONDS * this.Constant_.TRANSITION_DURATION_FRACTION;
+        // Calculate transition delays for individual menu items, so that they fade
+        // in one at a time.
+        var items = this.element_.querySelectorAll('.' + this.CssClasses_.ITEM);
+        for (var i = 0; i < items.length; i++) {
+            var itemDelay = null;
+            if (this.element_.classList.contains(this.CssClasses_.TOP_LEFT) || this.element_.classList.contains(this.CssClasses_.TOP_RIGHT)) {
+                itemDelay = (height - items[i].offsetTop - items[i].offsetHeight) / height * transitionDuration + 's';
+            } else {
+                itemDelay = items[i].offsetTop / height * transitionDuration + 's';
+            }
+            items[i].style.transitionDelay = itemDelay;
+        }
+        // Apply the initial clip to the text before we start animating.
+        this.applyClip_(height, width);
+        // Wait for the next frame, turn on animation, and apply the final clip.
+        // Also make it visible. This triggers the transitions.
+        window.requestAnimationFrame(function () {
+            this.element_.classList.add(this.CssClasses_.IS_ANIMATING);
+            this.element_.style.clip = 'rect(0 ' + width + 'px ' + height + 'px 0)';
+            this.container_.classList.add(this.CssClasses_.IS_VISIBLE);
+        }.bind(this));
+        // Clean up after the animation is complete.
+        this.addAnimationEndListener_();
+        // Add a click listener to the document, to close the menu.
+        var callback = function (e) {
+            // Check to see if the document is processing the same event that
+            // displayed the menu in the first place. If so, do nothing.
+            // Also check to see if the menu is in the process of closing itself, and
+            // do nothing in that case.
+            // Also check if the clicked element is a menu item
+            // if so, do nothing.
+            if (e !== evt && !this.closing_ && e.target.parentNode !== this.element_) {
+                document.removeEventListener('click', callback);
+                this.hide();
+            }
+        }.bind(this);
+        document.addEventListener('click', callback);
+    }
+};
+MaterialMenu.prototype['show'] = MaterialMenu.prototype.show;
+/**
+   * Hides the menu.
+   *
+   * @public
+   */
+MaterialMenu.prototype.hide = function () {
+    if (this.element_ && this.container_ && this.outline_) {
+        var items = this.element_.querySelectorAll('.' + this.CssClasses_.ITEM);
+        // Remove all transition delays; menu items fade out concurrently.
+        for (var i = 0; i < items.length; i++) {
+            items[i].style.removeProperty('transition-delay');
+        }
+        // Measure the inner element.
+        var rect = this.element_.getBoundingClientRect();
+        var height = rect.height;
+        var width = rect.width;
+        // Turn on animation, and apply the final clip. Also make invisible.
+        // This triggers the transitions.
+        this.element_.classList.add(this.CssClasses_.IS_ANIMATING);
+        this.applyClip_(height, width);
+        this.container_.classList.remove(this.CssClasses_.IS_VISIBLE);
+        // Clean up after the animation is complete.
+        this.addAnimationEndListener_();
+    }
+};
+MaterialMenu.prototype['hide'] = MaterialMenu.prototype.hide;
+/**
+   * Displays or hides the menu, depending on current state.
+   *
+   * @public
+   */
+MaterialMenu.prototype.toggle = function (evt) {
+    if (this.container_.classList.contains(this.CssClasses_.IS_VISIBLE)) {
+        this.hide();
+    } else {
+        this.show(evt);
+    }
+};
+MaterialMenu.prototype['toggle'] = MaterialMenu.prototype.toggle;
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialMenu,
+    classAsString: 'MaterialMenu',
+    cssClass: 'mdl-js-menu',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Progress MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialProgress = function MaterialProgress(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialProgress'] = MaterialProgress;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialProgress.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialProgress.prototype.CssClasses_ = { INDETERMINATE_CLASS: 'mdl-progress__indeterminate' };
+/**
+   * Set the current progress of the progressbar.
+   *
+   * @param {number} p Percentage of the progress (0-100)
+   * @public
+   */
+MaterialProgress.prototype.setProgress = function (p) {
+    if (this.element_.classList.contains(this.CssClasses_.INDETERMINATE_CLASS)) {
+        return;
+    }
+    this.progressbar_.style.width = p + '%';
+};
+MaterialProgress.prototype['setProgress'] = MaterialProgress.prototype.setProgress;
+/**
+   * Set the current progress of the buffer.
+   *
+   * @param {number} p Percentage of the buffer (0-100)
+   * @public
+   */
+MaterialProgress.prototype.setBuffer = function (p) {
+    this.bufferbar_.style.width = p + '%';
+    this.auxbar_.style.width = 100 - p + '%';
+};
+MaterialProgress.prototype['setBuffer'] = MaterialProgress.prototype.setBuffer;
+/**
+   * Initialize element.
+   */
+MaterialProgress.prototype.init = function () {
+    if (this.element_) {
+        var el = document.createElement('div');
+        el.className = 'progressbar bar bar1';
+        this.element_.appendChild(el);
+        this.progressbar_ = el;
+        el = document.createElement('div');
+        el.className = 'bufferbar bar bar2';
+        this.element_.appendChild(el);
+        this.bufferbar_ = el;
+        el = document.createElement('div');
+        el.className = 'auxbar bar bar3';
+        this.element_.appendChild(el);
+        this.auxbar_ = el;
+        this.progressbar_.style.width = '0%';
+        this.bufferbar_.style.width = '100%';
+        this.auxbar_.style.width = '0%';
+        this.element_.classList.add('is-upgraded');
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialProgress,
+    classAsString: 'MaterialProgress',
+    cssClass: 'mdl-js-progress',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Radio MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialRadio = function MaterialRadio(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialRadio'] = MaterialRadio;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialRadio.prototype.Constant_ = { TINY_TIMEOUT: 0.001 };
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialRadio.prototype.CssClasses_ = {
+    IS_FOCUSED: 'is-focused',
+    IS_DISABLED: 'is-disabled',
+    IS_CHECKED: 'is-checked',
+    IS_UPGRADED: 'is-upgraded',
+    JS_RADIO: 'mdl-js-radio',
+    RADIO_BTN: 'mdl-radio__button',
+    RADIO_OUTER_CIRCLE: 'mdl-radio__outer-circle',
+    RADIO_INNER_CIRCLE: 'mdl-radio__inner-circle',
+    RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE_CONTAINER: 'mdl-radio__ripple-container',
+    RIPPLE_CENTER: 'mdl-ripple--center',
+    RIPPLE: 'mdl-ripple'
+};
+/**
+   * Handle change of state.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRadio.prototype.onChange_ = function (event) {
+    // Since other radio buttons don't get change events, we need to look for
+    // them to update their classes.
+    var radios = document.getElementsByClassName(this.CssClasses_.JS_RADIO);
+    for (var i = 0; i < radios.length; i++) {
+        var button = radios[i].querySelector('.' + this.CssClasses_.RADIO_BTN);
+        // Different name == different group, so no point updating those.
+        if (button.getAttribute('name') === this.btnElement_.getAttribute('name')) {
+            radios[i]['MaterialRadio'].updateClasses_();
+        }
+    }
+};
+/**
+   * Handle focus.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRadio.prototype.onFocus_ = function (event) {
+    this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle lost focus.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRadio.prototype.onBlur_ = function (event) {
+    this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle mouseup.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRadio.prototype.onMouseup_ = function (event) {
+    this.blur_();
+};
+/**
+   * Update classes.
+   *
+   * @private
+   */
+MaterialRadio.prototype.updateClasses_ = function () {
+    this.checkDisabled();
+    this.checkToggleState();
+};
+/**
+   * Add blur.
+   *
+   * @private
+   */
+MaterialRadio.prototype.blur_ = function () {
+    // TODO: figure out why there's a focus event being fired after our blur,
+    // so that we can avoid this hack.
+    window.setTimeout(function () {
+        this.btnElement_.blur();
+    }.bind(this), this.Constant_.TINY_TIMEOUT);
+};
+// Public methods.
+/**
+   * Check the components disabled state.
+   *
+   * @public
+   */
+MaterialRadio.prototype.checkDisabled = function () {
+    if (this.btnElement_.disabled) {
+        this.element_.classList.add(this.CssClasses_.IS_DISABLED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DISABLED);
+    }
+};
+MaterialRadio.prototype['checkDisabled'] = MaterialRadio.prototype.checkDisabled;
+/**
+   * Check the components toggled state.
+   *
+   * @public
+   */
+MaterialRadio.prototype.checkToggleState = function () {
+    if (this.btnElement_.checked) {
+        this.element_.classList.add(this.CssClasses_.IS_CHECKED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_CHECKED);
+    }
+};
+MaterialRadio.prototype['checkToggleState'] = MaterialRadio.prototype.checkToggleState;
+/**
+   * Disable radio.
+   *
+   * @public
+   */
+MaterialRadio.prototype.disable = function () {
+    this.btnElement_.disabled = true;
+    this.updateClasses_();
+};
+MaterialRadio.prototype['disable'] = MaterialRadio.prototype.disable;
+/**
+   * Enable radio.
+   *
+   * @public
+   */
+MaterialRadio.prototype.enable = function () {
+    this.btnElement_.disabled = false;
+    this.updateClasses_();
+};
+MaterialRadio.prototype['enable'] = MaterialRadio.prototype.enable;
+/**
+   * Check radio.
+   *
+   * @public
+   */
+MaterialRadio.prototype.check = function () {
+    this.btnElement_.checked = true;
+    this.updateClasses_();
+};
+MaterialRadio.prototype['check'] = MaterialRadio.prototype.check;
+/**
+   * Uncheck radio.
+   *
+   * @public
+   */
+MaterialRadio.prototype.uncheck = function () {
+    this.btnElement_.checked = false;
+    this.updateClasses_();
+};
+MaterialRadio.prototype['uncheck'] = MaterialRadio.prototype.uncheck;
+/**
+   * Initialize element.
+   */
+MaterialRadio.prototype.init = function () {
+    if (this.element_) {
+        this.btnElement_ = this.element_.querySelector('.' + this.CssClasses_.RADIO_BTN);
+        this.boundChangeHandler_ = this.onChange_.bind(this);
+        this.boundFocusHandler_ = this.onChange_.bind(this);
+        this.boundBlurHandler_ = this.onBlur_.bind(this);
+        this.boundMouseUpHandler_ = this.onMouseup_.bind(this);
+        var outerCircle = document.createElement('span');
+        outerCircle.classList.add(this.CssClasses_.RADIO_OUTER_CIRCLE);
+        var innerCircle = document.createElement('span');
+        innerCircle.classList.add(this.CssClasses_.RADIO_INNER_CIRCLE);
+        this.element_.appendChild(outerCircle);
+        this.element_.appendChild(innerCircle);
+        var rippleContainer;
+        if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
+            this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            rippleContainer = document.createElement('span');
+            rippleContainer.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
+            rippleContainer.classList.add(this.CssClasses_.RIPPLE_EFFECT);
+            rippleContainer.classList.add(this.CssClasses_.RIPPLE_CENTER);
+            rippleContainer.addEventListener('mouseup', this.boundMouseUpHandler_);
+            var ripple = document.createElement('span');
+            ripple.classList.add(this.CssClasses_.RIPPLE);
+            rippleContainer.appendChild(ripple);
+            this.element_.appendChild(rippleContainer);
+        }
+        this.btnElement_.addEventListener('change', this.boundChangeHandler_);
+        this.btnElement_.addEventListener('focus', this.boundFocusHandler_);
+        this.btnElement_.addEventListener('blur', this.boundBlurHandler_);
+        this.element_.addEventListener('mouseup', this.boundMouseUpHandler_);
+        this.updateClasses_();
+        this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialRadio,
+    classAsString: 'MaterialRadio',
+    cssClass: 'mdl-js-radio',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Slider MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialSlider = function MaterialSlider(element) {
+    this.element_ = element;
+    // Browser feature detection.
+    this.isIE_ = window.navigator.msPointerEnabled;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialSlider'] = MaterialSlider;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialSlider.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialSlider.prototype.CssClasses_ = {
+    IE_CONTAINER: 'mdl-slider__ie-container',
+    SLIDER_CONTAINER: 'mdl-slider__container',
+    BACKGROUND_FLEX: 'mdl-slider__background-flex',
+    BACKGROUND_LOWER: 'mdl-slider__background-lower',
+    BACKGROUND_UPPER: 'mdl-slider__background-upper',
+    IS_LOWEST_VALUE: 'is-lowest-value',
+    IS_UPGRADED: 'is-upgraded'
+};
+/**
+   * Handle input on element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSlider.prototype.onInput_ = function (event) {
+    this.updateValueStyles_();
+};
+/**
+   * Handle change on element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSlider.prototype.onChange_ = function (event) {
+    this.updateValueStyles_();
+};
+/**
+   * Handle mouseup on element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSlider.prototype.onMouseUp_ = function (event) {
+    event.target.blur();
+};
+/**
+   * Handle mousedown on container element.
+   * This handler is purpose is to not require the use to click
+   * exactly on the 2px slider element, as FireFox seems to be very
+   * strict about this.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   * @suppress {missingProperties}
+   */
+MaterialSlider.prototype.onContainerMouseDown_ = function (event) {
+    // If this click is not on the parent element (but rather some child)
+    // ignore. It may still bubble up.
+    if (event.target !== this.element_.parentElement) {
+        return;
+    }
+    // Discard the original event and create a new event that
+    // is on the slider element.
+    event.preventDefault();
+    var newEvent = new MouseEvent('mousedown', {
+        target: event.target,
+        buttons: event.buttons,
+        clientX: event.clientX,
+        clientY: this.element_.getBoundingClientRect().y
+    });
+    this.element_.dispatchEvent(newEvent);
+};
+/**
+   * Handle updating of values.
+   *
+   * @private
+   */
+MaterialSlider.prototype.updateValueStyles_ = function () {
+    // Calculate and apply percentages to div structure behind slider.
+    var fraction = (this.element_.value - this.element_.min) / (this.element_.max - this.element_.min);
+    if (fraction === 0) {
+        this.element_.classList.add(this.CssClasses_.IS_LOWEST_VALUE);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_LOWEST_VALUE);
+    }
+    if (!this.isIE_) {
+        this.backgroundLower_.style.flex = fraction;
+        this.backgroundLower_.style.webkitFlex = fraction;
+        this.backgroundUpper_.style.flex = 1 - fraction;
+        this.backgroundUpper_.style.webkitFlex = 1 - fraction;
+    }
+};
+// Public methods.
+/**
+   * Disable slider.
+   *
+   * @public
+   */
+MaterialSlider.prototype.disable = function () {
+    this.element_.disabled = true;
+};
+MaterialSlider.prototype['disable'] = MaterialSlider.prototype.disable;
+/**
+   * Enable slider.
+   *
+   * @public
+   */
+MaterialSlider.prototype.enable = function () {
+    this.element_.disabled = false;
+};
+MaterialSlider.prototype['enable'] = MaterialSlider.prototype.enable;
+/**
+   * Update slider value.
+   *
+   * @param {number} value The value to which to set the control (optional).
+   * @public
+   */
+MaterialSlider.prototype.change = function (value) {
+    if (typeof value !== 'undefined') {
+        this.element_.value = value;
+    }
+    this.updateValueStyles_();
+};
+MaterialSlider.prototype['change'] = MaterialSlider.prototype.change;
+/**
+   * Initialize element.
+   */
+MaterialSlider.prototype.init = function () {
+    if (this.element_) {
+        if (this.isIE_) {
+            // Since we need to specify a very large height in IE due to
+            // implementation limitations, we add a parent here that trims it down to
+            // a reasonable size.
+            var containerIE = document.createElement('div');
+            containerIE.classList.add(this.CssClasses_.IE_CONTAINER);
+            this.element_.parentElement.insertBefore(containerIE, this.element_);
+            this.element_.parentElement.removeChild(this.element_);
+            containerIE.appendChild(this.element_);
+        } else {
+            // For non-IE browsers, we need a div structure that sits behind the
+            // slider and allows us to style the left and right sides of it with
+            // different colors.
+            var container = document.createElement('div');
+            container.classList.add(this.CssClasses_.SLIDER_CONTAINER);
+            this.element_.parentElement.insertBefore(container, this.element_);
+            this.element_.parentElement.removeChild(this.element_);
+            container.appendChild(this.element_);
+            var backgroundFlex = document.createElement('div');
+            backgroundFlex.classList.add(this.CssClasses_.BACKGROUND_FLEX);
+            container.appendChild(backgroundFlex);
+            this.backgroundLower_ = document.createElement('div');
+            this.backgroundLower_.classList.add(this.CssClasses_.BACKGROUND_LOWER);
+            backgroundFlex.appendChild(this.backgroundLower_);
+            this.backgroundUpper_ = document.createElement('div');
+            this.backgroundUpper_.classList.add(this.CssClasses_.BACKGROUND_UPPER);
+            backgroundFlex.appendChild(this.backgroundUpper_);
+        }
+        this.boundInputHandler = this.onInput_.bind(this);
+        this.boundChangeHandler = this.onChange_.bind(this);
+        this.boundMouseUpHandler = this.onMouseUp_.bind(this);
+        this.boundContainerMouseDownHandler = this.onContainerMouseDown_.bind(this);
+        this.element_.addEventListener('input', this.boundInputHandler);
+        this.element_.addEventListener('change', this.boundChangeHandler);
+        this.element_.addEventListener('mouseup', this.boundMouseUpHandler);
+        this.element_.parentElement.addEventListener('mousedown', this.boundContainerMouseDownHandler);
+        this.updateValueStyles_();
+        this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialSlider,
+    classAsString: 'MaterialSlider',
+    cssClass: 'mdl-js-slider',
+    widget: true
+});
+/**
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Snackbar MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialSnackbar = function MaterialSnackbar(element) {
+    this.element_ = element;
+    this.textElement_ = this.element_.querySelector('.' + this.cssClasses_.MESSAGE);
+    this.actionElement_ = this.element_.querySelector('.' + this.cssClasses_.ACTION);
+    if (!this.textElement_) {
+        throw new Error('There must be a message element for a snackbar.');
+    }
+    if (!this.actionElement_) {
+        throw new Error('There must be an action element for a snackbar.');
+    }
+    this.active = false;
+    this.actionHandler_ = undefined;
+    this.message_ = undefined;
+    this.actionText_ = undefined;
+    this.queuedNotifications_ = [];
+    this.setActionHidden_(true);
+};
+window['MaterialSnackbar'] = MaterialSnackbar;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialSnackbar.prototype.Constant_ = {
+    // The duration of the snackbar show/hide animation, in ms.
+    ANIMATION_LENGTH: 250
+};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialSnackbar.prototype.cssClasses_ = {
+    SNACKBAR: 'mdl-snackbar',
+    MESSAGE: 'mdl-snackbar__text',
+    ACTION: 'mdl-snackbar__action',
+    ACTIVE: 'mdl-snackbar--active'
+};
+/**
+   * Display the snackbar.
+   *
+   * @private
+   */
+MaterialSnackbar.prototype.displaySnackbar_ = function () {
+    this.element_.setAttribute('aria-hidden', 'true');
+    if (this.actionHandler_) {
+        this.actionElement_.textContent = this.actionText_;
+        this.actionElement_.addEventListener('click', this.actionHandler_);
+        this.setActionHidden_(false);
+    }
+    this.textElement_.textContent = this.message_;
+    this.element_.classList.add(this.cssClasses_.ACTIVE);
+    this.element_.setAttribute('aria-hidden', 'false');
+    setTimeout(this.cleanup_.bind(this), this.timeout_);
+};
+/**
+   * Show the snackbar.
+   *
+   * @param {Object} data The data for the notification.
+   * @public
+   */
+MaterialSnackbar.prototype.showSnackbar = function (data) {
+    if (data === undefined) {
+        throw new Error('Please provide a data object with at least a message to display.');
+    }
+    if (data['message'] === undefined) {
+        throw new Error('Please provide a message to be displayed.');
+    }
+    if (data['actionHandler'] && !data['actionText']) {
+        throw new Error('Please provide action text with the handler.');
+    }
+    if (this.active) {
+        this.queuedNotifications_.push(data);
+    } else {
+        this.active = true;
+        this.message_ = data['message'];
+        if (data['timeout']) {
+            this.timeout_ = data['timeout'];
+        } else {
+            this.timeout_ = 2750;
+        }
+        if (data['actionHandler']) {
+            this.actionHandler_ = data['actionHandler'];
+        }
+        if (data['actionText']) {
+            this.actionText_ = data['actionText'];
+        }
+        this.displaySnackbar_();
+    }
+};
+MaterialSnackbar.prototype['showSnackbar'] = MaterialSnackbar.prototype.showSnackbar;
+/**
+   * Check if the queue has items within it.
+   * If it does, display the next entry.
+   *
+   * @private
+   */
+MaterialSnackbar.prototype.checkQueue_ = function () {
+    if (this.queuedNotifications_.length > 0) {
+        this.showSnackbar(this.queuedNotifications_.shift());
+    }
+};
+/**
+   * Cleanup the snackbar event listeners and accessiblity attributes.
+   *
+   * @private
+   */
+MaterialSnackbar.prototype.cleanup_ = function () {
+    this.element_.classList.remove(this.cssClasses_.ACTIVE);
+    setTimeout(function () {
+        this.element_.setAttribute('aria-hidden', 'true');
+        this.textElement_.textContent = '';
+        if (!Boolean(this.actionElement_.getAttribute('aria-hidden'))) {
+            this.setActionHidden_(true);
+            this.actionElement_.textContent = '';
+            this.actionElement_.removeEventListener('click', this.actionHandler_);
+        }
+        this.actionHandler_ = undefined;
+        this.message_ = undefined;
+        this.actionText_ = undefined;
+        this.active = false;
+        this.checkQueue_();
+    }.bind(this), this.Constant_.ANIMATION_LENGTH);
+};
+/**
+   * Set the action handler hidden state.
+   *
+   * @param {boolean} value
+   * @private
+   */
+MaterialSnackbar.prototype.setActionHidden_ = function (value) {
+    if (value) {
+        this.actionElement_.setAttribute('aria-hidden', 'true');
+    } else {
+        this.actionElement_.removeAttribute('aria-hidden');
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialSnackbar,
+    classAsString: 'MaterialSnackbar',
+    cssClass: 'mdl-js-snackbar',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Spinner MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @param {HTMLElement} element The element that will be upgraded.
+   * @constructor
+   */
+var MaterialSpinner = function MaterialSpinner(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialSpinner'] = MaterialSpinner;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialSpinner.prototype.Constant_ = { MDL_SPINNER_LAYER_COUNT: 4 };
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialSpinner.prototype.CssClasses_ = {
+    MDL_SPINNER_LAYER: 'mdl-spinner__layer',
+    MDL_SPINNER_CIRCLE_CLIPPER: 'mdl-spinner__circle-clipper',
+    MDL_SPINNER_CIRCLE: 'mdl-spinner__circle',
+    MDL_SPINNER_GAP_PATCH: 'mdl-spinner__gap-patch',
+    MDL_SPINNER_LEFT: 'mdl-spinner__left',
+    MDL_SPINNER_RIGHT: 'mdl-spinner__right'
+};
+/**
+   * Auxiliary method to create a spinner layer.
+   *
+   * @param {number} index Index of the layer to be created.
+   * @public
+   */
+MaterialSpinner.prototype.createLayer = function (index) {
+    var layer = document.createElement('div');
+    layer.classList.add(this.CssClasses_.MDL_SPINNER_LAYER);
+    layer.classList.add(this.CssClasses_.MDL_SPINNER_LAYER + '-' + index);
+    var leftClipper = document.createElement('div');
+    leftClipper.classList.add(this.CssClasses_.MDL_SPINNER_CIRCLE_CLIPPER);
+    leftClipper.classList.add(this.CssClasses_.MDL_SPINNER_LEFT);
+    var gapPatch = document.createElement('div');
+    gapPatch.classList.add(this.CssClasses_.MDL_SPINNER_GAP_PATCH);
+    var rightClipper = document.createElement('div');
+    rightClipper.classList.add(this.CssClasses_.MDL_SPINNER_CIRCLE_CLIPPER);
+    rightClipper.classList.add(this.CssClasses_.MDL_SPINNER_RIGHT);
+    var circleOwners = [
+        leftClipper,
+        gapPatch,
+        rightClipper
+    ];
+    for (var i = 0; i < circleOwners.length; i++) {
+        var circle = document.createElement('div');
+        circle.classList.add(this.CssClasses_.MDL_SPINNER_CIRCLE);
+        circleOwners[i].appendChild(circle);
+    }
+    layer.appendChild(leftClipper);
+    layer.appendChild(gapPatch);
+    layer.appendChild(rightClipper);
+    this.element_.appendChild(layer);
+};
+MaterialSpinner.prototype['createLayer'] = MaterialSpinner.prototype.createLayer;
+/**
+   * Stops the spinner animation.
+   * Public method for users who need to stop the spinner for any reason.
+   *
+   * @public
+   */
+MaterialSpinner.prototype.stop = function () {
+    this.element_.classList.remove('is-active');
+};
+MaterialSpinner.prototype['stop'] = MaterialSpinner.prototype.stop;
+/**
+   * Starts the spinner animation.
+   * Public method for users who need to manually start the spinner for any reason
+   * (instead of just adding the 'is-active' class to their markup).
+   *
+   * @public
+   */
+MaterialSpinner.prototype.start = function () {
+    this.element_.classList.add('is-active');
+};
+MaterialSpinner.prototype['start'] = MaterialSpinner.prototype.start;
+/**
+   * Initialize element.
+   */
+MaterialSpinner.prototype.init = function () {
+    if (this.element_) {
+        for (var i = 1; i <= this.Constant_.MDL_SPINNER_LAYER_COUNT; i++) {
+            this.createLayer(i);
+        }
+        this.element_.classList.add('is-upgraded');
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialSpinner,
+    classAsString: 'MaterialSpinner',
+    cssClass: 'mdl-js-spinner',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Checkbox MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialSwitch = function MaterialSwitch(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialSwitch'] = MaterialSwitch;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialSwitch.prototype.Constant_ = { TINY_TIMEOUT: 0.001 };
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialSwitch.prototype.CssClasses_ = {
+    INPUT: 'mdl-switch__input',
+    TRACK: 'mdl-switch__track',
+    THUMB: 'mdl-switch__thumb',
+    FOCUS_HELPER: 'mdl-switch__focus-helper',
+    RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE_CONTAINER: 'mdl-switch__ripple-container',
+    RIPPLE_CENTER: 'mdl-ripple--center',
+    RIPPLE: 'mdl-ripple',
+    IS_FOCUSED: 'is-focused',
+    IS_DISABLED: 'is-disabled',
+    IS_CHECKED: 'is-checked'
+};
+/**
+   * Handle change of state.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSwitch.prototype.onChange_ = function (event) {
+    this.updateClasses_();
+};
+/**
+   * Handle focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSwitch.prototype.onFocus_ = function (event) {
+    this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle lost focus of element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSwitch.prototype.onBlur_ = function (event) {
+    this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle mouseup.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialSwitch.prototype.onMouseUp_ = function (event) {
+    this.blur_();
+};
+/**
+   * Handle class updates.
+   *
+   * @private
+   */
+MaterialSwitch.prototype.updateClasses_ = function () {
+    this.checkDisabled();
+    this.checkToggleState();
+};
+/**
+   * Add blur.
+   *
+   * @private
+   */
+MaterialSwitch.prototype.blur_ = function () {
+    // TODO: figure out why there's a focus event being fired after our blur,
+    // so that we can avoid this hack.
+    window.setTimeout(function () {
+        this.inputElement_.blur();
+    }.bind(this), this.Constant_.TINY_TIMEOUT);
+};
+// Public methods.
+/**
+   * Check the components disabled state.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.checkDisabled = function () {
+    if (this.inputElement_.disabled) {
+        this.element_.classList.add(this.CssClasses_.IS_DISABLED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DISABLED);
+    }
+};
+MaterialSwitch.prototype['checkDisabled'] = MaterialSwitch.prototype.checkDisabled;
+/**
+   * Check the components toggled state.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.checkToggleState = function () {
+    if (this.inputElement_.checked) {
+        this.element_.classList.add(this.CssClasses_.IS_CHECKED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_CHECKED);
+    }
+};
+MaterialSwitch.prototype['checkToggleState'] = MaterialSwitch.prototype.checkToggleState;
+/**
+   * Disable switch.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.disable = function () {
+    this.inputElement_.disabled = true;
+    this.updateClasses_();
+};
+MaterialSwitch.prototype['disable'] = MaterialSwitch.prototype.disable;
+/**
+   * Enable switch.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.enable = function () {
+    this.inputElement_.disabled = false;
+    this.updateClasses_();
+};
+MaterialSwitch.prototype['enable'] = MaterialSwitch.prototype.enable;
+/**
+   * Activate switch.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.on = function () {
+    this.inputElement_.checked = true;
+    this.updateClasses_();
+};
+MaterialSwitch.prototype['on'] = MaterialSwitch.prototype.on;
+/**
+   * Deactivate switch.
+   *
+   * @public
+   */
+MaterialSwitch.prototype.off = function () {
+    this.inputElement_.checked = false;
+    this.updateClasses_();
+};
+MaterialSwitch.prototype['off'] = MaterialSwitch.prototype.off;
+/**
+   * Initialize element.
+   */
+MaterialSwitch.prototype.init = function () {
+    if (this.element_) {
+        this.inputElement_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
+        var track = document.createElement('div');
+        track.classList.add(this.CssClasses_.TRACK);
+        var thumb = document.createElement('div');
+        thumb.classList.add(this.CssClasses_.THUMB);
+        var focusHelper = document.createElement('span');
+        focusHelper.classList.add(this.CssClasses_.FOCUS_HELPER);
+        thumb.appendChild(focusHelper);
+        this.element_.appendChild(track);
+        this.element_.appendChild(thumb);
+        this.boundMouseUpHandler = this.onMouseUp_.bind(this);
+        if (this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT)) {
+            this.element_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            this.rippleContainerElement_ = document.createElement('span');
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CONTAINER);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_EFFECT);
+            this.rippleContainerElement_.classList.add(this.CssClasses_.RIPPLE_CENTER);
+            this.rippleContainerElement_.addEventListener('mouseup', this.boundMouseUpHandler);
+            var ripple = document.createElement('span');
+            ripple.classList.add(this.CssClasses_.RIPPLE);
+            this.rippleContainerElement_.appendChild(ripple);
+            this.element_.appendChild(this.rippleContainerElement_);
+        }
+        this.boundChangeHandler = this.onChange_.bind(this);
+        this.boundFocusHandler = this.onFocus_.bind(this);
+        this.boundBlurHandler = this.onBlur_.bind(this);
+        this.inputElement_.addEventListener('change', this.boundChangeHandler);
+        this.inputElement_.addEventListener('focus', this.boundFocusHandler);
+        this.inputElement_.addEventListener('blur', this.boundBlurHandler);
+        this.element_.addEventListener('mouseup', this.boundMouseUpHandler);
+        this.updateClasses_();
+        this.element_.classList.add('is-upgraded');
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialSwitch,
+    classAsString: 'MaterialSwitch',
+    cssClass: 'mdl-js-switch',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Tabs MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {Element} element The element that will be upgraded.
+   */
+var MaterialTabs = function MaterialTabs(element) {
+    // Stores the HTML element.
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialTabs'] = MaterialTabs;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialTabs.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialTabs.prototype.CssClasses_ = {
+    TAB_CLASS: 'mdl-tabs__tab',
+    PANEL_CLASS: 'mdl-tabs__panel',
+    ACTIVE_CLASS: 'is-active',
+    UPGRADED_CLASS: 'is-upgraded',
+    MDL_JS_RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    MDL_RIPPLE_CONTAINER: 'mdl-tabs__ripple-container',
+    MDL_RIPPLE: 'mdl-ripple',
+    MDL_JS_RIPPLE_EFFECT_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events'
+};
+/**
+   * Handle clicks to a tabs component
+   *
+   * @private
+   */
+MaterialTabs.prototype.initTabs_ = function () {
+    if (this.element_.classList.contains(this.CssClasses_.MDL_JS_RIPPLE_EFFECT)) {
+        this.element_.classList.add(this.CssClasses_.MDL_JS_RIPPLE_EFFECT_IGNORE_EVENTS);
+    }
+    // Select element tabs, document panels
+    this.tabs_ = this.element_.querySelectorAll('.' + this.CssClasses_.TAB_CLASS);
+    this.panels_ = this.element_.querySelectorAll('.' + this.CssClasses_.PANEL_CLASS);
+    // Create new tabs for each tab element
+    for (var i = 0; i < this.tabs_.length; i++) {
+        new MaterialTab(this.tabs_[i], this);
+    }
+    this.element_.classList.add(this.CssClasses_.UPGRADED_CLASS);
+};
+/**
+   * Reset tab state, dropping active classes
+   *
+   * @private
+   */
+MaterialTabs.prototype.resetTabState_ = function () {
+    for (var k = 0; k < this.tabs_.length; k++) {
+        this.tabs_[k].classList.remove(this.CssClasses_.ACTIVE_CLASS);
+    }
+};
+/**
+   * Reset panel state, droping active classes
+   *
+   * @private
+   */
+MaterialTabs.prototype.resetPanelState_ = function () {
+    for (var j = 0; j < this.panels_.length; j++) {
+        this.panels_[j].classList.remove(this.CssClasses_.ACTIVE_CLASS);
+    }
+};
+/**
+   * Initialize element.
+   */
+MaterialTabs.prototype.init = function () {
+    if (this.element_) {
+        this.initTabs_();
+    }
+};
+/**
+   * Constructor for an individual tab.
+   *
+   * @constructor
+   * @param {Element} tab The HTML element for the tab.
+   * @param {MaterialTabs} ctx The MaterialTabs object that owns the tab.
+   */
+function MaterialTab(tab, ctx) {
+    if (tab) {
+        if (ctx.element_.classList.contains(ctx.CssClasses_.MDL_JS_RIPPLE_EFFECT)) {
+            var rippleContainer = document.createElement('span');
+            rippleContainer.classList.add(ctx.CssClasses_.MDL_RIPPLE_CONTAINER);
+            rippleContainer.classList.add(ctx.CssClasses_.MDL_JS_RIPPLE_EFFECT);
+            var ripple = document.createElement('span');
+            ripple.classList.add(ctx.CssClasses_.MDL_RIPPLE);
+            rippleContainer.appendChild(ripple);
+            tab.appendChild(rippleContainer);
+        }
+        tab.addEventListener('click', function (e) {
+            e.preventDefault();
+            var href = tab.href.split('#')[1];
+            var panel = ctx.element_.querySelector('#' + href);
+            ctx.resetTabState_();
+            ctx.resetPanelState_();
+            tab.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
+            panel.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
+        });
+    }
+}
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialTabs,
+    classAsString: 'MaterialTabs',
+    cssClass: 'mdl-js-tabs'
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Textfield MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialTextfield = function MaterialTextfield(element) {
+    this.element_ = element;
+    this.maxRows = this.Constant_.NO_MAX_ROWS;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialTextfield'] = MaterialTextfield;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialTextfield.prototype.Constant_ = {
+    NO_MAX_ROWS: -1,
+    MAX_ROWS_ATTRIBUTE: 'maxrows'
+};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialTextfield.prototype.CssClasses_ = {
+    LABEL: 'mdl-textfield__label',
+    INPUT: 'mdl-textfield__input',
+    IS_DIRTY: 'is-dirty',
+    IS_FOCUSED: 'is-focused',
+    IS_DISABLED: 'is-disabled',
+    IS_INVALID: 'is-invalid',
+    IS_UPGRADED: 'is-upgraded',
+    HAS_PLACEHOLDER: 'has-placeholder'
+};
+/**
+   * Handle input being entered.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialTextfield.prototype.onKeyDown_ = function (event) {
+    var currentRowCount = event.target.value.split('\n').length;
+    if (event.keyCode === 13) {
+        if (currentRowCount >= this.maxRows) {
+            event.preventDefault();
+        }
+    }
+};
+/**
+   * Handle focus.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialTextfield.prototype.onFocus_ = function (event) {
+    this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle lost focus.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialTextfield.prototype.onBlur_ = function (event) {
+    this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+};
+/**
+   * Handle reset event from out side.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialTextfield.prototype.onReset_ = function (event) {
+    this.updateClasses_();
+};
+/**
+   * Handle class updates.
+   *
+   * @private
+   */
+MaterialTextfield.prototype.updateClasses_ = function () {
+    this.checkDisabled();
+    this.checkValidity();
+    this.checkDirty();
+    this.checkFocus();
+};
+// Public methods.
+/**
+   * Check the disabled state and update field accordingly.
+   *
+   * @public
+   */
+MaterialTextfield.prototype.checkDisabled = function () {
+    if (this.input_.disabled) {
+        this.element_.classList.add(this.CssClasses_.IS_DISABLED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DISABLED);
+    }
+};
+MaterialTextfield.prototype['checkDisabled'] = MaterialTextfield.prototype.checkDisabled;
+/**
+  * Check the focus state and update field accordingly.
+  *
+  * @public
+  */
+MaterialTextfield.prototype.checkFocus = function () {
+    if (Boolean(this.element_.querySelector(':focus'))) {
+        this.element_.classList.add(this.CssClasses_.IS_FOCUSED);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_FOCUSED);
+    }
+};
+MaterialTextfield.prototype['checkFocus'] = MaterialTextfield.prototype.checkFocus;
+/**
+   * Check the validity state and update field accordingly.
+   *
+   * @public
+   */
+MaterialTextfield.prototype.checkValidity = function () {
+    if (this.input_.validity) {
+        if (this.input_.validity.valid) {
+            this.element_.classList.remove(this.CssClasses_.IS_INVALID);
+        } else {
+            this.element_.classList.add(this.CssClasses_.IS_INVALID);
+        }
+    }
+};
+MaterialTextfield.prototype['checkValidity'] = MaterialTextfield.prototype.checkValidity;
+/**
+   * Check the dirty state and update field accordingly.
+   *
+   * @public
+   */
+MaterialTextfield.prototype.checkDirty = function () {
+    if (this.input_.value && this.input_.value.length > 0) {
+        this.element_.classList.add(this.CssClasses_.IS_DIRTY);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_DIRTY);
+    }
+};
+MaterialTextfield.prototype['checkDirty'] = MaterialTextfield.prototype.checkDirty;
+/**
+   * Disable text field.
+   *
+   * @public
+   */
+MaterialTextfield.prototype.disable = function () {
+    this.input_.disabled = true;
+    this.updateClasses_();
+};
+MaterialTextfield.prototype['disable'] = MaterialTextfield.prototype.disable;
+/**
+   * Enable text field.
+   *
+   * @public
+   */
+MaterialTextfield.prototype.enable = function () {
+    this.input_.disabled = false;
+    this.updateClasses_();
+};
+MaterialTextfield.prototype['enable'] = MaterialTextfield.prototype.enable;
+/**
+   * Update text field value.
+   *
+   * @param {string} value The value to which to set the control (optional).
+   * @public
+   */
+MaterialTextfield.prototype.change = function (value) {
+    this.input_.value = value || '';
+    this.updateClasses_();
+};
+MaterialTextfield.prototype['change'] = MaterialTextfield.prototype.change;
+/**
+   * Initialize element.
+   */
+MaterialTextfield.prototype.init = function () {
+    if (this.element_) {
+        this.label_ = this.element_.querySelector('.' + this.CssClasses_.LABEL);
+        this.input_ = this.element_.querySelector('.' + this.CssClasses_.INPUT);
+        if (this.input_) {
+            if (this.input_.hasAttribute(this.Constant_.MAX_ROWS_ATTRIBUTE)) {
+                this.maxRows = parseInt(this.input_.getAttribute(this.Constant_.MAX_ROWS_ATTRIBUTE), 10);
+                if (isNaN(this.maxRows)) {
+                    this.maxRows = this.Constant_.NO_MAX_ROWS;
+                }
+            }
+            if (this.input_.hasAttribute('placeholder')) {
+                this.element_.classList.add(this.CssClasses_.HAS_PLACEHOLDER);
+            }
+            this.boundUpdateClassesHandler = this.updateClasses_.bind(this);
+            this.boundFocusHandler = this.onFocus_.bind(this);
+            this.boundBlurHandler = this.onBlur_.bind(this);
+            this.boundResetHandler = this.onReset_.bind(this);
+            this.input_.addEventListener('input', this.boundUpdateClassesHandler);
+            this.input_.addEventListener('focus', this.boundFocusHandler);
+            this.input_.addEventListener('blur', this.boundBlurHandler);
+            this.input_.addEventListener('reset', this.boundResetHandler);
+            if (this.maxRows !== this.Constant_.NO_MAX_ROWS) {
+                // TODO: This should handle pasting multi line text.
+                // Currently doesn't.
+                this.boundKeyDownHandler = this.onKeyDown_.bind(this);
+                this.input_.addEventListener('keydown', this.boundKeyDownHandler);
+            }
+            var invalid = this.element_.classList.contains(this.CssClasses_.IS_INVALID);
+            this.updateClasses_();
+            this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+            if (invalid) {
+                this.element_.classList.add(this.CssClasses_.IS_INVALID);
+            }
+            if (this.input_.hasAttribute('autofocus')) {
+                this.element_.focus();
+                this.checkFocus();
+            }
+        }
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialTextfield,
+    classAsString: 'MaterialTextfield',
+    cssClass: 'mdl-js-textfield',
+    widget: true
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Tooltip MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialTooltip = function MaterialTooltip(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialTooltip'] = MaterialTooltip;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialTooltip.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialTooltip.prototype.CssClasses_ = {
+    IS_ACTIVE: 'is-active',
+    BOTTOM: 'mdl-tooltip--bottom',
+    LEFT: 'mdl-tooltip--left',
+    RIGHT: 'mdl-tooltip--right',
+    TOP: 'mdl-tooltip--top'
+};
+/**
+   * Handle mouseenter for tooltip.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialTooltip.prototype.handleMouseEnter_ = function (event) {
+    var props = event.target.getBoundingClientRect();
+    var left = props.left + props.width / 2;
+    var top = props.top + props.height / 2;
+    var marginLeft = -1 * (this.element_.offsetWidth / 2);
+    var marginTop = -1 * (this.element_.offsetHeight / 2);
+    if (this.element_.classList.contains(this.CssClasses_.LEFT) || this.element_.classList.contains(this.CssClasses_.RIGHT)) {
+        left = props.width / 2;
+        if (top + marginTop < 0) {
+            this.element_.style.top = 0;
+            this.element_.style.marginTop = 0;
+        } else {
+            this.element_.style.top = top + 'px';
+            this.element_.style.marginTop = marginTop + 'px';
+        }
+    } else {
+        if (left + marginLeft < 0) {
+            this.element_.style.left = 0;
+            this.element_.style.marginLeft = 0;
+        } else {
+            this.element_.style.left = left + 'px';
+            this.element_.style.marginLeft = marginLeft + 'px';
+        }
+    }
+    if (this.element_.classList.contains(this.CssClasses_.TOP)) {
+        this.element_.style.top = props.top - this.element_.offsetHeight - 10 + 'px';
+    } else if (this.element_.classList.contains(this.CssClasses_.RIGHT)) {
+        this.element_.style.left = props.left + props.width + 10 + 'px';
+    } else if (this.element_.classList.contains(this.CssClasses_.LEFT)) {
+        this.element_.style.left = props.left - this.element_.offsetWidth - 10 + 'px';
+    } else {
+        this.element_.style.top = props.top + props.height + 10 + 'px';
+    }
+    this.element_.classList.add(this.CssClasses_.IS_ACTIVE);
+};
+/**
+   * Handle mouseleave for tooltip.
+   *
+   * @private
+   */
+MaterialTooltip.prototype.handleMouseLeave_ = function () {
+    this.element_.classList.remove(this.CssClasses_.IS_ACTIVE);
+};
+/**
+   * Initialize element.
+   */
+MaterialTooltip.prototype.init = function () {
+    if (this.element_) {
+        var forElId = this.element_.getAttribute('for');
+        if (forElId) {
+            this.forElement_ = document.getElementById(forElId);
+        }
+        if (this.forElement_) {
+            // It's left here because it prevents accidental text selection on Android
+            if (!this.forElement_.hasAttribute('tabindex')) {
+                this.forElement_.setAttribute('tabindex', '0');
+            }
+            this.boundMouseEnterHandler = this.handleMouseEnter_.bind(this);
+            this.boundMouseLeaveHandler = this.handleMouseLeave_.bind(this);
+            this.forElement_.addEventListener('mouseenter', this.boundMouseEnterHandler, false);
+            this.forElement_.addEventListener('touchend', this.boundMouseEnterHandler, false);
+            this.forElement_.addEventListener('mouseleave', this.boundMouseLeaveHandler, false);
+            window.addEventListener('touchstart', this.boundMouseLeaveHandler);
+        }
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialTooltip,
+    classAsString: 'MaterialTooltip',
+    cssClass: 'mdl-tooltip'
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Layout MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialLayout = function MaterialLayout(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialLayout'] = MaterialLayout;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialLayout.prototype.Constant_ = {
+    MAX_WIDTH: '(max-width: 1024px)',
+    TAB_SCROLL_PIXELS: 100,
+    RESIZE_TIMEOUT: 100,
+    MENU_ICON: '&#xE5D2;',
+    CHEVRON_LEFT: 'chevron_left',
+    CHEVRON_RIGHT: 'chevron_right'
+};
+/**
+   * Keycodes, for code readability.
+   *
+   * @enum {number}
+   * @private
+   */
+MaterialLayout.prototype.Keycodes_ = {
+    ENTER: 13,
+    ESCAPE: 27,
+    SPACE: 32
+};
+/**
+   * Modes.
+   *
+   * @enum {number}
+   * @private
+   */
+MaterialLayout.prototype.Mode_ = {
+    STANDARD: 0,
+    SEAMED: 1,
+    WATERFALL: 2,
+    SCROLL: 3
+};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialLayout.prototype.CssClasses_ = {
+    CONTAINER: 'mdl-layout__container',
+    HEADER: 'mdl-layout__header',
+    DRAWER: 'mdl-layout__drawer',
+    CONTENT: 'mdl-layout__content',
+    DRAWER_BTN: 'mdl-layout__drawer-button',
+    ICON: 'material-icons',
+    JS_RIPPLE_EFFECT: 'mdl-js-ripple-effect',
+    RIPPLE_CONTAINER: 'mdl-layout__tab-ripple-container',
+    RIPPLE: 'mdl-ripple',
+    RIPPLE_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    HEADER_SEAMED: 'mdl-layout__header--seamed',
+    HEADER_WATERFALL: 'mdl-layout__header--waterfall',
+    HEADER_SCROLL: 'mdl-layout__header--scroll',
+    FIXED_HEADER: 'mdl-layout--fixed-header',
+    OBFUSCATOR: 'mdl-layout__obfuscator',
+    TAB_BAR: 'mdl-layout__tab-bar',
+    TAB_CONTAINER: 'mdl-layout__tab-bar-container',
+    TAB: 'mdl-layout__tab',
+    TAB_BAR_BUTTON: 'mdl-layout__tab-bar-button',
+    TAB_BAR_LEFT_BUTTON: 'mdl-layout__tab-bar-left-button',
+    TAB_BAR_RIGHT_BUTTON: 'mdl-layout__tab-bar-right-button',
+    PANEL: 'mdl-layout__tab-panel',
+    HAS_DRAWER: 'has-drawer',
+    HAS_TABS: 'has-tabs',
+    HAS_SCROLLING_HEADER: 'has-scrolling-header',
+    CASTING_SHADOW: 'is-casting-shadow',
+    IS_COMPACT: 'is-compact',
+    IS_SMALL_SCREEN: 'is-small-screen',
+    IS_DRAWER_OPEN: 'is-visible',
+    IS_ACTIVE: 'is-active',
+    IS_UPGRADED: 'is-upgraded',
+    IS_ANIMATING: 'is-animating',
+    ON_LARGE_SCREEN: 'mdl-layout--large-screen-only',
+    ON_SMALL_SCREEN: 'mdl-layout--small-screen-only'
+};
+/**
+   * Handles scrolling on the content.
+   *
+   * @private
+   */
+MaterialLayout.prototype.contentScrollHandler_ = function () {
+    if (this.header_.classList.contains(this.CssClasses_.IS_ANIMATING)) {
+        return;
+    }
+    var headerVisible = !this.element_.classList.contains(this.CssClasses_.IS_SMALL_SCREEN) || this.element_.classList.contains(this.CssClasses_.FIXED_HEADER);
+    if (this.content_.scrollTop > 0 && !this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
+        this.header_.classList.add(this.CssClasses_.CASTING_SHADOW);
+        this.header_.classList.add(this.CssClasses_.IS_COMPACT);
+        if (headerVisible) {
+            this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
+        }
+    } else if (this.content_.scrollTop <= 0 && this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
+        this.header_.classList.remove(this.CssClasses_.CASTING_SHADOW);
+        this.header_.classList.remove(this.CssClasses_.IS_COMPACT);
+        if (headerVisible) {
+            this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
+        }
+    }
+};
+/**
+   * Handles a keyboard event on the drawer.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialLayout.prototype.keyboardEventHandler_ = function (evt) {
+    // Only react when the drawer is open.
+    if (evt.keyCode === this.Keycodes_.ESCAPE && this.drawer_.classList.contains(this.CssClasses_.IS_DRAWER_OPEN)) {
+        this.toggleDrawer();
+    }
+};
+/**
+   * Handles changes in screen size.
+   *
+   * @private
+   */
+MaterialLayout.prototype.screenSizeHandler_ = function () {
+    if (this.screenSizeMediaQuery_.matches) {
+        this.element_.classList.add(this.CssClasses_.IS_SMALL_SCREEN);
+    } else {
+        this.element_.classList.remove(this.CssClasses_.IS_SMALL_SCREEN);
+        // Collapse drawer (if any) when moving to a large screen size.
+        if (this.drawer_) {
+            this.drawer_.classList.remove(this.CssClasses_.IS_DRAWER_OPEN);
+            this.obfuscator_.classList.remove(this.CssClasses_.IS_DRAWER_OPEN);
+        }
+    }
+};
+/**
+   * Handles events of drawer button.
+   *
+   * @param {Event} evt The event that fired.
+   * @private
+   */
+MaterialLayout.prototype.drawerToggleHandler_ = function (evt) {
+    if (evt && evt.type === 'keydown') {
+        if (evt.keyCode === this.Keycodes_.SPACE || evt.keyCode === this.Keycodes_.ENTER) {
+            // prevent scrolling in drawer nav
+            evt.preventDefault();
+        } else {
+            // prevent other keys
+            return;
+        }
+    }
+    this.toggleDrawer();
+};
+/**
+   * Handles (un)setting the `is-animating` class
+   *
+   * @private
+   */
+MaterialLayout.prototype.headerTransitionEndHandler_ = function () {
+    this.header_.classList.remove(this.CssClasses_.IS_ANIMATING);
+};
+/**
+   * Handles expanding the header on click
+   *
+   * @private
+   */
+MaterialLayout.prototype.headerClickHandler_ = function () {
+    if (this.header_.classList.contains(this.CssClasses_.IS_COMPACT)) {
+        this.header_.classList.remove(this.CssClasses_.IS_COMPACT);
+        this.header_.classList.add(this.CssClasses_.IS_ANIMATING);
+    }
+};
+/**
+   * Reset tab state, dropping active classes
+   *
+   * @private
+   */
+MaterialLayout.prototype.resetTabState_ = function (tabBar) {
+    for (var k = 0; k < tabBar.length; k++) {
+        tabBar[k].classList.remove(this.CssClasses_.IS_ACTIVE);
+    }
+};
+/**
+   * Reset panel state, droping active classes
+   *
+   * @private
+   */
+MaterialLayout.prototype.resetPanelState_ = function (panels) {
+    for (var j = 0; j < panels.length; j++) {
+        panels[j].classList.remove(this.CssClasses_.IS_ACTIVE);
+    }
+};
+/**
+  * Toggle drawer state
+  *
+  * @public
+  */
+MaterialLayout.prototype.toggleDrawer = function () {
+    var drawerButton = this.element_.querySelector('.' + this.CssClasses_.DRAWER_BTN);
+    this.drawer_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
+    this.obfuscator_.classList.toggle(this.CssClasses_.IS_DRAWER_OPEN);
+    // Set accessibility properties.
+    if (this.drawer_.classList.contains(this.CssClasses_.IS_DRAWER_OPEN)) {
+        this.drawer_.setAttribute('aria-hidden', 'false');
+        drawerButton.setAttribute('aria-expanded', 'true');
+    } else {
+        this.drawer_.setAttribute('aria-hidden', 'true');
+        drawerButton.setAttribute('aria-expanded', 'false');
+    }
+};
+MaterialLayout.prototype['toggleDrawer'] = MaterialLayout.prototype.toggleDrawer;
+/**
+   * Initialize element.
+   */
+MaterialLayout.prototype.init = function () {
+    if (this.element_) {
+        var container = document.createElement('div');
+        container.classList.add(this.CssClasses_.CONTAINER);
+        var focusedElement = this.element_.querySelector(':focus');
+        this.element_.parentElement.insertBefore(container, this.element_);
+        this.element_.parentElement.removeChild(this.element_);
+        container.appendChild(this.element_);
+        if (focusedElement) {
+            focusedElement.focus();
+        }
+        var directChildren = this.element_.childNodes;
+        var numChildren = directChildren.length;
+        for (var c = 0; c < numChildren; c++) {
+            var child = directChildren[c];
+            if (child.classList && child.classList.contains(this.CssClasses_.HEADER)) {
+                this.header_ = child;
+            }
+            if (child.classList && child.classList.contains(this.CssClasses_.DRAWER)) {
+                this.drawer_ = child;
+            }
+            if (child.classList && child.classList.contains(this.CssClasses_.CONTENT)) {
+                this.content_ = child;
+            }
+        }
+        window.addEventListener('pageshow', function (e) {
+            if (e.persisted) {
+                // when page is loaded from back/forward cache
+                // trigger repaint to let layout scroll in safari
+                this.element_.style.overflowY = 'hidden';
+                requestAnimationFrame(function () {
+                    this.element_.style.overflowY = '';
+                }.bind(this));
+            }
+        }.bind(this), false);
+        if (this.header_) {
+            this.tabBar_ = this.header_.querySelector('.' + this.CssClasses_.TAB_BAR);
+        }
+        var mode = this.Mode_.STANDARD;
+        if (this.header_) {
+            if (this.header_.classList.contains(this.CssClasses_.HEADER_SEAMED)) {
+                mode = this.Mode_.SEAMED;
+            } else if (this.header_.classList.contains(this.CssClasses_.HEADER_WATERFALL)) {
+                mode = this.Mode_.WATERFALL;
+                this.header_.addEventListener('transitionend', this.headerTransitionEndHandler_.bind(this));
+                this.header_.addEventListener('click', this.headerClickHandler_.bind(this));
+            } else if (this.header_.classList.contains(this.CssClasses_.HEADER_SCROLL)) {
+                mode = this.Mode_.SCROLL;
+                container.classList.add(this.CssClasses_.HAS_SCROLLING_HEADER);
+            }
+            if (mode === this.Mode_.STANDARD) {
+                this.header_.classList.add(this.CssClasses_.CASTING_SHADOW);
+                if (this.tabBar_) {
+                    this.tabBar_.classList.add(this.CssClasses_.CASTING_SHADOW);
+                }
+            } else if (mode === this.Mode_.SEAMED || mode === this.Mode_.SCROLL) {
+                this.header_.classList.remove(this.CssClasses_.CASTING_SHADOW);
+                if (this.tabBar_) {
+                    this.tabBar_.classList.remove(this.CssClasses_.CASTING_SHADOW);
+                }
+            } else if (mode === this.Mode_.WATERFALL) {
+                // Add and remove shadows depending on scroll position.
+                // Also add/remove auxiliary class for styling of the compact version of
+                // the header.
+                this.content_.addEventListener('scroll', this.contentScrollHandler_.bind(this));
+                this.contentScrollHandler_();
+            }
+        }
+        // Add drawer toggling button to our layout, if we have an openable drawer.
+        if (this.drawer_) {
+            var drawerButton = this.element_.querySelector('.' + this.CssClasses_.DRAWER_BTN);
+            if (!drawerButton) {
+                drawerButton = document.createElement('div');
+                drawerButton.setAttribute('aria-expanded', 'false');
+                drawerButton.setAttribute('role', 'button');
+                drawerButton.setAttribute('tabindex', '0');
+                drawerButton.classList.add(this.CssClasses_.DRAWER_BTN);
+                var drawerButtonIcon = document.createElement('i');
+                drawerButtonIcon.classList.add(this.CssClasses_.ICON);
+                drawerButtonIcon.innerHTML = this.Constant_.MENU_ICON;
+                drawerButton.appendChild(drawerButtonIcon);
+            }
+            if (this.drawer_.classList.contains(this.CssClasses_.ON_LARGE_SCREEN)) {
+                //If drawer has ON_LARGE_SCREEN class then add it to the drawer toggle button as well.
+                drawerButton.classList.add(this.CssClasses_.ON_LARGE_SCREEN);
+            } else if (this.drawer_.classList.contains(this.CssClasses_.ON_SMALL_SCREEN)) {
+                //If drawer has ON_SMALL_SCREEN class then add it to the drawer toggle button as well.
+                drawerButton.classList.add(this.CssClasses_.ON_SMALL_SCREEN);
+            }
+            drawerButton.addEventListener('click', this.drawerToggleHandler_.bind(this));
+            drawerButton.addEventListener('keydown', this.drawerToggleHandler_.bind(this));
+            // Add a class if the layout has a drawer, for altering the left padding.
+            // Adds the HAS_DRAWER to the elements since this.header_ may or may
+            // not be present.
+            this.element_.classList.add(this.CssClasses_.HAS_DRAWER);
+            // If we have a fixed header, add the button to the header rather than
+            // the layout.
+            if (this.element_.classList.contains(this.CssClasses_.FIXED_HEADER)) {
+                this.header_.insertBefore(drawerButton, this.header_.firstChild);
+            } else {
+                this.element_.insertBefore(drawerButton, this.content_);
+            }
+            var obfuscator = document.createElement('div');
+            obfuscator.classList.add(this.CssClasses_.OBFUSCATOR);
+            this.element_.appendChild(obfuscator);
+            obfuscator.addEventListener('click', this.drawerToggleHandler_.bind(this));
+            this.obfuscator_ = obfuscator;
+            this.drawer_.addEventListener('keydown', this.keyboardEventHandler_.bind(this));
+            this.drawer_.setAttribute('aria-hidden', 'true');
+        }
+        // Keep an eye on screen size, and add/remove auxiliary class for styling
+        // of small screens.
+        this.screenSizeMediaQuery_ = window.matchMedia(this.Constant_.MAX_WIDTH);
+        this.screenSizeMediaQuery_.addListener(this.screenSizeHandler_.bind(this));
+        this.screenSizeHandler_();
+        // Initialize tabs, if any.
+        if (this.header_ && this.tabBar_) {
+            this.element_.classList.add(this.CssClasses_.HAS_TABS);
+            var tabContainer = document.createElement('div');
+            tabContainer.classList.add(this.CssClasses_.TAB_CONTAINER);
+            console.log('done');
+            try{
+            this.header_.insertBefore(tabContainer, this.tabBar_);
+            this.header_.removeChild(this.tabBar_);
+            }
+            catch(err){
+            }
+
+            var leftButton = document.createElement('div');
+            leftButton.classList.add(this.CssClasses_.TAB_BAR_BUTTON);
+            leftButton.classList.add(this.CssClasses_.TAB_BAR_LEFT_BUTTON);
+            var leftButtonIcon = document.createElement('i');
+            leftButtonIcon.classList.add(this.CssClasses_.ICON);
+            leftButtonIcon.textContent = this.Constant_.CHEVRON_LEFT;
+            leftButton.appendChild(leftButtonIcon);
+            leftButton.addEventListener('click', function () {
+                this.tabBar_.scrollLeft -= this.Constant_.TAB_SCROLL_PIXELS;
+            }.bind(this));
+            var rightButton = document.createElement('div');
+            rightButton.classList.add(this.CssClasses_.TAB_BAR_BUTTON);
+            rightButton.classList.add(this.CssClasses_.TAB_BAR_RIGHT_BUTTON);
+            var rightButtonIcon = document.createElement('i');
+            rightButtonIcon.classList.add(this.CssClasses_.ICON);
+            rightButtonIcon.textContent = this.Constant_.CHEVRON_RIGHT;
+            rightButton.appendChild(rightButtonIcon);
+            rightButton.addEventListener('click', function () {
+                this.tabBar_.scrollLeft += this.Constant_.TAB_SCROLL_PIXELS;
+            }.bind(this));
+            tabContainer.appendChild(leftButton);
+            tabContainer.appendChild(this.tabBar_);
+            tabContainer.appendChild(rightButton);
+            // Add and remove tab buttons depending on scroll position and total
+            // window size.
+            var tabUpdateHandler = function () {
+                if (this.tabBar_.scrollLeft > 0) {
+                    leftButton.classList.add(this.CssClasses_.IS_ACTIVE);
+                } else {
+                    leftButton.classList.remove(this.CssClasses_.IS_ACTIVE);
+                }
+                if (this.tabBar_.scrollLeft < this.tabBar_.scrollWidth - this.tabBar_.offsetWidth) {
+                    rightButton.classList.add(this.CssClasses_.IS_ACTIVE);
+                } else {
+                    rightButton.classList.remove(this.CssClasses_.IS_ACTIVE);
+                }
+            }.bind(this);
+            this.tabBar_.addEventListener('scroll', tabUpdateHandler);
+            tabUpdateHandler();
+            // Update tabs when the window resizes.
+            var windowResizeHandler = function () {
+                // Use timeouts to make sure it doesn't happen too often.
+                if (this.resizeTimeoutId_) {
+                    clearTimeout(this.resizeTimeoutId_);
+                }
+                this.resizeTimeoutId_ = setTimeout(function () {
+                    tabUpdateHandler();
+                    this.resizeTimeoutId_ = null;
+                }.bind(this), this.Constant_.RESIZE_TIMEOUT);
+            }.bind(this);
+            window.addEventListener('resize', windowResizeHandler);
+            if (this.tabBar_.classList.contains(this.CssClasses_.JS_RIPPLE_EFFECT)) {
+                this.tabBar_.classList.add(this.CssClasses_.RIPPLE_IGNORE_EVENTS);
+            }
+            // Select element tabs, document panels
+            var tabs = this.tabBar_.querySelectorAll('.' + this.CssClasses_.TAB);
+            var panels = this.content_.querySelectorAll('.' + this.CssClasses_.PANEL);
+            // Create new tabs for each tab element
+            for (var i = 0; i < tabs.length; i++) {
+                new MaterialLayoutTab(tabs[i], tabs, panels, this);
+            }
+        }
+        this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+    }
+};
+/**
+   * Constructor for an individual tab.
+   *
+   * @constructor
+   * @param {HTMLElement} tab The HTML element for the tab.
+   * @param {!Array<HTMLElement>} tabs Array with HTML elements for all tabs.
+   * @param {!Array<HTMLElement>} panels Array with HTML elements for all panels.
+   * @param {MaterialLayout} layout The MaterialLayout object that owns the tab.
+   */
+function MaterialLayoutTab(tab, tabs, panels, layout) {
+    /**
+     * Auxiliary method to programmatically select a tab in the UI.
+     */
+    function selectTab() {
+        var href = tab.href.split('#')[1];
+        var panel = layout.content_.querySelector('#' + href);
+        layout.resetTabState_(tabs);
+        layout.resetPanelState_(panels);
+        tab.classList.add(layout.CssClasses_.IS_ACTIVE);
+        panel.classList.add(layout.CssClasses_.IS_ACTIVE);
+    }
+    if (layout.tabBar_.classList.contains(layout.CssClasses_.JS_RIPPLE_EFFECT)) {
+        var rippleContainer = document.createElement('span');
+        rippleContainer.classList.add(layout.CssClasses_.RIPPLE_CONTAINER);
+        rippleContainer.classList.add(layout.CssClasses_.JS_RIPPLE_EFFECT);
+        var ripple = document.createElement('span');
+        ripple.classList.add(layout.CssClasses_.RIPPLE);
+        rippleContainer.appendChild(ripple);
+        tab.appendChild(rippleContainer);
+    }
+    tab.addEventListener('click', function (e) {
+        if (tab.getAttribute('href').charAt(0) === '#') {
+            e.preventDefault();
+            selectTab();
+        }
+    });
+    tab.show = selectTab;
+    tab.addEventListener('click', function (e) {
+        e.preventDefault();
+        var href = tab.href.split('#')[1];
+        var panel = layout.content_.querySelector('#' + href);
+        layout.resetTabState_(tabs);
+        layout.resetPanelState_(panels);
+        tab.classList.add(layout.CssClasses_.IS_ACTIVE);
+        panel.classList.add(layout.CssClasses_.IS_ACTIVE);
+    });
+}
+window['MaterialLayoutTab'] = MaterialLayoutTab;
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialLayout,
+    classAsString: 'MaterialLayout',
+    cssClass: 'mdl-js-layout'
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Data Table Card MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {Element} element The element that will be upgraded.
+   */
+var MaterialDataTable = function MaterialDataTable(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialDataTable'] = MaterialDataTable;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialDataTable.prototype.Constant_ = {};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialDataTable.prototype.CssClasses_ = {
+    DATA_TABLE: 'mdl-data-table',
+    SELECTABLE: 'mdl-data-table--selectable',
+    SELECT_ELEMENT: 'mdl-data-table__select',
+    IS_SELECTED: 'is-selected',
+    IS_UPGRADED: 'is-upgraded'
+};
+/**
+   * Generates and returns a function that toggles the selection state of a
+   * single row (or multiple rows).
+   *
+   * @param {Element} checkbox Checkbox that toggles the selection state.
+   * @param {Element} row Row to toggle when checkbox changes.
+   * @param {(Array<Object>|NodeList)=} opt_rows Rows to toggle when checkbox changes.
+   * @private
+   */
+MaterialDataTable.prototype.selectRow_ = function (checkbox, row, opt_rows) {
+    if (row) {
+        return function () {
+            if (checkbox.checked) {
+                row.classList.add(this.CssClasses_.IS_SELECTED);
+            } else {
+                row.classList.remove(this.CssClasses_.IS_SELECTED);
+            }
+        }.bind(this);
+    }
+    if (opt_rows) {
+        return function () {
+            var i;
+            var el;
+            if (checkbox.checked) {
+                for (i = 0; i < opt_rows.length; i++) {
+                    el = opt_rows[i].querySelector('td').querySelector('.mdl-checkbox');
+                    el['MaterialCheckbox'].check();
+                    opt_rows[i].classList.add(this.CssClasses_.IS_SELECTED);
+                }
+            } else {
+                for (i = 0; i < opt_rows.length; i++) {
+                    el = opt_rows[i].querySelector('td').querySelector('.mdl-checkbox');
+                    el['MaterialCheckbox'].uncheck();
+                    opt_rows[i].classList.remove(this.CssClasses_.IS_SELECTED);
+                }
+            }
+        }.bind(this);
+    }
+};
+/**
+   * Creates a checkbox for a single or or multiple rows and hooks up the
+   * event handling.
+   *
+   * @param {Element} row Row to toggle when checkbox changes.
+   * @param {(Array<Object>|NodeList)=} opt_rows Rows to toggle when checkbox changes.
+   * @private
+   */
+MaterialDataTable.prototype.createCheckbox_ = function (row, opt_rows) {
+    var label = document.createElement('label');
+    var labelClasses = [
+        'mdl-checkbox',
+        'mdl-js-checkbox',
+        'mdl-js-ripple-effect',
+        this.CssClasses_.SELECT_ELEMENT
+    ];
+    label.className = labelClasses.join(' ');
+    var checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.classList.add('mdl-checkbox__input');
+    if (row) {
+        checkbox.checked = row.classList.contains(this.CssClasses_.IS_SELECTED);
+        checkbox.addEventListener('change', this.selectRow_(checkbox, row));
+    } else if (opt_rows) {
+        checkbox.addEventListener('change', this.selectRow_(checkbox, null, opt_rows));
+    }
+    label.appendChild(checkbox);
+    componentHandler.upgradeElement(label, 'MaterialCheckbox');
+    return label;
+};
+/**
+   * Initialize element.
+   */
+MaterialDataTable.prototype.init = function () {
+    if (this.element_) {
+        var firstHeader = this.element_.querySelector('th');
+        var bodyRows = Array.prototype.slice.call(this.element_.querySelectorAll('tbody tr'));
+        var footRows = Array.prototype.slice.call(this.element_.querySelectorAll('tfoot tr'));
+        var rows = bodyRows.concat(footRows);
+        if (this.element_.classList.contains(this.CssClasses_.SELECTABLE)) {
+            var th = document.createElement('th');
+            var headerCheckbox = this.createCheckbox_(null, rows);
+            th.appendChild(headerCheckbox);
+            firstHeader.parentElement.insertBefore(th, firstHeader);
+            for (var i = 0; i < rows.length; i++) {
+                var firstCell = rows[i].querySelector('td');
+                if (firstCell) {
+                    var td = document.createElement('td');
+                    if (rows[i].parentNode.nodeName.toUpperCase() === 'TBODY') {
+                        var rowCheckbox = this.createCheckbox_(rows[i]);
+                        td.appendChild(rowCheckbox);
+                    }
+                    rows[i].insertBefore(td, firstCell);
+                }
+            }
+            this.element_.classList.add(this.CssClasses_.IS_UPGRADED);
+        }
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialDataTable,
+    classAsString: 'MaterialDataTable',
+    cssClass: 'mdl-js-data-table'
+});
+/**
+ * @license
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
+   * Class constructor for Ripple MDL component.
+   * Implements MDL component design pattern defined at:
+   * https://github.com/jasonmayes/mdl-component-design-pattern
+   *
+   * @constructor
+   * @param {HTMLElement} element The element that will be upgraded.
+   */
+var MaterialRipple = function MaterialRipple(element) {
+    this.element_ = element;
+    // Initialize instance.
+    this.init();
+};
+window['MaterialRipple'] = MaterialRipple;
+/**
+   * Store constants in one place so they can be updated easily.
+   *
+   * @enum {string | number}
+   * @private
+   */
+MaterialRipple.prototype.Constant_ = {
+    INITIAL_SCALE: 'scale(0.0001, 0.0001)',
+    INITIAL_SIZE: '1px',
+    INITIAL_OPACITY: '0.4',
+    FINAL_OPACITY: '0',
+    FINAL_SCALE: ''
+};
+/**
+   * Store strings for class names defined by this component that are used in
+   * JavaScript. This allows us to simply change it in one place should we
+   * decide to modify at a later date.
+   *
+   * @enum {string}
+   * @private
+   */
+MaterialRipple.prototype.CssClasses_ = {
+    RIPPLE_CENTER: 'mdl-ripple--center',
+    RIPPLE_EFFECT_IGNORE_EVENTS: 'mdl-js-ripple-effect--ignore-events',
+    RIPPLE: 'mdl-ripple',
+    IS_ANIMATING: 'is-animating',
+    IS_VISIBLE: 'is-visible'
+};
+/**
+   * Handle mouse / finger down on element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRipple.prototype.downHandler_ = function (event) {
+    if (!this.rippleElement_.style.width && !this.rippleElement_.style.height) {
+        var rect = this.element_.getBoundingClientRect();
+        this.boundHeight = rect.height;
+        this.boundWidth = rect.width;
+        this.rippleSize_ = Math.sqrt(rect.width * rect.width + rect.height * rect.height) * 2 + 2;
+        this.rippleElement_.style.width = this.rippleSize_ + 'px';
+        this.rippleElement_.style.height = this.rippleSize_ + 'px';
+    }
+    this.rippleElement_.classList.add(this.CssClasses_.IS_VISIBLE);
+    if (event.type === 'mousedown' && this.ignoringMouseDown_) {
+        this.ignoringMouseDown_ = false;
+    } else {
+        if (event.type === 'touchstart') {
+            this.ignoringMouseDown_ = true;
+        }
+        var frameCount = this.getFrameCount();
+        if (frameCount > 0) {
+            return;
+        }
+        this.setFrameCount(1);
+        var bound = event.currentTarget.getBoundingClientRect();
+        var x;
+        var y;
+        // Check if we are handling a keyboard click.
+        if (event.clientX === 0 && event.clientY === 0) {
+            x = Math.round(bound.width / 2);
+            y = Math.round(bound.height / 2);
+        } else {
+            var clientX = event.clientX ? event.clientX : event.touches[0].clientX;
+            var clientY = event.clientY ? event.clientY : event.touches[0].clientY;
+            x = Math.round(clientX - bound.left);
+            y = Math.round(clientY - bound.top);
+        }
+        this.setRippleXY(x, y);
+        this.setRippleStyles(true);
+        window.requestAnimationFrame(this.animFrameHandler.bind(this));
+    }
+};
+/**
+   * Handle mouse / finger up on element.
+   *
+   * @param {Event} event The event that fired.
+   * @private
+   */
+MaterialRipple.prototype.upHandler_ = function (event) {
+    // Don't fire for the artificial "mouseup" generated by a double-click.
+    if (event && event.detail !== 2) {
+        // Allow a repaint to occur before removing this class, so the animation
+        // shows for tap events, which seem to trigger a mouseup too soon after
+        // mousedown.
+        window.setTimeout(function () {
+            this.rippleElement_.classList.remove(this.CssClasses_.IS_VISIBLE);
+        }.bind(this), 0);
+    }
+};
+/**
+   * Initialize element.
+   */
+MaterialRipple.prototype.init = function () {
+    if (this.element_) {
+        var recentering = this.element_.classList.contains(this.CssClasses_.RIPPLE_CENTER);
+        if (!this.element_.classList.contains(this.CssClasses_.RIPPLE_EFFECT_IGNORE_EVENTS)) {
+            this.rippleElement_ = this.element_.querySelector('.' + this.CssClasses_.RIPPLE);
+            this.frameCount_ = 0;
+            this.rippleSize_ = 0;
+            this.x_ = 0;
+            this.y_ = 0;
+            // Touch start produces a compat mouse down event, which would cause a
+            // second ripples. To avoid that, we use this property to ignore the first
+            // mouse down after a touch start.
+            this.ignoringMouseDown_ = false;
+            this.boundDownHandler = this.downHandler_.bind(this);
+            this.element_.addEventListener('mousedown', this.boundDownHandler);
+            this.element_.addEventListener('touchstart', this.boundDownHandler);
+            this.boundUpHandler = this.upHandler_.bind(this);
+            this.element_.addEventListener('mouseup', this.boundUpHandler);
+            this.element_.addEventListener('mouseleave', this.boundUpHandler);
+            this.element_.addEventListener('touchend', this.boundUpHandler);
+            this.element_.addEventListener('blur', this.boundUpHandler);
+            /**
+         * Getter for frameCount_.
+         * @return {number} the frame count.
+         */
+            this.getFrameCount = function () {
+                return this.frameCount_;
+            };
+            /**
+         * Setter for frameCount_.
+         * @param {number} fC the frame count.
+         */
+            this.setFrameCount = function (fC) {
+                this.frameCount_ = fC;
+            };
+            /**
+         * Getter for rippleElement_.
+         * @return {Element} the ripple element.
+         */
+            this.getRippleElement = function () {
+                return this.rippleElement_;
+            };
+            /**
+         * Sets the ripple X and Y coordinates.
+         * @param  {number} newX the new X coordinate
+         * @param  {number} newY the new Y coordinate
+         */
+            this.setRippleXY = function (newX, newY) {
+                this.x_ = newX;
+                this.y_ = newY;
+            };
+            /**
+         * Sets the ripple styles.
+         * @param  {boolean} start whether or not this is the start frame.
+         */
+            this.setRippleStyles = function (start) {
+                if (this.rippleElement_ !== null) {
+                    var transformString;
+                    var scale;
+                    var size;
+                    var offset = 'translate(' + this.x_ + 'px, ' + this.y_ + 'px)';
+                    if (start) {
+                        scale = this.Constant_.INITIAL_SCALE;
+                        size = this.Constant_.INITIAL_SIZE;
+                    } else {
+                        scale = this.Constant_.FINAL_SCALE;
+                        size = this.rippleSize_ + 'px';
+                        if (recentering) {
+                            offset = 'translate(' + this.boundWidth / 2 + 'px, ' + this.boundHeight / 2 + 'px)';
+                        }
+                    }
+                    transformString = 'translate(-50%, -50%) ' + offset + scale;
+                    this.rippleElement_.style.webkitTransform = transformString;
+                    this.rippleElement_.style.msTransform = transformString;
+                    this.rippleElement_.style.transform = transformString;
+                    if (start) {
+                        this.rippleElement_.classList.remove(this.CssClasses_.IS_ANIMATING);
+                    } else {
+                        this.rippleElement_.classList.add(this.CssClasses_.IS_ANIMATING);
+                    }
+                }
+            };
+            /**
+         * Handles an animation frame.
+         */
+            this.animFrameHandler = function () {
+                if (this.frameCount_-- > 0) {
+                    window.requestAnimationFrame(this.animFrameHandler.bind(this));
+                } else {
+                    this.setRippleStyles(false);
+                }
+            };
+        }
+    }
+};
+// The component registers itself. It can assume componentHandler is available
+// in the global scope.
+componentHandler.register({
+    constructor: MaterialRipple,
+    classAsString: 'MaterialRipple',
+    cssClass: 'mdl-js-ripple-effect',
+    widget: false
+});
+}());
+
+//MOMENT JS
+
+;(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    global.moment = factory()
+}(this, function () { 'use strict';
+
+    var hookCallback;
+
+    function utils_hooks__hooks () {
+        return hookCallback.apply(null, arguments);
+    }
+
+    // This is done to register the method called with moment()
+    // without creating circular dependencies.
+    function setHookCallback (callback) {
+        hookCallback = callback;
+    }
+
+    function isArray(input) {
+        return Object.prototype.toString.call(input) === '[object Array]';
+    }
+
+    function isDate(input) {
+        return input instanceof Date || Object.prototype.toString.call(input) === '[object Date]';
+    }
+
+    function map(arr, fn) {
+        var res = [], i;
+        for (i = 0; i < arr.length; ++i) {
+            res.push(fn(arr[i], i));
+        }
+        return res;
+    }
+
+    function hasOwnProp(a, b) {
+        return Object.prototype.hasOwnProperty.call(a, b);
+    }
+
+    function extend(a, b) {
+        for (var i in b) {
+            if (hasOwnProp(b, i)) {
+                a[i] = b[i];
+            }
+        }
+
+        if (hasOwnProp(b, 'toString')) {
+            a.toString = b.toString;
+        }
+
+        if (hasOwnProp(b, 'valueOf')) {
+            a.valueOf = b.valueOf;
+        }
+
+        return a;
+    }
+
+    function create_utc__createUTC (input, format, locale, strict) {
+        return createLocalOrUTC(input, format, locale, strict, true).utc();
+    }
+
+    function defaultParsingFlags() {
+        // We need to deep clone this object.
+        return {
+            empty           : false,
+            unusedTokens    : [],
+            unusedInput     : [],
+            overflow        : -2,
+            charsLeftOver   : 0,
+            nullInput       : false,
+            invalidMonth    : null,
+            invalidFormat   : false,
+            userInvalidated : false,
+            iso             : false
+        };
+    }
+
+    function getParsingFlags(m) {
+        if (m._pf == null) {
+            m._pf = defaultParsingFlags();
+        }
+        return m._pf;
+    }
+
+    function valid__isValid(m) {
+        if (m._isValid == null) {
+            var flags = getParsingFlags(m);
+            m._isValid = !isNaN(m._d.getTime()) &&
+                flags.overflow < 0 &&
+                !flags.empty &&
+                !flags.invalidMonth &&
+                !flags.invalidWeekday &&
+                !flags.nullInput &&
+                !flags.invalidFormat &&
+                !flags.userInvalidated;
+
+            if (m._strict) {
+                m._isValid = m._isValid &&
+                    flags.charsLeftOver === 0 &&
+                    flags.unusedTokens.length === 0 &&
+                    flags.bigHour === undefined;
+            }
+        }
+        return m._isValid;
+    }
+
+    function valid__createInvalid (flags) {
+        var m = create_utc__createUTC(NaN);
+        if (flags != null) {
+            extend(getParsingFlags(m), flags);
+        }
+        else {
+            getParsingFlags(m).userInvalidated = true;
+        }
+
+        return m;
+    }
+
+    function isUndefined(input) {
+        return input === void 0;
+    }
+
+    // Plugins that add properties should also add the key here (null value),
+    // so we can properly clone ourselves.
+    var momentProperties = utils_hooks__hooks.momentProperties = [];
+
+    function copyConfig(to, from) {
+        var i, prop, val;
+
+        if (!isUndefined(from._isAMomentObject)) {
+            to._isAMomentObject = from._isAMomentObject;
+        }
+        if (!isUndefined(from._i)) {
+            to._i = from._i;
+        }
+        if (!isUndefined(from._f)) {
+            to._f = from._f;
+        }
+        if (!isUndefined(from._l)) {
+            to._l = from._l;
+        }
+        if (!isUndefined(from._strict)) {
+            to._strict = from._strict;
+        }
+        if (!isUndefined(from._tzm)) {
+            to._tzm = from._tzm;
+        }
+        if (!isUndefined(from._isUTC)) {
+            to._isUTC = from._isUTC;
+        }
+        if (!isUndefined(from._offset)) {
+            to._offset = from._offset;
+        }
+        if (!isUndefined(from._pf)) {
+            to._pf = getParsingFlags(from);
+        }
+        if (!isUndefined(from._locale)) {
+            to._locale = from._locale;
+        }
+
+        if (momentProperties.length > 0) {
+            for (i in momentProperties) {
+                prop = momentProperties[i];
+                val = from[prop];
+                if (!isUndefined(val)) {
+                    to[prop] = val;
+                }
+            }
+        }
+
+        return to;
+    }
+
+    var updateInProgress = false;
+
+    // Moment prototype object
+    function Moment(config) {
+        copyConfig(this, config);
+        this._d = new Date(config._d != null ? config._d.getTime() : NaN);
+        // Prevent infinite loop in case updateOffset creates new moment
+        // objects.
+        if (updateInProgress === false) {
+            updateInProgress = true;
+            utils_hooks__hooks.updateOffset(this);
+            updateInProgress = false;
+        }
+    }
+
+    function isMoment (obj) {
+        return obj instanceof Moment || (obj != null && obj._isAMomentObject != null);
+    }
+
+    function absFloor (number) {
+        if (number < 0) {
+            return Math.ceil(number);
+        } else {
+            return Math.floor(number);
+        }
+    }
+
+    function toInt(argumentForCoercion) {
+        var coercedNumber = +argumentForCoercion,
+            value = 0;
+
+        if (coercedNumber !== 0 && isFinite(coercedNumber)) {
+            value = absFloor(coercedNumber);
+        }
+
+        return value;
+    }
+
+    // compare two arrays, return the number of differences
+    function compareArrays(array1, array2, dontConvert) {
+        var len = Math.min(array1.length, array2.length),
+            lengthDiff = Math.abs(array1.length - array2.length),
+            diffs = 0,
+            i;
+        for (i = 0; i < len; i++) {
+            if ((dontConvert && array1[i] !== array2[i]) ||
+                (!dontConvert && toInt(array1[i]) !== toInt(array2[i]))) {
+                diffs++;
+            }
+        }
+        return diffs + lengthDiff;
+    }
+
+    function Locale() {
+    }
+
+    // internal storage for locale config files
+    var locales = {};
+    var globalLocale;
+
+    function normalizeLocale(key) {
+        return key ? key.toLowerCase().replace('_', '-') : key;
+    }
+
+    // pick the locale from the array
+    // try ['en-au', 'en-gb'] as 'en-au', 'en-gb', 'en', as in move through the list trying each
+    // substring from most specific to least, but move to the next array item if it's a more specific variant than the current root
+    function chooseLocale(names) {
+        var i = 0, j, next, locale, split;
+
+        while (i < names.length) {
+            split = normalizeLocale(names[i]).split('-');
+            j = split.length;
+            next = normalizeLocale(names[i + 1]);
+            next = next ? next.split('-') : null;
+            while (j > 0) {
+                locale = loadLocale(split.slice(0, j).join('-'));
+                if (locale) {
+                    return locale;
+                }
+                if (next && next.length >= j && compareArrays(split, next, true) >= j - 1) {
+                    //the next array item is better than a shallower substring of this one
+                    break;
+                }
+                j--;
+            }
+            i++;
+        }
+        return null;
+    }
+
+    function loadLocale(name) {
+        var oldLocale = null;
+        // TODO: Find a better way to register and load all the locales in Node
+        if (!locales[name] && (typeof module !== 'undefined') &&
+                module && module.exports) {
+            try {
+                oldLocale = globalLocale._abbr;
+                require('./locale/' + name);
+                // because defineLocale currently also sets the global locale, we
+                // want to undo that for lazy loaded locales
+                locale_locales__getSetGlobalLocale(oldLocale);
+            } catch (e) { }
+        }
+        return locales[name];
+    }
+
+    // This function will load locale and then set the global locale.  If
+    // no arguments are passed in, it will simply return the current global
+    // locale key.
+    function locale_locales__getSetGlobalLocale (key, values) {
+        var data;
+        if (key) {
+            if (isUndefined(values)) {
+                data = locale_locales__getLocale(key);
+            }
+            else {
+                data = defineLocale(key, values);
+            }
+
+            if (data) {
+                // moment.duration._locale = moment._locale = data;
+                globalLocale = data;
+            }
+        }
+
+        return globalLocale._abbr;
+    }
+
+    function defineLocale (name, values) {
+        if (values !== null) {
+            values.abbr = name;
+            locales[name] = locales[name] || new Locale();
+            locales[name].set(values);
+
+            // backwards compat for now: also set the locale
+            locale_locales__getSetGlobalLocale(name);
+
+            return locales[name];
+        } else {
+            // useful for testing
+            delete locales[name];
+            return null;
+        }
+    }
+
+    // returns locale data
+    function locale_locales__getLocale (key) {
+        var locale;
+
+        if (key && key._locale && key._locale._abbr) {
+            key = key._locale._abbr;
+        }
+
+        if (!key) {
+            return globalLocale;
+        }
+
+        if (!isArray(key)) {
+            //short-circuit everything else
+            locale = loadLocale(key);
+            if (locale) {
+                return locale;
+            }
+            key = [key];
+        }
+
+        return chooseLocale(key);
+    }
+
+    var aliases = {};
+
+    function addUnitAlias (unit, shorthand) {
+        var lowerCase = unit.toLowerCase();
+        aliases[lowerCase] = aliases[lowerCase + 's'] = aliases[shorthand] = unit;
+    }
+
+    function normalizeUnits(units) {
+        return typeof units === 'string' ? aliases[units] || aliases[units.toLowerCase()] : undefined;
+    }
+
+    function normalizeObjectUnits(inputObject) {
+        var normalizedInput = {},
+            normalizedProp,
+            prop;
+
+        for (prop in inputObject) {
+            if (hasOwnProp(inputObject, prop)) {
+                normalizedProp = normalizeUnits(prop);
+                if (normalizedProp) {
+                    normalizedInput[normalizedProp] = inputObject[prop];
+                }
+            }
+        }
+
+        return normalizedInput;
+    }
+
+    function isFunction(input) {
+        return input instanceof Function || Object.prototype.toString.call(input) === '[object Function]';
+    }
+
+    function makeGetSet (unit, keepTime) {
+        return function (value) {
+            if (value != null) {
+                get_set__set(this, unit, value);
+                utils_hooks__hooks.updateOffset(this, keepTime);
+                return this;
+            } else {
+                return get_set__get(this, unit);
+            }
+        };
+    }
+
+    function get_set__get (mom, unit) {
+        return mom.isValid() ?
+            mom._d['get' + (mom._isUTC ? 'UTC' : '') + unit]() : NaN;
+    }
+
+    function get_set__set (mom, unit, value) {
+        if (mom.isValid()) {
+            mom._d['set' + (mom._isUTC ? 'UTC' : '') + unit](value);
+        }
+    }
+
+    // MOMENTS
+
+    function getSet (units, value) {
+        var unit;
+        if (typeof units === 'object') {
+            for (unit in units) {
+                this.set(unit, units[unit]);
+            }
+        } else {
+            units = normalizeUnits(units);
+            if (isFunction(this[units])) {
+                return this[units](value);
+            }
+        }
+        return this;
+    }
+
+    function zeroFill(number, targetLength, forceSign) {
+        var absNumber = '' + Math.abs(number),
+            zerosToFill = targetLength - absNumber.length,
+            sign = number >= 0;
+        return (sign ? (forceSign ? '+' : '') : '-') +
+            Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
+    }
+
+    var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g;
+
+    var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
+
+    var formatFunctions = {};
+
+    var formatTokenFunctions = {};
+
+    // token:    'M'
+    // padded:   ['MM', 2]
+    // ordinal:  'Mo'
+    // callback: function () { this.month() + 1 }
+    function addFormatToken (token, padded, ordinal, callback) {
+        var func = callback;
+        if (typeof callback === 'string') {
+            func = function () {
+                return this[callback]();
+            };
+        }
+        if (token) {
+            formatTokenFunctions[token] = func;
+        }
+        if (padded) {
+            formatTokenFunctions[padded[0]] = function () {
+                return zeroFill(func.apply(this, arguments), padded[1], padded[2]);
+            };
+        }
+        if (ordinal) {
+            formatTokenFunctions[ordinal] = function () {
+                return this.localeData().ordinal(func.apply(this, arguments), token);
+            };
+        }
+    }
+
+    function removeFormattingTokens(input) {
+        if (input.match(/\[[\s\S]/)) {
+            return input.replace(/^\[|\]$/g, '');
+        }
+        return input.replace(/\\/g, '');
+    }
+
+    function makeFormatFunction(format) {
+        var array = format.match(formattingTokens), i, length;
+
+        for (i = 0, length = array.length; i < length; i++) {
+            if (formatTokenFunctions[array[i]]) {
+                array[i] = formatTokenFunctions[array[i]];
+            } else {
+                array[i] = removeFormattingTokens(array[i]);
+            }
+        }
+
+        return function (mom) {
+            var output = '';
+            for (i = 0; i < length; i++) {
+                output += array[i] instanceof Function ? array[i].call(mom, format) : array[i];
+            }
+            return output;
+        };
+    }
+
+    // format date using native date object
+    function formatMoment(m, format) {
+        if (!m.isValid()) {
+            return m.localeData().invalidDate();
+        }
+
+        format = expandFormat(format, m.localeData());
+        formatFunctions[format] = formatFunctions[format] || makeFormatFunction(format);
+
+        return formatFunctions[format](m);
+    }
+
+    function expandFormat(format, locale) {
+        var i = 5;
+
+        function replaceLongDateFormatTokens(input) {
+            return locale.longDateFormat(input) || input;
+        }
+
+        localFormattingTokens.lastIndex = 0;
+        while (i >= 0 && localFormattingTokens.test(format)) {
+            format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
+            localFormattingTokens.lastIndex = 0;
+            i -= 1;
+        }
+
+        return format;
+    }
+
+    var match1         = /\d/;            //       0 - 9
+    var match2         = /\d\d/;          //      00 - 99
+    var match3         = /\d{3}/;         //     000 - 999
+    var match4         = /\d{4}/;         //    0000 - 9999
+    var match6         = /[+-]?\d{6}/;    // -999999 - 999999
+    var match1to2      = /\d\d?/;         //       0 - 99
+    var match3to4      = /\d\d\d\d?/;     //     999 - 9999
+    var match5to6      = /\d\d\d\d\d\d?/; //   99999 - 999999
+    var match1to3      = /\d{1,3}/;       //       0 - 999
+    var match1to4      = /\d{1,4}/;       //       0 - 9999
+    var match1to6      = /[+-]?\d{1,6}/;  // -999999 - 999999
+
+    var matchUnsigned  = /\d+/;           //       0 - inf
+    var matchSigned    = /[+-]?\d+/;      //    -inf - inf
+
+    var matchOffset    = /Z|[+-]\d\d:?\d\d/gi; // +00:00 -00:00 +0000 -0000 or Z
+    var matchShortOffset = /Z|[+-]\d\d(?::?\d\d)?/gi; // +00 -00 +00:00 -00:00 +0000 -0000 or Z
+
+    var matchTimestamp = /[+-]?\d+(\.\d{1,3})?/; // 123456789 123456789.123
+
+    // any word (or two) characters or numbers including two/three word month in arabic.
+    // includes scottish gaelic two word and hyphenated months
+    var matchWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i;
+
+
+    var regexes = {};
+
+    function addRegexToken (token, regex, strictRegex) {
+        regexes[token] = isFunction(regex) ? regex : function (isStrict, localeData) {
+            return (isStrict && strictRegex) ? strictRegex : regex;
+        };
+    }
+
+    function getParseRegexForToken (token, config) {
+        if (!hasOwnProp(regexes, token)) {
+            return new RegExp(unescapeFormat(token));
+        }
+
+        return regexes[token](config._strict, config._locale);
+    }
+
+    // Code from http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript
+    function unescapeFormat(s) {
+        return regexEscape(s.replace('\\', '').replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g, function (matched, p1, p2, p3, p4) {
+            return p1 || p2 || p3 || p4;
+        }));
+    }
+
+    function regexEscape(s) {
+        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
+
+    var tokens = {};
+
+    function addParseToken (token, callback) {
+        var i, func = callback;
+        if (typeof token === 'string') {
+            token = [token];
+        }
+        if (typeof callback === 'number') {
+            func = function (input, array) {
+                array[callback] = toInt(input);
+            };
+        }
+        for (i = 0; i < token.length; i++) {
+            tokens[token[i]] = func;
+        }
+    }
+
+    function addWeekParseToken (token, callback) {
+        addParseToken(token, function (input, array, config, token) {
+            config._w = config._w || {};
+            callback(input, config._w, config, token);
+        });
+    }
+
+    function addTimeToArrayFromToken(token, input, config) {
+        if (input != null && hasOwnProp(tokens, token)) {
+            tokens[token](input, config._a, config, token);
+        }
+    }
+
+    var YEAR = 0;
+    var MONTH = 1;
+    var DATE = 2;
+    var HOUR = 3;
+    var MINUTE = 4;
+    var SECOND = 5;
+    var MILLISECOND = 6;
+    var WEEK = 7;
+    var WEEKDAY = 8;
+
+    function daysInMonth(year, month) {
+        return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+    }
+
+    // FORMATTING
+
+    addFormatToken('M', ['MM', 2], 'Mo', function () {
+        return this.month() + 1;
+    });
+
+    addFormatToken('MMM', 0, 0, function (format) {
+        return this.localeData().monthsShort(this, format);
+    });
+
+    addFormatToken('MMMM', 0, 0, function (format) {
+        return this.localeData().months(this, format);
+    });
+
+    // ALIASES
+
+    addUnitAlias('month', 'M');
+
+    // PARSING
+
+    addRegexToken('M',    match1to2);
+    addRegexToken('MM',   match1to2, match2);
+    addRegexToken('MMM',  function (isStrict, locale) {
+        return locale.monthsShortRegex(isStrict);
+    });
+    addRegexToken('MMMM', function (isStrict, locale) {
+        return locale.monthsRegex(isStrict);
+    });
+
+    addParseToken(['M', 'MM'], function (input, array) {
+        array[MONTH] = toInt(input) - 1;
+    });
+
+    addParseToken(['MMM', 'MMMM'], function (input, array, config, token) {
+        var month = config._locale.monthsParse(input, token, config._strict);
+        // if we didn't find a month name, mark the date as invalid.
+        if (month != null) {
+            array[MONTH] = month;
+        } else {
+            getParsingFlags(config).invalidMonth = input;
+        }
+    });
+
+    // LOCALES
+
+    var MONTHS_IN_FORMAT = /D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/;
+    var defaultLocaleMonths = 'January_February_March_April_May_June_July_August_September_October_November_December'.split('_');
+    function localeMonths (m, format) {
+        return isArray(this._months) ? this._months[m.month()] :
+            this._months[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+    }
+
+    var defaultLocaleMonthsShort = 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'.split('_');
+    function localeMonthsShort (m, format) {
+        return isArray(this._monthsShort) ? this._monthsShort[m.month()] :
+            this._monthsShort[MONTHS_IN_FORMAT.test(format) ? 'format' : 'standalone'][m.month()];
+    }
+
+    function localeMonthsParse (monthName, format, strict) {
+        var i, mom, regex;
+
+        if (!this._monthsParse) {
+            this._monthsParse = [];
+            this._longMonthsParse = [];
+            this._shortMonthsParse = [];
+        }
+
+        for (i = 0; i < 12; i++) {
+            // make the regex if we don't have it already
+            mom = create_utc__createUTC([2000, i]);
+            if (strict && !this._longMonthsParse[i]) {
+                this._longMonthsParse[i] = new RegExp('^' + this.months(mom, '').replace('.', '') + '$', 'i');
+                this._shortMonthsParse[i] = new RegExp('^' + this.monthsShort(mom, '').replace('.', '') + '$', 'i');
+            }
+            if (!strict && !this._monthsParse[i]) {
+                regex = '^' + this.months(mom, '') + '|^' + this.monthsShort(mom, '');
+                this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
+            }
+            // test the regex
+            if (strict && format === 'MMMM' && this._longMonthsParse[i].test(monthName)) {
+                return i;
+            } else if (strict && format === 'MMM' && this._shortMonthsParse[i].test(monthName)) {
+                return i;
+            } else if (!strict && this._monthsParse[i].test(monthName)) {
+                return i;
+            }
+        }
+    }
+
+    // MOMENTS
+
+    function setMonth (mom, value) {
+        var dayOfMonth;
+
+        if (!mom.isValid()) {
+            // No op
+            return mom;
+        }
+
+        // TODO: Move this out of here!
+        if (typeof value === 'string') {
+            value = mom.localeData().monthsParse(value);
+            // TODO: Another silent failure?
+            if (typeof value !== 'number') {
+                return mom;
+            }
+        }
+
+        dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
+        mom._d['set' + (mom._isUTC ? 'UTC' : '') + 'Month'](value, dayOfMonth);
+        return mom;
+    }
+
+    function getSetMonth (value) {
+        if (value != null) {
+            setMonth(this, value);
+            utils_hooks__hooks.updateOffset(this, true);
+            return this;
+        } else {
+            return get_set__get(this, 'Month');
+        }
+    }
+
+    function getDaysInMonth () {
+        return daysInMonth(this.year(), this.month());
+    }
+
+    var defaultMonthsShortRegex = matchWord;
+    function monthsShortRegex (isStrict) {
+        if (this._monthsParseExact) {
+            if (!hasOwnProp(this, '_monthsRegex')) {
+                computeMonthsParse.call(this);
+            }
+            if (isStrict) {
+                return this._monthsShortStrictRegex;
+            } else {
+                return this._monthsShortRegex;
+            }
+        } else {
+            return this._monthsShortStrictRegex && isStrict ?
+                this._monthsShortStrictRegex : this._monthsShortRegex;
+        }
+    }
+
+    var defaultMonthsRegex = matchWord;
+    function monthsRegex (isStrict) {
+        if (this._monthsParseExact) {
+            if (!hasOwnProp(this, '_monthsRegex')) {
+                computeMonthsParse.call(this);
+            }
+            if (isStrict) {
+                return this._monthsStrictRegex;
+            } else {
+                return this._monthsRegex;
+            }
+        } else {
+            return this._monthsStrictRegex && isStrict ?
+                this._monthsStrictRegex : this._monthsRegex;
+        }
+    }
+
+    function computeMonthsParse () {
+        function cmpLenRev(a, b) {
+            return b.length - a.length;
+        }
+
+        var shortPieces = [], longPieces = [], mixedPieces = [],
+            i, mom;
+        for (i = 0; i < 12; i++) {
+            // make the regex if we don't have it already
+            mom = create_utc__createUTC([2000, i]);
+            shortPieces.push(this.monthsShort(mom, ''));
+            longPieces.push(this.months(mom, ''));
+            mixedPieces.push(this.months(mom, ''));
+            mixedPieces.push(this.monthsShort(mom, ''));
+        }
+        // Sorting makes sure if one month (or abbr) is a prefix of another it
+        // will match the longer piece.
+        shortPieces.sort(cmpLenRev);
+        longPieces.sort(cmpLenRev);
+        mixedPieces.sort(cmpLenRev);
+        for (i = 0; i < 12; i++) {
+            shortPieces[i] = regexEscape(shortPieces[i]);
+            longPieces[i] = regexEscape(longPieces[i]);
+            mixedPieces[i] = regexEscape(mixedPieces[i]);
+        }
+
+        this._monthsRegex = new RegExp('^(' + mixedPieces.join('|') + ')', 'i');
+        this._monthsShortRegex = this._monthsRegex;
+        this._monthsStrictRegex = new RegExp('^(' + longPieces.join('|') + ')$', 'i');
+        this._monthsShortStrictRegex = new RegExp('^(' + shortPieces.join('|') + ')$', 'i');
+    }
+
+    function checkOverflow (m) {
+        var overflow;
+        var a = m._a;
+
+        if (a && getParsingFlags(m).overflow === -2) {
+            overflow =
+                a[MONTH]       < 0 || a[MONTH]       > 11  ? MONTH :
+                a[DATE]        < 1 || a[DATE]        > daysInMonth(a[YEAR], a[MONTH]) ? DATE :
+                a[HOUR]        < 0 || a[HOUR]        > 24 || (a[HOUR] === 24 && (a[MINUTE] !== 0 || a[SECOND] !== 0 || a[MILLISECOND] !== 0)) ? HOUR :
+                a[MINUTE]      < 0 || a[MINUTE]      > 59  ? MINUTE :
+                a[SECOND]      < 0 || a[SECOND]      > 59  ? SECOND :
+                a[MILLISECOND] < 0 || a[MILLISECOND] > 999 ? MILLISECOND :
+                -1;
+
+            if (getParsingFlags(m)._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
+                overflow = DATE;
+            }
+            if (getParsingFlags(m)._overflowWeeks && overflow === -1) {
+                overflow = WEEK;
+            }
+            if (getParsingFlags(m)._overflowWeekday && overflow === -1) {
+                overflow = WEEKDAY;
+            }
+
+            getParsingFlags(m).overflow = overflow;
+        }
+
+        return m;
+    }
+
+    function warn(msg) {
+        if (utils_hooks__hooks.suppressDeprecationWarnings === false &&
+                (typeof console !==  'undefined') && console.warn) {
+            console.warn('Deprecation warning: ' + msg);
+        }
+    }
+
+    function deprecate(msg, fn) {
+        var firstTime = true;
+
+        return extend(function () {
+            if (firstTime) {
+                warn(msg + '\nArguments: ' + Array.prototype.slice.call(arguments).join(', ') + '\n' + (new Error()).stack);
+                firstTime = false;
+            }
+            return fn.apply(this, arguments);
+        }, fn);
+    }
+
+    var deprecations = {};
+
+    function deprecateSimple(name, msg) {
+        if (!deprecations[name]) {
+            warn(msg);
+            deprecations[name] = true;
+        }
+    }
+
+    utils_hooks__hooks.suppressDeprecationWarnings = false;
+
+    // iso 8601 regex
+    // 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
+    var extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
+    var basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?/;
+
+    var tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
+
+    var isoDates = [
+        ['YYYYYY-MM-DD', /[+-]\d{6}-\d\d-\d\d/],
+        ['YYYY-MM-DD', /\d{4}-\d\d-\d\d/],
+        ['GGGG-[W]WW-E', /\d{4}-W\d\d-\d/],
+        ['GGGG-[W]WW', /\d{4}-W\d\d/, false],
+        ['YYYY-DDD', /\d{4}-\d{3}/],
+        ['YYYY-MM', /\d{4}-\d\d/, false],
+        ['YYYYYYMMDD', /[+-]\d{10}/],
+        ['YYYYMMDD', /\d{8}/],
+        // YYYYMM is NOT allowed by the standard
+        ['GGGG[W]WWE', /\d{4}W\d{3}/],
+        ['GGGG[W]WW', /\d{4}W\d{2}/, false],
+        ['YYYYDDD', /\d{7}/]
+    ];
+
+    // iso time formats and regexes
+    var isoTimes = [
+        ['HH:mm:ss.SSSS', /\d\d:\d\d:\d\d\.\d+/],
+        ['HH:mm:ss,SSSS', /\d\d:\d\d:\d\d,\d+/],
+        ['HH:mm:ss', /\d\d:\d\d:\d\d/],
+        ['HH:mm', /\d\d:\d\d/],
+        ['HHmmss.SSSS', /\d\d\d\d\d\d\.\d+/],
+        ['HHmmss,SSSS', /\d\d\d\d\d\d,\d+/],
+        ['HHmmss', /\d\d\d\d\d\d/],
+        ['HHmm', /\d\d\d\d/],
+        ['HH', /\d\d/]
+    ];
+
+    var aspNetJsonRegex = /^\/?Date\((\-?\d+)/i;
+
+    // date from iso format
+    function configFromISO(config) {
+        var i, l,
+            string = config._i,
+            match = extendedIsoRegex.exec(string) || basicIsoRegex.exec(string),
+            allowTime, dateFormat, timeFormat, tzFormat;
+
+        if (match) {
+            getParsingFlags(config).iso = true;
+
+            for (i = 0, l = isoDates.length; i < l; i++) {
+                if (isoDates[i][1].exec(match[1])) {
+                    dateFormat = isoDates[i][0];
+                    allowTime = isoDates[i][2] !== false;
+                    break;
+                }
+            }
+            if (dateFormat == null) {
+                config._isValid = false;
+                return;
+            }
+            if (match[3]) {
+                for (i = 0, l = isoTimes.length; i < l; i++) {
+                    if (isoTimes[i][1].exec(match[3])) {
+                        // match[2] should be 'T' or space
+                        timeFormat = (match[2] || ' ') + isoTimes[i][0];
+                        break;
+                    }
+                }
+                if (timeFormat == null) {
+                    config._isValid = false;
+                    return;
+                }
+            }
+            if (!allowTime && timeFormat != null) {
+                config._isValid = false;
+                return;
+            }
+            if (match[4]) {
+                if (tzRegex.exec(match[4])) {
+                    tzFormat = 'Z';
+                } else {
+                    config._isValid = false;
+                    return;
+                }
+            }
+            config._f = dateFormat + (timeFormat || '') + (tzFormat || '');
+            configFromStringAndFormat(config);
+        } else {
+            config._isValid = false;
+        }
+    }
+
+    // date from iso format or fallback
+    function configFromString(config) {
+        var matched = aspNetJsonRegex.exec(config._i);
+
+        if (matched !== null) {
+            config._d = new Date(+matched[1]);
+            return;
+        }
+
+        configFromISO(config);
+        if (config._isValid === false) {
+            delete config._isValid;
+            utils_hooks__hooks.createFromInputFallback(config);
+        }
+    }
+
+    utils_hooks__hooks.createFromInputFallback = deprecate(
+        'moment construction falls back to js Date. This is ' +
+        'discouraged and will be removed in upcoming major ' +
+        'release. Please refer to ' +
+        'https://github.com/moment/moment/issues/1407 for more info.',
+        function (config) {
+            config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
+        }
+    );
+
+    function createDate (y, m, d, h, M, s, ms) {
+        //can't just apply() to create a date:
+        //http://stackoverflow.com/questions/181348/instantiating-a-javascript-object-by-calling-prototype-constructor-apply
+        var date = new Date(y, m, d, h, M, s, ms);
+
+        //the date constructor remaps years 0-99 to 1900-1999
+        if (y < 100 && y >= 0 && isFinite(date.getFullYear())) {
+            date.setFullYear(y);
+        }
+        return date;
+    }
+
+    function createUTCDate (y) {
+        var date = new Date(Date.UTC.apply(null, arguments));
+
+        //the Date.UTC function remaps years 0-99 to 1900-1999
+        if (y < 100 && y >= 0 && isFinite(date.getUTCFullYear())) {
+            date.setUTCFullYear(y);
+        }
+        return date;
+    }
+
+    // FORMATTING
+
+    addFormatToken('Y', 0, 0, function () {
+        var y = this.year();
+        return y <= 9999 ? '' + y : '+' + y;
+    });
+
+    addFormatToken(0, ['YY', 2], 0, function () {
+        return this.year() % 100;
+    });
+
+    addFormatToken(0, ['YYYY',   4],       0, 'year');
+    addFormatToken(0, ['YYYYY',  5],       0, 'year');
+    addFormatToken(0, ['YYYYYY', 6, true], 0, 'year');
+
+    // ALIASES
+
+    addUnitAlias('year', 'y');
+
+    // PARSING
+
+    addRegexToken('Y',      matchSigned);
+    addRegexToken('YY',     match1to2, match2);
+    addRegexToken('YYYY',   match1to4, match4);
+    addRegexToken('YYYYY',  match1to6, match6);
+    addRegexToken('YYYYYY', match1to6, match6);
+
+    addParseToken(['YYYYY', 'YYYYYY'], YEAR);
+    addParseToken('YYYY', function (input, array) {
+        array[YEAR] = input.length === 2 ? utils_hooks__hooks.parseTwoDigitYear(input) : toInt(input);
+    });
+    addParseToken('YY', function (input, array) {
+        array[YEAR] = utils_hooks__hooks.parseTwoDigitYear(input);
+    });
+    addParseToken('Y', function (input, array) {
+        array[YEAR] = parseInt(input, 10);
+    });
+
+    // HELPERS
+
+    function daysInYear(year) {
+        return isLeapYear(year) ? 366 : 365;
+    }
+
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
+    // HOOKS
+
+    utils_hooks__hooks.parseTwoDigitYear = function (input) {
+        return toInt(input) + (toInt(input) > 68 ? 1900 : 2000);
+    };
+
+    // MOMENTS
+
+    var getSetYear = makeGetSet('FullYear', false);
+
+    function getIsLeapYear () {
+        return isLeapYear(this.year());
+    }
+
+    // start-of-first-week - start-of-year
+    function firstWeekOffset(year, dow, doy) {
+        var // first-week day -- which january is always in the first week (4 for iso, 1 for other)
+            fwd = 7 + dow - doy,
+            // first-week day local weekday -- which local weekday is fwd
+            fwdlw = (7 + createUTCDate(year, 0, fwd).getUTCDay() - dow) % 7;
+
+        return -fwdlw + fwd - 1;
+    }
+
+    //http://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
+    function dayOfYearFromWeeks(year, week, weekday, dow, doy) {
+        var localWeekday = (7 + weekday - dow) % 7,
+            weekOffset = firstWeekOffset(year, dow, doy),
+            dayOfYear = 1 + 7 * (week - 1) + localWeekday + weekOffset,
+            resYear, resDayOfYear;
+
+        if (dayOfYear <= 0) {
+            resYear = year - 1;
+            resDayOfYear = daysInYear(resYear) + dayOfYear;
+        } else if (dayOfYear > daysInYear(year)) {
+            resYear = year + 1;
+            resDayOfYear = dayOfYear - daysInYear(year);
+        } else {
+            resYear = year;
+            resDayOfYear = dayOfYear;
+        }
+
+        return {
+            year: resYear,
+            dayOfYear: resDayOfYear
+        };
+    }
+
+    function weekOfYear(mom, dow, doy) {
+        var weekOffset = firstWeekOffset(mom.year(), dow, doy),
+            week = Math.floor((mom.dayOfYear() - weekOffset - 1) / 7) + 1,
+            resWeek, resYear;
+
+        if (week < 1) {
+            resYear = mom.year() - 1;
+            resWeek = week + weeksInYear(resYear, dow, doy);
+        } else if (week > weeksInYear(mom.year(), dow, doy)) {
+            resWeek = week - weeksInYear(mom.year(), dow, doy);
+            resYear = mom.year() + 1;
+        } else {
+            resYear = mom.year();
+            resWeek = week;
+        }
+
+        return {
+            week: resWeek,
+            year: resYear
+        };
+    }
+
+    function weeksInYear(year, dow, doy) {
+        var weekOffset = firstWeekOffset(year, dow, doy),
+            weekOffsetNext = firstWeekOffset(year + 1, dow, doy);
+        return (daysInYear(year) - weekOffset + weekOffsetNext) / 7;
+    }
+
+    // Pick the first defined of two or three arguments.
+    function defaults(a, b, c) {
+        if (a != null) {
+            return a;
+        }
+        if (b != null) {
+            return b;
+        }
+        return c;
+    }
+
+    function currentDateArray(config) {
+        // hooks is actually the exported moment object
+        var nowValue = new Date(utils_hooks__hooks.now());
+        if (config._useUTC) {
+            return [nowValue.getUTCFullYear(), nowValue.getUTCMonth(), nowValue.getUTCDate()];
+        }
+        return [nowValue.getFullYear(), nowValue.getMonth(), nowValue.getDate()];
+    }
+
+    // convert an array to a date.
+    // the array should mirror the parameters below
+    // note: all values past the year are optional and will default to the lowest possible value.
+    // [year, month, day , hour, minute, second, millisecond]
+    function configFromArray (config) {
+        var i, date, input = [], currentDate, yearToUse;
+
+        if (config._d) {
+            return;
+        }
+
+        currentDate = currentDateArray(config);
+
+        //compute day of the year from weeks and weekdays
+        if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
+            dayOfYearFromWeekInfo(config);
+        }
+
+        //if the day of the year is set, figure out what it is
+        if (config._dayOfYear) {
+            yearToUse = defaults(config._a[YEAR], currentDate[YEAR]);
+
+            if (config._dayOfYear > daysInYear(yearToUse)) {
+                getParsingFlags(config)._overflowDayOfYear = true;
+            }
+
+            date = createUTCDate(yearToUse, 0, config._dayOfYear);
+            config._a[MONTH] = date.getUTCMonth();
+            config._a[DATE] = date.getUTCDate();
+        }
+
+        // Default to current date.
+        // * if no year, month, day of month are given, default to today
+        // * if day of month is given, default month and year
+        // * if month is given, default only year
+        // * if year is given, don't default anything
+        for (i = 0; i < 3 && config._a[i] == null; ++i) {
+            config._a[i] = input[i] = currentDate[i];
+        }
+
+        // Zero out whatever was not defaulted, including time
+        for (; i < 7; i++) {
+            config._a[i] = input[i] = (config._a[i] == null) ? (i === 2 ? 1 : 0) : config._a[i];
+        }
+
+        // Check for 24:00:00.000
+        if (config._a[HOUR] === 24 &&
+                config._a[MINUTE] === 0 &&
+                config._a[SECOND] === 0 &&
+                config._a[MILLISECOND] === 0) {
+            config._nextDay = true;
+            config._a[HOUR] = 0;
+        }
+
+        config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
+        // Apply timezone offset from input. The actual utcOffset can be changed
+        // with parseZone.
+        if (config._tzm != null) {
+            config._d.setUTCMinutes(config._d.getUTCMinutes() - config._tzm);
+        }
+
+        if (config._nextDay) {
+            config._a[HOUR] = 24;
+        }
+    }
+
+    function dayOfYearFromWeekInfo(config) {
+        var w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+
+        w = config._w;
+        if (w.GG != null || w.W != null || w.E != null) {
+            dow = 1;
+            doy = 4;
+
+            // TODO: We need to take the current isoWeekYear, but that depends on
+            // how we interpret now (local, utc, fixed offset). So create
+            // a now version of current config (take local/utc/offset flags, and
+            // create now).
+            weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(local__createLocal(), 1, 4).year);
+            week = defaults(w.W, 1);
+            weekday = defaults(w.E, 1);
+            if (weekday < 1 || weekday > 7) {
+                weekdayOverflow = true;
+            }
+        } else {
+            dow = config._locale._week.dow;
+            doy = config._locale._week.doy;
+
+            weekYear = defaults(w.gg, config._a[YEAR], weekOfYear(local__createLocal(), dow, doy).year);
+            week = defaults(w.w, 1);
+
+            if (w.d != null) {
+                // weekday -- low day numbers are considered next week
+                weekday = w.d;
+                if (weekday < 0 || weekday > 6) {
+                    weekdayOverflow = true;
+                }
+            } else if (w.e != null) {
+                // local weekday -- counting starts from begining of week
+                weekday = w.e + dow;
+                if (w.e < 0 || w.e > 6) {
+                    weekdayOverflow = true;
+                }
+            } else {
+                // default to begining of week
+                weekday = dow;
+            }
+        }
+        if (week < 1 || week > weeksInYear(weekYear, dow, doy)) {
+            getParsingFlags(config)._overflowWeeks = true;
+        } else if (weekdayOverflow != null) {
+            getParsingFlags(config)._overflowWeekday = true;
+        } else {
+            temp = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy);
+            config._a[YEAR] = temp.year;
+            config._dayOfYear = temp.dayOfYear;
+        }
+    }
+
+    // constant that refers to the ISO standard
+    utils_hooks__hooks.ISO_8601 = function () {};
+
+    // date from string and format string
+    function configFromStringAndFormat(config) {
+        // TODO: Move this to another part of the creation flow to prevent circular deps
+        if (config._f === utils_hooks__hooks.ISO_8601) {
+            configFromISO(config);
+            return;
+        }
+
+        config._a = [];
+        getParsingFlags(config).empty = true;
+
+        // This array is used to make a Date, either with `new Date` or `Date.UTC`
+        var string = '' + config._i,
+            i, parsedInput, tokens, token, skipped,
+            stringLength = string.length,
+            totalParsedInputLength = 0;
+
+        tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
+
+        for (i = 0; i < tokens.length; i++) {
+            token = tokens[i];
+            parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
+            // console.log('token', token, 'parsedInput', parsedInput,
+            //         'regex', getParseRegexForToken(token, config));
+            if (parsedInput) {
+                skipped = string.substr(0, string.indexOf(parsedInput));
+                if (skipped.length > 0) {
+                    getParsingFlags(config).unusedInput.push(skipped);
+                }
+                string = string.slice(string.indexOf(parsedInput) + parsedInput.length);
+                totalParsedInputLength += parsedInput.length;
+            }
+            // don't parse if it's not a known token
+            if (formatTokenFunctions[token]) {
+                if (parsedInput) {
+                    getParsingFlags(config).empty = false;
+                }
+                else {
+                    getParsingFlags(config).unusedTokens.push(token);
+                }
+                addTimeToArrayFromToken(token, parsedInput, config);
+            }
+            else if (config._strict && !parsedInput) {
+                getParsingFlags(config).unusedTokens.push(token);
+            }
+        }
+
+        // add remaining unparsed input length to the string
+        getParsingFlags(config).charsLeftOver = stringLength - totalParsedInputLength;
+        if (string.length > 0) {
+            getParsingFlags(config).unusedInput.push(string);
+        }
+
+        // clear _12h flag if hour is <= 12
+        if (getParsingFlags(config).bigHour === true &&
+                config._a[HOUR] <= 12 &&
+                config._a[HOUR] > 0) {
+            getParsingFlags(config).bigHour = undefined;
+        }
+        // handle meridiem
+        config._a[HOUR] = meridiemFixWrap(config._locale, config._a[HOUR], config._meridiem);
+
+        configFromArray(config);
+        checkOverflow(config);
+    }
+
+
+    function meridiemFixWrap (locale, hour, meridiem) {
+        var isPm;
+
+        if (meridiem == null) {
+            // nothing to do
+            return hour;
+        }
+        if (locale.meridiemHour != null) {
+            return locale.meridiemHour(hour, meridiem);
+        } else if (locale.isPM != null) {
+            // Fallback
+            isPm = locale.isPM(meridiem);
+            if (isPm && hour < 12) {
+                hour += 12;
+            }
+            if (!isPm && hour === 12) {
+                hour = 0;
+            }
+            return hour;
+        } else {
+            // this is not supposed to happen
+            return hour;
+        }
+    }
+
+    // date from string and array of format strings
+    function configFromStringAndArray(config) {
+        var tempConfig,
+            bestMoment,
+
+            scoreToBeat,
+            i,
+            currentScore;
+
+        if (config._f.length === 0) {
+            getParsingFlags(config).invalidFormat = true;
+            config._d = new Date(NaN);
+            return;
+        }
+
+        for (i = 0; i < config._f.length; i++) {
+            currentScore = 0;
+            tempConfig = copyConfig({}, config);
+            if (config._useUTC != null) {
+                tempConfig._useUTC = config._useUTC;
+            }
+            tempConfig._f = config._f[i];
+            configFromStringAndFormat(tempConfig);
+
+            if (!valid__isValid(tempConfig)) {
+                continue;
+            }
+
+            // if there is any input that was not parsed add a penalty for that format
+            currentScore += getParsingFlags(tempConfig).charsLeftOver;
+
+            //or tokens
+            currentScore += getParsingFlags(tempConfig).unusedTokens.length * 10;
+
+            getParsingFlags(tempConfig).score = currentScore;
+
+            if (scoreToBeat == null || currentScore < scoreToBeat) {
+                scoreToBeat = currentScore;
+                bestMoment = tempConfig;
+            }
+        }
+
+        extend(config, bestMoment || tempConfig);
+    }
+
+    function configFromObject(config) {
+        if (config._d) {
+            return;
+        }
+
+        var i = normalizeObjectUnits(config._i);
+        config._a = map([i.year, i.month, i.day || i.date, i.hour, i.minute, i.second, i.millisecond], function (obj) {
+            return obj && parseInt(obj, 10);
+        });
+
+        configFromArray(config);
+    }
+
+    function createFromConfig (config) {
+        var res = new Moment(checkOverflow(prepareConfig(config)));
+        if (res._nextDay) {
+            // Adding is smart enough around DST
+            res.add(1, 'd');
+            res._nextDay = undefined;
+        }
+
+        return res;
+    }
+
+    function prepareConfig (config) {
+        var input = config._i,
+            format = config._f;
+
+        config._locale = config._locale || locale_locales__getLocale(config._l);
+
+        if (input === null || (format === undefined && input === '')) {
+            return valid__createInvalid({nullInput: true});
+        }
+
+        if (typeof input === 'string') {
+            config._i = input = config._locale.preparse(input);
+        }
+
+        if (isMoment(input)) {
+            return new Moment(checkOverflow(input));
+        } else if (isArray(format)) {
+            configFromStringAndArray(config);
+        } else if (format) {
+            configFromStringAndFormat(config);
+        } else if (isDate(input)) {
+            config._d = input;
+        } else {
+            configFromInput(config);
+        }
+
+        if (!valid__isValid(config)) {
+            config._d = null;
+        }
+
+        return config;
+    }
+
+    function configFromInput(config) {
+        var input = config._i;
+        if (input === undefined) {
+            config._d = new Date(utils_hooks__hooks.now());
+        } else if (isDate(input)) {
+            config._d = new Date(+input);
+        } else if (typeof input === 'string') {
+            configFromString(config);
+        } else if (isArray(input)) {
+            config._a = map(input.slice(0), function (obj) {
+                return parseInt(obj, 10);
+            });
+            configFromArray(config);
+        } else if (typeof(input) === 'object') {
+            configFromObject(config);
+        } else if (typeof(input) === 'number') {
+            // from milliseconds
+            config._d = new Date(input);
+        } else {
+            utils_hooks__hooks.createFromInputFallback(config);
+        }
+    }
+
+    function createLocalOrUTC (input, format, locale, strict, isUTC) {
+        var c = {};
+
+        if (typeof(locale) === 'boolean') {
+            strict = locale;
+            locale = undefined;
+        }
+        // object construction must be done this way.
+        // https://github.com/moment/moment/issues/1423
+        c._isAMomentObject = true;
+        c._useUTC = c._isUTC = isUTC;
+        c._l = locale;
+        c._i = input;
+        c._f = format;
+        c._strict = strict;
+
+        return createFromConfig(c);
+    }
+
+    function local__createLocal (input, format, locale, strict) {
+        return createLocalOrUTC(input, format, locale, strict, false);
+    }
+
+    var prototypeMin = deprecate(
+         'moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548',
+         function () {
+             var other = local__createLocal.apply(null, arguments);
+             if (this.isValid() && other.isValid()) {
+                 return other < this ? this : other;
+             } else {
+                 return valid__createInvalid();
+             }
+         }
+     );
+
+    var prototypeMax = deprecate(
+        'moment().max is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548',
+        function () {
+            var other = local__createLocal.apply(null, arguments);
+            if (this.isValid() && other.isValid()) {
+                return other > this ? this : other;
+            } else {
+                return valid__createInvalid();
+            }
+        }
+    );
+
+    // Pick a moment m from moments so that m[fn](other) is true for all
+    // other. This relies on the function fn to be transitive.
+    //
+    // moments should either be an array of moment objects or an array, whose
+    // first element is an array of moment objects.
+    function pickBy(fn, moments) {
+        var res, i;
+        if (moments.length === 1 && isArray(moments[0])) {
+            moments = moments[0];
+        }
+        if (!moments.length) {
+            return local__createLocal();
+        }
+        res = moments[0];
+        for (i = 1; i < moments.length; ++i) {
+            if (!moments[i].isValid() || moments[i][fn](res)) {
+                res = moments[i];
+            }
+        }
+        return res;
+    }
+
+    // TODO: Use [].sort instead?
+    function min () {
+        var args = [].slice.call(arguments, 0);
+
+        return pickBy('isBefore', args);
+    }
+
+    function max () {
+        var args = [].slice.call(arguments, 0);
+
+        return pickBy('isAfter', args);
+    }
+
+    var now = function () {
+        return Date.now ? Date.now() : +(new Date());
+    };
+
+    function Duration (duration) {
+        var normalizedInput = normalizeObjectUnits(duration),
+            years = normalizedInput.year || 0,
+            quarters = normalizedInput.quarter || 0,
+            months = normalizedInput.month || 0,
+            weeks = normalizedInput.week || 0,
+            days = normalizedInput.day || 0,
+            hours = normalizedInput.hour || 0,
+            minutes = normalizedInput.minute || 0,
+            seconds = normalizedInput.second || 0,
+            milliseconds = normalizedInput.millisecond || 0;
+
+        // representation for dateAddRemove
+        this._milliseconds = +milliseconds +
+            seconds * 1e3 + // 1000
+            minutes * 6e4 + // 1000 * 60
+            hours * 36e5; // 1000 * 60 * 60
+        // Because of dateAddRemove treats 24 hours as different from a
+        // day when working around DST, we need to store them separately
+        this._days = +days +
+            weeks * 7;
+        // It is impossible translate months into days without knowing
+        // which months you are are talking about, so we have to store
+        // it separately.
+        this._months = +months +
+            quarters * 3 +
+            years * 12;
+
+        this._data = {};
+
+        this._locale = locale_locales__getLocale();
+
+        this._bubble();
+    }
+
+    function isDuration (obj) {
+        return obj instanceof Duration;
+    }
+
+    // FORMATTING
+
+    function offset (token, separator) {
+        addFormatToken(token, 0, 0, function () {
+            var offset = this.utcOffset();
+            var sign = '+';
+            if (offset < 0) {
+                offset = -offset;
+                sign = '-';
+            }
+            return sign + zeroFill(~~(offset / 60), 2) + separator + zeroFill(~~(offset) % 60, 2);
+        });
+    }
+
+    offset('Z', ':');
+    offset('ZZ', '');
+
+    // PARSING
+
+    addRegexToken('Z',  matchShortOffset);
+    addRegexToken('ZZ', matchShortOffset);
+    addParseToken(['Z', 'ZZ'], function (input, array, config) {
+        config._useUTC = true;
+        config._tzm = offsetFromString(matchShortOffset, input);
+    });
+
+    // HELPERS
+
+    // timezone chunker
+    // '+10:00' > ['10',  '00']
+    // '-1530'  > ['-15', '30']
+    var chunkOffset = /([\+\-]|\d\d)/gi;
+
+    function offsetFromString(matcher, string) {
+        var matches = ((string || '').match(matcher) || []);
+        var chunk   = matches[matches.length - 1] || [];
+        var parts   = (chunk + '').match(chunkOffset) || ['-', 0, 0];
+        var minutes = +(parts[1] * 60) + toInt(parts[2]);
+
+        return parts[0] === '+' ? minutes : -minutes;
+    }
+
+    // Return a moment from input, that is local/utc/zone equivalent to model.
+    function cloneWithOffset(input, model) {
+        var res, diff;
+        if (model._isUTC) {
+            res = model.clone();
+            diff = (isMoment(input) || isDate(input) ? +input : +local__createLocal(input)) - (+res);
+            // Use low-level api, because this fn is low-level api.
+            res._d.setTime(+res._d + diff);
+            utils_hooks__hooks.updateOffset(res, false);
+            return res;
+        } else {
+            return local__createLocal(input).local();
+        }
+    }
+
+    function getDateOffset (m) {
+        // On Firefox.24 Date#getTimezoneOffset returns a floating point.
+        // https://github.com/moment/moment/pull/1871
+        return -Math.round(m._d.getTimezoneOffset() / 15) * 15;
+    }
+
+    // HOOKS
+
+    // This function will be called whenever a moment is mutated.
+    // It is intended to keep the offset in sync with the timezone.
+    utils_hooks__hooks.updateOffset = function () {};
+
+    // MOMENTS
+
+    // keepLocalTime = true means only change the timezone, without
+    // affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]-->
+    // 5:31:26 +0200 It is possible that 5:31:26 doesn't exist with offset
+    // +0200, so we adjust the time as needed, to be valid.
+    //
+    // Keeping the time actually adds/subtracts (one hour)
+    // from the actual represented time. That is why we call updateOffset
+    // a second time. In case it wants us to change the offset again
+    // _changeInProgress == true case, then we have to adjust, because
+    // there is no such time in the given timezone.
+    function getSetOffset (input, keepLocalTime) {
+        var offset = this._offset || 0,
+            localAdjust;
+        if (!this.isValid()) {
+            return input != null ? this : NaN;
+        }
+        if (input != null) {
+            if (typeof input === 'string') {
+                input = offsetFromString(matchShortOffset, input);
+            } else if (Math.abs(input) < 16) {
+                input = input * 60;
+            }
+            if (!this._isUTC && keepLocalTime) {
+                localAdjust = getDateOffset(this);
+            }
+            this._offset = input;
+            this._isUTC = true;
+            if (localAdjust != null) {
+                this.add(localAdjust, 'm');
+            }
+            if (offset !== input) {
+                if (!keepLocalTime || this._changeInProgress) {
+                    add_subtract__addSubtract(this, create__createDuration(input - offset, 'm'), 1, false);
+                } else if (!this._changeInProgress) {
+                    this._changeInProgress = true;
+                    utils_hooks__hooks.updateOffset(this, true);
+                    this._changeInProgress = null;
+                }
+            }
+            return this;
+        } else {
+            return this._isUTC ? offset : getDateOffset(this);
+        }
+    }
+
+    function getSetZone (input, keepLocalTime) {
+        if (input != null) {
+            if (typeof input !== 'string') {
+                input = -input;
+            }
+
+            this.utcOffset(input, keepLocalTime);
+
+            return this;
+        } else {
+            return -this.utcOffset();
+        }
+    }
+
+    function setOffsetToUTC (keepLocalTime) {
+        return this.utcOffset(0, keepLocalTime);
+    }
+
+    function setOffsetToLocal (keepLocalTime) {
+        if (this._isUTC) {
+            this.utcOffset(0, keepLocalTime);
+            this._isUTC = false;
+
+            if (keepLocalTime) {
+                this.subtract(getDateOffset(this), 'm');
+            }
+        }
+        return this;
+    }
+
+    function setOffsetToParsedOffset () {
+        if (this._tzm) {
+            this.utcOffset(this._tzm);
+        } else if (typeof this._i === 'string') {
+            this.utcOffset(offsetFromString(matchOffset, this._i));
+        }
+        return this;
+    }
+
+    function hasAlignedHourOffset (input) {
+        if (!this.isValid()) {
+            return false;
+        }
+        input = input ? local__createLocal(input).utcOffset() : 0;
+
+        return (this.utcOffset() - input) % 60 === 0;
+    }
+
+    function isDaylightSavingTime () {
+        return (
+            this.utcOffset() > this.clone().month(0).utcOffset() ||
+            this.utcOffset() > this.clone().month(5).utcOffset()
+        );
+    }
+
+    function isDaylightSavingTimeShifted () {
+        if (!isUndefined(this._isDSTShifted)) {
+            return this._isDSTShifted;
+        }
+
+        var c = {};
+
+        copyConfig(c, this);
+        c = prepareConfig(c);
+
+        if (c._a) {
+            var other = c._isUTC ? create_utc__createUTC(c._a) : local__createLocal(c._a);
+            this._isDSTShifted = this.isValid() &&
+                compareArrays(c._a, other.toArray()) > 0;
+        } else {
+            this._isDSTShifted = false;
+        }
+
+        return this._isDSTShifted;
+    }
+
+    function isLocal () {
+        return this.isValid() ? !this._isUTC : false;
+    }
+
+    function isUtcOffset () {
+        return this.isValid() ? this._isUTC : false;
+    }
+
+    function isUtc () {
+        return this.isValid() ? this._isUTC && this._offset === 0 : false;
+    }
+
+    // ASP.NET json date format regex
+    var aspNetRegex = /^(\-)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?\d*)?$/;
+
+    // from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+    // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
+    var isoRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/;
+
+    function create__createDuration (input, key) {
+        var duration = input,
+            // matching against regexp is expensive, do it on demand
+            match = null,
+            sign,
+            ret,
+            diffRes;
+
+        if (isDuration(input)) {
+            duration = {
+                ms : input._milliseconds,
+                d  : input._days,
+                M  : input._months
+            };
+        } else if (typeof input === 'number') {
+            duration = {};
+            if (key) {
+                duration[key] = input;
+            } else {
+                duration.milliseconds = input;
+            }
+        } else if (!!(match = aspNetRegex.exec(input))) {
+            sign = (match[1] === '-') ? -1 : 1;
+            duration = {
+                y  : 0,
+                d  : toInt(match[DATE])        * sign,
+                h  : toInt(match[HOUR])        * sign,
+                m  : toInt(match[MINUTE])      * sign,
+                s  : toInt(match[SECOND])      * sign,
+                ms : toInt(match[MILLISECOND]) * sign
+            };
+        } else if (!!(match = isoRegex.exec(input))) {
+            sign = (match[1] === '-') ? -1 : 1;
+            duration = {
+                y : parseIso(match[2], sign),
+                M : parseIso(match[3], sign),
+                d : parseIso(match[4], sign),
+                h : parseIso(match[5], sign),
+                m : parseIso(match[6], sign),
+                s : parseIso(match[7], sign),
+                w : parseIso(match[8], sign)
+            };
+        } else if (duration == null) {// checks for null or undefined
+            duration = {};
+        } else if (typeof duration === 'object' && ('from' in duration || 'to' in duration)) {
+            diffRes = momentsDifference(local__createLocal(duration.from), local__createLocal(duration.to));
+
+            duration = {};
+            duration.ms = diffRes.milliseconds;
+            duration.M = diffRes.months;
+        }
+
+        ret = new Duration(duration);
+
+        if (isDuration(input) && hasOwnProp(input, '_locale')) {
+            ret._locale = input._locale;
+        }
+
+        return ret;
+    }
+
+    create__createDuration.fn = Duration.prototype;
+
+    function parseIso (inp, sign) {
+        // We'd normally use ~~inp for this, but unfortunately it also
+        // converts floats to ints.
+        // inp may be undefined, so careful calling replace on it.
+        var res = inp && parseFloat(inp.replace(',', '.'));
+        // apply sign while we're at it
+        return (isNaN(res) ? 0 : res) * sign;
+    }
+
+    function positiveMomentsDifference(base, other) {
+        var res = {milliseconds: 0, months: 0};
+
+        res.months = other.month() - base.month() +
+            (other.year() - base.year()) * 12;
+        if (base.clone().add(res.months, 'M').isAfter(other)) {
+            --res.months;
+        }
+
+        res.milliseconds = +other - +(base.clone().add(res.months, 'M'));
+
+        return res;
+    }
+
+    function momentsDifference(base, other) {
+        var res;
+        if (!(base.isValid() && other.isValid())) {
+            return {milliseconds: 0, months: 0};
+        }
+
+        other = cloneWithOffset(other, base);
+        if (base.isBefore(other)) {
+            res = positiveMomentsDifference(base, other);
+        } else {
+            res = positiveMomentsDifference(other, base);
+            res.milliseconds = -res.milliseconds;
+            res.months = -res.months;
+        }
+
+        return res;
+    }
+
+    // TODO: remove 'name' arg after deprecation is removed
+    function createAdder(direction, name) {
+        return function (val, period) {
+            var dur, tmp;
+            //invert the arguments, but complain about it
+            if (period !== null && !isNaN(+period)) {
+                deprecateSimple(name, 'moment().' + name  + '(period, number) is deprecated. Please use moment().' + name + '(number, period).');
+                tmp = val; val = period; period = tmp;
+            }
+
+            val = typeof val === 'string' ? +val : val;
+            dur = create__createDuration(val, period);
+            add_subtract__addSubtract(this, dur, direction);
+            return this;
+        };
+    }
+
+    function add_subtract__addSubtract (mom, duration, isAdding, updateOffset) {
+        var milliseconds = duration._milliseconds,
+            days = duration._days,
+            months = duration._months;
+
+        if (!mom.isValid()) {
+            // No op
+            return;
+        }
+
+        updateOffset = updateOffset == null ? true : updateOffset;
+
+        if (milliseconds) {
+            mom._d.setTime(+mom._d + milliseconds * isAdding);
+        }
+        if (days) {
+            get_set__set(mom, 'Date', get_set__get(mom, 'Date') + days * isAdding);
+        }
+        if (months) {
+            setMonth(mom, get_set__get(mom, 'Month') + months * isAdding);
+        }
+        if (updateOffset) {
+            utils_hooks__hooks.updateOffset(mom, days || months);
+        }
+    }
+
+    var add_subtract__add      = createAdder(1, 'add');
+    var add_subtract__subtract = createAdder(-1, 'subtract');
+
+    function moment_calendar__calendar (time, formats) {
+        // We want to compare the start of today, vs this.
+        // Getting start-of-today depends on whether we're local/utc/offset or not.
+        var now = time || local__createLocal(),
+            sod = cloneWithOffset(now, this).startOf('day'),
+            diff = this.diff(sod, 'days', true),
+            format = diff < -6 ? 'sameElse' :
+                diff < -1 ? 'lastWeek' :
+                diff < 0 ? 'lastDay' :
+                diff < 1 ? 'sameDay' :
+                diff < 2 ? 'nextDay' :
+                diff < 7 ? 'nextWeek' : 'sameElse';
+
+        var output = formats && (isFunction(formats[format]) ? formats[format]() : formats[format]);
+
+        return this.format(output || this.localeData().calendar(format, this, local__createLocal(now)));
+    }
+
+    function clone () {
+        return new Moment(this);
+    }
+
+    function isAfter (input, units) {
+        var localInput = isMoment(input) ? input : local__createLocal(input);
+        if (!(this.isValid() && localInput.isValid())) {
+            return false;
+        }
+        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+        if (units === 'millisecond') {
+            return +this > +localInput;
+        } else {
+            return +localInput < +this.clone().startOf(units);
+        }
+    }
+
+    function isBefore (input, units) {
+        var localInput = isMoment(input) ? input : local__createLocal(input);
+        if (!(this.isValid() && localInput.isValid())) {
+            return false;
+        }
+        units = normalizeUnits(!isUndefined(units) ? units : 'millisecond');
+        if (units === 'millisecond') {
+            return +this < +localInput;
+        } else {
+            return +this.clone().endOf(units) < +localInput;
+        }
+    }
+
+    function isBetween (from, to, units) {
+        return this.isAfter(from, units) && this.isBefore(to, units);
+    }
+
+    function isSame (input, units) {
+        var localInput = isMoment(input) ? input : local__createLocal(input),
+            inputMs;
+        if (!(this.isValid() && localInput.isValid())) {
+            return false;
+        }
+        units = normalizeUnits(units || 'millisecond');
+        if (units === 'millisecond') {
+            return +this === +localInput;
+        } else {
+            inputMs = +localInput;
+            return +(this.clone().startOf(units)) <= inputMs && inputMs <= +(this.clone().endOf(units));
+        }
+    }
+
+    function isSameOrAfter (input, units) {
+        return this.isSame(input, units) || this.isAfter(input,units);
+    }
+
+    function isSameOrBefore (input, units) {
+        return this.isSame(input, units) || this.isBefore(input,units);
+    }
+
+    function diff (input, units, asFloat) {
+        var that,
+            zoneDelta,
+            delta, output;
+
+        if (!this.isValid()) {
+            return NaN;
+        }
+
+        that = cloneWithOffset(input, this);
+
+        if (!that.isValid()) {
+            return NaN;
+        }
+
+        zoneDelta = (that.utcOffset() - this.utcOffset()) * 6e4;
+
+        units = normalizeUnits(units);
+
+        if (units === 'year' || units === 'month' || units === 'quarter') {
+            output = monthDiff(this, that);
+            if (units === 'quarter') {
+                output = output / 3;
+            } else if (units === 'year') {
+                output = output / 12;
+            }
+        } else {
+            delta = this - that;
+            output = units === 'second' ? delta / 1e3 : // 1000
+                units === 'minute' ? delta / 6e4 : // 1000 * 60
+                units === 'hour' ? delta / 36e5 : // 1000 * 60 * 60
+                units === 'day' ? (delta - zoneDelta) / 864e5 : // 1000 * 60 * 60 * 24, negate dst
+                units === 'week' ? (delta - zoneDelta) / 6048e5 : // 1000 * 60 * 60 * 24 * 7, negate dst
+                delta;
+        }
+        return asFloat ? output : absFloor(output);
+    }
+
+    function monthDiff (a, b) {
+        // difference in months
+        var wholeMonthDiff = ((b.year() - a.year()) * 12) + (b.month() - a.month()),
+            // b is in (anchor - 1 month, anchor + 1 month)
+            anchor = a.clone().add(wholeMonthDiff, 'months'),
+            anchor2, adjust;
+
+        if (b - anchor < 0) {
+            anchor2 = a.clone().add(wholeMonthDiff - 1, 'months');
+            // linear across the month
+            adjust = (b - anchor) / (anchor - anchor2);
+        } else {
+            anchor2 = a.clone().add(wholeMonthDiff + 1, 'months');
+            // linear across the month
+            adjust = (b - anchor) / (anchor2 - anchor);
+        }
+
+        return -(wholeMonthDiff + adjust);
+    }
+
+    utils_hooks__hooks.defaultFormat = 'YYYY-MM-DDTHH:mm:ssZ';
+
+    function toString () {
+        return this.clone().locale('en').format('ddd MMM DD YYYY HH:mm:ss [GMT]ZZ');
+    }
+
+    function moment_format__toISOString () {
+        var m = this.clone().utc();
+        if (0 < m.year() && m.year() <= 9999) {
+            if (isFunction(Date.prototype.toISOString)) {
+                // native implementation is ~50x faster, use it when we can
+                return this.toDate().toISOString();
+            } else {
+                return formatMoment(m, 'YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+            }
+        } else {
+            return formatMoment(m, 'YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+        }
+    }
+
+    function format (inputString) {
+        var output = formatMoment(this, inputString || utils_hooks__hooks.defaultFormat);
+        return this.localeData().postformat(output);
+    }
+
+    function from (time, withoutSuffix) {
+        if (this.isValid() &&
+                ((isMoment(time) && time.isValid()) ||
+                 local__createLocal(time).isValid())) {
+            return create__createDuration({to: this, from: time}).locale(this.locale()).humanize(!withoutSuffix);
+        } else {
+            return this.localeData().invalidDate();
+        }
+    }
+
+    function fromNow (withoutSuffix) {
+        return this.from(local__createLocal(), withoutSuffix);
+    }
+
+    function to (time, withoutSuffix) {
+        if (this.isValid() &&
+                ((isMoment(time) && time.isValid()) ||
+                 local__createLocal(time).isValid())) {
+            return create__createDuration({from: this, to: time}).locale(this.locale()).humanize(!withoutSuffix);
+        } else {
+            return this.localeData().invalidDate();
+        }
+    }
+
+    function toNow (withoutSuffix) {
+        return this.to(local__createLocal(), withoutSuffix);
+    }
+
+    // If passed a locale key, it will set the locale for this
+    // instance.  Otherwise, it will return the locale configuration
+    // variables for this instance.
+    function locale (key) {
+        var newLocaleData;
+
+        if (key === undefined) {
+            return this._locale._abbr;
+        } else {
+            newLocaleData = locale_locales__getLocale(key);
+            if (newLocaleData != null) {
+                this._locale = newLocaleData;
+            }
+            return this;
+        }
+    }
+
+    var lang = deprecate(
+        'moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.',
+        function (key) {
+            if (key === undefined) {
+                return this.localeData();
+            } else {
+                return this.locale(key);
+            }
+        }
+    );
+
+    function localeData () {
+        return this._locale;
+    }
+
+    function startOf (units) {
+        units = normalizeUnits(units);
+        // the following switch intentionally omits break keywords
+        // to utilize falling through the cases.
+        switch (units) {
+        case 'year':
+            this.month(0);
+            /* falls through */
+        case 'quarter':
+        case 'month':
+            this.date(1);
+            /* falls through */
+        case 'week':
+        case 'isoWeek':
+        case 'day':
+            this.hours(0);
+            /* falls through */
+        case 'hour':
+            this.minutes(0);
+            /* falls through */
+        case 'minute':
+            this.seconds(0);
+            /* falls through */
+        case 'second':
+            this.milliseconds(0);
+        }
+
+        // weeks are a special case
+        if (units === 'week') {
+            this.weekday(0);
+        }
+        if (units === 'isoWeek') {
+            this.isoWeekday(1);
+        }
+
+        // quarters are also special
+        if (units === 'quarter') {
+            this.month(Math.floor(this.month() / 3) * 3);
+        }
+
+        return this;
+    }
+
+    function endOf (units) {
+        units = normalizeUnits(units);
+        if (units === undefined || units === 'millisecond') {
+            return this;
+        }
+        return this.startOf(units).add(1, (units === 'isoWeek' ? 'week' : units)).subtract(1, 'ms');
+    }
+
+    function to_type__valueOf () {
+        return +this._d - ((this._offset || 0) * 60000);
+    }
+
+    function unix () {
+        return Math.floor(+this / 1000);
+    }
+
+    function toDate () {
+        return this._offset ? new Date(+this) : this._d;
+    }
+
+    function toArray () {
+        var m = this;
+        return [m.year(), m.month(), m.date(), m.hour(), m.minute(), m.second(), m.millisecond()];
+    }
+
+    function toObject () {
+        var m = this;
+        return {
+            years: m.year(),
+            months: m.month(),
+            date: m.date(),
+            hours: m.hours(),
+            minutes: m.minutes(),
+            seconds: m.seconds(),
+            milliseconds: m.milliseconds()
+        };
+    }
+
+    function toJSON () {
+        // JSON.stringify(new Date(NaN)) === 'null'
+        return this.isValid() ? this.toISOString() : 'null';
+    }
+
+    function moment_valid__isValid () {
+        return valid__isValid(this);
+    }
+
+    function parsingFlags () {
+        return extend({}, getParsingFlags(this));
+    }
+
+    function invalidAt () {
+        return getParsingFlags(this).overflow;
+    }
+
+    function creationData() {
+        return {
+            input: this._i,
+            format: this._f,
+            locale: this._locale,
+            isUTC: this._isUTC,
+            strict: this._strict
+        };
+    }
+
+    // FORMATTING
+
+    addFormatToken(0, ['gg', 2], 0, function () {
+        return this.weekYear() % 100;
+    });
+
+    addFormatToken(0, ['GG', 2], 0, function () {
+        return this.isoWeekYear() % 100;
+    });
+
+    function addWeekYearFormatToken (token, getter) {
+        addFormatToken(0, [token, token.length], 0, getter);
+    }
+
+    addWeekYearFormatToken('gggg',     'weekYear');
+    addWeekYearFormatToken('ggggg',    'weekYear');
+    addWeekYearFormatToken('GGGG',  'isoWeekYear');
+    addWeekYearFormatToken('GGGGG', 'isoWeekYear');
+
+    // ALIASES
+
+    addUnitAlias('weekYear', 'gg');
+    addUnitAlias('isoWeekYear', 'GG');
+
+    // PARSING
+
+    addRegexToken('G',      matchSigned);
+    addRegexToken('g',      matchSigned);
+    addRegexToken('GG',     match1to2, match2);
+    addRegexToken('gg',     match1to2, match2);
+    addRegexToken('GGGG',   match1to4, match4);
+    addRegexToken('gggg',   match1to4, match4);
+    addRegexToken('GGGGG',  match1to6, match6);
+    addRegexToken('ggggg',  match1to6, match6);
+
+    addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'], function (input, week, config, token) {
+        week[token.substr(0, 2)] = toInt(input);
+    });
+
+    addWeekParseToken(['gg', 'GG'], function (input, week, config, token) {
+        week[token] = utils_hooks__hooks.parseTwoDigitYear(input);
+    });
+
+    // MOMENTS
+
+    function getSetWeekYear (input) {
+        return getSetWeekYearHelper.call(this,
+                input,
+                this.week(),
+                this.weekday(),
+                this.localeData()._week.dow,
+                this.localeData()._week.doy);
+    }
+
+    function getSetISOWeekYear (input) {
+        return getSetWeekYearHelper.call(this,
+                input, this.isoWeek(), this.isoWeekday(), 1, 4);
+    }
+
+    function getISOWeeksInYear () {
+        return weeksInYear(this.year(), 1, 4);
+    }
+
+    function getWeeksInYear () {
+        var weekInfo = this.localeData()._week;
+        return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
+    }
+
+    function getSetWeekYearHelper(input, week, weekday, dow, doy) {
+        var weeksTarget;
+        if (input == null) {
+            return weekOfYear(this, dow, doy).year;
+        } else {
+            weeksTarget = weeksInYear(input, dow, doy);
+            if (week > weeksTarget) {
+                week = weeksTarget;
+            }
+            return setWeekAll.call(this, input, week, weekday, dow, doy);
+        }
+    }
+
+    function setWeekAll(weekYear, week, weekday, dow, doy) {
+        var dayOfYearData = dayOfYearFromWeeks(weekYear, week, weekday, dow, doy),
+            date = createUTCDate(dayOfYearData.year, 0, dayOfYearData.dayOfYear);
+
+        // console.log("got", weekYear, week, weekday, "set", date.toISOString());
+        this.year(date.getUTCFullYear());
+        this.month(date.getUTCMonth());
+        this.date(date.getUTCDate());
+        return this;
+    }
+
+    // FORMATTING
+
+    addFormatToken('Q', 0, 'Qo', 'quarter');
+
+    // ALIASES
+
+    addUnitAlias('quarter', 'Q');
+
+    // PARSING
+
+    addRegexToken('Q', match1);
+    addParseToken('Q', function (input, array) {
+        array[MONTH] = (toInt(input) - 1) * 3;
+    });
+
+    // MOMENTS
+
+    function getSetQuarter (input) {
+        return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
+    }
+
+    // FORMATTING
+
+    addFormatToken('w', ['ww', 2], 'wo', 'week');
+    addFormatToken('W', ['WW', 2], 'Wo', 'isoWeek');
+
+    // ALIASES
+
+    addUnitAlias('week', 'w');
+    addUnitAlias('isoWeek', 'W');
+
+    // PARSING
+
+    addRegexToken('w',  match1to2);
+    addRegexToken('ww', match1to2, match2);
+    addRegexToken('W',  match1to2);
+    addRegexToken('WW', match1to2, match2);
+
+    addWeekParseToken(['w', 'ww', 'W', 'WW'], function (input, week, config, token) {
+        week[token.substr(0, 1)] = toInt(input);
+    });
+
+    // HELPERS
+
+    // LOCALES
+
+    function localeWeek (mom) {
+        return weekOfYear(mom, this._week.dow, this._week.doy).week;
+    }
+
+    var defaultLocaleWeek = {
+        dow : 0, // Sunday is the first day of the week.
+        doy : 6  // The week that contains Jan 1st is the first week of the year.
+    };
+
+    function localeFirstDayOfWeek () {
+        return this._week.dow;
+    }
+
+    function localeFirstDayOfYear () {
+        return this._week.doy;
+    }
+
+    // MOMENTS
+
+    function getSetWeek (input) {
+        var week = this.localeData().week(this);
+        return input == null ? week : this.add((input - week) * 7, 'd');
+    }
+
+    function getSetISOWeek (input) {
+        var week = weekOfYear(this, 1, 4).week;
+        return input == null ? week : this.add((input - week) * 7, 'd');
+    }
+
+    // FORMATTING
+
+    addFormatToken('D', ['DD', 2], 'Do', 'date');
+
+    // ALIASES
+
+    addUnitAlias('date', 'D');
+
+    // PARSING
+
+    addRegexToken('D',  match1to2);
+    addRegexToken('DD', match1to2, match2);
+    addRegexToken('Do', function (isStrict, locale) {
+        return isStrict ? locale._ordinalParse : locale._ordinalParseLenient;
+    });
+
+    addParseToken(['D', 'DD'], DATE);
+    addParseToken('Do', function (input, array) {
+        array[DATE] = toInt(input.match(match1to2)[0], 10);
+    });
+
+    // MOMENTS
+
+    var getSetDayOfMonth = makeGetSet('Date', true);
+
+    // FORMATTING
+
+    addFormatToken('d', 0, 'do', 'day');
+
+    addFormatToken('dd', 0, 0, function (format) {
+        return this.localeData().weekdaysMin(this, format);
+    });
+
+    addFormatToken('ddd', 0, 0, function (format) {
+        return this.localeData().weekdaysShort(this, format);
+    });
+
+    addFormatToken('dddd', 0, 0, function (format) {
+        return this.localeData().weekdays(this, format);
+    });
+
+    addFormatToken('e', 0, 0, 'weekday');
+    addFormatToken('E', 0, 0, 'isoWeekday');
+
+    // ALIASES
+
+    addUnitAlias('day', 'd');
+    addUnitAlias('weekday', 'e');
+    addUnitAlias('isoWeekday', 'E');
+
+    // PARSING
+
+    addRegexToken('d',    match1to2);
+    addRegexToken('e',    match1to2);
+    addRegexToken('E',    match1to2);
+    addRegexToken('dd',   matchWord);
+    addRegexToken('ddd',  matchWord);
+    addRegexToken('dddd', matchWord);
+
+    addWeekParseToken(['dd', 'ddd', 'dddd'], function (input, week, config, token) {
+        var weekday = config._locale.weekdaysParse(input, token, config._strict);
+        // if we didn't get a weekday name, mark the date as invalid
+        if (weekday != null) {
+            week.d = weekday;
+        } else {
+            getParsingFlags(config).invalidWeekday = input;
+        }
+    });
+
+    addWeekParseToken(['d', 'e', 'E'], function (input, week, config, token) {
+        week[token] = toInt(input);
+    });
+
+    // HELPERS
+
+    function parseWeekday(input, locale) {
+        if (typeof input !== 'string') {
+            return input;
+        }
+
+        if (!isNaN(input)) {
+            return parseInt(input, 10);
+        }
+
+        input = locale.weekdaysParse(input);
+        if (typeof input === 'number') {
+            return input;
+        }
+
+        return null;
+    }
+
+    // LOCALES
+
+    var defaultLocaleWeekdays = 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday'.split('_');
+    function localeWeekdays (m, format) {
+        return isArray(this._weekdays) ? this._weekdays[m.day()] :
+            this._weekdays[this._weekdays.isFormat.test(format) ? 'format' : 'standalone'][m.day()];
+    }
+
+    var defaultLocaleWeekdaysShort = 'Sun_Mon_Tue_Wed_Thu_Fri_Sat'.split('_');
+    function localeWeekdaysShort (m) {
+        return this._weekdaysShort[m.day()];
+    }
+
+    var defaultLocaleWeekdaysMin = 'Su_Mo_Tu_We_Th_Fr_Sa'.split('_');
+    function localeWeekdaysMin (m) {
+        return this._weekdaysMin[m.day()];
+    }
+
+    function localeWeekdaysParse (weekdayName, format, strict) {
+        var i, mom, regex;
+
+        if (!this._weekdaysParse) {
+            this._weekdaysParse = [];
+            this._minWeekdaysParse = [];
+            this._shortWeekdaysParse = [];
+            this._fullWeekdaysParse = [];
+        }
+
+        for (i = 0; i < 7; i++) {
+            // make the regex if we don't have it already
+
+            mom = local__createLocal([2000, 1]).day(i);
+            if (strict && !this._fullWeekdaysParse[i]) {
+                this._fullWeekdaysParse[i] = new RegExp('^' + this.weekdays(mom, '').replace('.', '\.?') + '$', 'i');
+                this._shortWeekdaysParse[i] = new RegExp('^' + this.weekdaysShort(mom, '').replace('.', '\.?') + '$', 'i');
+                this._minWeekdaysParse[i] = new RegExp('^' + this.weekdaysMin(mom, '').replace('.', '\.?') + '$', 'i');
+            }
+            if (!this._weekdaysParse[i]) {
+                regex = '^' + this.weekdays(mom, '') + '|^' + this.weekdaysShort(mom, '') + '|^' + this.weekdaysMin(mom, '');
+                this._weekdaysParse[i] = new RegExp(regex.replace('.', ''), 'i');
+            }
+            // test the regex
+            if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
+                return i;
+            } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {
+                return i;
+            } else if (strict && format === 'dd' && this._minWeekdaysParse[i].test(weekdayName)) {
+                return i;
+            } else if (!strict && this._weekdaysParse[i].test(weekdayName)) {
+                return i;
+            }
+        }
+    }
+
+    // MOMENTS
+
+    function getSetDayOfWeek (input) {
+        if (!this.isValid()) {
+            return input != null ? this : NaN;
+        }
+        var day = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+        if (input != null) {
+            input = parseWeekday(input, this.localeData());
+            return this.add(input - day, 'd');
+        } else {
+            return day;
+        }
+    }
+
+    function getSetLocaleDayOfWeek (input) {
+        if (!this.isValid()) {
+            return input != null ? this : NaN;
+        }
+        var weekday = (this.day() + 7 - this.localeData()._week.dow) % 7;
+        return input == null ? weekday : this.add(input - weekday, 'd');
+    }
+
+    function getSetISODayOfWeek (input) {
+        if (!this.isValid()) {
+            return input != null ? this : NaN;
+        }
+        // behaves the same as moment#day except
+        // as a getter, returns 7 instead of 0 (1-7 range instead of 0-6)
+        // as a setter, sunday should belong to the previous week.
+        return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
+    }
+
+    // FORMATTING
+
+    addFormatToken('DDD', ['DDDD', 3], 'DDDo', 'dayOfYear');
+
+    // ALIASES
+
+    addUnitAlias('dayOfYear', 'DDD');
+
+    // PARSING
+
+    addRegexToken('DDD',  match1to3);
+    addRegexToken('DDDD', match3);
+    addParseToken(['DDD', 'DDDD'], function (input, array, config) {
+        config._dayOfYear = toInt(input);
+    });
+
+    // HELPERS
+
+    // MOMENTS
+
+    function getSetDayOfYear (input) {
+        var dayOfYear = Math.round((this.clone().startOf('day') - this.clone().startOf('year')) / 864e5) + 1;
+        return input == null ? dayOfYear : this.add((input - dayOfYear), 'd');
+    }
+
+    // FORMATTING
+
+    function hFormat() {
+        return this.hours() % 12 || 12;
+    }
+
+    addFormatToken('H', ['HH', 2], 0, 'hour');
+    addFormatToken('h', ['hh', 2], 0, hFormat);
+
+    addFormatToken('hmm', 0, 0, function () {
+        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2);
+    });
+
+    addFormatToken('hmmss', 0, 0, function () {
+        return '' + hFormat.apply(this) + zeroFill(this.minutes(), 2) +
+            zeroFill(this.seconds(), 2);
+    });
+
+    addFormatToken('Hmm', 0, 0, function () {
+        return '' + this.hours() + zeroFill(this.minutes(), 2);
+    });
+
+    addFormatToken('Hmmss', 0, 0, function () {
+        return '' + this.hours() + zeroFill(this.minutes(), 2) +
+            zeroFill(this.seconds(), 2);
+    });
+
+    function meridiem (token, lowercase) {
+        addFormatToken(token, 0, 0, function () {
+            return this.localeData().meridiem(this.hours(), this.minutes(), lowercase);
+        });
+    }
+
+    meridiem('a', true);
+    meridiem('A', false);
+
+    // ALIASES
+
+    addUnitAlias('hour', 'h');
+
+    // PARSING
+
+    function matchMeridiem (isStrict, locale) {
+        return locale._meridiemParse;
+    }
+
+    addRegexToken('a',  matchMeridiem);
+    addRegexToken('A',  matchMeridiem);
+    addRegexToken('H',  match1to2);
+    addRegexToken('h',  match1to2);
+    addRegexToken('HH', match1to2, match2);
+    addRegexToken('hh', match1to2, match2);
+
+    addRegexToken('hmm', match3to4);
+    addRegexToken('hmmss', match5to6);
+    addRegexToken('Hmm', match3to4);
+    addRegexToken('Hmmss', match5to6);
+
+    addParseToken(['H', 'HH'], HOUR);
+    addParseToken(['a', 'A'], function (input, array, config) {
+        config._isPm = config._locale.isPM(input);
+        config._meridiem = input;
+    });
+    addParseToken(['h', 'hh'], function (input, array, config) {
+        array[HOUR] = toInt(input);
+        getParsingFlags(config).bigHour = true;
+    });
+    addParseToken('hmm', function (input, array, config) {
+        var pos = input.length - 2;
+        array[HOUR] = toInt(input.substr(0, pos));
+        array[MINUTE] = toInt(input.substr(pos));
+        getParsingFlags(config).bigHour = true;
+    });
+    addParseToken('hmmss', function (input, array, config) {
+        var pos1 = input.length - 4;
+        var pos2 = input.length - 2;
+        array[HOUR] = toInt(input.substr(0, pos1));
+        array[MINUTE] = toInt(input.substr(pos1, 2));
+        array[SECOND] = toInt(input.substr(pos2));
+        getParsingFlags(config).bigHour = true;
+    });
+    addParseToken('Hmm', function (input, array, config) {
+        var pos = input.length - 2;
+        array[HOUR] = toInt(input.substr(0, pos));
+        array[MINUTE] = toInt(input.substr(pos));
+    });
+    addParseToken('Hmmss', function (input, array, config) {
+        var pos1 = input.length - 4;
+        var pos2 = input.length - 2;
+        array[HOUR] = toInt(input.substr(0, pos1));
+        array[MINUTE] = toInt(input.substr(pos1, 2));
+        array[SECOND] = toInt(input.substr(pos2));
+    });
+
+    // LOCALES
+
+    function localeIsPM (input) {
+        // IE8 Quirks Mode & IE7 Standards Mode do not allow accessing strings like arrays
+        // Using charAt should be more compatible.
+        return ((input + '').toLowerCase().charAt(0) === 'p');
+    }
+
+    var defaultLocaleMeridiemParse = /[ap]\.?m?\.?/i;
+    function localeMeridiem (hours, minutes, isLower) {
+        if (hours > 11) {
+            return isLower ? 'pm' : 'PM';
+        } else {
+            return isLower ? 'am' : 'AM';
+        }
+    }
+
+
+    // MOMENTS
+
+    // Setting the hour should keep the time, because the user explicitly
+    // specified which hour he wants. So trying to maintain the same hour (in
+    // a new timezone) makes sense. Adding/subtracting hours does not follow
+    // this rule.
+    var getSetHour = makeGetSet('Hours', true);
+
+    // FORMATTING
+
+    addFormatToken('m', ['mm', 2], 0, 'minute');
+
+    // ALIASES
+
+    addUnitAlias('minute', 'm');
+
+    // PARSING
+
+    addRegexToken('m',  match1to2);
+    addRegexToken('mm', match1to2, match2);
+    addParseToken(['m', 'mm'], MINUTE);
+
+    // MOMENTS
+
+    var getSetMinute = makeGetSet('Minutes', false);
+
+    // FORMATTING
+
+    addFormatToken('s', ['ss', 2], 0, 'second');
+
+    // ALIASES
+
+    addUnitAlias('second', 's');
+
+    // PARSING
+
+    addRegexToken('s',  match1to2);
+    addRegexToken('ss', match1to2, match2);
+    addParseToken(['s', 'ss'], SECOND);
+
+    // MOMENTS
+
+    var getSetSecond = makeGetSet('Seconds', false);
+
+    // FORMATTING
+
+    addFormatToken('S', 0, 0, function () {
+        return ~~(this.millisecond() / 100);
+    });
+
+    addFormatToken(0, ['SS', 2], 0, function () {
+        return ~~(this.millisecond() / 10);
+    });
+
+    addFormatToken(0, ['SSS', 3], 0, 'millisecond');
+    addFormatToken(0, ['SSSS', 4], 0, function () {
+        return this.millisecond() * 10;
+    });
+    addFormatToken(0, ['SSSSS', 5], 0, function () {
+        return this.millisecond() * 100;
+    });
+    addFormatToken(0, ['SSSSSS', 6], 0, function () {
+        return this.millisecond() * 1000;
+    });
+    addFormatToken(0, ['SSSSSSS', 7], 0, function () {
+        return this.millisecond() * 10000;
+    });
+    addFormatToken(0, ['SSSSSSSS', 8], 0, function () {
+        return this.millisecond() * 100000;
+    });
+    addFormatToken(0, ['SSSSSSSSS', 9], 0, function () {
+        return this.millisecond() * 1000000;
+    });
+
+
+    // ALIASES
+
+    addUnitAlias('millisecond', 'ms');
+
+    // PARSING
+
+    addRegexToken('S',    match1to3, match1);
+    addRegexToken('SS',   match1to3, match2);
+    addRegexToken('SSS',  match1to3, match3);
+
+    var token;
+    for (token = 'SSSS'; token.length <= 9; token += 'S') {
+        addRegexToken(token, matchUnsigned);
+    }
+
+    function parseMs(input, array) {
+        array[MILLISECOND] = toInt(('0.' + input) * 1000);
+    }
+
+    for (token = 'S'; token.length <= 9; token += 'S') {
+        addParseToken(token, parseMs);
+    }
+    // MOMENTS
+
+    var getSetMillisecond = makeGetSet('Milliseconds', false);
+
+    // FORMATTING
+
+    addFormatToken('z',  0, 0, 'zoneAbbr');
+    addFormatToken('zz', 0, 0, 'zoneName');
+
+    // MOMENTS
+
+    function getZoneAbbr () {
+        return this._isUTC ? 'UTC' : '';
+    }
+
+    function getZoneName () {
+        return this._isUTC ? 'Coordinated Universal Time' : '';
+    }
+
+    var momentPrototype__proto = Moment.prototype;
+
+    momentPrototype__proto.add               = add_subtract__add;
+    momentPrototype__proto.calendar          = moment_calendar__calendar;
+    momentPrototype__proto.clone             = clone;
+    momentPrototype__proto.diff              = diff;
+    momentPrototype__proto.endOf             = endOf;
+    momentPrototype__proto.format            = format;
+    momentPrototype__proto.from              = from;
+    momentPrototype__proto.fromNow           = fromNow;
+    momentPrototype__proto.to                = to;
+    momentPrototype__proto.toNow             = toNow;
+    momentPrototype__proto.get               = getSet;
+    momentPrototype__proto.invalidAt         = invalidAt;
+    momentPrototype__proto.isAfter           = isAfter;
+    momentPrototype__proto.isBefore          = isBefore;
+    momentPrototype__proto.isBetween         = isBetween;
+    momentPrototype__proto.isSame            = isSame;
+    momentPrototype__proto.isSameOrAfter     = isSameOrAfter;
+    momentPrototype__proto.isSameOrBefore    = isSameOrBefore;
+    momentPrototype__proto.isValid           = moment_valid__isValid;
+    momentPrototype__proto.lang              = lang;
+    momentPrototype__proto.locale            = locale;
+    momentPrototype__proto.localeData        = localeData;
+    momentPrototype__proto.max               = prototypeMax;
+    momentPrototype__proto.min               = prototypeMin;
+    momentPrototype__proto.parsingFlags      = parsingFlags;
+    momentPrototype__proto.set               = getSet;
+    momentPrototype__proto.startOf           = startOf;
+    momentPrototype__proto.subtract          = add_subtract__subtract;
+    momentPrototype__proto.toArray           = toArray;
+    momentPrototype__proto.toObject          = toObject;
+    momentPrototype__proto.toDate            = toDate;
+    momentPrototype__proto.toISOString       = moment_format__toISOString;
+    momentPrototype__proto.toJSON            = toJSON;
+    momentPrototype__proto.toString          = toString;
+    momentPrototype__proto.unix              = unix;
+    momentPrototype__proto.valueOf           = to_type__valueOf;
+    momentPrototype__proto.creationData      = creationData;
+
+    // Year
+    momentPrototype__proto.year       = getSetYear;
+    momentPrototype__proto.isLeapYear = getIsLeapYear;
+
+    // Week Year
+    momentPrototype__proto.weekYear    = getSetWeekYear;
+    momentPrototype__proto.isoWeekYear = getSetISOWeekYear;
+
+    // Quarter
+    momentPrototype__proto.quarter = momentPrototype__proto.quarters = getSetQuarter;
+
+    // Month
+    momentPrototype__proto.month       = getSetMonth;
+    momentPrototype__proto.daysInMonth = getDaysInMonth;
+
+    // Week
+    momentPrototype__proto.week           = momentPrototype__proto.weeks        = getSetWeek;
+    momentPrototype__proto.isoWeek        = momentPrototype__proto.isoWeeks     = getSetISOWeek;
+    momentPrototype__proto.weeksInYear    = getWeeksInYear;
+    momentPrototype__proto.isoWeeksInYear = getISOWeeksInYear;
+
+    // Day
+    momentPrototype__proto.date       = getSetDayOfMonth;
+    momentPrototype__proto.day        = momentPrototype__proto.days             = getSetDayOfWeek;
+    momentPrototype__proto.weekday    = getSetLocaleDayOfWeek;
+    momentPrototype__proto.isoWeekday = getSetISODayOfWeek;
+    momentPrototype__proto.dayOfYear  = getSetDayOfYear;
+
+    // Hour
+    momentPrototype__proto.hour = momentPrototype__proto.hours = getSetHour;
+
+    // Minute
+    momentPrototype__proto.minute = momentPrototype__proto.minutes = getSetMinute;
+
+    // Second
+    momentPrototype__proto.second = momentPrototype__proto.seconds = getSetSecond;
+
+    // Millisecond
+    momentPrototype__proto.millisecond = momentPrototype__proto.milliseconds = getSetMillisecond;
+
+    // Offset
+    momentPrototype__proto.utcOffset            = getSetOffset;
+    momentPrototype__proto.utc                  = setOffsetToUTC;
+    momentPrototype__proto.local                = setOffsetToLocal;
+    momentPrototype__proto.parseZone            = setOffsetToParsedOffset;
+    momentPrototype__proto.hasAlignedHourOffset = hasAlignedHourOffset;
+    momentPrototype__proto.isDST                = isDaylightSavingTime;
+    momentPrototype__proto.isDSTShifted         = isDaylightSavingTimeShifted;
+    momentPrototype__proto.isLocal              = isLocal;
+    momentPrototype__proto.isUtcOffset          = isUtcOffset;
+    momentPrototype__proto.isUtc                = isUtc;
+    momentPrototype__proto.isUTC                = isUtc;
+
+    // Timezone
+    momentPrototype__proto.zoneAbbr = getZoneAbbr;
+    momentPrototype__proto.zoneName = getZoneName;
+
+    // Deprecations
+    momentPrototype__proto.dates  = deprecate('dates accessor is deprecated. Use date instead.', getSetDayOfMonth);
+    momentPrototype__proto.months = deprecate('months accessor is deprecated. Use month instead', getSetMonth);
+    momentPrototype__proto.years  = deprecate('years accessor is deprecated. Use year instead', getSetYear);
+    momentPrototype__proto.zone   = deprecate('moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779', getSetZone);
+
+    var momentPrototype = momentPrototype__proto;
+
+    function moment__createUnix (input) {
+        return local__createLocal(input * 1000);
+    }
+
+    function moment__createInZone () {
+        return local__createLocal.apply(null, arguments).parseZone();
+    }
+
+    var defaultCalendar = {
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        nextWeek : 'dddd [at] LT',
+        lastDay : '[Yesterday at] LT',
+        lastWeek : '[Last] dddd [at] LT',
+        sameElse : 'L'
+    };
+
+    function locale_calendar__calendar (key, mom, now) {
+        var output = this._calendar[key];
+        return isFunction(output) ? output.call(mom, now) : output;
+    }
+
+    var defaultLongDateFormat = {
+        LTS  : 'h:mm:ss A',
+        LT   : 'h:mm A',
+        L    : 'MM/DD/YYYY',
+        LL   : 'MMMM D, YYYY',
+        LLL  : 'MMMM D, YYYY h:mm A',
+        LLLL : 'dddd, MMMM D, YYYY h:mm A'
+    };
+
+    function longDateFormat (key) {
+        var format = this._longDateFormat[key],
+            formatUpper = this._longDateFormat[key.toUpperCase()];
+
+        if (format || !formatUpper) {
+            return format;
+        }
+
+        this._longDateFormat[key] = formatUpper.replace(/MMMM|MM|DD|dddd/g, function (val) {
+            return val.slice(1);
+        });
+
+        return this._longDateFormat[key];
+    }
+
+    var defaultInvalidDate = 'Invalid date';
+
+    function invalidDate () {
+        return this._invalidDate;
+    }
+
+    var defaultOrdinal = '%d';
+    var defaultOrdinalParse = /\d{1,2}/;
+
+    function ordinal (number) {
+        return this._ordinal.replace('%d', number);
+    }
+
+    function preParsePostFormat (string) {
+        return string;
+    }
+
+    var defaultRelativeTime = {
+        future : 'in %s',
+        past   : '%s ago',
+        s  : 'a few seconds',
+        m  : 'a minute',
+        mm : '%d minutes',
+        h  : 'an hour',
+        hh : '%d hours',
+        d  : 'a day',
+        dd : '%d days',
+        M  : 'a month',
+        MM : '%d months',
+        y  : 'a year',
+        yy : '%d years'
+    };
+
+    function relative__relativeTime (number, withoutSuffix, string, isFuture) {
+        var output = this._relativeTime[string];
+        return (isFunction(output)) ?
+            output(number, withoutSuffix, string, isFuture) :
+            output.replace(/%d/i, number);
+    }
+
+    function pastFuture (diff, output) {
+        var format = this._relativeTime[diff > 0 ? 'future' : 'past'];
+        return isFunction(format) ? format(output) : format.replace(/%s/i, output);
+    }
+
+    function locale_set__set (config) {
+        var prop, i;
+        for (i in config) {
+            prop = config[i];
+            if (isFunction(prop)) {
+                this[i] = prop;
+            } else {
+                this['_' + i] = prop;
+            }
+        }
+        // Lenient ordinal parsing accepts just a number in addition to
+        // number + (possibly) stuff coming from _ordinalParseLenient.
+        this._ordinalParseLenient = new RegExp(this._ordinalParse.source + '|' + (/\d{1,2}/).source);
+    }
+
+    var prototype__proto = Locale.prototype;
+
+    prototype__proto._calendar       = defaultCalendar;
+    prototype__proto.calendar        = locale_calendar__calendar;
+    prototype__proto._longDateFormat = defaultLongDateFormat;
+    prototype__proto.longDateFormat  = longDateFormat;
+    prototype__proto._invalidDate    = defaultInvalidDate;
+    prototype__proto.invalidDate     = invalidDate;
+    prototype__proto._ordinal        = defaultOrdinal;
+    prototype__proto.ordinal         = ordinal;
+    prototype__proto._ordinalParse   = defaultOrdinalParse;
+    prototype__proto.preparse        = preParsePostFormat;
+    prototype__proto.postformat      = preParsePostFormat;
+    prototype__proto._relativeTime   = defaultRelativeTime;
+    prototype__proto.relativeTime    = relative__relativeTime;
+    prototype__proto.pastFuture      = pastFuture;
+    prototype__proto.set             = locale_set__set;
+
+    // Month
+    prototype__proto.months            =        localeMonths;
+    prototype__proto._months           = defaultLocaleMonths;
+    prototype__proto.monthsShort       =        localeMonthsShort;
+    prototype__proto._monthsShort      = defaultLocaleMonthsShort;
+    prototype__proto.monthsParse       =        localeMonthsParse;
+    prototype__proto._monthsRegex      = defaultMonthsRegex;
+    prototype__proto.monthsRegex       = monthsRegex;
+    prototype__proto._monthsShortRegex = defaultMonthsShortRegex;
+    prototype__proto.monthsShortRegex  = monthsShortRegex;
+
+    // Week
+    prototype__proto.week = localeWeek;
+    prototype__proto._week = defaultLocaleWeek;
+    prototype__proto.firstDayOfYear = localeFirstDayOfYear;
+    prototype__proto.firstDayOfWeek = localeFirstDayOfWeek;
+
+    // Day of Week
+    prototype__proto.weekdays       =        localeWeekdays;
+    prototype__proto._weekdays      = defaultLocaleWeekdays;
+    prototype__proto.weekdaysMin    =        localeWeekdaysMin;
+    prototype__proto._weekdaysMin   = defaultLocaleWeekdaysMin;
+    prototype__proto.weekdaysShort  =        localeWeekdaysShort;
+    prototype__proto._weekdaysShort = defaultLocaleWeekdaysShort;
+    prototype__proto.weekdaysParse  =        localeWeekdaysParse;
+
+    // Hours
+    prototype__proto.isPM = localeIsPM;
+    prototype__proto._meridiemParse = defaultLocaleMeridiemParse;
+    prototype__proto.meridiem = localeMeridiem;
+
+    function lists__get (format, index, field, setter) {
+        var locale = locale_locales__getLocale();
+        var utc = create_utc__createUTC().set(setter, index);
+        return locale[field](utc, format);
+    }
+
+    function list (format, index, field, count, setter) {
+        if (typeof format === 'number') {
+            index = format;
+            format = undefined;
+        }
+
+        format = format || '';
+
+        if (index != null) {
+            return lists__get(format, index, field, setter);
+        }
+
+        var i;
+        var out = [];
+        for (i = 0; i < count; i++) {
+            out[i] = lists__get(format, i, field, setter);
+        }
+        return out;
+    }
+
+    function lists__listMonths (format, index) {
+        return list(format, index, 'months', 12, 'month');
+    }
+
+    function lists__listMonthsShort (format, index) {
+        return list(format, index, 'monthsShort', 12, 'month');
+    }
+
+    function lists__listWeekdays (format, index) {
+        return list(format, index, 'weekdays', 7, 'day');
+    }
+
+    function lists__listWeekdaysShort (format, index) {
+        return list(format, index, 'weekdaysShort', 7, 'day');
+    }
+
+    function lists__listWeekdaysMin (format, index) {
+        return list(format, index, 'weekdaysMin', 7, 'day');
+    }
+
+    locale_locales__getSetGlobalLocale('en', {
+        ordinalParse: /\d{1,2}(th|st|nd|rd)/,
+        ordinal : function (number) {
+            var b = number % 10,
+                output = (toInt(number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+            return number + output;
+        }
+    });
+
+    // Side effect imports
+    utils_hooks__hooks.lang = deprecate('moment.lang is deprecated. Use moment.locale instead.', locale_locales__getSetGlobalLocale);
+    utils_hooks__hooks.langData = deprecate('moment.langData is deprecated. Use moment.localeData instead.', locale_locales__getLocale);
+
+    var mathAbs = Math.abs;
+
+    function duration_abs__abs () {
+        var data           = this._data;
+
+        this._milliseconds = mathAbs(this._milliseconds);
+        this._days         = mathAbs(this._days);
+        this._months       = mathAbs(this._months);
+
+        data.milliseconds  = mathAbs(data.milliseconds);
+        data.seconds       = mathAbs(data.seconds);
+        data.minutes       = mathAbs(data.minutes);
+        data.hours         = mathAbs(data.hours);
+        data.months        = mathAbs(data.months);
+        data.years         = mathAbs(data.years);
+
+        return this;
+    }
+
+    function duration_add_subtract__addSubtract (duration, input, value, direction) {
+        var other = create__createDuration(input, value);
+
+        duration._milliseconds += direction * other._milliseconds;
+        duration._days         += direction * other._days;
+        duration._months       += direction * other._months;
+
+        return duration._bubble();
+    }
+
+    // supports only 2.0-style add(1, 's') or add(duration)
+    function duration_add_subtract__add (input, value) {
+        return duration_add_subtract__addSubtract(this, input, value, 1);
+    }
+
+    // supports only 2.0-style subtract(1, 's') or subtract(duration)
+    function duration_add_subtract__subtract (input, value) {
+        return duration_add_subtract__addSubtract(this, input, value, -1);
+    }
+
+    function absCeil (number) {
+        if (number < 0) {
+            return Math.floor(number);
+        } else {
+            return Math.ceil(number);
+        }
+    }
+
+    function bubble () {
+        var milliseconds = this._milliseconds;
+        var days         = this._days;
+        var months       = this._months;
+        var data         = this._data;
+        var seconds, minutes, hours, years, monthsFromDays;
+
+        // if we have a mix of positive and negative values, bubble down first
+        // check: https://github.com/moment/moment/issues/2166
+        if (!((milliseconds >= 0 && days >= 0 && months >= 0) ||
+                (milliseconds <= 0 && days <= 0 && months <= 0))) {
+            milliseconds += absCeil(monthsToDays(months) + days) * 864e5;
+            days = 0;
+            months = 0;
+        }
+
+        // The following code bubbles up values, see the tests for
+        // examples of what that means.
+        data.milliseconds = milliseconds % 1000;
+
+        seconds           = absFloor(milliseconds / 1000);
+        data.seconds      = seconds % 60;
+
+        minutes           = absFloor(seconds / 60);
+        data.minutes      = minutes % 60;
+
+        hours             = absFloor(minutes / 60);
+        data.hours        = hours % 24;
+
+        days += absFloor(hours / 24);
+
+        // convert days to months
+        monthsFromDays = absFloor(daysToMonths(days));
+        months += monthsFromDays;
+        days -= absCeil(monthsToDays(monthsFromDays));
+
+        // 12 months -> 1 year
+        years = absFloor(months / 12);
+        months %= 12;
+
+        data.days   = days;
+        data.months = months;
+        data.years  = years;
+
+        return this;
+    }
+
+    function daysToMonths (days) {
+        // 400 years have 146097 days (taking into account leap year rules)
+        // 400 years have 12 months === 4800
+        return days * 4800 / 146097;
+    }
+
+    function monthsToDays (months) {
+        // the reverse of daysToMonths
+        return months * 146097 / 4800;
+    }
+
+    function as (units) {
+        var days;
+        var months;
+        var milliseconds = this._milliseconds;
+
+        units = normalizeUnits(units);
+
+        if (units === 'month' || units === 'year') {
+            days   = this._days   + milliseconds / 864e5;
+            months = this._months + daysToMonths(days);
+            return units === 'month' ? months : months / 12;
+        } else {
+            // handle milliseconds separately because of floating point math errors (issue #1867)
+            days = this._days + Math.round(monthsToDays(this._months));
+            switch (units) {
+                case 'week'   : return days / 7     + milliseconds / 6048e5;
+                case 'day'    : return days         + milliseconds / 864e5;
+                case 'hour'   : return days * 24    + milliseconds / 36e5;
+                case 'minute' : return days * 1440  + milliseconds / 6e4;
+                case 'second' : return days * 86400 + milliseconds / 1000;
+                // Math.floor prevents floating point math errors here
+                case 'millisecond': return Math.floor(days * 864e5) + milliseconds;
+                default: throw new Error('Unknown unit ' + units);
+            }
+        }
+    }
+
+    // TODO: Use this.as('ms')?
+    function duration_as__valueOf () {
+        return (
+            this._milliseconds +
+            this._days * 864e5 +
+            (this._months % 12) * 2592e6 +
+            toInt(this._months / 12) * 31536e6
+        );
+    }
+
+    function makeAs (alias) {
+        return function () {
+            return this.as(alias);
+        };
+    }
+
+    var asMilliseconds = makeAs('ms');
+    var asSeconds      = makeAs('s');
+    var asMinutes      = makeAs('m');
+    var asHours        = makeAs('h');
+    var asDays         = makeAs('d');
+    var asWeeks        = makeAs('w');
+    var asMonths       = makeAs('M');
+    var asYears        = makeAs('y');
+
+    function duration_get__get (units) {
+        units = normalizeUnits(units);
+        return this[units + 's']();
+    }
+
+    function makeGetter(name) {
+        return function () {
+            return this._data[name];
+        };
+    }
+
+    var milliseconds = makeGetter('milliseconds');
+    var seconds      = makeGetter('seconds');
+    var minutes      = makeGetter('minutes');
+    var hours        = makeGetter('hours');
+    var days         = makeGetter('days');
+    var months       = makeGetter('months');
+    var years        = makeGetter('years');
+
+    function weeks () {
+        return absFloor(this.days() / 7);
+    }
+
+    var round = Math.round;
+    var thresholds = {
+        s: 45,  // seconds to minute
+        m: 45,  // minutes to hour
+        h: 22,  // hours to day
+        d: 26,  // days to month
+        M: 11   // months to year
+    };
+
+    // helper function for moment.fn.from, moment.fn.fromNow, and moment.duration.fn.humanize
+    function substituteTimeAgo(string, number, withoutSuffix, isFuture, locale) {
+        return locale.relativeTime(number || 1, !!withoutSuffix, string, isFuture);
+    }
+
+    function duration_humanize__relativeTime (posNegDuration, withoutSuffix, locale) {
+        var duration = create__createDuration(posNegDuration).abs();
+        var seconds  = round(duration.as('s'));
+        var minutes  = round(duration.as('m'));
+        var hours    = round(duration.as('h'));
+        var days     = round(duration.as('d'));
+        var months   = round(duration.as('M'));
+        var years    = round(duration.as('y'));
+
+        var a = seconds < thresholds.s && ['s', seconds]  ||
+                minutes <= 1           && ['m']           ||
+                minutes < thresholds.m && ['mm', minutes] ||
+                hours   <= 1           && ['h']           ||
+                hours   < thresholds.h && ['hh', hours]   ||
+                days    <= 1           && ['d']           ||
+                days    < thresholds.d && ['dd', days]    ||
+                months  <= 1           && ['M']           ||
+                months  < thresholds.M && ['MM', months]  ||
+                years   <= 1           && ['y']           || ['yy', years];
+
+        a[2] = withoutSuffix;
+        a[3] = +posNegDuration > 0;
+        a[4] = locale;
+        return substituteTimeAgo.apply(null, a);
+    }
+
+    // This function allows you to set a threshold for relative time strings
+    function duration_humanize__getSetRelativeTimeThreshold (threshold, limit) {
+        if (thresholds[threshold] === undefined) {
+            return false;
+        }
+        if (limit === undefined) {
+            return thresholds[threshold];
+        }
+        thresholds[threshold] = limit;
+        return true;
+    }
+
+    function humanize (withSuffix) {
+        var locale = this.localeData();
+        var output = duration_humanize__relativeTime(this, !withSuffix, locale);
+
+        if (withSuffix) {
+            output = locale.pastFuture(+this, output);
+        }
+
+        return locale.postformat(output);
+    }
+
+    var iso_string__abs = Math.abs;
+
+    function iso_string__toISOString() {
+        // for ISO strings we do not use the normal bubbling rules:
+        //  * milliseconds bubble up until they become hours
+        //  * days do not bubble at all
+        //  * months bubble up until they become years
+        // This is because there is no context-free conversion between hours and days
+        // (think of clock changes)
+        // and also not between days and months (28-31 days per month)
+        var seconds = iso_string__abs(this._milliseconds) / 1000;
+        var days         = iso_string__abs(this._days);
+        var months       = iso_string__abs(this._months);
+        var minutes, hours, years;
+
+        // 3600 seconds -> 60 minutes -> 1 hour
+        minutes           = absFloor(seconds / 60);
+        hours             = absFloor(minutes / 60);
+        seconds %= 60;
+        minutes %= 60;
+
+        // 12 months -> 1 year
+        years  = absFloor(months / 12);
+        months %= 12;
+
+
+        // inspired by https://github.com/dordille/moment-isoduration/blob/master/moment.isoduration.js
+        var Y = years;
+        var M = months;
+        var D = days;
+        var h = hours;
+        var m = minutes;
+        var s = seconds;
+        var total = this.asSeconds();
+
+        if (!total) {
+            // this is the same as C#'s (Noda) and python (isodate)...
+            // but not other JS (goog.date)
+            return 'P0D';
+        }
+
+        return (total < 0 ? '-' : '') +
+            'P' +
+            (Y ? Y + 'Y' : '') +
+            (M ? M + 'M' : '') +
+            (D ? D + 'D' : '') +
+            ((h || m || s) ? 'T' : '') +
+            (h ? h + 'H' : '') +
+            (m ? m + 'M' : '') +
+            (s ? s + 'S' : '');
+    }
+
+    var duration_prototype__proto = Duration.prototype;
+
+    duration_prototype__proto.abs            = duration_abs__abs;
+    duration_prototype__proto.add            = duration_add_subtract__add;
+    duration_prototype__proto.subtract       = duration_add_subtract__subtract;
+    duration_prototype__proto.as             = as;
+    duration_prototype__proto.asMilliseconds = asMilliseconds;
+    duration_prototype__proto.asSeconds      = asSeconds;
+    duration_prototype__proto.asMinutes      = asMinutes;
+    duration_prototype__proto.asHours        = asHours;
+    duration_prototype__proto.asDays         = asDays;
+    duration_prototype__proto.asWeeks        = asWeeks;
+    duration_prototype__proto.asMonths       = asMonths;
+    duration_prototype__proto.asYears        = asYears;
+    duration_prototype__proto.valueOf        = duration_as__valueOf;
+    duration_prototype__proto._bubble        = bubble;
+    duration_prototype__proto.get            = duration_get__get;
+    duration_prototype__proto.milliseconds   = milliseconds;
+    duration_prototype__proto.seconds        = seconds;
+    duration_prototype__proto.minutes        = minutes;
+    duration_prototype__proto.hours          = hours;
+    duration_prototype__proto.days           = days;
+    duration_prototype__proto.weeks          = weeks;
+    duration_prototype__proto.months         = months;
+    duration_prototype__proto.years          = years;
+    duration_prototype__proto.humanize       = humanize;
+    duration_prototype__proto.toISOString    = iso_string__toISOString;
+    duration_prototype__proto.toString       = iso_string__toISOString;
+    duration_prototype__proto.toJSON         = iso_string__toISOString;
+    duration_prototype__proto.locale         = locale;
+    duration_prototype__proto.localeData     = localeData;
+
+    // Deprecations
+    duration_prototype__proto.toIsoString = deprecate('toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)', iso_string__toISOString);
+    duration_prototype__proto.lang = lang;
+
+    // Side effect imports
+
+    // FORMATTING
+
+    addFormatToken('X', 0, 0, 'unix');
+    addFormatToken('x', 0, 0, 'valueOf');
+
+    // PARSING
+
+    addRegexToken('x', matchSigned);
+    addRegexToken('X', matchTimestamp);
+    addParseToken('X', function (input, array, config) {
+        config._d = new Date(parseFloat(input, 10) * 1000);
+    });
+    addParseToken('x', function (input, array, config) {
+        config._d = new Date(toInt(input));
+    });
+
+    // Side effect imports
+
+
+    utils_hooks__hooks.version = '2.11.2';
+
+    setHookCallback(local__createLocal);
+
+    utils_hooks__hooks.fn                    = momentPrototype;
+    utils_hooks__hooks.min                   = min;
+    utils_hooks__hooks.max                   = max;
+    utils_hooks__hooks.now                   = now;
+    utils_hooks__hooks.utc                   = create_utc__createUTC;
+    utils_hooks__hooks.unix                  = moment__createUnix;
+    utils_hooks__hooks.months                = lists__listMonths;
+    utils_hooks__hooks.isDate                = isDate;
+    utils_hooks__hooks.locale                = locale_locales__getSetGlobalLocale;
+    utils_hooks__hooks.invalid               = valid__createInvalid;
+    utils_hooks__hooks.duration              = create__createDuration;
+    utils_hooks__hooks.isMoment              = isMoment;
+    utils_hooks__hooks.weekdays              = lists__listWeekdays;
+    utils_hooks__hooks.parseZone             = moment__createInZone;
+    utils_hooks__hooks.localeData            = locale_locales__getLocale;
+    utils_hooks__hooks.isDuration            = isDuration;
+    utils_hooks__hooks.monthsShort           = lists__listMonthsShort;
+    utils_hooks__hooks.weekdaysMin           = lists__listWeekdaysMin;
+    utils_hooks__hooks.defineLocale          = defineLocale;
+    utils_hooks__hooks.weekdaysShort         = lists__listWeekdaysShort;
+    utils_hooks__hooks.normalizeUnits        = normalizeUnits;
+    utils_hooks__hooks.relativeTimeThreshold = duration_humanize__getSetRelativeTimeThreshold;
+    utils_hooks__hooks.prototype             = momentPrototype;
+
+    var _moment = utils_hooks__hooks;
+
+    return _moment;
+
+}));
+
+//PURL
+
+;(function(factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(factory);
+    } else {
+        window.purl = factory();
+    }
+})(function() {
+
+    var tag2attr = {
+            a       : 'href',
+            img     : 'src',
+            form    : 'action',
+            base    : 'href',
+            script  : 'src',
+            iframe  : 'src',
+            link    : 'href',
+            embed   : 'src',
+            object  : 'data'
+        },
+
+        key = ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'fragment'], // keys available to query
+
+        aliases = { 'anchor' : 'fragment' }, // aliases for backwards compatability
+
+        parser = {
+            strict : /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,  //less intuitive, more accurate to the specs
+            loose :  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // more intuitive, fails on relative paths and deviates from specs
+        },
+
+        isint = /^[0-9]+$/;
+
+    function parseUri( url, strictMode ) {
+        var str = decodeURI( url ),
+        res   = parser[ strictMode || false ? 'strict' : 'loose' ].exec( str ),
+        uri = { attr : {}, param : {}, seg : {} },
+        i   = 14;
+
+        while ( i-- ) {
+            uri.attr[ key[i] ] = res[i] || '';
+        }
+
+        // build query and fragment parameters
+        uri.param['query'] = parseString(uri.attr['query']);
+        uri.param['fragment'] = parseString(uri.attr['fragment']);
+
+        // split path and fragement into segments
+        uri.seg['path'] = uri.attr.path.replace(/^\/+|\/+$/g,'').split('/');
+        uri.seg['fragment'] = uri.attr.fragment.replace(/^\/+|\/+$/g,'').split('/');
+
+        // compile a 'base' domain attribute
+        uri.attr['base'] = uri.attr.host ? (uri.attr.protocol ?  uri.attr.protocol+'://'+uri.attr.host : uri.attr.host) + (uri.attr.port ? ':'+uri.attr.port : '') : '';
+
+        return uri;
+    }
+
+    function getAttrName( elm ) {
+        var tn = elm.tagName;
+        if ( typeof tn !== 'undefined' ) return tag2attr[tn.toLowerCase()];
+        return tn;
+    }
+
+    function promote(parent, key) {
+        if (parent[key].length === 0) return parent[key] = {};
+        var t = {};
+        for (var i in parent[key]) t[i] = parent[key][i];
+        parent[key] = t;
+        return t;
+    }
+
+    function parse(parts, parent, key, val) {
+        var part = parts.shift();
+        if (!part) {
+            if (isArray(parent[key])) {
+                parent[key].push(val);
+            } else if ('object' == typeof parent[key]) {
+                parent[key] = val;
+            } else if ('undefined' == typeof parent[key]) {
+                parent[key] = val;
+            } else {
+                parent[key] = [parent[key], val];
+            }
+        } else {
+            var obj = parent[key] = parent[key] || [];
+            if (']' == part) {
+                if (isArray(obj)) {
+                    if ('' !== val) obj.push(val);
+                } else if ('object' == typeof obj) {
+                    obj[keys(obj).length] = val;
+                } else {
+                    obj = parent[key] = [parent[key], val];
+                }
+            } else if (~part.indexOf(']')) {
+                part = part.substr(0, part.length - 1);
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+                // key
+            } else {
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+            }
+        }
+    }
+
+    function merge(parent, key, val) {
+        if (~key.indexOf(']')) {
+            var parts = key.split('[');
+            parse(parts, parent, 'base', val);
+        } else {
+            if (!isint.test(key) && isArray(parent.base)) {
+                var t = {};
+                for (var k in parent.base) t[k] = parent.base[k];
+                parent.base = t;
+            }
+            if (key !== '') {
+                set(parent.base, key, val);
+            }
+        }
+        return parent;
+    }
+
+    function parseString(str) {
+        return reduce(String(str).split(/&|;/), function(ret, pair) {
+            try {
+                pair = decodeURIComponent(pair.replace(/\+/g, ' '));
+            } catch(e) {
+                // ignore
+            }
+            var eql = pair.indexOf('='),
+                brace = lastBraceInKey(pair),
+                key = pair.substr(0, brace || eql),
+                val = pair.substr(brace || eql, pair.length);
+
+            val = val.substr(val.indexOf('=') + 1, val.length);
+
+            if (key === '') {
+                key = pair;
+                val = '';
+            }
+
+            return merge(ret, key, val);
+        }, { base: {} }).base;
+    }
+
+    function set(obj, key, val) {
+        var v = obj[key];
+        if (typeof v === 'undefined') {
+            obj[key] = val;
+        } else if (isArray(v)) {
+            v.push(val);
+        } else {
+            obj[key] = [v, val];
+        }
+    }
+
+    function lastBraceInKey(str) {
+        var len = str.length,
+            brace,
+            c;
+        for (var i = 0; i < len; ++i) {
+            c = str[i];
+            if (']' == c) brace = false;
+            if ('[' == c) brace = true;
+            if ('=' == c && !brace) return i;
+        }
+    }
+
+    function reduce(obj, accumulator){
+        var i = 0,
+            l = obj.length >> 0,
+            curr = arguments[2];
+        while (i < l) {
+            if (i in obj) curr = accumulator.call(undefined, curr, obj[i], i, obj);
+            ++i;
+        }
+        return curr;
+    }
+
+    function isArray(vArg) {
+        return Object.prototype.toString.call(vArg) === "[object Array]";
+    }
+
+    function keys(obj) {
+        var key_array = [];
+        for ( var prop in obj ) {
+            if ( obj.hasOwnProperty(prop) ) key_array.push(prop);
+        }
+        return key_array;
+    }
+
+    function purl( url, strictMode ) {
+        if ( arguments.length === 1 && url === true ) {
+            strictMode = true;
+            url = undefined;
+        }
+        strictMode = strictMode || false;
+        url = url || window.location.toString();
+
+        return {
+
+            data : parseUri(url, strictMode),
+
+            // get various attributes from the URI
+            attr : function( attr ) {
+                attr = aliases[attr] || attr;
+                return typeof attr !== 'undefined' ? this.data.attr[attr] : this.data.attr;
+            },
+
+            // return query string parameters
+            param : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.query[param] : this.data.param.query;
+            },
+
+            // return fragment parameters
+            fparam : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.fragment[param] : this.data.param.fragment;
+            },
+
+            // return path segments
+            segment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.path;
+                } else {
+                    seg = seg < 0 ? this.data.seg.path.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.path[seg];
+                }
+            },
+
+            // return fragment segments
+            fsegment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.fragment;
+                } else {
+                    seg = seg < 0 ? this.data.seg.fragment.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.fragment[seg];
+                }
+            }
+
+        };
+
+    }
+
+    purl.jQuery = function($){
+        if ($ != null) {
+            $.fn.url = function( strictMode ) {
+                var url = '';
+                if ( this.length ) {
+                    url = $(this).attr( getAttrName(this[0]) ) || '';
+                }
+                return purl( url, strictMode );
+            };
+
+            $.url = purl;
+        }
+    };
+
+    purl.jQuery(window.jQuery);
+
+    return purl;
+
+});
+
+//Dashboard Extra 1
+
+
+Storage.prototype.setArray = function(key, obj) {
+    return this.setItem(key, JSON.stringify(obj))
+}
+Storage.prototype.getArray = function(key) {
+    return JSON.parse(this.getItem(key))
+}
+
+function getLocalFilesPushToLocalStorage() {
+
+    function listDirectory() {
+
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dirEntry) {
+            var directoryReader = dirEntry.createReader();
+            directoryReader.readEntries(dirSuccess, dirFail);
+        });
+    }
+
+    window.filesArray = []
+
+    function dirSuccess(entries) {
+        console.log("INFO: Listing entries");
+        var i;
+        for (i = 0; i < entries.length; i++) {
+            console.log(entries[i].name);
+            window.filesArray.push(entries[i].name);
+
+        }
+    }
+
+    function dirFail(error) {
+        console.log("Failed to list directory contents: " + error.code);
+    }
+
+    listDirectory();
+
+
+
+}
+function clearCache() {
+    ImgCache.clearCache(function() {
+        // continue cleanup...
+    }, function() {
+        // something went wrong
+    });
+}
+function showSearchFilter() {
+    document.getElementById('searchButton').innerText = 'Search';
+    $('searchButton').prepend('<i class="material-icons" style="font-size:30px;margin-right:20px;color:white;">search</i>');
+    $('.mdl-list__item').show();
+    search();
+}
+function logout() {
+    window.location = 'index.html';
+    //localStorage.clear();
+}
+
+//BARRATING
+
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['jquery'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node/CommonJS
+        module.exports = factory(require('jquery'));
+    } else {
+        // browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+
+    var BarRating = (function() {
+
+        function BarRating() {
+            var self = this;
+
+            // wrap element in a wrapper div
+            var wrapElement = function() {
+                var classes = [self.options.wrapperClass];
+
+                if (self.options.theme !== '') {
+                    classes.push('br-theme-' + self.options.theme);
+                }
+
+                self.$elem.wrap($('<div />', {
+                    'class': classes.join(' ')
+                }));
+            };
+
+            // unwrap element
+            var unwrapElement = function() {
+                self.$elem.unwrap();
+            };
+
+            // return initial option
+            var findInitialOption = function() {
+                var option;
+
+                if (self.options.initialRating) {
+                    option = $('option[value="' + self.options.initialRating  + '"]', self.$elem);
+                } else {
+                    option = $('option:selected', self.$elem);
+                }
+
+                return option;
+            };
+
+            // get data
+            var getData = function(key) {
+                var data = self.$elem.data('barrating');
+
+                if (typeof key !== 'undefined') {
+                    return data[key];
+                }
+
+                return data;
+            };
+
+            // set data
+            var setData = function(key, value) {
+                if (value !== null && typeof value === 'object') {
+                    self.$elem.data('barrating', value);
+                } else {
+                    self.$elem.data('barrating')[key] = value;
+                }
+            };
+
+            // save data on element
+            var saveDataOnElement = function() {
+                var $opt = findInitialOption();
+
+                setData(null, {
+                    userOptions: self.options,
+
+                    // initial rating based on the OPTION value
+                    ratingValue: $opt.val(),
+                    ratingText: ($opt.data('html')) ? $opt.data('html') : $opt.text(),
+
+                    // rating will be restored by calling clear method
+                    originalRatingValue: $opt.val(),
+                    originalRatingText: ($opt.data('html')) ? $opt.data('html') : $opt.text(),
+
+                    // read-only state
+                    readOnly: self.options.readonly,
+
+                    // first OPTION empty - allow deselecting of ratings
+                    deselectable: (!self.$elem.find('option:first').val()) ? true : false
+                });
+            };
+
+            // remove data on element
+            var removeDataOnElement = function() {
+                self.$elem.removeData('barrating');
+            };
+
+            // return current rating text
+            var ratingText = function() {
+                return getData('ratingText');
+            };
+
+            // return current rating value
+            var ratingValue = function() {
+                return getData('ratingValue');
+            };
+
+            // build widget and return jQuery element
+            var buildWidget = function() {
+                var $w = $('<div />', { 'class': 'br-widget' });
+
+                // create A elements that will replace OPTIONs
+                self.$elem.find('option').each(function() {
+                    var val, text, html, $a;
+
+                    val = $(this).val();
+
+                    // create ratings - but only if val is defined
+                    if (val) {
+                        text = $(this).text();
+                        html = $(this).data('html');
+                        if (html) { text = html; }
+
+                        $a = $('<a />', {
+                            'href': '#',
+                            'data-rating-value': val,
+                            'data-rating-text': text,
+                            'html': (self.options.showValues) ? text : ''
+                        });
+
+                        $w.append($a);
+                    }
+
+                });
+
+                // append .br-current-rating div to the widget
+                if (self.options.showSelectedRating) {
+                    $w.append($('<div />', { 'text': '', 'class': 'br-current-rating' }));
+                }
+
+                // additional classes for the widget
+                if (self.options.reverse) {
+                    $w.addClass('br-reverse');
+                }
+
+                if (self.options.readonly) {
+                    $w.addClass('br-readonly');
+                }
+
+                return $w;
+            };
+
+            // return a jQuery function name depending on the 'reverse' setting
+            var nextAllorPreviousAll = function() {
+                if (getData('userOptions').reverse) {
+                    return 'nextAll';
+                } else {
+                    return 'prevAll';
+                }
+            };
+
+            // set the value of the select field
+            var setSelectFieldValue = function(value) {
+                // change selected OPTION in the select field (hidden)
+                self.$elem.find('option[value="' + value + '"]').prop('selected', true);
+                self.$elem.change();
+            };
+
+            // display the currently selected rating
+            var showSelectedRating = function(text) {
+                // text undefined?
+                text = text ? text : ratingText();
+
+                // update .br-current-rating div
+                if (self.options.showSelectedRating) {
+                    self.$elem.parent().find('.br-current-rating').text(text);
+                }
+            };
+
+            // apply style by setting classes on elements
+            var applyStyle = function() {
+                // remove classes
+                self.$widget.find('a').removeClass('br-selected br-current');
+
+                // add classes
+                self.$widget.find('a[data-rating-value="' + ratingValue() + '"]')
+                    .addClass('br-selected br-current')[nextAllorPreviousAll()]()
+                    .addClass('br-selected');
+            };
+
+            // check if the element is deselectable?
+            var isDeselectable = function($element) {
+                return ($element.hasClass('br-current') && getData('deselectable'));
+            };
+
+            // handle click events
+            var attachClickHandler = function($elements) {
+                $elements.on('click.barrating', function(event) {
+                    var $a = $(this),
+                        options = getData('userOptions'),
+                        value,
+                        text;
+
+                    event.preventDefault();
+
+                    $elements.removeClass('br-active br-selected');
+                    $a.addClass('br-selected')[nextAllorPreviousAll()]()
+                        .addClass('br-selected');
+
+                    value = $a.attr('data-rating-value');
+                    text = $a.attr('data-rating-text');
+
+                    // is current and deselectable?
+                    if (isDeselectable($a)) {
+                        $a.removeClass('br-selected br-current')[nextAllorPreviousAll()]()
+                            .removeClass('br-selected br-current');
+                        value = ''; text = '';
+                    } else {
+                        $elements.removeClass('br-current');
+                        $a.addClass('br-current');
+                    }
+
+                    // remember selected rating
+                    setData('ratingValue', value);
+                    setData('ratingText', text);
+
+                    setSelectFieldValue(value);
+                    showSelectedRating(text);
+
+                    // onSelect callback
+                    options.onSelect.call(
+                        self,
+                        ratingValue(),
+                        ratingText(),
+                        event
+                    );
+
+                    return false;
+                });
+            };
+
+            // handle mouseenter events
+            var attachMouseEnterHandler = function($elements) {
+                $elements.on('mouseenter.barrating focus.barrating', function() {
+                    var $a = $(this);
+
+                    $elements.removeClass('br-active br-selected');
+                    $a.addClass('br-active')[nextAllorPreviousAll()]()
+                        .addClass('br-active');
+
+                    showSelectedRating($a.attr('data-rating-text'));
+                });
+            };
+
+            // handle mouseleave events
+            var attachMouseLeaveHandler = function($elements) {
+                self.$widget.on('mouseleave.barrating blur.barrating', function() {
+                    $elements.removeClass('br-active');
+                    showSelectedRating();
+                    applyStyle();
+                });
+            };
+
+            // somewhat primitive way to remove 300ms click delay on touch devices
+            // for a more advanced solution consider setting `fastClicks` option to false
+            // and using a library such as fastclick (https://github.com/ftlabs/fastclick)
+            var fastClicks = function($elements) {
+                $elements.on('touchstart.barrating', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    $(this).click();
+                });
+            };
+
+            // disable clicks
+            var disableClicks = function($elements) {
+                $elements.on('click.barrating', function(event) {
+                    event.preventDefault();
+                });
+            };
+
+            var attachHandlers = function($elements) {
+                // attach click event handler
+                attachClickHandler($elements);
+
+                if (self.options.hoverState) {
+                    // attach mouseenter event handler
+                    attachMouseEnterHandler($elements);
+
+                    // attach mouseleave event handler
+                    attachMouseLeaveHandler($elements);
+                }
+            };
+
+            var detachHandlers = function($elements) {
+                // remove event handlers in the ".barrating" namespace
+                $elements.off('.barrating');
+            };
+
+            var setupHandlers = function(readonly) {
+                $elements = self.$widget.find('a');
+
+                if (fastClicks) {
+                    fastClicks($elements);
+                }
+
+                if (readonly) {
+                    detachHandlers($elements);
+                    disableClicks($elements);
+                } else {
+                    attachHandlers($elements);
+                }
+            };
+
+            this.show = function() {
+                // run only once
+                if (getData()) return;
+
+                // wrap element
+                wrapElement();
+
+                // save data
+                saveDataOnElement();
+
+                // build & append widget to the DOM
+                self.$widget = buildWidget();
+                self.$widget.insertAfter(self.$elem);
+
+                applyStyle();
+
+                showSelectedRating();
+
+                setupHandlers(self.options.readonly);
+
+                // hide the select field
+                self.$elem.hide();
+            };
+
+            this.readonly = function(state) {
+                if (typeof state !== 'boolean' || getData('readOnly') == state) return;
+
+                setupHandlers(state);
+                setData('readOnly', state);
+                self.$widget.toggleClass('br-readonly');
+            };
+
+            this.set = function(value) {
+                var options = getData('userOptions');
+
+                if (!self.$elem.find('option[value="' + value + '"]').val()) return;
+
+                // set data
+                setData('ratingValue', value);
+                setData('ratingText', self.$elem.find('option[value="' + value + '"]').text());
+
+                setSelectFieldValue(ratingValue());
+                showSelectedRating(ratingText());
+
+                applyStyle();
+
+                // onSelect callback
+                if (!options.silent) {
+                    options.onSelect.call(
+                        this,
+                        ratingValue(),
+                        ratingText()
+                    );
+                }
+            };
+
+            this.clear = function() {
+                var options = getData('userOptions');
+
+                // restore original data
+                setData('ratingValue', getData('originalRatingValue'));
+                setData('ratingText', getData('originalRatingText'));
+
+                setSelectFieldValue(ratingValue());
+                showSelectedRating(ratingText());
+
+                applyStyle();
+
+                // onClear callback
+                options.onClear.call(
+                    this,
+                    ratingValue(),
+                    ratingText()
+                );
+            };
+
+            this.destroy = function() {
+                var value = ratingValue();
+                var text = ratingText();
+                var options = getData('userOptions');
+
+                // detach handlers
+                detachHandlers(self.$widget.find('a'));
+
+                // remove widget
+                self.$widget.remove();
+
+                // remove data
+                removeDataOnElement();
+
+                // unwrap the element
+                unwrapElement();
+
+                // show the element
+                self.$elem.show();
+
+                // onDestroy callback
+                options.onDestroy.call(
+                    this,
+                    value,
+                    text
+                );
+            };
+        }
+
+        BarRating.prototype.init = function (options, elem) {
+            this.$elem = $(elem);
+            this.options = $.extend({}, $.fn.barrating.defaults, options);
+
+            return this.options;
+        };
+
+        return BarRating;
+    })();
+
+    $.fn.barrating = function (method, options) {
+        return this.each(function () {
+            var plugin = new BarRating();
+
+            // plugin works with select fields
+            if (!$(this).is('select')) {
+                $.error('Sorry, this plugin only works with select fields.');
+            }
+
+            // method supplied
+            if (plugin.hasOwnProperty(method)) {
+                plugin.init(options, this);
+                if (method === 'show') {
+                    return plugin.show(options);
+                } else {
+                    // plugin exists?
+                    if (plugin.$elem.data('barrating')) {
+                        plugin.$widget = $(this).next('.br-widget');
+                        return plugin[method](options);
+                    }
+                }
+
+            // no method supplied or only options supplied
+            } else if (typeof method === 'object' || !method) {
+                options = method;
+                plugin.init(options, this);
+                return plugin.show();
+
+            } else {
+                $.error('Method ' + method + ' does not exist on jQuery.barrating');
+            }
+        });
+    };
+
+    $.fn.barrating.defaults = {
+        theme:'',
+        initialRating:null, // initial rating
+        showValues:false, // display rating values on the bars?
+        showSelectedRating:true, // append a div with a rating to the widget?
+        reverse:false, // reverse the rating?
+        readonly:false, // make the rating ready-only?
+        fastClicks:true, // remove 300ms click delay on touch devices?
+        hoverState:true, // change state on hover?
+        silent:false, // supress callbacks when controlling ratings programatically
+        wrapperClass:'br-wrapper', // class applied to wrapper div
+        onSelect:function (value, text, event) {
+        }, // callback fired when a rating is selected
+        onClear:function (value, text) {
+        }, // callback fired when a rating is cleared
+        onDestroy:function (value, text) {
+        } // callback fired when a widget is destroyed
+    };
+
+    $.fn.barrating.BarRating = BarRating;
+
+}));
+
+// Dashboard Extra
+
+function login() {
+    window.location = "https://www.thebodyofchrist.us/login/";
+}
+
+function toggleBible() {
+    if ($('#bibleSermonTabButton').hasClass('is-active')) {
+        $('#bibleSermonTabButton').removeClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Bible") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Empty');
+        }
+        if (localStorage.getItem('sermonTab3') == "Bible") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Empty');
+        }
+        $(window.targetTab).empty();
+    } else {
+
+        if (sermonData.results[0].book == null){
+        var snackbarContainer = document.querySelector('#alertToast');
+        var data = {message: "This sermon doesn't have a particular book registered."};
+        snackbarContainer.MaterialSnackbar.showSnackbar(data);
+
+}
+else{
+        $('#bibleSermonTabButton').addClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Empty") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Bible');
+            $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+            return;
+        }
+        if (localStorage.getItem('sermonTab3') == "Empty") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Bible');
+            $(window.targetTab).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+            return;
+        }
+
+        }
+
+    }
+}
+
+function toggleComments() {
+    if ($('#commentSermonTabButton').hasClass('is-active')) {
+        $('#commentSermonTabButton').removeClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Comments") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Empty');
+        }
+        if (localStorage.getItem('sermonTab3') == "Comments") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Empty');
+        }
+        $(window.targetTab).empty();
+    } else {
+        $('#commentSermonTabButton').addClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Empty") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Comments');
+            url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+            $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+            FB.XFBML.parse();
+            return;
+        }
+        if (localStorage.getItem('sermonTab3') == "Empty") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Comments');
+            url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+            $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+            FB.XFBML.parse();
+            return;
+        }
+    }
+}
+
+function togglePlaylist() {
+    if ($('#playlistSermonTab').hasClass('is-active')) {
+        $('#playlistSermonTab').removeClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Playlist") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Empty');
+        }
+        if (localStorage.getItem('sermonTab3') == "Playlist") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Empty');
+        }
+        $(window.targetTab).empty();
+    } else {
+        $('#playlistSermonTab').addClass('is-active');
+        if (localStorage.getItem('sermonTab2') == "Empty") {
+            window.targetTab = "#secondTabSermon";
+            localStorage.setItem('sermonTab2', 'Playlist');
+             jQuery.ajax({
+        url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+       type: "GET",
+      }).done(function(playlistHTML, textStatus, jqXHR) {
+        $(winow.targetTab).append(playlistHTML);
+            return;
+        });
+  }
+        if (localStorage.getItem('sermonTab3') == "Empty") {
+            window.targetTab = "#thirdTabSermon";
+            localStorage.setItem('sermonTab3', 'Playlist');
+             jQuery.ajax({
+        url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+       type: "GET",
+      }).done(function(playlistHTML, textStatus, jqXHR) {
+        $(window.targetTab).append(playlistHTML);
+            return;
+        });
+  }
+    }
+}
+
+// JQUERY SCROLLBAR
+
+;(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], factory);
+    } else {
+        factory(root.jQuery);
+    }
+}(this, function ($) {
+    'use strict';
+
+    // init flags & variables
+    var debug = false;
+
+    var browser = {
+        data: {
+            index: 0,
+            name: 'scrollbar'
+        },
+        macosx: /mac/i.test(navigator.platform),
+        mobile: /android|webos|iphone|ipad|ipod|blackberry/i.test(navigator.userAgent),
+        overlay: null,
+        scroll: null,
+        scrolls: [],
+        webkit: /webkit/i.test(navigator.userAgent) && !/edge\/\d+/i.test(navigator.userAgent)
+    };
+
+    browser.scrolls.add = function (instance) {
+        this.remove(instance).push(instance);
+    };
+    browser.scrolls.remove = function (instance) {
+        while ($.inArray(instance, this) >= 0) {
+            this.splice($.inArray(instance, this), 1);
+        }
+        return this;
+    };
+
+    var defaults = {
+        "autoScrollSize": true,     // automatically calculate scrollsize
+        "autoUpdate": true,         // update scrollbar if content/container size changed
+        "debug": false,             // debug mode
+        "disableBodyScroll": false, // disable body scroll if mouse over container
+        "duration": 200,            // scroll animate duration in ms
+        "ignoreMobile": false,      // ignore mobile devices
+        "ignoreOverlay": false,     // ignore browsers with overlay scrollbars (mobile, MacOS)
+        "scrollStep": 30,           // scroll step for scrollbar arrows
+        "showArrows": false,        // add class to show arrows
+        "stepScrolling": true,      // when scrolling to scrollbar mousedown position
+
+        "scrollx": null,            // horizontal scroll element
+        "scrolly": null,            // vertical scroll element
+
+        "onDestroy": null,          // callback function on destroy,
+        "onInit": null,             // callback function on first initialization
+        "onScroll": null,           // callback function on content scrolling
+        "onUpdate": null            // callback function on init/resize (before scrollbar size calculation)
+    };
+
+
+    var BaseScrollbar = function (container) {
+
+        if (!browser.scroll) {
+            browser.overlay = isScrollOverlaysContent();
+            browser.scroll = getBrowserScrollSize();
+            updateScrollbars();
+
+            $(window).resize(function () {
+                var forceUpdate = false;
+                if (browser.scroll && (browser.scroll.height || browser.scroll.width)) {
+                    var scroll = getBrowserScrollSize();
+                    if (scroll.height !== browser.scroll.height || scroll.width !== browser.scroll.width) {
+                        browser.scroll = scroll;
+                        forceUpdate = true; // handle page zoom
+                    }
+                }
+                updateScrollbars(forceUpdate);
+            });
+        }
+
+        this.container = container;
+        this.namespace = '.scrollbar_' + browser.data.index++;
+        this.options = $.extend({}, defaults, window.jQueryScrollbarOptions || {});
+        this.scrollTo = null;
+        this.scrollx = {};
+        this.scrolly = {};
+
+        container.data(browser.data.name, this);
+        browser.scrolls.add(this);
+    };
+
+    BaseScrollbar.prototype = {
+
+        destroy: function () {
+
+            if (!this.wrapper) {
+                return;
+            }
+
+            this.container.removeData(browser.data.name);
+            browser.scrolls.remove(this);
+
+            // init variables
+            var scrollLeft = this.container.scrollLeft();
+            var scrollTop = this.container.scrollTop();
+
+            this.container.insertBefore(this.wrapper).css({
+                "height": "",
+                "margin": "",
+                "max-height": ""
+            })
+                .removeClass('scroll-content scroll-scrollx_visible scroll-scrolly_visible')
+                .off(this.namespace)
+                .scrollLeft(scrollLeft)
+                .scrollTop(scrollTop);
+
+            this.scrollx.scroll.removeClass('scroll-scrollx_visible').find('div').andSelf().off(this.namespace);
+            this.scrolly.scroll.removeClass('scroll-scrolly_visible').find('div').andSelf().off(this.namespace);
+
+            this.wrapper.remove();
+
+            $(document).add('body').off(this.namespace);
+
+            if ($.isFunction(this.options.onDestroy)){
+                this.options.onDestroy.apply(this, [this.container]);
+            }
+        },
+        init: function (options) {
+
+            // init variables
+            var S = this,
+                c = this.container,
+                cw = this.containerWrapper || c,
+                namespace = this.namespace,
+                o = $.extend(this.options, options || {}),
+                s = {x: this.scrollx, y: this.scrolly},
+                w = this.wrapper;
+
+            var initScroll = {
+                "scrollLeft": c.scrollLeft(),
+                "scrollTop": c.scrollTop()
+            };
+
+            // do not init if in ignorable browser
+            if ((browser.mobile && o.ignoreMobile)
+                || (browser.overlay && o.ignoreOverlay)
+                || (browser.macosx && !browser.webkit) // still required to ignore nonWebKit browsers on Mac
+                ) {
+                return false;
+            }
+
+            // init scroll container
+            if (!w) {
+                this.wrapper = w = $('<div>').addClass('scroll-wrapper').addClass(c.attr('class'))
+                    .css('position', c.css('position') == 'absolute' ? 'absolute' : 'relative')
+                    .insertBefore(c).append(c);
+
+                if (c.is('textarea')) {
+                    this.containerWrapper = cw = $('<div>').insertBefore(c).append(c);
+                    w.addClass('scroll-textarea');
+                }
+
+                cw.addClass('scroll-content').css({
+                    "height": "auto",
+                    "margin-bottom": browser.scroll.height * -1 + 'px',
+                    "margin-right": browser.scroll.width * -1 + 'px',
+                    "max-height": ""
+                });
+
+                c.on('scroll' + namespace, function (event) {
+                    if ($.isFunction(o.onScroll)) {
+                        o.onScroll.call(S, {
+                            "maxScroll": s.y.maxScrollOffset,
+                            "scroll": c.scrollTop(),
+                            "size": s.y.size,
+                            "visible": s.y.visible
+                        }, {
+                            "maxScroll": s.x.maxScrollOffset,
+                            "scroll": c.scrollLeft(),
+                            "size": s.x.size,
+                            "visible": s.x.visible
+                        });
+                    }
+                    s.x.isVisible && s.x.scroll.bar.css('left', c.scrollLeft() * s.x.kx + 'px');
+                    s.y.isVisible && s.y.scroll.bar.css('top', c.scrollTop() * s.y.kx + 'px');
+                });
+
+                /* prevent native scrollbars to be visible on #anchor click */
+                w.on('scroll' + namespace, function () {
+                    w.scrollTop(0).scrollLeft(0);
+                });
+
+                if (o.disableBodyScroll) {
+                    var handleMouseScroll = function (event) {
+                        isVerticalScroll(event) ?
+                            s.y.isVisible && s.y.mousewheel(event) :
+                            s.x.isVisible && s.x.mousewheel(event);
+                    };
+                    w.on('MozMousePixelScroll' + namespace, handleMouseScroll);
+                    w.on('mousewheel' + namespace, handleMouseScroll);
+
+                    if (browser.mobile) {
+                        w.on('touchstart' + namespace, function (event) {
+                            var touch = event.originalEvent.touches && event.originalEvent.touches[0] || event;
+                            var originalTouch = {
+                                "pageX": touch.pageX,
+                                "pageY": touch.pageY
+                            };
+                            var originalScroll = {
+                                "left": c.scrollLeft(),
+                                "top": c.scrollTop()
+                            };
+                            $(document).on('touchmove' + namespace, function (event) {
+                                var touch = event.originalEvent.targetTouches && event.originalEvent.targetTouches[0] || event;
+                                c.scrollLeft(originalScroll.left + originalTouch.pageX - touch.pageX);
+                                c.scrollTop(originalScroll.top + originalTouch.pageY - touch.pageY);
+                                event.preventDefault();
+                            });
+                            $(document).on('touchend' + namespace, function () {
+                                $(document).off(namespace);
+                            });
+                        });
+                    }
+                }
+                if ($.isFunction(o.onInit)){
+                    o.onInit.apply(this, [c]);
+                }
+            } else {
+                cw.css({
+                    "height": "auto",
+                    "margin-bottom": browser.scroll.height * -1 + 'px',
+                    "margin-right": browser.scroll.width * -1 + 'px',
+                    "max-height": ""
+                });
+            }
+
+            // init scrollbars & recalculate sizes
+            $.each(s, function (d, scrollx) {
+
+                var scrollCallback = null;
+                var scrollForward = 1;
+                var scrollOffset = (d === 'x') ? 'scrollLeft' : 'scrollTop';
+                var scrollStep = o.scrollStep;
+                var scrollTo = function () {
+                    var currentOffset = c[scrollOffset]();
+                    c[scrollOffset](currentOffset + scrollStep);
+                    if (scrollForward == 1 && (currentOffset + scrollStep) >= scrollToValue)
+                        currentOffset = c[scrollOffset]();
+                    if (scrollForward == -1 && (currentOffset + scrollStep) <= scrollToValue)
+                        currentOffset = c[scrollOffset]();
+                    if (c[scrollOffset]() == currentOffset && scrollCallback) {
+                        scrollCallback();
+                    }
+                }
+                var scrollToValue = 0;
+
+                if (!scrollx.scroll) {
+
+                    scrollx.scroll = S._getScroll(o['scroll' + d]).addClass('scroll-' + d);
+
+                    if(o.showArrows){
+                        scrollx.scroll.addClass('scroll-element_arrows_visible');
+                    }
+
+                    scrollx.mousewheel = function (event) {
+
+                        if (!scrollx.isVisible || (d === 'x' && isVerticalScroll(event))) {
+                            return true;
+                        }
+                        if (d === 'y' && !isVerticalScroll(event)) {
+                            s.x.mousewheel(event);
+                            return true;
+                        }
+
+                        var delta = event.originalEvent.wheelDelta * -1 || event.originalEvent.detail;
+                        var maxScrollValue = scrollx.size - scrollx.visible - scrollx.offset;
+
+                        if ((delta > 0 && scrollToValue < maxScrollValue) || (delta < 0 && scrollToValue > 0)) {
+                            scrollToValue = scrollToValue + delta;
+                            if (scrollToValue < 0)
+                                scrollToValue = 0;
+                            if (scrollToValue > maxScrollValue)
+                                scrollToValue = maxScrollValue;
+
+                            S.scrollTo = S.scrollTo || {};
+                            S.scrollTo[scrollOffset] = scrollToValue;
+                            setTimeout(function () {
+                                if (S.scrollTo) {
+                                    c.stop().animate(S.scrollTo, 240, 'linear', function () {
+                                        scrollToValue = c[scrollOffset]();
+                                    });
+                                    S.scrollTo = null;
+                                }
+                            }, 1);
+                        }
+
+                        event.preventDefault();
+                        return false;
+                    };
+
+                    scrollx.scroll
+                        .on('MozMousePixelScroll' + namespace, scrollx.mousewheel)
+                        .on('mousewheel' + namespace, scrollx.mousewheel)
+                        .on('mouseenter' + namespace, function () {
+                            scrollToValue = c[scrollOffset]();
+                        });
+
+                    // handle arrows & scroll inner mousedown event
+                    scrollx.scroll.find('.scroll-arrow, .scroll-element_track')
+                        .on('mousedown' + namespace, function (event) {
+
+                            if (event.which != 1) // lmb
+                                return true;
+
+                            scrollForward = 1;
+
+                            var data = {
+                                "eventOffset": event[(d === 'x') ? 'pageX' : 'pageY'],
+                                "maxScrollValue": scrollx.size - scrollx.visible - scrollx.offset,
+                                "scrollbarOffset": scrollx.scroll.bar.offset()[(d === 'x') ? 'left' : 'top'],
+                                "scrollbarSize": scrollx.scroll.bar[(d === 'x') ? 'outerWidth' : 'outerHeight']()
+                            };
+                            var timeout = 0, timer = 0;
+
+                            if ($(this).hasClass('scroll-arrow')) {
+                                scrollForward = $(this).hasClass("scroll-arrow_more") ? 1 : -1;
+                                scrollStep = o.scrollStep * scrollForward;
+                                scrollToValue = scrollForward > 0 ? data.maxScrollValue : 0;
+                            } else {
+                                scrollForward = (data.eventOffset > (data.scrollbarOffset + data.scrollbarSize) ? 1
+                                    : (data.eventOffset < data.scrollbarOffset ? -1 : 0));
+                                scrollStep = Math.round(scrollx.visible * 0.75) * scrollForward;
+                                scrollToValue = (data.eventOffset - data.scrollbarOffset -
+                                    (o.stepScrolling ? (scrollForward == 1 ? data.scrollbarSize : 0)
+                                        : Math.round(data.scrollbarSize / 2)));
+                                scrollToValue = c[scrollOffset]() + (scrollToValue / scrollx.kx);
+                            }
+
+                            S.scrollTo = S.scrollTo || {};
+                            S.scrollTo[scrollOffset] = o.stepScrolling ? c[scrollOffset]() + scrollStep : scrollToValue;
+
+                            if (o.stepScrolling) {
+                                scrollCallback = function () {
+                                    scrollToValue = c[scrollOffset]();
+                                    clearInterval(timer);
+                                    clearTimeout(timeout);
+                                    timeout = 0;
+                                    timer = 0;
+                                };
+                                timeout = setTimeout(function () {
+                                    timer = setInterval(scrollTo, 40);
+                                }, o.duration + 100);
+                            }
+
+                            setTimeout(function () {
+                                if (S.scrollTo) {
+                                    c.animate(S.scrollTo, o.duration);
+                                    S.scrollTo = null;
+                                }
+                            }, 1);
+
+                            return S._handleMouseDown(scrollCallback, event);
+                        });
+
+                    // handle scrollbar drag'n'drop
+                    scrollx.scroll.bar.on('mousedown' + namespace, function (event) {
+
+                        if (event.which != 1) // lmb
+                            return true;
+
+                        var eventPosition = event[(d === 'x') ? 'pageX' : 'pageY'];
+                        var initOffset = c[scrollOffset]();
+
+                        scrollx.scroll.addClass('scroll-draggable');
+
+                        $(document).on('mousemove' + namespace, function (event) {
+                            var diff = parseInt((event[(d === 'x') ? 'pageX' : 'pageY'] - eventPosition) / scrollx.kx, 10);
+                            c[scrollOffset](initOffset + diff);
+                        });
+
+                        return S._handleMouseDown(function () {
+                            scrollx.scroll.removeClass('scroll-draggable');
+                            scrollToValue = c[scrollOffset]();
+                        }, event);
+                    });
+                }
+            });
+
+            // remove classes & reset applied styles
+            $.each(s, function (d, scrollx) {
+                var scrollClass = 'scroll-scroll' + d + '_visible';
+                var scrolly = (d == "x") ? s.y : s.x;
+
+                scrollx.scroll.removeClass(scrollClass);
+                scrolly.scroll.removeClass(scrollClass);
+                cw.removeClass(scrollClass);
+            });
+
+            // calculate init sizes
+            $.each(s, function (d, scrollx) {
+                $.extend(scrollx, (d == "x") ? {
+                    "offset": parseInt(c.css('left'), 10) || 0,
+                    "size": c.prop('scrollWidth'),
+                    "visible": w.width()
+                } : {
+                    "offset": parseInt(c.css('top'), 10) || 0,
+                    "size": c.prop('scrollHeight'),
+                    "visible": w.height()
+                });
+            });
+
+            // update scrollbar visibility/dimensions
+            this._updateScroll('x', this.scrollx);
+            this._updateScroll('y', this.scrolly);
+
+            if ($.isFunction(o.onUpdate)){
+                o.onUpdate.apply(this, [c]);
+            }
+
+            // calculate scroll size
+            $.each(s, function (d, scrollx) {
+
+                var cssOffset = (d === 'x') ? 'left' : 'top';
+                var cssFullSize = (d === 'x') ? 'outerWidth' : 'outerHeight';
+                var cssSize = (d === 'x') ? 'width' : 'height';
+                var offset = parseInt(c.css(cssOffset), 10) || 0;
+
+                var AreaSize = scrollx.size;
+                var AreaVisible = scrollx.visible + offset;
+
+                var scrollSize = scrollx.scroll.size[cssFullSize]() + (parseInt(scrollx.scroll.size.css(cssOffset), 10) || 0);
+
+                if (o.autoScrollSize) {
+                    scrollx.scrollbarSize = parseInt(scrollSize * AreaVisible / AreaSize, 10);
+                    scrollx.scroll.bar.css(cssSize, scrollx.scrollbarSize + 'px');
+                }
+
+                scrollx.scrollbarSize = scrollx.scroll.bar[cssFullSize]();
+                scrollx.kx = ((scrollSize - scrollx.scrollbarSize) / (AreaSize - AreaVisible)) || 1;
+                scrollx.maxScrollOffset = AreaSize - AreaVisible;
+            });
+
+            c.scrollLeft(initScroll.scrollLeft).scrollTop(initScroll.scrollTop).trigger('scroll');
+        },
+
+        /**
+         * Get scrollx/scrolly object
+         *
+         * @param {Mixed} scroll
+         * @returns {jQuery} scroll object
+         */
+        _getScroll: function (scroll) {
+            var types = {
+                advanced: [
+                    '<div class="scroll-element">',
+                    '<div class="scroll-element_corner"></div>',
+                    '<div class="scroll-arrow scroll-arrow_less"></div>',
+                    '<div class="scroll-arrow scroll-arrow_more"></div>',
+                    '<div class="scroll-element_outer">',
+                    '<div class="scroll-element_size"></div>', // required! used for scrollbar size calculation !
+                    '<div class="scroll-element_inner-wrapper">',
+                    '<div class="scroll-element_inner scroll-element_track">', // used for handling scrollbar click
+                    '<div class="scroll-element_inner-bottom"></div>',
+                    '</div>',
+                    '</div>',
+                    '<div class="scroll-bar">', // required
+                    '<div class="scroll-bar_body">',
+                    '<div class="scroll-bar_body-inner"></div>',
+                    '</div>',
+                    '<div class="scroll-bar_bottom"></div>',
+                    '<div class="scroll-bar_center"></div>',
+                    '</div>',
+                    '</div>',
+                    '</div>'
+                ].join(''),
+                simple: [
+                    '<div class="scroll-element">',
+                    '<div class="scroll-element_outer">',
+                    '<div class="scroll-element_size"></div>', // required! used for scrollbar size calculation !
+                    '<div class="scroll-element_track"></div>', // used for handling scrollbar click
+                    '<div class="scroll-bar"></div>', // required
+                    '</div>',
+                    '</div>'
+                ].join('')
+            };
+            if (types[scroll]) {
+                scroll = types[scroll];
+            }
+            if (!scroll) {
+                scroll = types['simple'];
+            }
+            if (typeof (scroll) == 'string') {
+                scroll = $(scroll).appendTo(this.wrapper);
+            } else {
+                scroll = $(scroll);
+            }
+            $.extend(scroll, {
+                bar: scroll.find('.scroll-bar'),
+                size: scroll.find('.scroll-element_size'),
+                track: scroll.find('.scroll-element_track')
+            });
+            return scroll;
+        },
+
+        _handleMouseDown: function(callback, event) {
+
+            var namespace = this.namespace;
+
+            $(document).on('blur' + namespace, function () {
+                $(document).add('body').off(namespace);
+                callback && callback();
+            });
+            $(document).on('dragstart' + namespace, function (event) {
+                event.preventDefault();
+                return false;
+            });
+            $(document).on('mouseup' + namespace, function () {
+                $(document).add('body').off(namespace);
+                callback && callback();
+            });
+            $('body').on('selectstart' + namespace, function (event) {
+                event.preventDefault();
+                return false;
+            });
+
+            event && event.preventDefault();
+            return false;
+        },
+
+        _updateScroll: function (d, scrollx) {
+
+            var container = this.container,
+                containerWrapper = this.containerWrapper || container,
+                scrollClass = 'scroll-scroll' + d + '_visible',
+                scrolly = (d === 'x') ? this.scrolly : this.scrollx,
+                offset = parseInt(this.container.css((d === 'x') ? 'left' : 'top'), 10) || 0,
+                wrapper = this.wrapper;
+
+            var AreaSize = scrollx.size;
+            var AreaVisible = scrollx.visible + offset;
+
+            scrollx.isVisible = (AreaSize - AreaVisible) > 1; // bug in IE9/11 with 1px diff
+            if (scrollx.isVisible) {
+                scrollx.scroll.addClass(scrollClass);
+                scrolly.scroll.addClass(scrollClass);
+                containerWrapper.addClass(scrollClass);
+            } else {
+                scrollx.scroll.removeClass(scrollClass);
+                scrolly.scroll.removeClass(scrollClass);
+                containerWrapper.removeClass(scrollClass);
+            }
+
+            if (d === 'y') {
+                if(container.is('textarea') || AreaSize < AreaVisible){
+                    containerWrapper.css({
+                        "height": (AreaVisible + browser.scroll.height) + 'px',
+                        "max-height": "none"
+                    });
+                } else {
+                    containerWrapper.css({
+                        //"height": "auto", // do not reset height value: issue with height:100%!
+                        "max-height": (AreaVisible + browser.scroll.height) + 'px'
+                    });
+                }
+            }
+
+            if (scrollx.size != container.prop('scrollWidth')
+                || scrolly.size != container.prop('scrollHeight')
+                || scrollx.visible != wrapper.width()
+                || scrolly.visible != wrapper.height()
+                || scrollx.offset != (parseInt(container.css('left'), 10) || 0)
+                || scrolly.offset != (parseInt(container.css('top'), 10) || 0)
+                ) {
+                $.extend(this.scrollx, {
+                    "offset": parseInt(container.css('left'), 10) || 0,
+                    "size": container.prop('scrollWidth'),
+                    "visible": wrapper.width()
+                });
+                $.extend(this.scrolly, {
+                    "offset": parseInt(container.css('top'), 10) || 0,
+                    "size": this.container.prop('scrollHeight'),
+                    "visible": wrapper.height()
+                });
+                this._updateScroll(d === 'x' ? 'y' : 'x', scrolly);
+            }
+        }
+    };
+
+    var CustomScrollbar = BaseScrollbar;
+
+    /*
+     * Extend jQuery as plugin
+     *
+     * @param {Mixed} command to execute
+     * @param {Mixed} arguments as Array
+     * @return {jQuery}
+     */
+    $.fn.scrollbar = function (command, args) {
+        if (typeof command !== 'string') {
+            args = command;
+            command = 'init';
+        }
+        if (typeof args === 'undefined') {
+            args = [];
+        }
+        if (!$.isArray(args)) {
+            args = [args];
+        }
+        this.not('body, .scroll-wrapper').each(function () {
+            var element = $(this),
+                instance = element.data(browser.data.name);
+            if (instance || command === 'init') {
+                if (!instance) {
+                    instance = new CustomScrollbar(element);
+                }
+                if (instance[command]) {
+                    instance[command].apply(instance, args);
+                }
+            }
+        });
+        return this;
+    };
+
+    /**
+     * Connect default options to global object
+     */
+    $.fn.scrollbar.options = defaults;
+
+
+    /**
+     * Check if scroll content/container size is changed
+     */
+
+    var updateScrollbars = (function () {
+        var timer = 0,
+            timerCounter = 0;
+
+        return function (force) {
+            var i, container, options, scroll, wrapper, scrollx, scrolly;
+            for (i = 0; i < browser.scrolls.length; i++) {
+                scroll = browser.scrolls[i];
+                container = scroll.container;
+                options = scroll.options;
+                wrapper = scroll.wrapper;
+                scrollx = scroll.scrollx;
+                scrolly = scroll.scrolly;
+                if (force || (options.autoUpdate && wrapper && wrapper.is(':visible') &&
+                    (container.prop('scrollWidth') != scrollx.size || container.prop('scrollHeight') != scrolly.size || wrapper.width() != scrollx.visible || wrapper.height() != scrolly.visible))) {
+                    scroll.init();
+
+                    if (options.debug) {
+                        window.console && console.log({
+                            scrollHeight: container.prop('scrollHeight') + ':' + scroll.scrolly.size,
+                            scrollWidth: container.prop('scrollWidth') + ':' + scroll.scrollx.size,
+                            visibleHeight: wrapper.height() + ':' + scroll.scrolly.visible,
+                            visibleWidth: wrapper.width() + ':' + scroll.scrollx.visible
+                        }, true);
+                        timerCounter++;
+                    }
+                }
+            }
+            if (debug && timerCounter > 10) {
+                window.console && console.log('Scroll updates exceed 10');
+                updateScrollbars = function () {};
+            } else {
+                clearTimeout(timer);
+                timer = setTimeout(updateScrollbars, 300);
+            }
+        };
+    })();
+
+    /* ADDITIONAL FUNCTIONS */
+    /**
+     * Get native browser scrollbar size (height/width)
+     *
+     * @param {Boolean} actual size or CSS size, default - CSS size
+     * @returns {Object} with height, width
+     */
+    function getBrowserScrollSize(actualSize) {
+
+        if (browser.webkit && !actualSize) {
+            return {
+                "height": 0,
+                "width": 0
+            };
+        }
+
+        if (!browser.data.outer) {
+            var css = {
+                "border": "none",
+                "box-sizing": "content-box",
+                "height": "200px",
+                "margin": "0",
+                "padding": "0",
+                "width": "200px"
+            };
+            browser.data.inner = $("<div>").css($.extend({}, css));
+            browser.data.outer = $("<div>").css($.extend({
+                "left": "-1000px",
+                "overflow": "scroll",
+                "position": "absolute",
+                "top": "-1000px"
+            }, css)).append(browser.data.inner).appendTo("body");
+        }
+
+        browser.data.outer.scrollLeft(1000).scrollTop(1000);
+
+        return {
+            "height": Math.ceil((browser.data.outer.offset().top - browser.data.inner.offset().top) || 0),
+            "width": Math.ceil((browser.data.outer.offset().left - browser.data.inner.offset().left) || 0)
+        };
+    }
+
+    /**
+     * Check if native browser scrollbars overlay content
+     *
+     * @returns {Boolean}
+     */
+    function isScrollOverlaysContent() {
+        var scrollSize = getBrowserScrollSize(true);
+        return !(scrollSize.height || scrollSize.width);
+    }
+
+    function isVerticalScroll(event) {
+        var e = event.originalEvent;
+        if (e.axis && e.axis === e.HORIZONTAL_AXIS)
+            return false;
+        if (e.wheelDeltaX)
+            return false;
+        return true;
+    }
+
+
+    /**
+     * Extend AngularJS as UI directive
+     * and expose a provider for override default config
+     *
+     */
+    if (window.angular) {
+        (function (angular) {
+            angular.module('jQueryScrollbar', [])
+                .provider('jQueryScrollbar', function () {
+                    var defaultOptions = defaults;
+                    return {
+                        setOptions: function (options) {
+                            angular.extend(defaultOptions, options);
+                        },
+                        $get: function () {
+                            return {
+                                options: angular.copy(defaultOptions)
+                            };
+                        }
+                    };
+                })
+                .directive('jqueryScrollbar', ['jQueryScrollbar', '$parse', function (jQueryScrollbar, $parse) {
+                    return {
+                        "restrict": "AC",
+                        "link": function (scope, element, attrs) {
+                            var model = $parse(attrs.jqueryScrollbar),
+                                options = model(scope);
+                            element.scrollbar(options || jQueryScrollbar.options)
+                                .on('$destroy', function () {
+                                    element.scrollbar('destroy');
+                                });
+                        }
+                    };
+                }]);
+        })(window.angular);
+    }
+}));
+
+
 
 window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
