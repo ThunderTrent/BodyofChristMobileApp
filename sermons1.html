@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords=" content="{{metaKeywords|safe}}">
+    <meta name="description" content="{{metaDescription|safe}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{pageTitle|safe}}</title>
+    {{ogImage|safe}}
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Body of Christ">
+    <meta name="theme-color" content="#604732">
+    <meta name="msapplication-navbutton-color" content="#604732">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#604732">
+    <link rel="apple-touch-icon-precomposed" href="https://www.thebodyofchrist.us/app/images/ios-desktop.png">
+    <meta name="msapplication-TileImage" content="https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png">
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!--<link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700,300,300italic' rel='stylesheet' type='text/css'>-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet prefetch' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <link rel="shortcut icon" href="https://www.thebodyofchrist.us/app/images/favicon.png">
+    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/fonts/material-icons.css">
+    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles.css" />
+    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/blue_material.css" />
+    <link rel="stylesheet" href="https://www.thebodyofchrist.us/app/styles/datepicker.css">
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.css">-->
+    <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.print.css">-->
+</head>
+
+<body>
+    <div id="fb-root"></div>
+    <div id="Gradient1" class="animateOpacity" style="position:absolute;display:none;top:0;background:linear-gradient(to right, rgba(243, 156, 18, .35) 0%,rgba(0, 115, 183, .3) 50%,rgba(221, 75, 57, .3) 100%);height:100%;width:100%;"></div>
+    <div id="Blue" class="animateOpactiy" style="position:absolute;display:none;top:0;opacity:0;background:linear-gradient(to right, rgba(11, 100, 152, 0.3) 0%,rgba(18, 108, 202, 0.41) 50%,rgba(20, 32, 152, 0.3) 100%);height:100%;width:100%;"></div>
+
+    <div id="loader-wrapper" style="width: 100%;display:none;height: 100%;position: absolute;z-index: 1000;background: -webkit-radial-gradient(center, ellipse cover, rgba(254, 254, 254, 0.47) 0%,rgba(80, 80, 80, 0.64) 50%,rgba(67, 67, 67, 0.96) 100%);">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right" style=""></div>
+    </div>
+
+
+    <div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate mdl-color--red-100" style="width:100%;position:absolute;"></div>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="demo-header mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+
+            <div id="bars" style="max-height:146px;overflow-x:hidden;">
+                <div id="primaryBar1" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="background-color:#f39c12;height:48px;display:none;">
+                    <a href="#" onclick="setView('Global');" class="mdl-layout__tab is-active">Global</a>
+
+                </div>
+                <div id="primaryBar" class="mdl-layout__tab-bar" style="background-color:rgba(243, 156, 18, 0.84);height:48px;">
+                    <a style="" href="#" id="globalButton" onclick="setViewGlobal();;" class="mdl-layout__tab is-active"><i class="fa fa-globe" style="margin-right:10px;"></i>Global</a>
+                    <a href="#" id="communityButton" onclick="setViewCommunity();" class="mdl-layout__tab"><i class="fa fa-universal-access" style="margin-right:10px"></i>Your Community</a>
+                    <div id="searchTopDiv" style="margin-top:30px;display:none;" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                        <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+              <i style="color:white;"onclick="$('#searchTopDiv').addClass('is-focused');$('#quick-search').focus();$('#globalButton').hide();$('#communityButton').hide();$('#searchTopDiv').addClass('searchMarginLeft');"class="material-icons">search</i>
+            </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input style="color:white;" id="quick-search" style="font-family:'Open Sans';" class="mdl-textfield__input" type="text" id="search" autocomplete="off">
+
+                            <label style="color:white;" class="mdl-textfield__label" for="search">Enter your query...</label>
+                        </div>
+                    </div>
+                    <span id="loginButton" onclick="login();" href="index.html" style="display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:white;padding:5px;">Login/Register</span>
+                </div>
+                <div id="secondaryBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(0, 115, 183, 0.91);">
+                    <a style="" id="activity" href="#" onclick="activityLoad('True');" class="mdl-layout__tab is-active"><i style="margin-right:10px;"class="fa fa-newspaper-o" aria-hidden="true"></i>News Feed</a>
+                    <a id="teachings" href="#" onclick="teachingsLoad('True');" class="mdl-layout__tab"><i class="fa fa-file-audio-o" style="margin-right:10px"></i>Teachings</a>
+                    <a id="needs" href="#" onclick="needsLoad('True');" class="mdl-layout__tab" style="display:none;"><i style="margin-right:10px;"class="fa fa-heart"></i>Needs</a>
+                    <!--<a id="churches" href="#" onclick="churchesLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;font-size:16px;position:absolute; margin-top: 15px;" class="material-icons">home</i><span style="margin-left:20px;">Churches</span></a>-->
+                    <a id="speakers" href="#" onclick="speakersLoad('True');" class="mdl-layout__tab"><i class="fa fa-microphone" style="margin-right:10px;" aria-hidden="true"></i>Speakers</a>
+                    <!--<a id="members" href="#" onclick="membersLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="fa fa-users" aria-hidden="true"></i>Members</a>-->
+                    <a id="bible" href="#" onclick="bibleLoad('True');" class="mdl-layout__tab"><i class="fa fa-book" style="margin-right:10px;" aria-hidden="true"></i>Bible</a>
+                </div>
+                <div id="teachingBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: rgba(221, 75, 57, 0.85);display:none;">
+                    <a style="" id="sermonsButton" href="#" onclick="sermonsLoad('True');" class="mdl-layout__tab"><i style="margin-right:10px;" class="ion ion-ios-bookmarks"></i>Sermons</a>
+                    <a id="verseByVerseButton" href="#" onclick="verseByVerseLoad('True');" class="mdl-layout__tab"><i class="ion ion-ios-bookmarks" style="margin-right:10px;"></i>Verse By Verse</a>
+                    <a id="sermonHistoryButton" href="#" onclick="sermonHistoryLoad('True');" class="mdl-layout__tab"><i class="ion ion-ios-bookmarks" style="margin-right:10px;"></i>Personal Teaching History</a>
+
+                </div>
+                <div id="needsBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color: #dd4b39;display:none;">
+                    <a id="unmetNeeds" href="#" onclick="" class="mdl-layout__tab">Unmet Needs</a>
+                    <a id="metNeeds" href="#" onclick="" class="mdl-layout__tab">Met Needs</a>
+                </div>
+                <div id="individualSermonBar" class="mdl-layout__tab-bar mdl-js-ripple-effect" style="height:48px;background-color:rgba(243, 156, 18, 0.84);display:none;">
+                    <a id="viewSermonTab" href="#" onclick="loadSermonPage()" class="mdl-layout__tab is-active">View Sermon</a>
+                    <a id="bibleSermonTabButton" href="#" onclick="toggleBible();" class="mdl-layout__tab">Enable Bible</a>
+                    <a id="captionsSermonTabButton" href="#" onclick="nyi();" class="mdl-layout__tab">Enable Automated Captions</a>
+                    <a id="playlistSermonTab" href="#" onclick="togglePlaylist()" class="mdl-layout__tab">Enable Playlist</a>
+                    <a id="commentSermonTabButton" href="#" onclick="toggleComments();" class="mdl-layout__tab">Enable Comments</a>
+                    <a id="infoSermonTabButton" href="#" onclick="nyi();" class="mdl-layout__tab">Enable Sermon Origin Information</a>
+                </div>
+            </div>
+        </header>
+        <div class="demo-drawer mdl-layout__drawer mdl-color-text--blue-grey-50" style="background-color: rgba(34, 45, 50, 0.81);">
+            <header class="demo-drawer-header" style="padding:0px;margin:0px;height:300px;opacity:.9;">
+                <div id="profileImage" style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;border-radius:30px;background:url('');background-size: cover;"></div>
+                <div class="demo-avatar-dropdown">
+            </header>
+            <nav class="demo-navigation mdl-navigation">
+                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif; color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN NAVIGATION</span>
+                <span onclick="window.reload();" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-home"></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-search"></i>Search<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-globe"></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span>
+                <span style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">MAIN SECTIONS</span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;border-left: solid #0073B7 3px;">The Body of Christ<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;border-left: solid #F39C12 3px;font-family: 'Open Sans', sans-serif;">Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif; border-left: solid #DD4B39 3px;">Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span>
+                <span class="beta" style="height:17px;padding:15px; font-family:'Open Sans', sans-serif;color: #4b646f;background: rgba(26, 34, 38, 0.89);">USER ACTIONS</span>
+                <span class="beta" onclick="window.location = 'myprofile.html';" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><i style="width:20px;margin-left:10px;"class="fa fa-user"></i>Edit Your Settings</span>
+
+                <span class="" style="padding:15px;color: #b8c7ce;font-family: 'Open Sans', sans-serif;"><a style="color: #b8c7ce;text-decoration:none;"href="http://mabank.tech/"><i style="width:20px;margin-left:10px;"class="fa fa-heart-o"></i>Created with Love</a></span>
+            </nav>
+            </div>
+            <style>
+
+            </style>
+            <main class="mdl-layout__content mdl-color--grey-100">
+
+
+                <section class="mdl-layout__tab-panel is-active" id="global">
+
+                    <div class="page-content" style="">
+
+                        <div id="filtersSermons" style="display:none;">
+
+
+                        </div>
+                    </div>
+
+                     <script type="text/javascript" src="//ra.revolvermaps.com/0/0/8.js?i=0iada3db0k0&amp;m=1c&amp;s=341&amp;c=df5f4d&amp;cr1=df5f4d&amp;f=ubuntu&amp;l=33&amp;as=50&amp;cw=1379b5&amp;cb=f39c12" async="async"></script>
+
+                    <div id="contentHolder" class="mdl-grid demo-content" style="position:absolute;width:calc(100% - 16px)">
+
+                    </div>
+                    <div id="sermonContent" class="mdl-grid demo-content">
+
+                    </div>
+        </div>
+        <div id="alertToast" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+        </section>
+        </main>
+    </div>
+
+    <script defer src="https://www.thebodyofchrist.us/static/js/dashboard.min.js"></script>
+    <!--<script src="https://www.thebodyofchrist.us/app/scripts/jquery.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/js/jquery.mobile-1.4.5.js"></script>-->
+
+
+
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/firstLoad.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/js/imgcache.js"></script>-->
+
+
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getSpeakers.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/js/filterJSON.plugin.js"></script>-->
+    <!--<script src='https://www.thebodyofchrist.us/app/scripts/nprogress.js'></script>-->
+    <!--<link rel='stylesheet' href='https://www.thebodyofchrist.us/app/css/nprogress.css' />-->
+
+    <!--<script  src="https://www.thebodyofchrist.us/app/scripts/getChurches.js"></script>-->
+    <!--<script  src="https://www.thebodyofchrist.us/app/scripts/getMembers.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getSermonHistory.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getFollowed.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getEvents.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getTeachings.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/getVBV.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/material.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/scripts/moment.js"></script>-->
+    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.7.1/fullcalendar.min.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/scripts/bootstrapMaterialCalendar.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/scripts/downloadedContent.js"></script>-->
+     <!--<script defer src="https://www.thebodyofchrist.us/app/js/purl.js"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/dashboardExtra1.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/js/jquery.barrating.js"></script>-->
+    <!--<script src="https://www.thebodyofchrist.us/app/scripts/search.js"></script>-->
+    <!--<script type="text/javascript" src="https://www.thebodyofchrist.us/app/scripts/autocomplete.js"></script>-->
+    <!--<script src="https://connect.facebook.net/en_US/all.js#xfbml=1"></script>-->
+    <!--<script defer src="https://www.thebodyofchrist.us/app/scripts/dashboardExtra.js"></script>-->
+    <!--<script defer type="text/javascript" src="https://www.thebodyofchrist.us/app/js/jquery.scrollbar.js"></script>-->
+
+    <script defer src="https://www.thebodyofchrist.us/service/getUserID/"></script>
+
+
+
+{{sermonRatingJS|safe}}
+</body>
+
+</html>
