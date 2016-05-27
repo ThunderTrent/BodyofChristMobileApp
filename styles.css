@@ -9,6 +9,16 @@ display:none !important;
  @media only screen and (min-device-width : 1440px) and
 (max-device-width : 2560px) and (-webkit-min-device-pixel-ratio : 3.5) {
 
+ #audioHolder{
+       margin-left: 0px !important;
+    width: 435px !important;
+  }
+
+}
+
+
+.mdl-snackbar{
+background-color: rgba(50,50,50,0.96) !important;
 }
 
   .ratingStars{
@@ -659,6 +669,11 @@ span {
 width: 303px !important;
 }
 
+ #audioHolder{
+       margin-left: 0px !important;
+    width: 320px !important;
+  }
+
 
   .textIntro {
     max-height: 243px !important;
@@ -713,6 +728,10 @@ position:relative !important;
 @media only screen and (min-device-width: 375px) and (max-device-width: 375px) and (orientation: portrait) {
   .textIntro {
     max-height: 286px !important;
+  }
+  #audioHolder{
+       margin-left: 0px !important;
+    width: 335px !important;
   }
   #sermonContentInside {
     width: 345px !important;
@@ -784,6 +803,11 @@ position:relative !important;
     width: 200px;
     margin-top: -10px;
     }
+
+     #audioHolder{
+       margin-left: 0px !important;
+    width: 414px !important;
+  }
 
   #sermonContentInside {
     width: calc(100% - 18px) !important;
@@ -1006,6 +1030,34 @@ width: 750px !important;
 #sermonContentInside{
     width: 402px !important;
     }
+
+     #audioHolder{
+       margin-left: 0px !important;
+    width: 435px !important;
+  }
+
+  }
+
+
+@media (min-device-width: 411px) and (max-device-width: 411px) {
+
+
+     #audioHolder{
+       margin-left: 0px !important;
+    width: 411px !important;
+  }
+
+  }
+
+  @media (min-device-width: 360px) and (max-device-width: 360px) {
+
+
+     #audioHolder{
+       margin-left: 0px !important;
+    width: 360px !important;
+  }
+
+  }
 
 
 
