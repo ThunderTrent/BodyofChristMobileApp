@@ -25785,26 +25785,7 @@ function sermonHistoryLoad(pressed) {
      }
    }
 
-function bibleLoad(pressed) {
-     window.currentView = "Bible";
 
-     $('#searchBar').remove();
-     $('#contentHolder').empty();
-     $("#bars").animate({
-       scrollTop: 0
-     }, 250, function() {
-       $('#individualSermonBar').hide();
-     });
-     loadBibleView();
-     $('#sermonsButton').removeClass('is-active');
-     $('#teachingsButton').removeClass('is-active');
-     $('#bibleButton').addClass('is-active');
-     $('#verseByVerseButton').removeClass('is-active');
-     //  bindToSearches();
-     if (pressed == "True"){
-     
-   }
-   }
 
 function churchesLoad(pressed) {
      window.currentView = "Churches";
@@ -25852,7 +25833,7 @@ function bibleLoad(pressed) {
      $('#teachingBar').hide();
      $('#needsBar').hide();
 
-     loadBible();
+     loadBibleView();
 
      closeSermon();
    if (pressed == "True"){
