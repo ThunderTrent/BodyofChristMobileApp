@@ -26929,7 +26929,7 @@ $("#searchHistoryInput").on("change paste keyup", function() {
 
 function loadBibleView(){
 $('#contentHolder').empty();
-$('#contentHolder').append('<iframe src="https://www.thebodyofchrist.us/service/bible/?book=James&chapter=1">');
+$('#contentHolder').append('<iframe height="1200px" src="https://www.thebodyofchrist.us/service/bible/?book=James&chapter=1">');
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 });
 
