@@ -26110,12 +26110,15 @@ function initializeDeepLinks() {
      } else if (section == "NewsFeed") {
         activityLoad();
     }
-    else if (section == "Sermons") {
+     else if (section == "Sermons") {
         sermonsLoad();
     }
      else if (section == "VerseByVerse") {
         verseByVerseLoad();
     }
+	else if (section == "Bible") {
+		bibleload('True');
+	   }
 
      else if (section == "SermonHistory"){
      sermonHistoryLoad();
