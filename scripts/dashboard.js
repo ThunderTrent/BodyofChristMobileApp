@@ -26930,7 +26930,7 @@ $("#searchHistoryInput").on("change paste keyup", function() {
 function loadBibleView(){
 $('#contentHolder').empty();
 $('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:0px;">' +
-	'<select  style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;" name="book">'+
+	'<select id="bookChoice"  style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;" name="book">'+
   '<option value="Genesis">Genesis</option>'+
   '<option value="Exodus">Exodus</option>'+
   '<option value="Leviticus">Leviticus</option>'+
@@ -26996,7 +26996,10 @@ $('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--wh
 		'<option value="Jude">Jude</option>'+
 		'<option value="Revelation">Revelation</option>'+
 '</select>');
-$('#contentHolder').append('<iframe height="1200px" src="https://www.thebodyofchrist.us/service/bible/?book=James&chapter=1">');
+$('#bookChoice').on('change', function() {
+  document.getElementById('bibleFrame').src = "https://www.thebodyofchrist.us/service/bible/?book=" + this.value + "&chapter=1" ;
+});
+$('#contentHolder').append('<iframe id="bibleFrame" height="1200px" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1">');
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 });
 
