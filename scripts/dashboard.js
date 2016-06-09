@@ -26117,7 +26117,7 @@ function initializeDeepLinks() {
         verseByVerseLoad();
     }
 	else if (section == "Bible") {
-		   loadSpeakers('True');
+		   speakersLoad("True");
 		bibleLoad('True');
 	   }
 
