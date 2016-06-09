@@ -26997,8 +26997,9 @@ $('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--wh
 		'<option value="Revelation">Revelation</option>'+
 '</select>');
 $('#bookChoice').on('change', function() {
+	window.bookChoice = this.value;
 	$( "#loader-wrapper" ).fadeOut( "slow", function() {
-		document.getElementById('bibleFrame').src = "https://www.thebodyofchrist.us/service/bible/?book=" + this.value + "&chapter=1" ;
+		document.getElementById('bibleFrame').src = "https://www.thebodyofchrist.us/service/bible/?book=" + window.bookChoice + "&chapter=1" ;
 });
 
 });
