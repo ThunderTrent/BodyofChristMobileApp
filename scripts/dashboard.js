@@ -15467,10 +15467,10 @@ function initialLoad() {
                // speakersLoadData();
               //  membersLoadData();
               //  vbvLoadData();
-                        sermonRatingHistoryLoadData();
+                      //  sermonRatingHistoryLoadData();
 
         } catch (err) {
-                alert(err);
+              //  alert(err);
         }
 }
 
