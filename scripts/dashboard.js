@@ -25631,7 +25631,7 @@ function vbvLoadData() {
 
 }
 
-sermonRatingHistoryLoadData();
+//sermonRatingHistoryLoadData();
 
    $('#loading').hide();
 
