@@ -25444,43 +25444,43 @@ window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('htt
 
 
 
-if (window.app) {
-
-        jQuery.ajax({        
-                url: 'https://thebodyofchrist.us/rest/timeListened/',
-                        type: "GET",
-                    
-        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
-                console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                window.sermonHistoryCACHE = (sermonHistoryCACHE);
-        });
-
-
-} else { 
-        jQuery.ajax({        
-                url: 'https://thebodyofchrist.us/rest/timeListened/',
-                        type: "GET",
-                    
-        }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
-                console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                window.sermonHistoryCACHE = (sermonHistoryCACHE);
-        });
-}
-
-
-if (window.app) {
-
-} else { 
-        jQuery.ajax({        
-                url: 'https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse',
-                        type: "GET",
-                    
-        }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
-                console.log("HTTP Request Succeeded: " + jqXHR.status);        
-                window.VBVDataCACHE = (VBVDataCACHE);
-        });
-}
-
+// if (window.app) {
+//
+//         jQuery.ajax({        
+//                 url: 'https://thebodyofchrist.us/rest/timeListened/',
+//                         type: "GET",
+//                     
+//         }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+//                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
+//                 window.sermonHistoryCACHE = (sermonHistoryCACHE);
+//         });
+//
+//
+// } else { 
+//         jQuery.ajax({        
+//                 url: 'https://thebodyofchrist.us/rest/timeListened/',
+//                         type: "GET",
+//                     
+//         }).done(function(sermonHistoryCACHE, textStatus, jqXHR) {        
+//                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
+//                 window.sermonHistoryCACHE = (sermonHistoryCACHE);
+//         });
+// }
+//
+//
+// if (window.app) {
+//
+// } else { 
+//         jQuery.ajax({        
+//                 url: 'https://www.thebodyofchrist.us/rest/sermons/?limit=10000&audioStatus=2&speakerid=*&title=*&ordering=-downloadedcontentid&typeofcontent=Verse%20By%20Verse',
+//                         type: "GET",
+//                     
+//         }).done(function(VBVDataCACHE, textStatus, jqXHR) {        
+//                 console.log("HTTP Request Succeeded: " + jqXHR.status);        
+//                 window.VBVDataCACHE = (VBVDataCACHE);
+//         });
+// }
+//
 
 
 
