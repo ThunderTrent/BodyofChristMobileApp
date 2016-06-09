@@ -26997,7 +26997,10 @@ $('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--wh
 		'<option value="Revelation">Revelation</option>'+
 '</select>');
 $('#bookChoice').on('change', function() {
-  document.getElementById('bibleFrame').src = "https://www.thebodyofchrist.us/service/bible/?book=" + this.value + "&chapter=1" ;
+	$( "#loader-wrapper" ).fadeOut( "slow", function() {
+		document.getElementById('bibleFrame').src = "https://www.thebodyofchrist.us/service/bible/?book=" + this.value + "&chapter=1" ;
+});
+
 });
 $('#contentHolder').append('<iframe id="bibleFrame" height="1200px" src="https://www.thebodyofchrist.us/service/bible/?book=Genesis&chapter=1">');
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
