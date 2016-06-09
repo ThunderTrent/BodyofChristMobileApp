@@ -26928,12 +26928,42 @@ $("#searchHistoryInput").on("change paste keyup", function() {
 // LOAD BIBLE VIEW
 
 function loadBibleView(){
-
 $('#contentHolder').empty();
-$('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="bibleBar" placeholder="Book Name" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:" open="" sans",="" sans-serif;"=""></div>');
+$('#contentHolder').append('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:0px;"><input id="bibleBar" placeholder="Book Name" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:" open="" sans",="" sans-serif;"=""></div>');
 $('#contentHolder').append('<iframe height="1200px" src="https://www.thebodyofchrist.us/service/bible/?book=James&chapter=1">');
 $( "#loader-wrapper" ).fadeOut( "slow", function() {
 });
+
+
+	$(function() {
+    var availableTags = [
+      "Genesis",
+      "Exodus",
+      "Leviticus",
+      "Numbers",
+      "Dueteronomy",
+      "Joshua",
+      "Judges",
+      "Ruth",
+      "1st Samuel",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $( "#bibleBar" ).autocomplete({
+      source: availableTags
+    });
+  });
 
 }
 
