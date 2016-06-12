@@ -26078,6 +26078,7 @@ recommendedSermonBox = $('#recommendedSermonBox').children()[1];
 }
 function loadIndividualSermon(sermonID) {
   $('#audioHolder').show();
+  $("#individualSpeakerBar").hide();
 
   $('#searchBar').remove();
 
