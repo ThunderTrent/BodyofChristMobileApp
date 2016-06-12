@@ -15581,7 +15581,7 @@ function loadSpeakers(search, communityID, insert) {
 function loadIndividualSpeaker(speakerID) {
 
 	 window.currentView = "SpeakerView";
-
+	$('#teachingBar').hide();
      $('#searchBar').remove();
  ;
      $('#activity').removeClass('is-active');
@@ -15591,8 +15591,8 @@ function loadIndividualSpeaker(speakerID) {
      $('#needs').removeClass('is-active');
      $('#churches').removeClass('is-active');
      $('#members').removeClass('is-active');
-     $('#teachingBar').hide();
-	 $('#speakerBar').show();
+
+	 $('#individualSpeakerBar').show();
 	$("#bars").animate({
             scrollTop: $(document).height()
         }, 5000); //Hide Content
@@ -15608,7 +15608,6 @@ function loadIndividualSpeaker(speakerID) {
     // Animation complete
   });
     $('#speaker').addClass('is-active');
-    $('#teachingBar').show();
     $('#filters').hide();
     url = 'https://www.thebodyofchrist.us/service/phonegap/speakerview/?speakerid=' + speakerID;
 
@@ -25361,7 +25360,7 @@ function teachingsLoad(pressed) {
      $('#teachings').addClass('is-active');
      $('#teachingBar').show();
      $('#needsBar').hide();
-	 $('#speakerBar').hide();
+	 $('#individualSpeakerBar').hide();
      $('#sermonsButton').addClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
@@ -25409,7 +25408,7 @@ function sermonsLoad(pressed) {
      $('#speakers').removeClass('is-active');
      $('#sermonsButton').addClass('is-active');
      $('#teachingsButton').removeClass('is-active');
-	 $('#speakerBar').hide();
+	 $('#individualSpeakerBar').hide();
      $('#sermonHistoryButton').removeClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
@@ -25442,7 +25441,7 @@ function verseByVerseLoad(pressed) {
      $('#sermonsButton').removeClass('is-active');
      $('#sermonHistoryButton').removeClass('is-active');
      $('#verseByVerseButton').addClass('is-active');
-	$('#speakerBar').hide();
+	$('#individualSpeakerBar').hide();
      $('#speakers').removeClass('is-active');
      $('#searchIcon').addClass('is-focused')
      $('#searchIconVBV').addClass('is-focused')
@@ -25478,7 +25477,7 @@ function sermonHistoryLoad(pressed) {
      $('#sermonsButton').removeClass('is-active');
      $('#verseByVerseButton').removeClass('is-active');
      $('#sermonHistoryButton').addClass('is-active');
-	$('#speakerBar').hide();
+	$('#individualSpeakerBar').hide();
      $('#speakers').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadSermonHistory(localStorage.getItem('view'), communityID, '');
@@ -25498,7 +25497,7 @@ function churchesLoad(pressed) {
      $('#contentHolder').empty();
      $('#speakers').removeClass('is-active');
      $('#activity').removeClass('is-active');
-	 $('#speakerBar').hide();
+	 $('#individualSpeakerBar').hide();
      $('#teachings').removeClass('is-active');
      $('#needs').removeClass('is-active');
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
@@ -25529,7 +25528,7 @@ function bibleLoad(pressed) {
      $('#speakers').removeClass('is-active');
      $('#activity').removeClass('is-active');
      $('#teachings').removeClass('is-active');
-	 $('#speakerBar').hide();
+	 $('#individualSpeakerBar').hide();
      $('#needs').removeClass('is-active');
 
      $("#loader-wrapper").fadeIn("slow", function() {});
@@ -25561,7 +25560,7 @@ function membersLoad(pressed) {
      $('#churches').removeClass('is-active');
      $('#needs').removeClass('is-active');
      $('#members').addClass('is-active');
-	$('#speakerBar').hide();
+	$('#individualSpeakerBar').hide();
      $('#teachingBar').hide();
      $('#needsBar').hide();
      loadMembers(localStorage.getItem('view'), communityID, 'True');
@@ -25590,7 +25589,7 @@ function activityLoad(pressed) {
      $('#needs').removeClass('is-active');
      $('#churches').removeClass('is-active');
      $('#members').removeClass('is-active');
-	$('#speakerBar').hide();
+	$('#individualSpeakerBar').hide();
      $('#teachingBar').hide();
      $('#speakers').removeClass('is-active');
      $('#needsBar').hide();
@@ -25650,7 +25649,7 @@ function needsLoad(pressed) {
      $('#teachings').removeClass('is-active');
      $('#needs').addClass('is-active');
      $('#members').removeClass('is-active');
-	$('#speakerBar').hide();
+	$('#individualSpeakerBar').hide();
      $('#churches').removeClass('is-active');
      $('#speakers').removeClass('is-active');
      closeSermon();
