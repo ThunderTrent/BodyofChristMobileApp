@@ -15602,15 +15602,13 @@ function loadIndividualSpeaker(speakerID) {
     // Animation complete
   });
         $('#loading').hide();
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
-        window.sermonData = sermonData;
-        setURLChange(sermonData.results[0].title, window.deepLinkURL + '?sermonid=' + sermonID);
-        window.sermonID = sermonID;
-        window.sermonView = 1;
-        $('#individualSermonBar').show();
-        $("#bars").animate({
-            scrollTop: $(document).height()
-        }, 5000); //Hide Content
+
+       // setURLChange(, window.deepLinkURL + '?sermonid=' + sermonID);
+     
+
+      //  $("#bars").animate({
+      //      scrollTop: $(document).height()
+      //  }, 5000); //Hide Content
 
         $("#contentHolder").animate({
             opacity: 0.25,
