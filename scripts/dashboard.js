@@ -25839,7 +25839,7 @@ function initializeDeepLinks() {
     teachingsLoad();
     }
 
-	if ($.url().param('speaker') != null) {}
+	if ($.url().param('speaker') == null) {}
     else{
     speakerID = parseInt($.url().param('speaker'));
 	loadIndividualSpeaker(speakerID);
