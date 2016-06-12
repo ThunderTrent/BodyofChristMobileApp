@@ -15616,9 +15616,9 @@ function loadIndividualSpeaker(speakerID) {
       left: "-=2000",
       height: "toggle"
         }, 1000, function() {
-			
 
-            $('#contentHolder').append(window.speakerHTML);
+
+            $('#sermonContent').append(window.speakerHTML);
 
 
 
