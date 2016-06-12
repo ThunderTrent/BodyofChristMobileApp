@@ -25799,7 +25799,8 @@ function toggleBeta() {
 
 function initializeDeepLinks() {
 
-     if ($.url().param('sermonid') == null) {} else {
+     if ($.url().param('sermonid') == null) {}
+	 else {
        sermonID = parseInt($.url().param('sermonid'));
        //teachingsLoad('True');
        $('#contentHolder').empty();
@@ -25838,6 +25839,11 @@ function initializeDeepLinks() {
     teachingsLoad();
     }
 
+	if ($.url().param('speaker') != null) {}
+    else{
+    speakerID = parseInt($.url().param('speaker'));
+	loadIndividualSpeaker(speakerID);
+    }
 
    }
 
