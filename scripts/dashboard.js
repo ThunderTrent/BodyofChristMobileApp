@@ -15600,35 +15600,9 @@ function loadIndividualSpeaker(speakerID) {
     }).done(function(speakerHTML, textStatus, jqXHR) {
 		window.speakerHTML = speakerHTML;
             $( "#loader-wrapper" ).fadeOut( "slow", function() {
-    // Animation complete
+				$('#contentHolder').empty();
+            $('#contentHolder').append(window.speakerHTML);
   });
-        $('#loading').hide();
-
-       // setURLChange(, window.deepLinkURL + '?sermonid=' + sermonID);
-
-
-      //  $("#bars").animate({
-      //      scrollTop: $(document).height()
-      //  }, 5000); //Hide Content
-
-        $("#contentHolder").animate({
-            opacity: 0.25,
-      left: "-=2000",
-      height: "toggle"
-        }, 1000, function() {
-
-
-            $('#sermonContent').append(window.speakerHTML);
-
-
-
-
-
-
-
-        });
-
-
         $('#loading').hide();
     });
 }
