@@ -15590,7 +15590,7 @@ function loadIndividualSpeaker(speakerID) {
     $('#speaker').addClass('is-active');
     $('#teachingBar').show();
     $('#filters').hide();
-    url = 'https://www.thebodyofchrist.us/service/phonegap/speaker/?speaker=' + speakerID;
+    url = 'https://www.thebodyofchrist.us/service/phonegap/speakerview/?speakerid=' + speakerID;
 
 
     jQuery.ajax({
