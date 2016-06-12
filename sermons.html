@@ -1,1 +1,172 @@
-<!DOCTYPE html><html lang=en><meta charset=utf-8><meta content="IE=edge"http-equiv=X-UA-Compatible><meta content="{{metaKeywords|safe}}" name="keywords"><meta content="{{metaDescription|safe}}" name="description"><meta content="width=device-width,initial-scale=1"name=viewport><title>{{pageTitle|safe}}</title>{{ogImage|safe}}<meta content=yes name=mobile-web-app-capable><meta content=yes name=apple-mobile-web-app-capable><meta content=black name=apple-mobile-web-app-status-bar-style><meta content="Body of Christ"name=apple-mobile-web-app-title><meta content=#604732 name=theme-color><meta content=#604732 name=msapplication-navbutton-color><meta content=#604732 name=apple-mobile-web-app-status-bar-style><link href=https://www.thebodyofchrist.us/app/images/ios-desktop.png rel=apple-touch-icon-precomposed><meta content=https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png name=msapplication-TileImage><link href=https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css rel="stylesheet prefetch"><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700"rel=stylesheet><link href=https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css rel="stylesheet prefetch"><link href=https://www.thebodyofchrist.us/app/images/favicon.png rel="shortcut icon"><link href=https://www.thebodyofchrist.us/app/fonts/material-icons.css rel=stylesheet><link href=https://www.thebodyofchrist.us/app/styles.css rel=stylesheet><link href=https://www.thebodyofchrist.us/app/styles/blue_material.css rel=stylesheet><link href=https://www.thebodyofchrist.us/app/styles/datepicker.css rel=stylesheet><div id=fb-root></div><div class=animateOpacity id=Gradient1 style="position:absolute;display:none;top:0;background:linear-gradient(to right,rgba(243,156,18,.35) 0,rgba(0,115,183,.3) 50%,rgba(221,75,57,.3) 100%);height:100%;width:100%"></div><div class=animateOpactiy id=Blue style="position:absolute;display:none;top:0;opacity:0;background:linear-gradient(to right,rgba(11,100,152,.3) 0,rgba(18,108,202,.41) 50%,rgba(20,32,152,.3) 100%);height:100%;width:100%"></div><div id=loader-wrapper style="width:100%;display:none;height:100%;position:absolute;z-index:1000;background:-webkit-radial-gradient(center,ellipse cover,rgba(254,254,254,.47) 0,rgba(80,80,80,.64) 50%,rgba(67,67,67,.96) 100%)"><div id=loader></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div></div><div class="mdl-color--red-100 mdl-js-progress mdl-progress mdl-progress__indeterminate"id=loading style=width:100%;position:absolute></div><div class="demo-layout mdl-js-layout mdl-layout mdl-layout--fixed-header"><header class="mdl-color--grey-100 demo-header mdl-color-text--grey-600 mdl-layout__header"><div id=bars style=max-height:146px;overflow-x:hidden><div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=primaryBar1 style=background-color:#f39c12;height:48px;display:none><a href=# class="mdl-layout__tab is-active"onclick='setView("Global")'>Global</a></div><div class=mdl-layout__tab-bar id=primaryBar style=background-color:rgba(243,156,18,.84);height:48px><a href=# class="mdl-layout__tab is-active"id=globalButton onclick=setViewGlobal()><i class="fa fa-globe"style=margin-right:10px></i>Global</a> <a href=# class=mdl-layout__tab id=communityButton onclick=setViewCommunity()><i class="fa fa-universal-access"style=margin-right:10px></i>Your Community</a><div class="mdl-js-textfield mdl-textfield mdl-textfield--expandable"id=searchTopDiv style=margin-top:30px;display:none><label class="mdl-button mdl-button--icon mdl-js-button"for=search><i class=material-icons style=color:#fff onclick='$("#searchTopDiv").addClass("is-focused"),$("#quick-search").focus(),$("#globalButton").hide(),$("#communityButton").hide(),$("#searchTopDiv").addClass("searchMarginLeft")'>search</i></label><div class=mdl-textfield__expandable-holder><input id=quick-search id=search style=color:#fff style="font-family:'Open Sans'"autocomplete=off class=mdl-textfield__input><label class=mdl-textfield__label for=search style=color:#fff>Enter your query...</label></div></div><span style=display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:#fff;padding:5px onclick=login() href=index.html id=loginButton>Login/Register</span></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=secondaryBar style=height:48px;background-color:rgba(0,115,183,.91)><a href=# class="mdl-layout__tab is-active"id=activity onclick='activityLoad("True")'><i class="fa fa-newspaper-o"style=margin-right:10px aria-hidden=true></i>News Feed</a> <a href=# class=mdl-layout__tab id=teachings onclick='teachingsLoad("True")'><i class="fa fa-file-audio-o"style=margin-right:10px></i>Teachings</a> <a href=# class=mdl-layout__tab id=needs onclick='needsLoad("True")'style=display:none><i class="fa fa-heart"style=margin-right:10px></i>Needs</a><a href=# class=mdl-layout__tab id=speakers onclick='speakersLoad("True")'><i class="fa fa-microphone"style=margin-right:10px aria-hidden=true></i>Speakers</a><a href=# class=mdl-layout__tab id=bible onclick='bibleLoad("True")'><i class="fa fa-book"style=margin-right:10px aria-hidden=true></i>Bible</a></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=teachingBar style=height:48px;background-color:rgba(221,75,57,.85);display:none><a href=# class=mdl-layout__tab id=sermonsButton onclick='sermonsLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Sermons</a> <a href=# class=mdl-layout__tab id=verseByVerseButton onclick='verseByVerseLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Verse By Verse</a> <a href=# class=mdl-layout__tab id=sermonHistoryButton onclick='sermonHistoryLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Personal Teaching History</a></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=needsBar style=height:48px;background-color:#dd4b39;display:none><a href=# class=mdl-layout__tab id=unmetNeeds>Unmet Needs</a> <a href=# class=mdl-layout__tab id=metNeeds>Met Needs</a></div><div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=individualSermonBar style=height:48px;background-color:rgba(243,156,18,.84);display:none><a href=# class="mdl-layout__tab is-active"id=viewSermonTab onclick=loadSermonPage()>View Sermon</a> <a href=# class=mdl-layout__tab id=bibleSermonTabButton onclick=toggleBible()>Enable Bible</a> <a href=# class=mdl-layout__tab id=captionsSermonTabButton onclick=nyi()>Enable Automated Captions</a> <a href=# class=mdl-layout__tab id=playlistSermonTab onclick=togglePlaylist()>Enable Playlist</a> <a href=# class=mdl-layout__tab id=commentSermonTabButton onclick=toggleComments()>Enable Comments</a> <a href=# class=mdl-layout__tab id=infoSermonTabButton onclick=nyi()>Enable Sermon Origin Information</a></div></div></header><div class="demo-drawer mdl-color-text--blue-grey-50 mdl-layout__drawer"style=background-color:rgba(34,45,50,.81)><header class=demo-drawer-header style=padding:0;margin:0;height:300px;opacity:.9><div id=profileImage style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;border-radius:30px;background:url();background-size:cover"></div><div class=demo-avatar-dropdown></header><nav class="demo-navigation mdl-navigation"><span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)">MAIN NAVIGATION</span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"onclick=window.reload()><i class="fa fa-home"style=width:20px;margin-left:10px></i>Dashboard<i class="fa fa-angle-left pull-right"></i></span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta><i class="fa fa-search"style=width:20px;margin-left:10px></i>Search<i class="fa fa-angle-left pull-right"></i></span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta><i class="fa fa-globe"style=width:20px;margin-left:10px></i>Earth Overview<i class="fa fa-angle-left pull-right"></i></span> <span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)">MAIN SECTIONS</span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif;border-left:solid #0073B7 3px"class=beta>The Body of Christ<i class="fa fa-angle-left pull-right"></i></span> <span style="padding:15px;color:#b8c7ce;border-left:solid #F39C12 3px;font-family:'Open Sans',sans-serif"class=beta>Let Your Light Shine<i class="fa fa-angle-left pull-right"></i></span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif;border-left:solid #DD4B39 3px"class=beta>Renew Your Mind<i class="fa fa-angle-left pull-right"></i></span> <span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)"class=beta>USER ACTIONS</span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta onclick='window.location="myprofile.html"'><i class="fa fa-user"style=width:20px;margin-left:10px></i>Edit Your Settings</span> <span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"><a href=http://mabank.tech/ style=color:#b8c7ce;text-decoration:none><i class="fa fa-heart-o"style=width:20px;margin-left:10px></i>Created with Love</a></span></nav></div><style></style><main class="mdl-color--grey-100 mdl-layout__content"><section class="is-active mdl-layout__tab-panel"id=global><div class=page-content><div id=filtersSermons style=display:none></div></div><script src="//ra.revolvermaps.com/0/0/8.js?i=0iada3db0k0&m=1c&s=341&c=df5f4d&cr1=df5f4d&f=ubuntu&l=33&as=50&cw=1379b5&cb=f39c12"async></script><div class="demo-content mdl-grid"id=contentHolder style="position:absolute;width:calc(100% - 16px)"></div><div class="demo-content mdl-grid"id=sermonContent></div></div><div class="mdl-js-snackbar mdl-snackbar"id=alertToast><div class=mdl-snackbar__text></div><button class=mdl-snackbar__action type=button></button></div><script src=https://www.thebodyofchrist.us/app/scripts/dashboard.js defer></script><script src=https://www.thebodyofchrist.us/service/getUserID/ defer></script>{{sermonRatingJS|safe}}
+<!DOCTYPE html>
+<html lang=en>
+<meta charset=utf-8>
+<meta content="IE=edge"http-equiv=X-UA-Compatible>
+<meta content="{{metaKeywords|safe}}" name="keywords">
+<meta content="{{metaDescription|safe}}" name="description">
+<meta content="width=device-width,initial-scale=1"name=viewport>
+<title>{{pageTitle|safe}}
+</title>{{ogImage|safe}}
+<meta content=yes name=mobile-web-app-capable>
+<meta content=yes name=apple-mobile-web-app-capable>
+<meta content=black name=apple-mobile-web-app-status-bar-style>
+<meta content="Body of Christ"name=apple-mobile-web-app-title>
+<meta content=#604732 name=theme-color>
+<meta content=#604732 name=msapplication-navbutton-color>
+<meta content=#604732 name=apple-mobile-web-app-status-bar-style>
+
+<link href=https://www.thebodyofchrist.us/app/images/ios-desktop.png rel=apple-touch-icon-precomposed>
+<meta content=https://www.thebodyofchrist.us/app/images/touch/ms-touch-icon-144x144-precomposed.png name=msapplication-TileImage>
+
+<link href=https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css rel="stylesheet prefetch">
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700"rel=stylesheet>
+
+<link href=https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css rel="stylesheet prefetch">
+
+<link href=https://www.thebodyofchrist.us/app/images/favicon.png rel="shortcut icon">
+
+<link href=https://www.thebodyofchrist.us/app/fonts/material-icons.css rel=stylesheet>
+
+<link href=https://www.thebodyofchrist.us/app/styles.css rel=stylesheet>
+
+<link href=https://www.thebodyofchrist.us/app/styles/blue_material.css rel=stylesheet>
+
+<link href=https://www.thebodyofchrist.us/app/styles/datepicker.css rel=stylesheet>
+
+<div id=fb-root>
+</div>
+
+<div class=animateOpacity id=Gradient1 style="position:absolute;display:none;top:0;background:linear-gradient(to right,rgba(243,156,18,.35) 0,rgba(0,115,183,.3) 50%,rgba(221,75,57,.3) 100%);height:100%;width:100%">
+</div>
+
+<div class=animateOpactiy id=Blue style="position:absolute;display:none;top:0;opacity:0;background:linear-gradient(to right,rgba(11,100,152,.3) 0,rgba(18,108,202,.41) 50%,rgba(20,32,152,.3) 100%);height:100%;width:100%">
+</div>
+
+<div id=loader-wrapper style="width:100%;display:none;height:100%;position:absolute;z-index:1000;background:-webkit-radial-gradient(center,ellipse cover,rgba(254,254,254,.47) 0,rgba(80,80,80,.64) 50%,rgba(67,67,67,.96) 100%)">
+
+<div id=loader>
+</div>
+
+<div class="loader-section section-left">
+</div>
+
+<div class="loader-section section-right">
+</div>
+</div>
+
+<div class="mdl-color--red-100 mdl-js-progress mdl-progress mdl-progress__indeterminate"id=loading style=width:100%;position:absolute>
+</div>
+
+<div class="demo-layout mdl-js-layout mdl-layout mdl-layout--fixed-header">
+
+<header class="mdl-color--grey-100 demo-header mdl-color-text--grey-600 mdl-layout__header">
+
+<div id=bars style=max-height:146px;overflow-x:hidden>
+
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=primaryBar1 style=background-color:#f39c12;height:48px;display:none><a href=# class="mdl-layout__tab is-active"onclick='setView("Global")'>Global</a>
+</div>
+
+<div class=mdl-layout__tab-bar id=primaryBar style=background-color:rgba(243,156,18,.84);height:48px><a href=# class="mdl-layout__tab is-active"id=globalButton onclick=setViewGlobal()><i class="fa fa-globe"style=margin-right:10px></i>Global</a> <a href=# class=mdl-layout__tab id=communityButton onclick=setViewCommunity()><i class="fa fa-universal-access"style=margin-right:10px></i>Your Community</a>
+
+<div class="mdl-js-textfield mdl-textfield mdl-textfield--expandable"id=searchTopDiv style=margin-top:30px;display:none>
+<label class="mdl-button mdl-button--icon mdl-js-button"for=search><i class=material-icons style=color:#fff onclick='$("#searchTopDiv").addClass("is-focused"),$("#quick-search").focus(),$("#globalButton").hide(),$("#communityButton").hide(),$("#searchTopDiv").addClass("searchMarginLeft")'>search</i>
+</label>
+
+<div class=mdl-textfield__expandable-holder>
+<input id=quick-search id=search style=color:#fff style="font-family:'Open Sans'"autocomplete=off class=mdl-textfield__input>
+<label class=mdl-textfield__label for=search style=color:#fff>Enter your query...
+</label>
+</div>
+</div>
+
+<span style=display:none;margin-right:10px;height:20px;margin-top:10px;margin-left:10px;background-color:#D95744;border-radius:5px;color:#fff;padding:5px onclick=login() href=index.html id=loginButton>Login/Register
+</span>
+</div>
+
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=secondaryBar style=height:48px;background-color:rgba(0,115,183,.91)><a href=# class="mdl-layout__tab is-active"id=activity onclick='activityLoad("True")'><i class="fa fa-newspaper-o"style=margin-right:10px aria-hidden=true></i>News Feed</a> <a href=# class=mdl-layout__tab id=teachings onclick='teachingsLoad("True")'><i class="fa fa-file-audio-o"style=margin-right:10px></i>Teachings</a> <a href=# class=mdl-layout__tab id=needs onclick='needsLoad("True")'style=display:none><i class="fa fa-heart"style=margin-right:10px></i>Needs</a><a href=# class=mdl-layout__tab id=speakers onclick='speakersLoad("True")'><i class="fa fa-microphone"style=margin-right:10px aria-hidden=true></i>Speakers</a><a href=# class=mdl-layout__tab id=bible onclick='bibleLoad("True")'><i class="fa fa-book"style=margin-right:10px aria-hidden=true></i>Bible</a>
+</div>
+
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=teachingBar style=height:48px;background-color:rgba(221,75,57,.85);display:none><a href=# class=mdl-layout__tab id=sermonsButton onclick='sermonsLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Sermons</a> <a href=# class=mdl-layout__tab id=verseByVerseButton onclick='verseByVerseLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Verse By Verse</a> <a href=# class=mdl-layout__tab id=sermonHistoryButton onclick='sermonHistoryLoad("True")'><i class="ion ion-ios-bookmarks"style=margin-right:10px></i>Personal Teaching History</a>
+</div>
+
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=needsBar style=height:48px;background-color:#dd4b39;display:none><a href=# class=mdl-layout__tab id=unmetNeeds>Unmet Needs</a> <a href=# class=mdl-layout__tab id=metNeeds>Met Needs</a>
+</div>
+
+<div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=individualSermonBar style=height:48px;background-color:rgba(243,156,18,.84);display:none><a href=# class="mdl-layout__tab is-active"id=viewSermonTab onclick=loadSermonPage()>View Sermon</a> <a href=# class=mdl-layout__tab id=bibleSermonTabButton onclick=toggleBible()>Enable Bible</a> <a href=# class=mdl-layout__tab id=captionsSermonTabButton onclick=nyi()>Enable Automated Captions</a> <a href=# class=mdl-layout__tab id=playlistSermonTab onclick=togglePlaylist()>Enable Playlist</a> <a href=# class=mdl-layout__tab id=commentSermonTabButton onclick=toggleComments()>Enable Comments</a> <a href=# class=mdl-layout__tab id=infoSermonTabButton onclick=nyi()>Enable Sermon Origin Information</a>
+</div>
+
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect"id=individualSpeakerBar style=height:48px;background-color:rgba(243,156,18,.84);display:none><a href=# class="mdl-layout__tab is-active"id=viewSermonTab onclick=loadSermonPage()>View Teachings by Speaker</a> <a href=# class=mdl-layout__tab id=bibleSermonTabButton onclick=toggleBible()>Enable Bible</a> <a href=# class=mdl-layout__tab id=captionsSermonTabButton onclick=nyi()>Enable Automated Captions</a> <a href=# class=mdl-layout__tab id=playlistSermonTab onclick=togglePlaylist()>Enable Playlist</a> <a href=# class=mdl-layout__tab id=commentSermonTabButton onclick=toggleComments()>Enable Comments</a> <a href=# class=mdl-layout__tab id=infoSermonTabButton onclick=nyi()>Enable Sermon Origin Information</a>
+</div>
+
+</div></header>
+
+<div class="demo-drawer mdl-color-text--blue-grey-50 mdl-layout__drawer"style=background-color:rgba(34,45,50,.81)>
+
+<header class=demo-drawer-header style=padding:0;margin:0;height:300px;opacity:.9>
+
+<div id=profileImage style="width:calc(100% - 20px);margin-top:20px;margin-left:10px;height:100%;border-radius:30px;background:url();background-size:cover">
+</div>
+
+<div class=demo-avatar-dropdown></header><nav class="demo-navigation mdl-navigation">
+
+<span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)">MAIN NAVIGATION
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"onclick=window.reload()><i class="fa fa-home"style=width:20px;margin-left:10px></i>Dashboard<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta><i class="fa fa-search"style=width:20px;margin-left:10px></i>Search<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta><i class="fa fa-globe"style=width:20px;margin-left:10px></i>Earth Overview<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)">MAIN SECTIONS
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif;border-left:solid #0073B7 3px"class=beta>The Body of Christ<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="padding:15px;color:#b8c7ce;border-left:solid #F39C12 3px;font-family:'Open Sans',sans-serif"class=beta>Let Your Light Shine<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif;border-left:solid #DD4B39 3px"class=beta>Renew Your Mind<i class="fa fa-angle-left pull-right"></i>
+</span>
+
+<span style="height:17px;padding:15px;font-family:'Open Sans',sans-serif;color:#4b646f;background:rgba(26,34,38,.89)"class=beta>USER ACTIONS
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"class=beta onclick='window.location="myprofile.html"'><i class="fa fa-user"style=width:20px;margin-left:10px></i>Edit Your Settings
+</span>
+
+<span style="padding:15px;color:#b8c7ce;font-family:'Open Sans',sans-serif"><a href=http://mabank.tech/ style=color:#b8c7ce;text-decoration:none><i class="fa fa-heart-o"style=width:20px;margin-left:10px></i>Created with Love</a>
+</span></nav>
+</div>
+<style>
+</style><main class="mdl-color--grey-100 mdl-layout__content"><section class="is-active mdl-layout__tab-panel"id=global>
+
+<div class=page-content>
+
+<div id=filtersSermons style=display:none>
+</div>
+</div>
+<script src="//ra.revolvermaps.com/0/0/8.js?i=0iada3db0k0&m=1c&s=341&c=df5f4d&cr1=df5f4d&f=ubuntu&l=33&as=50&cw=1379b5&cb=f39c12"async>
+</script>
+
+<div class="demo-content mdl-grid"id=contentHolder style="position:absolute;width:calc(100% - 16px)">
+</div>
+
+<div class="demo-content mdl-grid"id=sermonContent>
+</div>
+</div>
+
+<div class="mdl-js-snackbar mdl-snackbar"id=alertToast>
+
+<div class=mdl-snackbar__text>
+</div><button class=mdl-snackbar__action type=button></button>
+</div>
+<script src=https://www.thebodyofchrist.us/app/scripts/dashboard.js defer>
+</script>
+<script src=https://www.thebodyofchrist.us/service/getUserID/ defer>
+</script>{{sermonRatingJS|safe}}
