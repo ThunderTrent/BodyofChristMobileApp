@@ -42655,6 +42655,8 @@ function initializeDeepLinks() {
        //teachingsLoad('True');
        $('#contentHolder').empty();
        loadIndividualSermon(sermonID);
+		window.sermonID = sermonID;
+		$('#individualSermonBar').show();
      }
 
      if ($.url().param('section') != null) {
