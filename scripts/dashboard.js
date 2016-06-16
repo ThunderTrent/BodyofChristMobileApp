@@ -42649,17 +42649,8 @@ function toggleBeta() {
 
 function initializeDeepLinks() {
 
-     if ($.url().param('sermonid') == null) {}
-	 else {
-       sermonID = parseInt($.url().param('sermonid'));
-       //teachingsLoad('True');
-       $('#contentHolder').empty();
-       loadIndividualSermon(sermonID);
-		window.sermonID = sermonID;
-		$('#individualSermonBar').show();
-     }
-
-     if ($.url().param('section') != null) {
+     if ($.url().param('sermonid') == null) {
+		 if ($.url().param('section') != null) {
        section = $.url().param('section');
        if (section == "Teachings") {
          teachingsLoad();
@@ -42690,6 +42681,17 @@ function initializeDeepLinks() {
     //loadEvents(localStorage.getItem('view'), communityID, '', 'True');
     teachingsLoad();
     }
+	 }
+	 else {
+       sermonID = parseInt($.url().param('sermonid'));
+       //teachingsLoad('True');
+       $('#contentHolder').empty();
+       loadIndividualSermon(sermonID);
+		window.sermonID = sermonID;
+		$('#individualSermonBar').show();
+     }
+
+
 
 	if ($.url().param('speaker') == null) {}
     else{
