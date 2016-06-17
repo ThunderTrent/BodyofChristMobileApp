@@ -41143,44 +41143,7 @@ function toggleComments() {
     }
 }
 
-function togglePlaylist() {
-    if ($('#playlistSermonTab').hasClass('is-active')) {
-        $('#playlistSermonTab').removeClass('is-active');
-        if (localStorage.getItem('sermonTab2') == "Playlist") {
-            window.targetTab = "#secondTabSermon";
-            localStorage.setItem('sermonTab2', 'Empty');
-        }
-        if (localStorage.getItem('sermonTab3') == "Playlist") {
-            window.targetTab = "#thirdTabSermon";
-            localStorage.setItem('sermonTab3', 'Empty');
-        }
-        $(window.targetTab).empty();
-    } else {
-        $('#playlistSermonTab').addClass('is-active');
-        if (localStorage.getItem('sermonTab2') == "Empty") {
-            window.targetTab = "#secondTabSermon";
-            localStorage.setItem('sermonTab2', 'Playlist');
-             jQuery.ajax({
-        url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-       type: "GET",
-      }).done(function(playlistHTML, textStatus, jqXHR) {
-        $(window.targetTab).append(playlistHTML);
-            return;
-        });
-  }
-        if (localStorage.getItem('sermonTab3') == "Empty") {
-            window.targetTab = "#thirdTabSermon";
-            localStorage.setItem('sermonTab3', 'Playlist');
-             jQuery.ajax({
-        url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-       type: "GET",
-      }).done(function(playlistHTML, textStatus, jqXHR) {
-        $(window.targetTab).append(playlistHTML);
-            return;
-        });
-  }
-    }
-}
+
 
 // JQUERY SCROLLBAR
 
