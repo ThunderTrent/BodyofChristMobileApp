@@ -41108,8 +41108,8 @@ function toggleBible() {
     } else {
         $('#bibleSermonTabButton').addClass('is-active');
         $('#secondTabSermon').attr('style', 'display: -webkit-flex; display: flex');
+    }
 }
-
 function toggleComments() {
     if ($('#commentSermonTabButton').hasClass('is-active')) {
         $('#commentSermonTabButton').removeClass('is-active');
