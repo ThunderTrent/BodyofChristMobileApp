@@ -40546,17 +40546,13 @@ componentHandler.register({
     return purl;
 
 });
-
 //Dashboard Extra 1
-
-
 Storage.prototype.setArray = function(key, obj) {
     return this.setItem(key, JSON.stringify(obj))
 }
 Storage.prototype.getArray = function(key) {
     return JSON.parse(this.getItem(key))
 }
-
 function getLocalFilesPushToLocalStorage() {
 
     function listDirectory() {
@@ -40605,9 +40601,7 @@ function logout() {
     window.location = 'index.html';
     //localStorage.clear();
 }
-
 //BARRATING
-
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD
@@ -41094,13 +41088,10 @@ function logout() {
     $.fn.barrating.BarRating = BarRating;
 
 }));
-
 // Dashboard Extra
-
 function login() {
     window.location = "https://www.thebodyofchrist.us/login/";
 }
-
 function toggleBible() {
     if ($('#bibleSermonTabButton').hasClass('is-active')) {
         $('#bibleSermonTabButton').removeClass('is-active');
@@ -41142,11 +41133,7 @@ function toggleComments() {
         }
     }
 }
-
-
-
 // JQUERY SCROLLBAR
-
 ;(function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -41914,17 +41901,7 @@ function toggleComments() {
         })(window.angular);
     }
 }));
-
-
-
-window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-
-
-
-
-
-
-
+window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1
 // if (window.app) {
 //
 //         jQuery.ajax({        
@@ -41962,14 +41939,7 @@ window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('htt
 //         });
 // }
 //
-
-
-
-//Device Loads
-
-
-
-
+//Device Load
 // function teachingsLoadData() {
 //         if (window.app) {
 //                 jQuery.ajax({        
@@ -41994,7 +41964,6 @@ window.app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('htt
 //         }
 //
 // }
-
 function speakersLoadData() {
 
         if (window.app) {
@@ -42022,11 +41991,6 @@ function speakersLoadData() {
 
         }
 }
-
-
-
-
-
 function membersLoadData() {
         if (window.app) {
                 url = 'https://www.thebodyofchrist.us/rest/members/?limit=1000&id=*';
@@ -43544,6 +43508,16 @@ function setBackground() {
             }
 setBackground();
 
+
+// Advanced Search
+
+function advancedSearch(){
+    $('.page-content').hide();
+    $('#contentHolder').empty();
+    $.get( "https://www.thebodyofchrist.us/service/advancedsearch/", function( data ) {
+    $("#contentHolder").html(data);
+    });
+}
 
 //SHARE BUTTONS
 
