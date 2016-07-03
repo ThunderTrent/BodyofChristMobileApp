@@ -42105,6 +42105,7 @@ function teachingsLoad(pressed) {
      $('#activity').removeClass('is-active');
      $('#teachings').addClass('is-active');
      $('#teachingBar').show();
+     $('#playlistButton').removeClass('is-active');
      $('#needsBar').hide();
 	 $('#individualSpeakerBar').hide();
      $('#sermonsButton').addClass('is-active');
@@ -42153,6 +42154,7 @@ function sermonsLoad(pressed) {
      });
      $('#speakers').removeClass('is-active');
      $('#sermonsButton').addClass('is-active');
+     $('#playlistButton').removeClass('is-active');
      $('#teachingsButton').removeClass('is-active');
 	 $('#individualSpeakerBar').hide();
      $('#sermonHistoryButton').removeClass('is-active');
@@ -42189,8 +42191,9 @@ function verseByVerseLoad(pressed) {
      $('#verseByVerseButton').addClass('is-active');
 	$('#individualSpeakerBar').hide();
      $('#speakers').removeClass('is-active');
-     $('#searchIcon').addClass('is-focused')
-     $('#searchIconVBV').addClass('is-focused')
+     $('#searchIcon').addClass('is-focused');
+    $('#playlistButton').removeClass('is-active');
+     $('#searchIconVBV').addClass('is-focused');
      $('#bibleButton').removeClass('is-active');
      loadVBV(localStorage.getItem('view'), communityID, '');
      console.log('Loaded Verse By Verse');
@@ -42224,6 +42227,7 @@ function sermonHistoryLoad(pressed) {
      $('#verseByVerseButton').removeClass('is-active');
      $('#sermonHistoryButton').addClass('is-active');
 	$('#individualSpeakerBar').hide();
+    $('#playlistButton').removeClass('is-active');
      $('#speakers').removeClass('is-active');
      $('#bibleButton').removeClass('is-active');
      loadSermonHistory(localStorage.getItem('view'), communityID, '');
@@ -42251,6 +42255,7 @@ function churchesLoad(pressed) {
   });
      $('#churches').addClass('is-active');
      $('#members').removeClass('is-active');
+     $('#playlistButton').removeClass('is-active');
      $('#teachingBar').hide();
      $('#needsBar').hide();
      //  $('#filtersVBV').hide();
@@ -42337,6 +42342,7 @@ function activityLoad(pressed) {
      $('#members').removeClass('is-active');
 	$('#individualSpeakerBar').hide();
      $('#teachingBar').hide();
+    $('#playlistButton').removeClass('is-active');
      $('#speakers').removeClass('is-active');
      $('#needsBar').hide();
      loadEvents(view, '', '', 'True');
@@ -42365,6 +42371,7 @@ function speakersLoad(pressed) {
      $('#churches').removeClass('is-active');
 	$('#speakerBar').hide();
      $('#members').removeClass('is-active');
+     $('#playlistButton').removeClass('is-active');
      $('#teachingBar').hide();
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
     // Animation complete
@@ -43525,6 +43532,11 @@ function advancedSearch(){
 function playlistLoad(){
     $('.page-content').hide();
     $('#contentHolder').empty();
+     $('#playlistButton').addClass('is-active');
+     $('#sermonsButton').removeClass('is-active');
+     $('#verseByVerseButton').removeClass('is-active');
+     $('#sermonHistoryButton').removeClass('is-active');
+     $('#advancedSearchButton').removeClass('is-active');
     $.get( "https://www.thebodyofchrist.us/service/playlistHTML/", function( data ) {
     $("#contentHolder").html(data);
     });
