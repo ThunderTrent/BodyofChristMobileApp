@@ -41120,7 +41120,7 @@ function toggleComments() {
             localStorage.setItem('sermonTab2', 'Comments');
             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
             $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-            FB.XFBML.parse();
+           // FB.XFBML.parse();
             return;
         }
         if (localStorage.getItem('sermonTab3') == "Empty") {
@@ -41128,7 +41128,7 @@ function toggleComments() {
             localStorage.setItem('sermonTab3', 'Comments');
             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
             $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-            FB.XFBML.parse();
+            //FB.XFBML.parse();
             return;
         }
     }
@@ -43010,7 +43010,7 @@ function loadIndividualSermon(sermonID) {
                     }
                 } else if (tab2 == "Comments") {
                     $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-                    FB.XFBML.parse();
+                   // FB.XFBML.parse();
                     $('#commentSermonTabButton').addClass('is-active');
                 }
                 else if (tab2 == "Playlist") {
@@ -43036,7 +43036,7 @@ function loadIndividualSermon(sermonID) {
                     }
                 } else if (tab3 == "Comments") {
 
-                    FB.XFBML.parse();
+                 //   FB.XFBML.parse();
                     $('#commentSermonTabButton').addClass('is-active');
                 }
                 else if (tab3 == "Playlist") {
