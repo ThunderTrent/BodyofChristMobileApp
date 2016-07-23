@@ -41101,38 +41101,70 @@ function toggleBible() {
         $('#secondTabSermon').attr('style', 'display: -webkit-flex; display: flex');
     }
 }
+
 function toggleComments() {
-    if ($('#commentSermonTabButton').hasClass('is-active')) {
-        $('#commentSermonTabButton').removeClass('is-active');
-        if (localStorage.getItem('sermonTab2') == "Comments") {
-            window.targetTab = "#secondTabSermon";
-            localStorage.setItem('sermonTab2', 'Empty');
-        }
-        if (localStorage.getItem('sermonTab3') == "Comments") {
-            window.targetTab = "#thirdTabSermon";
-            localStorage.setItem('sermonTab3', 'Empty');
-        }
-        $(window.targetTab).empty();
+    // if ($('#commentSermonTabButton').hasClass('is-active')) {
+    //     $('#commentSermonTabButton').removeClass('is-active');
+    //     $('#fithTabSermon').hide();
+    // } else {
+    //     $('#commentSermonTabButton').addClass('is-active');
+    //     $('#fifthTabSermon').attr('style', 'display: -webkit-flex; display: flex');
+    // }
+    nyi();
+}
+
+    function togglePlaylist() {
+    if ($('#playlistSermonTab').hasClass('is-active')) {
+        $('#playlistSermonTab').removeClass('is-active');
+        $('#thirdTabSermon').hide();
     } else {
-        $('#commentSermonTabButton').addClass('is-active');
-        if (localStorage.getItem('sermonTab2') == "Empty") {
-            window.targetTab = "#secondTabSermon";
-            localStorage.setItem('sermonTab2', 'Comments');
-            url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-            $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-           // FB.XFBML.parse();
-            return;
-        }
-        if (localStorage.getItem('sermonTab3') == "Empty") {
-            window.targetTab = "#thirdTabSermon";
-            localStorage.setItem('sermonTab3', 'Comments');
-            url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
-            $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-            //FB.XFBML.parse();
-            return;
-        }
+        $('#playlistSermonTab').addClass('is-active');
+        $('#thirdTabSermon').attr('style', 'display: block');
     }
 }
+
+function toggleCaptions() {
+    if ($('#captionsSermonTabButton').hasClass('is-active')) {
+        $('#captionsSermonTabButton').removeClass('is-active');
+        $('#fourthTabSermon').hide();
+    } else {
+        $('#captionsSermonTabButton').addClass('is-active');
+        $('#fourthTabSermon').attr('style', 'display: -webkit-flex; display: flex');
+    }
+}
+// }
+// function toggleComments() {
+//     if ($('#commentSermonTabButton').hasClass('is-active')) {
+//         $('#commentSermonTabButton').removeClass('is-active');
+//         if (localStorage.getItem('sermonTab2') == "Comments") {
+//             window.targetTab = "#secondTabSermon";
+//             localStorage.setItem('sermonTab2', 'Empty');
+//         }
+//         if (localStorage.getItem('sermonTab3') == "Comments") {
+//             window.targetTab = "#thirdTabSermon";
+//             localStorage.setItem('sermonTab3', 'Empty');
+//         }
+//         $(window.targetTab).empty();
+//     } else {
+//         $('#commentSermonTabButton').addClass('is-active');
+//         if (localStorage.getItem('sermonTab2') == "Empty") {
+//             window.targetTab = "#secondTabSermon";
+//             localStorage.setItem('sermonTab2', 'Comments');
+//             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+//             $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+//            // FB.XFBML.parse();
+//             return;
+//         }
+//         if (localStorage.getItem('sermonTab3') == "Empty") {
+//             window.targetTab = "#thirdTabSermon";
+//             localStorage.setItem('sermonTab3', 'Comments');
+//             url = 'https://www.thebodyofchrist.us?sermonid=' + window.sermonID;
+//             $(window.targetTab).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+//             //FB.XFBML.parse();
+//             return;
+//         }
+//     }
+// }
 // JQUERY SCROLLBAR
 ;(function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -42655,7 +42687,7 @@ function toggleHideRecommendedSermons(){
    $( "#recommendedSermonBox" ).children().fadeIn( "slow", function() {
   });
 
-$('#recommendedSermonBox').parent().show();
+//$('#recommendedSermonBox').parent().show();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(180deg)');
 
@@ -42666,7 +42698,7 @@ $('#recommendedSermonBox').parent().show();
    $('#recommendedSermonBox').children().hide();
   });
 
-$('#recommendedSermonBox').parent().hide();
+//$('#recommendedSermonBox').parent().hide();
 
   $('#recommendedSermonArrowButton').css('transform','rotate(0deg)');
 }
@@ -42678,7 +42710,7 @@ function toggleHideRecommendedPlaylists(){
   if ($(recommendedPlaylistBox).css("display") == "none"){
    $( "#recommendedPlaylistBox" ).children().fadeIn( "slow", function() {
   });
-   $('#recommendedPlaylistBox').parent().show();
+   //$('#recommendedPlaylistBox').parent().show();
 
 
   $('#recommendedPlaylistsArrowButton').css('transform','rotate(180deg)');
@@ -42690,7 +42722,7 @@ function toggleHideRecommendedPlaylists(){
    $('#recommendedPlaylistBox').children().hide();
   });
 
-  $('#recommendedPlaylistBox').parent().hide();
+//  $('#recommendedPlaylistBox').parent().hide();
 
   $('#recommendedPlaylistsArrowButton').css('transform','rotate(0deg)');
 }
@@ -42991,69 +43023,69 @@ function loadIndividualSermon(sermonID) {
 
 
 
-            if (localStorage.getItem('sermonTab2') == null) {
-                localStorage.setItem('sermonTab2', 'Bible');
-            }
-            if (localStorage.getItem('sermonTab3') == null) {
-                localStorage.setItem('sermonTab3', 'Playlist');
-            }
+            // if (localStorage.getItem('sermonTab2') == null) {
+            //     localStorage.setItem('sermonTab2', 'Bible');
+            // }
+            // if (localStorage.getItem('sermonTab3') == null) {
+            //     localStorage.setItem('sermonTab3', 'Playlist');
+            // }
 
-            function initiateTab2() {
-                target = "#secondTabSermon"
-                tab2 = localStorage.getItem('sermonTab2');
-                if (tab2 == "Bible") {
-                    if (sermonData.results[0].book == null) {
-                        localStorage.setItem('sermonTab2', 'Empty');
-                    } else {
-                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
-                        $('#bibleSermonTabButton').addClass('is-active');
-                    }
-                } else if (tab2 == "Comments") {
-                    $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
-                   // FB.XFBML.parse();
-                    $('#commentSermonTabButton').addClass('is-active');
-                }
-                else if (tab2 == "Playlist") {
-                    jQuery.ajax({
-                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-                   type: "GET",
-                  }).done(function(playlistHTML, textStatus, jqXHR) {
-                    $(target).append(playlistHTML);
-                    $('#playlistSermonTab').addClass('is-active');
-                });
-              }
-            }
+            // function initiateTab2() {
+            //     target = "#secondTabSermon"
+            //     tab2 = localStorage.getItem('sermonTab2');
+            //     if (tab2 == "Bible") {
+            //         if (sermonData.results[0].book == null) {
+            //             localStorage.setItem('sermonTab2', 'Empty');
+            //         } else {
+            //             $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+            //             $('#bibleSermonTabButton').addClass('is-active');
+            //         }
+            //     } else if (tab2 == "Comments") {
+            //         $(target).append('<h1>Comments:</h1><br><fb:comments href="' + url + '" num_posts="2" width="500"></fb:comments>');
+            //        // FB.XFBML.parse();
+            //         $('#commentSermonTabButton').addClass('is-active');
+            //     }
+            //     else if (tab2 == "Playlist") {
+            //         jQuery.ajax({
+            //         url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+            //        type: "GET",
+            //       }).done(function(playlistHTML, textStatus, jqXHR) {
+            //         $(target).append(playlistHTML);
+            //         $('#playlistSermonTab').addClass('is-active');
+            //     });
+            //   }
+            // }
 
-            function initiateTab3() {
-                target = "#thirdTabSermon"
-                tab3 = localStorage.getItem('sermonTab3');
-                if (tab3 == "Bible") {
-                    if (sermonData.results[0].book == null) {
-                        localStorage.setItem('sermonTab3', 'Empty');
-                    } else {
-                        $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
-                        $('#bibleSermonTabButton').addClass('is-active');
-                    }
-                } else if (tab3 == "Comments") {
+            // function initiateTab3() {
+            //     target = "#thirdTabSermon"
+            //     tab3 = localStorage.getItem('sermonTab3');
+            //     if (tab3 == "Bible") {
+            //         if (sermonData.results[0].book == null) {
+            //             localStorage.setItem('sermonTab3', 'Empty');
+            //         } else {
+            //             $(target).append('<iframe id="bibleFrame" style="width:100%;height:1020px;" src="https://www.thebodyofchrist.us/service/bible/?book=' + sermonData.results[0].book + '&chapter=1"></iframe>');
+            //             $('#bibleSermonTabButton').addClass('is-active');
+            //         }
+            //     } else if (tab3 == "Comments") {
 
-                 //   FB.XFBML.parse();
-                    $('#commentSermonTabButton').addClass('is-active');
-                }
-                else if (tab3 == "Playlist") {
-                    jQuery.ajax({
-                    url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
-                   type: "GET",
-                  }).done(function(playlistHTML, textStatus, jqXHR) {
-                    $(target).append(playlistHTML);
-                    $('#playlistSermonTab').addClass('is-active');
-                });
-              }
-            }
+            //      //   FB.XFBML.parse();
+            //         $('#commentSermonTabButton').addClass('is-active');
+            //     }
+            //     else if (tab3 == "Playlist") {
+            //         jQuery.ajax({
+            //         url: "https://www.thebodyofchrist.us/service/getplaylistfromID/?sermonid=" + sermonID,
+            //        type: "GET",
+            //       }).done(function(playlistHTML, textStatus, jqXHR) {
+            //         $(target).append(playlistHTML);
+            //         $('#playlistSermonTab').addClass('is-active');
+            //     });
+            //   }
+            // }
 
 
 
-            initiateTab2();
-            initiateTab3();
+            //initiateTab2();
+           // initiateTab3();
             $('#contentHolder').empty();
 
 //            setTimeout(function() {
@@ -43166,6 +43198,10 @@ function loadIndividualSermon(sermonID) {
     });
 }
 function downloadMP3() {
+
+	if (app = "True"){
+
+	
     url = 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + window.sermonID + '.mp3';
     var fileTransfer = new FileTransfer();
     fileTransfer.onprogress = function(result) {
@@ -43204,13 +43240,26 @@ function downloadMP3() {
             NProgress.done();
         });
 
+}
+else{
+	url = 'https://storage.googleapis.com/boc-audio/sermonsMP3/' + window.sermonID + '.mp3';
+	window.open(url);
 
+}
 }
 function nyi() {
     //alert('Not Yet Implemented.');
     var snackbarContainer = document.querySelector('#alertToast');
     var data = {
         message: "Not Yet Implemented"
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+}
+function noPlaylist() {
+    //alert('Not Yet Implemented.');
+    var snackbarContainer = document.querySelector('#alertToast');
+    var data = {
+        message: "No Playlist Found for Teaching"
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
@@ -43242,8 +43291,6 @@ function markaslistened(sermonid) {
         };
         snackbarContainer.MaterialSnackbar.showSnackbar(data);
     });
-
-
 
 }
 function play() {
@@ -43550,3 +43597,10 @@ function playlistLoad(){
 
 
 initializeDeepLinks();
+
+var FF = !(window.mozInnerScreenX == null);
+if(FF) {
+    $('html').append("<style>#recommendedPlaylistBox{display: flex !important; flex-flow: row wrap !important;}#recommendedSermonBox{display: flex !important; flex-flow: row wrap !important;}</style>");
+} else { 
+    // not firefox 
+}
