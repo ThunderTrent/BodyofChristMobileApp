@@ -32379,7 +32379,7 @@ function loadSpeakers(search, communityID, insert) {
 
             $('#contentHolder').append(speakerData);
 
-               $( "#loader-wrapper" ).fadeOut( "slow", function() {});
+            $( "#loader-wrapper" ).fadeOut( "slow", function() {});
 
             $('#speakerInput').on('keyup keypress', function(e) {
                 var keyCode = e.keyCode || e.which;
@@ -32693,9 +32693,32 @@ function loadVBVInsert(url, target, name) {
             $( "#loader-wrapper" ).fadeOut( "slow", function() {
     // Animation complete
   });
-        console.log("HTTP Request Succeeded: " + jqXHR.status);
+        
+		$('#filtersSermons').after('<div id="searchBar" class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid" style="width:100% !important;height: 52px;background-color: #DE5F4D !important;margin-left:0px;margin-top:25px;"><input id="VBVInput" placeholder="Search Book Name" style="width:90%;height:34px;margin-left:5%;outline:none !important;border:none !important;background-color:#EC8374;font-weight: 500;font-size: 14px;color:white;padding-left:20px;text-transform: uppercase;font-family:"Open Sans", sans-serif;"></div>')
 
         $('#contentHolder').append(vbvData);
+		
+		$('#speakerInput').on('keyup keypress', function(e) {
+                var keyCode = e.keyCode || e.which;
+                if (keyCode === 13) {
+                    e.preventDefault();
+                    return false;
+                } else {}
+            });
+
+
+            $("#VBVInput").on("change paste keyup", function() {
+
+                $('#contentHolder').empty();
+                query = document.getElementById('VBVInput').value;
+                jQuery.ajax({
+                    url: 'https://www.thebodyofchrist.us/service/phonegap/versebyversefeed/?q=' + query,
+                    type: "GET",
+                }).done(function(teachingData, textStatus, jqXHR) {
+                    $('#contentHolder').append(teachingData);
+                    $( "#loader-wrapper" ).fadeOut( "slow", function() {});
+                });
+            });
 
 
     });
@@ -42148,7 +42171,7 @@ function teachingsLoad(pressed) {
      $('#churches').removeClass('is-active');
      //  $('#speakers').removeClass('is-active');
      $( "#loader-wrapper" ).fadeIn( "slow", function() {
-    // Animation complete
+    componentHandler.upgradeDom();
   });
      //  $('#filtersVBV').hide();
      sermonsLoad();
@@ -42189,8 +42212,9 @@ function sermonsLoad(pressed) {
      $('#playlistButton').removeClass('is-active');
      $('#teachingsButton').removeClass('is-active');
 	 $('#individualSpeakerBar').hide();
+	 $('#verseByVerseBar').hide();
      $('#sermonHistoryButton').removeClass('is-active');
-     $('#verseByVerseButton').removeClass('is-active');
+    
      $('#bibleButton').removeClass('is-active');
      loadTeachings(localStorage.getItem('view'), localStorage.getItem('communityID'), '', '', '', '', '');
      // bindToSearches();
@@ -42393,7 +42417,6 @@ function activityLoad(pressed) {
 
 function speakersLoad(pressed) {
      window.currentView = "Speakers";
-
      $('#searchBar').remove();
      $('#contentHolder').empty();
      $('#activity').removeClass('is-active');
@@ -42401,10 +42424,11 @@ function speakersLoad(pressed) {
      $('#speakers').addClass('is-active');
      $('#needs').removeClass('is-active');
      $('#churches').removeClass('is-active');
-	$('#speakerBar').hide();
+	 $('#speakerBar').hide();
      $('#members').removeClass('is-active');
      $('#playlistButton').removeClass('is-active');
      $('#teachingBar').hide();
+	 $('#verseByVerseBar').hide();
       $( "#loader-wrapper" ).fadeIn( "slow", function() {
     // Animation complete
   });
@@ -42733,6 +42757,9 @@ function toggleHideRecommendedPlaylists(){
 
 
 //TEACHINGS
+if (localStorage.getItem("verifiedSermons") === null) {
+  localStorage.setItem('verifiedSermons', '1');
+}
 
 function loadTeachings(search, communityID, userID, insert, title, date, date2, sermonID) {
     if (title == "") {
@@ -42745,7 +42772,7 @@ function loadTeachings(search, communityID, userID, insert, title, date, date2, 
     if (search == "Global") {
         //check online status
         if (isOffline === false) {
-            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/'
+            url = 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?verified=' + localStorage.getItem('verifiedSermons');
             name = "globalTeachings";
         } else {
             url = 'cdvfile://localhost/library-nosync/globalTeachings.json';
@@ -42850,9 +42877,11 @@ recommendedSermonBox = $('#recommendedSermonBox').children()[1];
  }
 
  $('#sermonContentHolder').empty();
+ $('.allSermonHeaderBox').remove();
+
  query = document.getElementById('sermonInput').value;
  jQuery.ajax({
-        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?q=' + query,
+        url: 'https://www.thebodyofchrist.us/service/phonegap/teachingfeed/?q=' + query + '&verified=' + localStorage.getItem("verifiedSermons"),
         type: "GET",
     }).done(function(teachingData, textStatus, jqXHR) {
     $('#sermonContentHolder').append(teachingData);

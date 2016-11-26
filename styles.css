@@ -1,3 +1,43 @@
+.buttonSwitch{
+  position:relative;
+   left:652px;
+   top:-23px;
+}
+
+.allSermonHeaderBox{
+  height:52px;
+}
+@media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px)
+    and (device-width : 414px)
+    and (device-height : 736px)
+    and (orientation : portrait) 
+    and (-webkit-min-device-pixel-ratio : 3) 
+    and (-webkit-device-pixel-ratio : 3)
+{ 
+.allSermonHeaderBox{
+height:80px;
+}
+
+.buttonSwitch{
+   top:-22px;
+   left:10px;
+}
+
+}
+
+.mdl-switch.is-checked .mdl-switch__thumb{
+  background: rgb(222, 95, 77) !important;
+}
+
+.mdl-switch__ripple-container .mdl-ripple{
+      background: rgb(236, 131, 116) !important;
+}
+
+.mdl-switch.is-checked .mdl-switch__track{
+  background: rgba(236, 131, 116, 0.79) !important;
+}
 #bookChoice-button > span{
     display:none;
 }
@@ -657,7 +697,11 @@ span {
 
 
 
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 320px) {
+  #allSermonHeaderBox{
+height:80px !important;
+}
 
   .ratingStars{
   margin-top:-31px !important;
@@ -730,6 +774,9 @@ position:relative !important;
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 375px) and (orientation: portrait) {
+  #allSermonHeaderBox{
+height:80px !important;
+}
   .textIntro {
     max-height: 286px !important;
   }
@@ -799,6 +846,9 @@ position:relative !important;
 
 
 @media only screen and (min-device-width: 414px) and (max-device-width: 414px) and (orientation: portrait) {
+  #allSermonHeaderBox{
+height:80px !important;
+}
   .textIntro {
     max-height: 286px !important;
   }
@@ -865,6 +915,9 @@ position:relative !important;
 
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  #allSermonHeaderBox{
+height:80px !important;
+}
   #bocText {
     font-size: 60px !important;
     top: 50% !important;
@@ -1034,6 +1087,9 @@ width: 750px !important;
 #sermonContentInside{
     width: 402px !important;
     }
+#allSermonHeaderBox{
+height:80px !important;
+}
 
      #audioHolder{
        margin-left: 0px !important;
@@ -1045,6 +1101,10 @@ width: 750px !important;
 
 @media (min-device-width: 411px) and (max-device-width: 411px) {
 
+#allSermonHeaderBox{
+height:80px !important;
+}
+
 
      #audioHolder{
        margin-left: 0px !important;
@@ -1055,6 +1115,9 @@ width: 750px !important;
 
   @media (min-device-width: 360px) and (max-device-width: 360px) {
 
+#allSermonHeaderBox{
+height:80px !important;
+}
 
      #audioHolder{
        margin-left: 0px !important;
